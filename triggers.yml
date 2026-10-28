@@ -1817,3 +1817,30 @@ triggers:
   resolved_target: 213.89
   seen_high: 199.83999633789062
   seen_low: 192.35780334472656
+- id: NFG-forensic-2026-10-28
+  source: forensic
+  ticker: NFG
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 75.41
+  exit_plan:
+    stop:
+      price: 70.89
+    target:
+      price: 84.46
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 55: buy at or below $75.41 (pullback to the 60-day
+    low (support) ($75.03)), sell at $84.46 (twice the risk taken (no value target
+    above the entry)), stop $70.89; chart-based entry, not a value bargain: keep it
+    small; check the 2027 spinoff terms, earnings, filings and news before confirming.'
+  report_date: 2026-10-28
+  expires: 2027-01-26
+  status: active
+  backtest:
+    wins: 2
+    losses: 1
+    signals: 3
+  earnings_date: '2026-11-04'
+  earnings_checked: '2026-10-28'
