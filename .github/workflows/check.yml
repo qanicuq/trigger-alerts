@@ -1,0 +1,64 @@
+name: Check triggers
+on:
+  # Timing comes from cron-job.org (workflow_dispatch), not GitHub's unreliable scheduler.
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force run outside market hours'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+env:
+  NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Early exit outside hours
+        id: hours
+        run: |
+          SHOULD_RUN=true
+          if [ "${{ inputs.force }}" != "true" ]; then
+            NY_TIME=$(TZ=America/New_York date +%H%M)
+            NY_DOW=$(TZ=America/New_York date +%u)
+            if [ "$NY_DOW" -gt 5 ] || [ "$NY_TIME" -lt 0925 ] || [ "$NY_TIME" -gt 1645 ]; then
+              echo "Outside 09:25-16:45 NY weekday; skipping"
+              SHOULD_RUN=false
+            fi
+          fi
+          echo "should_run=$SHOULD_RUN" >> $GITHUB_OUTPUT
+      - uses: actions/checkout@v4
+        if: steps.hours.outputs.should_run == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.hours.outputs.should_run == 'true'
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements.txt
+        if: steps.hours.outputs.should_run == 'true'
+      - run: python check.py
+        if: steps.hours.outputs.should_run == 'true'
+        env:
+          FORCE: ${{ inputs.force }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      - name: Commit changes
+        if: steps.hours.outputs.should_run == 'true'
+        run: |
+          git config user.name "trigger-bot"
+          git config user.email "trigger-bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || (git commit -m "bot update" && git push)
+
+      - name: Phone alert if this run failed
+        if: failure()
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          curl -s -H "Title: trigger-alerts: Check triggers FAILED" -H "Priority: high" -H "Tags: x" \
+            -H "Click: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            -d "Tap to open the failed run on GitHub." \
+            "https://ntfy.sh/${NTFY_TOPIC}" || true

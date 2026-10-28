@@ -1,0 +1,49 @@
+name: Confirm trade
+on:
+  workflow_dispatch:
+    inputs:
+      trade_id:
+        description: 'Trade ID or latest'
+        required: false
+        default: 'latest'
+      force:
+        description: 'Force run outside market hours'
+        type: choice
+        options: ['false', 'true']
+        default: 'false'
+permissions:
+  contents: write
+env:
+  NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+
+jobs:
+  confirm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python confirm.py "${{ inputs.trade_id }}"
+        env:
+          FORCE: ${{ inputs.force }}
+      - run: python -c "import report; report.write_pages()"
+      - name: Commit changes
+        run: |
+          git config user.name "trigger-bot"
+          git config user.email "trigger-bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || (git commit -m "bot update" && git push)
+
+      - name: Phone alert if this run failed
+        if: failure()
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          curl -s -H "Title: trigger-alerts: Confirm trade FAILED" -H "Priority: high" -H "Tags: x" \
+            -H "Click: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            -d "Tap to open the failed run on GitHub." \
+            "https://ntfy.sh/${NTFY_TOPIC}" || true

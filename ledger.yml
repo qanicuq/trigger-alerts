@@ -1,0 +1,117 @@
+cash: 670.5162652645176
+peak_equity: 1017.6719096627332
+day_start_equity: 1005.8222210679216
+positions:
+- id: WIT-forensic-2026-10-23
+  ticker: WIT
+  action: BUY
+  entry_price: 2.1061
+  quantity: 24.3631
+  stop: 1.03
+  target: 3.12
+  max_hold_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-10-23T11:14:19.047349-04:00'
+  source: forensic
+- id: IMXI-forensic-2026-10-23
+  ticker: IMXI
+  action: BUY
+  entry_price: 9.2696
+  quantity: 11.9417
+  stop: 5.04
+  target: 16.62
+  max_hold_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-10-23T11:15:04.679537-04:00'
+  source: forensic
+- id: APTV-forensic-2026-10-22
+  ticker: APTV
+  action: BUY
+  entry_price: 42.8314
+  quantity: 2.0434
+  stop: 18.13
+  target: 81.91
+  max_hold_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-10-23T13:00:37.775247-04:00'
+  source: forensic
+- id: SHOE-forensic-2026-10-23
+  ticker: SHOE
+  action: BUY
+  entry_price: 14.1521
+  quantity: 6.3714
+  stop: 6.23
+  target: 29.36
+  max_hold_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-10-23T13:00:40.260700-04:00'
+  source: forensic
+closed_trades:
+- id: NP-forensic-2026-10-17
+  ticker: NP
+  action: BUY
+  entry_price: 27.8139
+  quantity: 8.9883
+  stop: 25.91
+  target: 32.73
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-10-21T12:32:10.095012-04:00'
+  source: forensic
+  thesis_broken: 'Playbook 2026-10-22: not cheap. Chart-based entry with no value
+    target above price; negative book value, short record (public since 2025), price
+    ~20x sales.'
+  exit_price: 28.950000762939453
+  exit_reason: thesis broken
+  pl: 10.21
+  closed: '2026-10-23T09:30:33.311769-04:00'
+realized_pl: 10.211614487528685
+last_checked: '2026-10-28T15:30:34.842451-04:00'
+sent_slots:
+  2026-10-13:morning: true
+  2026-10-13:midday: true
+  2026-10-14:morning: true
+  2026-10-14:midday: true
+  2026-10-15:morning: true
+  2026-10-15:midday: true
+  2026-10-16:morning: true
+  2026-10-16:midday: true
+  2026-10-16:end of day: true
+  2026-10-19:morning: true
+  2026-10-19:midday: true
+  2026-10-19:end of day: true
+  2026-10-20:morning: true
+  2026-10-20:midday: true
+  2026-10-20:end of day: true
+  2026-10-21:morning: true
+  2026-10-21:midday: true
+  2026-10-21:end of day: true
+  2026-10-22:morning: true
+  2026-10-22:midday: true
+  2026-10-22:end of day: true
+  2026-10-23:morning: true
+  2026-10-23:midday: true
+  2026-10-23:end of day: true
+  2026-10-26:morning: true
+  2026-10-26:midday: true
+  2026-10-26:end of day: true
+  2026-10-27:morning: true
+  2026-10-27:midday: true
+  2026-10-27:end of day: true
+  2026-10-28:morning: true
+  2026-10-28:midday: true
+usage_checked_date: null
+usage_alerted_month: null
+paused: false
+stats:
+  forensic-stock:
+    wins: 1
+    losses: 0
+day_start_date: '2026-10-28'
+macro_error_alerted: '2026-10-22'
+max_drawdown_pct: 1.21

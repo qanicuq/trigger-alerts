@@ -1,0 +1,42 @@
+name: Watchdog
+on:
+  # Own GitHub schedule on purpose: if cron-job.org stops, this still runs.
+  # Times are New York 09:15, 09:40, :10 and :40 from 10:10 to 15:40, and 16:10, weekdays.
+  # GitHub cron is UTC with no daylight saving, so each time is listed for both offsets
+  # (EDT = UTC-4, EST = UTC-5). Mar and Nov list both because the switch falls mid-month;
+  # watchdog.py goes by New York time and holidays, so a wrong-offset run is harmless.
+  schedule:
+    - cron: '15,40 13 * 3-11 1-5'
+    - cron: '10,40 14-19 * 3-11 1-5'
+    - cron: '10 20 * 3-11 1-5'
+    - cron: '15,40 14 * 11,12,1,2,3 1-5'
+    - cron: '10,40 15-20 * 11,12,1,2,3 1-5'
+    - cron: '10 21 * 11,12,1,2,3 1-5'
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python watchdog.py
+
+      - name: Phone alert if this run failed
+        if: failure()
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          curl -s -H "Title: trigger-alerts: Watchdog FAILED" -H "Priority: high" -H "Tags: x" \
+            -H "Click: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            -d "Tap to open the failed run on GitHub." \
+            "https://ntfy.sh/${NTFY_TOPIC}" || true

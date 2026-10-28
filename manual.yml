@@ -1,0 +1,5 @@
+# Hand-entered numbers the bot can't fetch itself. Update after each 30-year bond auction.
+# Tail = auction high yield minus when-issued yield, in basis points (Newsquawk / InvestingLive report it).
+auction_tail_30y_bp:
+  value: 0.1
+  as_of: 2026-10-08
