@@ -1872,3 +1872,31 @@ triggers:
     signals: 3
   earnings_date: '2026-11-05'
   earnings_checked: '2026-10-28'
+- id: OKE-forensic-2026-10-28
+  source: forensic
+  ticker: OKE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 92.33
+  exit_plan:
+    stop:
+      price: 86.79
+    target:
+      price: 103.41
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $92.33 (pullback to the 20-day
+    average ($91.87)), sell at $103.41 (twice the risk taken (no value target above
+    the entry)), stop $86.79; chart-based entry, not a value bargain: keep it small;
+    check that the value holds up once the pipeline assets are counted, earnings,
+    filings and news before confirming.'
+  report_date: 2026-10-28
+  expires: 2027-01-26
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-22'
+  earnings_checked: '2026-10-28'
