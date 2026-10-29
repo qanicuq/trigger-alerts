@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Oct 29, 2026 at 11:00 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 29, 2026 at 11:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**26 watching** · **4 bought (open)** · **17 ended**
+**27 watching** · **4 bought (open)** · **17 ended**
 
 ## Watching now
 
@@ -36,6 +36,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 10, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **HOPE** | Buy shares — waiting for your OK | Price at or below $13.66 | $15.30 | $12.84 | Jan 26, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
+| **CRWV** | buy 65 put, sell 55 put, exp Dec 18, 2026 — +50% of max profit / −50% of max loss / 7 days before expiry — waiting for your OK | Price at or above $61.66<br>Price at or below $74.89 | +50% of max profit | −50% of max loss / 7 days before expiry | Nov 10, 2026 | Nov 27, 2026 | Option Calc, Oct 29, 2026 |
 
 **Notes from each report**
 
@@ -65,6 +66,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **NBIS:** WATCH, confidence 75: buy at or below $134.87 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $175.33 (twice the risk taken (no value target above the entry)), stop $114.64; chart-based entry, not a value bargain: keep it small; check whether the 2026-05-22 20-F/A restated numbers, earnings, filings and news before confirming.
 - **HOPE:** WATCH, confidence 65: buy at or below $13.66 (pullback to the 20-day average ($13.60)), sell at $15.30 (twice the risk taken (no value target above the entry)), stop $12.84; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day average ($47.07)), sell at $52.98 (twice the risk taken (no value target above the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
+- **CRWV:** Bear put spread: buy the CRWV Dec 18 $65 put, sell the $55 put for about $4.93 or less, while CRWV is between $61.66 and $74.89. Holds through Nov 10 earnings on purpose; close by Nov 27.
 
 ## Bought (open paper trades)
 
