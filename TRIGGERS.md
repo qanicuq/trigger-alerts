@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Oct 29, 2026 at 9:41 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 29, 2026 at 10:00 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **26 watching** · **4 bought (open)** · **17 ended**
 
@@ -34,7 +34,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **DVN** | Buy shares | Price at or below $49.79 | $55.76 | $46.80 | Nov 5, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OKE** | Buy shares | Price at or below $92.33 | $103.41 | $86.79 | Feb 22, 2027 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 10, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
-| **HOPE** | Buy shares | Price at or below $13.66 | $15.30 | $12.84 | Jan 26, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
+| **HOPE** | Buy shares — waiting for your OK | Price at or below $13.66 | $15.30 | $12.84 | Jan 26, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
 
 **Notes from each report**
