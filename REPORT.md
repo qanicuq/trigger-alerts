@@ -1,6 +1,6 @@
-# Report 2026-10-29 15:30 NY
+# Report 2026-10-29 16:00 NY
 
-Equity: $1,009  Peak: $1,018  Drawdown: 0.9%  Paused: no
+Equity: $1,011  Peak: $1,018  Drawdown: 0.7%  Paused: no
 Cash: $671
 P/L today: $0
 P/L overall: $10
@@ -8,9 +8,9 @@ Worst drawdown: 1.2%  Expectancy: $10.21 per trade (1 closed)
 
 ## Open trades
 - WIT entry 2.11 now 2.109999895095825 P/L 0.2% stop 1.03 target 3.12
-- IMXI entry 9.27 now 8.515000343322754 P/L -8.1% stop 5.04 target 16.62
-- APTV entry 42.83 now 44.435001373291016 P/L 3.7% stop 18.13 target 81.91
-- SHOE entry 14.15 now 14.845000267028809 P/L 4.9% stop 6.23 target 29.36
+- IMXI entry 9.27 now 8.5649995803833 P/L -7.6% stop 5.04 target 16.62
+- APTV entry 42.83 now 44.38999938964844 P/L 3.6% stop 18.13 target 81.91
+- SHOE entry 14.15 now 15.074999809265137 P/L 6.5% stop 6.23 target 29.36
 
 ## Exits today
 None

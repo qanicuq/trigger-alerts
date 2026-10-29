@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Oct 29, 2026 at 3:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 29, 2026 at 4:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**27 watching** · **4 bought (open)** · **17 ended**
+**25 watching** · **4 bought (open)** · **19 ended**
 
 ## Watching now
 
@@ -34,9 +34,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **DVN** | Buy shares | Price at or below $49.79 | $55.76 | $46.80 | Nov 5, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OKE** | Buy shares | Price at or below $92.33 | $103.41 | $86.79 | Feb 22, 2027 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 10, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
-| **HOPE** | Buy shares — waiting for your OK | Price at or below $13.66 | $15.30 | $12.84 | Jan 26, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
-| **CRWV** | buy 65 put, sell 55 put, exp Dec 18, 2026 — +50% of max profit / −50% of max loss / 7 days before expiry — waiting for your OK | Price at or above $61.66<br>Price at or below $74.89 | +50% of max profit | −50% of max loss / 7 days before expiry | Nov 10, 2026 | Nov 27, 2026 | Option Calc, Oct 29, 2026 |
 
 **Notes from each report**
 
@@ -64,9 +62,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **DVN:** WATCH, confidence 45: buy at or below $49.79 (pullback to the 20-day average ($49.54)), sell at $55.76 (twice the risk taken (no value target above the entry)), stop $46.80; chart-based entry, not a value bargain: keep it small; check whether the 2026-04-21 10-K/A restated any numbers, earnings, filings and news before confirming.
 - **OKE:** WATCH, confidence 30: buy at or below $92.33 (pullback to the 20-day average ($91.87)), sell at $103.41 (twice the risk taken (no value target above the entry)), stop $86.79; chart-based entry, not a value bargain: keep it small; check that the value holds up once the pipeline assets are counted, earnings, filings and news before confirming.
 - **NBIS:** WATCH, confidence 75: buy at or below $134.87 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $175.33 (twice the risk taken (no value target above the entry)), stop $114.64; chart-based entry, not a value bargain: keep it small; check whether the 2026-05-22 20-F/A restated numbers, earnings, filings and news before confirming.
-- **HOPE:** WATCH, confidence 65: buy at or below $13.66 (pullback to the 20-day average ($13.60)), sell at $15.30 (twice the risk taken (no value target above the entry)), stop $12.84; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day average ($47.07)), sell at $52.98 (twice the risk taken (no value target above the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
-- **CRWV:** Bear put spread: buy the CRWV Dec 18 $65 put, sell the $55 put for about $4.93 or less, while CRWV is between $61.66 and $74.89. Holds through Nov 10 earnings on purpose; close by Nov 27.
 
 ## Bought (open paper trades)
 
@@ -87,6 +83,8 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Added | Status | Why it ended |
 |---|---|---|---|---|
+| **HOPE** | Buy shares | Oct 29, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
+| **CRWV** | buy 65 put, sell 55 put, exp Dec 18, 2026 — +50% of max profit / −50% of max loss / 7 days before expiry | Oct 29, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **RES** | Buy shares | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **RES** | Buy call ($5.00, exp Mar 19, 2027) | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **VVX** | Buy shares | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
