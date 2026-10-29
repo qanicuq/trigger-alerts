@@ -609,6 +609,24 @@ class TestSpreads(unittest.TestCase):
         self.assertFalse(ok)
         self.assertEqual(reason, "both legs must be the same right")
 
+    def test_reject_missing_strike(self):
+        legs = [
+            {"side": "buy", "right": "put"},
+            {"side": "sell", "right": "put", "strike": 40},
+        ]
+        ok, reason = check._validate_trigger(self._spread_trigger(legs))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "each leg needs a number strike")
+
+    def test_reject_text_strike(self):
+        legs = [
+            {"side": "buy", "right": "put", "strike": "abc"},
+            {"side": "sell", "right": "put", "strike": 40},
+        ]
+        ok, reason = check._validate_trigger(self._spread_trigger(legs))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "each leg needs a number strike")
+
     def _run_spread_exit(self, entry, value, max_profit, max_loss):
         pos = {
             "id": "S1",

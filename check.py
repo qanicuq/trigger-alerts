@@ -246,7 +246,11 @@ def _validate_trigger(tr):
         rights = [str(leg.get("right") or "").lower() for leg in legs]
         if rights[0] != rights[1] or rights[0] not in ("call", "put"):
             return False, "both legs must be the same right"
-        if float(legs[0].get("strike")) == float(legs[1].get("strike")):
+        try:
+            strikes = [float(leg.get("strike")) for leg in legs]
+        except (TypeError, ValueError):
+            return False, "each leg needs a number strike"
+        if strikes[0] == strikes[1]:
             return False, "legs need different strikes"
         try:
             exp_d = date.fromisoformat(str(c.get("expiry")))
@@ -412,6 +416,7 @@ def _ingest_inbox(triggers, ledger=None):
             changed = True
         except Exception as e:
             print(f"inbox error {path}: {e}")
+            common.ntfy(f"Trigger rejected: {os.path.basename(path)}", f"Could not read trigger: {e}")
             try:
                 shutil.move(path, f"inbox/rejected/{os.path.basename(path)}")
             except Exception:

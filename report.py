@@ -292,8 +292,13 @@ def write_pages():
                 f"entry {entry:.2f} exits {SPREAD_EXITS}"
             )
             continue
-        px = common.last_price(p.get("ticker"))
         entry = float(p.get("entry_price") or 0)
+        if p.get("is_option"):
+            px = p.get("last_bid")
+            if px is None:
+                px = entry
+        else:
+            px = common.last_price(p.get("ticker"))
         pl_pct = ((px - entry) / entry * 100) if px and entry else 0
         report_lines.append(
             f"- {p.get('ticker')} entry {entry:.2f} now {px or '?'} P/L {pl_pct:.1f}% "
