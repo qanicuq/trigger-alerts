@@ -1898,49 +1898,6 @@ triggers:
   resolved_target: 103.41
   seen_high: 96.20999908447266
   seen_low: 96.20999908447266
-- id: OGE-forensic-2026-10-28
-  source: forensic
-  ticker: OGE
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 47.3
-  exit_plan:
-    stop:
-      price: 44.46
-    target:
-      price: 52.98
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day
-    average ($47.07)), sell at $52.98 (twice the risk taken (no value target above
-    the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small;
-    check the Oklahoma rate case outcome, earnings, filings and news before confirming.'
-  report_date: 2026-10-28
-  expires: 2027-01-26
-  status: active
-  backtest:
-    wins: 0
-    losses: 3
-    signals: 3
-  earnings_date: '2027-02-17'
-  earnings_checked: '2026-10-29'
-  resolved:
-    sma20: 47.28404998779297
-    sma50: 46.188682861328125
-    sma200: 46.368971767425535
-    ema20: 47.58225640865655
-    52w_high: 50.2599983215332
-    52w_low: 40.59343732909513
-    support20: 44.38999938964844
-    resistance20: 50.2599983215332
-    rsi14: 71.0
-  resolved_stop: 44.46
-  resolved_target: 52.98
-  earnings_last: '2026-10-28'
-  earnings_reminded: '2026-10-28'
-  seen_high: 49.525001525878906
-  seen_low: 49.525001525878906
 - id: NBIS-forensic-2026-10-28
   source: forensic
   ticker: NBIS
@@ -2009,4 +1966,31 @@ triggers:
     losses: 3
     signals: 3
   earnings_date: '2027-01-26'
+  earnings_checked: '2026-10-29'
+- id: OGE-forensic-2026-10-29
+  source: forensic
+  ticker: OGE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 47.3
+  exit_plan:
+    stop:
+      price: 44.46
+    target:
+      price: 52.98
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day
+    average ($47.07)), sell at $52.98 (twice the risk taken (no value target above
+    the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small;
+    check earnings, filings and news before confirming.'
+  report_date: 2026-10-29
+  expires: 2027-01-27
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-17'
   earnings_checked: '2026-10-29'
