@@ -785,50 +785,6 @@ triggers:
   resolved_target: 9.75
   seen_high: 9.640000343322754
   seen_low: 8.399999618530273
-- id: HOPE-forensic-2026-10-23
-  source: forensic
-  ticker: HOPE
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 13.56
-  exit_plan:
-    stop:
-      price: 12.75
-    target:
-      price: 15.19
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 45: buy at or below $13.56 (pullback to the 20-day
-    average ($13.50)), sell at $15.19 (twice the risk taken (no value target above
-    the entry)), stop $12.75; chart-based entry, not a value bargain: keep it small;
-    check before confirming: Q3 earnings on Oct 28, 2026, new filings and news (SEC
-    filing check was unavailable this run).'
-  report_date: 2026-10-23
-  expires: 2027-01-21
-  status: active
-  backtest:
-    wins: 0
-    losses: 3
-    signals: 3
-  earnings_date: '2027-01-26'
-  earnings_checked: '2026-10-29'
-  resolved:
-    sma20: 13.620999956130982
-    sma50: 13.755999946594239
-    sma200: 12.67379765033722
-    ema20: 13.750877305721689
-    52w_high: 14.59000015258789
-    52w_low: 9.488475127654802
-    support20: 13.029999732971191
-    resistance20: 14.279999732971191
-    rsi14: 58.0
-  resolved_stop: 12.75
-  resolved_target: 15.19
-  seen_high: 14.270000457763672
-  seen_low: 13.71500015258789
-  earnings_last: '2026-10-28'
-  earnings_reminded: '2026-10-28'
 - id: NAT-forensic-2026-10-23
   source: forensic
   ticker: NAT
@@ -2027,3 +1983,30 @@ triggers:
   resolved_target: 175.33
   seen_high: 172.375
   seen_low: 172.375
+- id: HOPE-forensic-2026-10-29
+  source: forensic
+  ticker: HOPE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 13.66
+  exit_plan:
+    stop:
+      price: 12.84
+    target:
+      price: 15.3
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $13.66 (pullback to the 20-day
+    average ($13.60)), sell at $15.30 (twice the risk taken (no value target above
+    the entry)), stop $12.84; chart-based entry, not a value bargain: keep it small;
+    check earnings, filings and news before confirming.'
+  report_date: 2026-10-29
+  expires: 2027-01-27
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-01-26'
+  earnings_checked: '2026-10-29'

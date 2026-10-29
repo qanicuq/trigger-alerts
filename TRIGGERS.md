@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Oct 29, 2026 at 9:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 29, 2026 at 9:39 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **26 watching** · **4 bought (open)** · **17 ended**
 
@@ -13,7 +13,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MU** | Buy shares | Price at or below $856.49<br>Price at least 2% above the 20-day low (support) (≈$866.24) | $1,377.85 | $478.82 | Dec 23, 2026 | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **NOK** | Buy shares | Price at or below $7.08 | $9.20 | $6.02 | Jan 28, 2027 | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
-| **HOPE** | Buy shares | Price at or below $13.56 | $15.19 | $12.75 | Jan 26, 2027 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **NAT** | Buy shares | Price at or below $7.01 | $8.42 | $6.30 | Nov 27, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **NKE** | Buy put ($37.00, exp Dec 4, 2026) | Price at or below $35.80<br>RSI at or below 50 | +20% on the option | −20% on the option | Dec 17, 2026 | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
 | **RLX** | Buy shares | Price at or below $1.58 | $1.77 | $1.49 | Nov 13, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
@@ -36,13 +35,13 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **OKE** | Buy shares | Price at or below $92.33 | $103.41 | $86.79 | Feb 22, 2027 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 10, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
+| **HOPE** | Buy shares | Price at or below $13.66 | $15.30 | $12.84 | Jan 26, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
 
 **Notes from each report**
 
 - **MU:** BUY, confidence 65: buy at or below $856.49 (price is already below the value buy-below line), sell at $1377.85 (sell or trim when price reaches estimated value), stop $478.82 as disaster insurance only, set beyond the stock's worst past fall; cyclical at peak margins so keep it small; check before confirming: Dec 15 earnings, the Netlist ITC patent case and SEC filings (not checked this run).
 - **NOK:** WATCH, confidence 60: buy at or below $7.08 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $9.20 (twice the risk taken, no value target above the entry), stop $6.02; chart-based entry, not a value bargain: keep it small; fell 15% on 2026-10-22 on news (Q3 cash-flow outlook cut): wait until about 2026-11-12 before confirming; SEC filings were not cross-checked this run and the Q4 report is due 2027-01-28: check before confirming.
 - **BB:** WATCH, confidence 30: buy at or below $7.50 (pullback to the 60-day low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small; check before confirming: Dec 17 earnings, new filings, further CEO selling and news.
-- **HOPE:** WATCH, confidence 45: buy at or below $13.56 (pullback to the 20-day average ($13.50)), sell at $15.19 (twice the risk taken (no value target above the entry)), stop $12.75; chart-based entry, not a value bargain: keep it small; check before confirming: Q3 earnings on Oct 28, 2026, new filings and news (SEC filing check was unavailable this run).
 - **NAT:** WATCH, confidence 60: buy at or below $7.01 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $8.42 (twice the risk taken, no value target above the entry), stop $6.30; chart-based entry, not a value bargain: keep it small; check before confirming: Q3 earnings on 2026-11-26, new filings or share sales, and tanker-rate news.
 - **NKE:** Watch only (no trade yet): buy the NKE Dec 4 2026 $37 put only after the bounce fails, with a close at or below $35.80 and RSI(14) at or below 50; check before confirming that the put's IV is under about 37%, the spread is under 10% of the mid, and no surprise news or earnings-date change has come out (prices in the evaluation were modeled, not live quotes).
 - **RLX:** WATCH, confidence 50: buy at or below $1.58 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $1.77 (twice the risk taken, no value target above the entry), stop $1.49; chart-based entry, not a value bargain: keep it small; check before confirming: Q3 earnings on 2026-11-12, the receivables flag, and new filings or news.
@@ -65,6 +64,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **OKE:** WATCH, confidence 30: buy at or below $92.33 (pullback to the 20-day average ($91.87)), sell at $103.41 (twice the risk taken (no value target above the entry)), stop $86.79; chart-based entry, not a value bargain: keep it small; check that the value holds up once the pipeline assets are counted, earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day average ($47.07)), sell at $52.98 (twice the risk taken (no value target above the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small; check the Oklahoma rate case outcome, earnings, filings and news before confirming.
 - **NBIS:** WATCH, confidence 75: buy at or below $134.87 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $175.33 (twice the risk taken (no value target above the entry)), stop $114.64; chart-based entry, not a value bargain: keep it small; check whether the 2026-05-22 20-F/A restated numbers, earnings, filings and news before confirming.
+- **HOPE:** WATCH, confidence 65: buy at or below $13.66 (pullback to the 20-day average ($13.60)), sell at $15.30 (twice the risk taken (no value target above the entry)), stop $12.84; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
