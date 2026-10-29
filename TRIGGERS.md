@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Oct 28, 2026 at 8:14 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 28, 2026 at 8:16 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**25 watching** · **4 bought (open)** · **17 ended**
+**26 watching** · **4 bought (open)** · **17 ended**
 
 ## Watching now
 
@@ -35,6 +35,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **DVN** | Buy shares | Price at or below $49.79 | $55.76 | $46.80 | Nov 5, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OKE** | Buy shares | Price at or below $92.33 | $103.41 | $86.79 | Feb 22, 2027 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Oct 28, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
+| **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 10, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 
 **Notes from each report**
 
@@ -63,6 +64,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **DVN:** WATCH, confidence 45: buy at or below $49.79 (pullback to the 20-day average ($49.54)), sell at $55.76 (twice the risk taken (no value target above the entry)), stop $46.80; chart-based entry, not a value bargain: keep it small; check whether the 2026-04-21 10-K/A restated any numbers, earnings, filings and news before confirming.
 - **OKE:** WATCH, confidence 30: buy at or below $92.33 (pullback to the 20-day average ($91.87)), sell at $103.41 (twice the risk taken (no value target above the entry)), stop $86.79; chart-based entry, not a value bargain: keep it small; check that the value holds up once the pipeline assets are counted, earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day average ($47.07)), sell at $52.98 (twice the risk taken (no value target above the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small; check the Oklahoma rate case outcome, earnings, filings and news before confirming.
+- **NBIS:** WATCH, confidence 75: buy at or below $134.87 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $175.33 (twice the risk taken (no value target above the entry)), stop $114.64; chart-based entry, not a value bargain: keep it small; check whether the 2026-05-22 20-F/A restated numbers, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

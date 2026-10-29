@@ -1927,3 +1927,31 @@ triggers:
     signals: 3
   earnings_date: '2026-10-28'
   earnings_checked: '2026-10-28'
+- id: NBIS-forensic-2026-10-28
+  source: forensic
+  ticker: NBIS
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 134.87
+  exit_plan:
+    stop:
+      price: 114.64
+    target:
+      price: 175.33
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $134.87 (pullback of 1.5×
+    a normal day''s move (no chart support within 20%)), sell at $175.33 (twice the
+    risk taken (no value target above the entry)), stop $114.64; chart-based entry,
+    not a value bargain: keep it small; check whether the 2026-05-22 20-F/A restated
+    numbers, earnings, filings and news before confirming.'
+  report_date: 2026-10-28
+  expires: 2027-01-26
+  status: active
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2026-11-10'
+  earnings_checked: '2026-10-28'
