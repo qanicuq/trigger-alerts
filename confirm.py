@@ -11,6 +11,8 @@ NY = common.NY
 
 def _bucket(tr):
     source = tr.get("source", "forensic")
+    if tr.get("action") == "SPREAD":
+        return f"{source}-spread"
     is_opt = tr.get("action", "").startswith("BUY_")
     return f"{source}-{'option' if is_opt else 'stock'}"
 
@@ -18,13 +20,25 @@ def _bucket(tr):
 def _compute_equity(ledger):
     equity = float(ledger.get("cash") or 0)
     for p in ledger.get("positions") or []:
-        px = common.last_price(p.get("ticker")) or float(p.get("entry_price") or 0)
-        mult = 100 if p.get("is_option") else 1
-        equity += px * float(p.get("quantity") or 0) * mult
+        qty = float(p.get("quantity") or 0)
+        entry = float(p.get("entry_price") or 0)
+        if p.get("action") == "SPREAD":
+            px = p.get("last_value")
+            if px is None:
+                px = entry
+            equity += float(px) * 100 * qty + float(p.get("reserved") or 0)
+        elif p.get("is_option"):
+            px = p.get("last_bid")
+            if px is None:
+                px = entry
+            equity += float(px) * 100 * qty
+        else:
+            px = common.last_price(p.get("ticker")) or entry
+            equity += px * qty
     return equity
 
 
-def _kelly_size(tr, ledger, entry, stop, target):
+def _kelly_size(tr, ledger, entry, stop, target, max_profit=None, max_loss=None):
     """Return (shares_or_contracts, risk_fraction, p, b, refused_reason) or None if refuse."""
     bucket = _bucket(tr)
     stats = ledger.get("stats") or {}
@@ -34,8 +48,12 @@ def _kelly_size(tr, ledger, entry, stop, target):
     alpha = common.PRIOR_ALPHA + bkt["wins"] + common.BACKTEST_WEIGHT * bt["wins"]
     beta = common.PRIOR_BETA + bkt["losses"] + common.BACKTEST_WEIGHT * bt["losses"]
     p = alpha / (alpha + beta) if (alpha + beta) > 0 else 0.5
-    is_option = tr.get("action") != "BUY"
-    if is_option:
+    action = tr.get("action")
+    is_spread = action == "SPREAD"
+    is_option = action != "BUY"
+    if is_spread:
+        b = (common.SPREAD_TARGET * max_profit) / (common.SPREAD_STOP * max_loss)
+    elif is_option:
         b = 1.0  # 0.20 / 0.20
     else:
         if stop is None or target is None or entry <= stop:
@@ -51,6 +69,14 @@ def _kelly_size(tr, ledger, entry, stop, target):
     equity = _compute_equity(ledger)
     dollars_at_risk = risk_fraction * equity
     cash = float(ledger.get("cash") or 0)
+    if is_spread:
+        contracts = math.floor(dollars_at_risk / (common.SPREAD_STOP * max_loss * 100))
+        max_by_pos = math.floor(common.MAX_POSITION_OPTION * equity / (max_loss * 100))
+        max_by_cash = math.floor(cash / (max_loss * 100))
+        contracts = min(contracts, max_by_pos, max_by_cash)
+        if contracts < 1:
+            return None, risk_fraction, p, b, f"one spread risks ${max_loss*100:.0f}, too big for the account"
+        return contracts, risk_fraction, p, b, None
     if is_option:
         # need premium
         c = tr.get("contract") or {}
@@ -148,7 +174,19 @@ def place(tr, ledger, force=False):
     contract = tr.get("contract")
 
     # Fill price
-    if is_option:
+    max_profit = None
+    max_loss = None
+    if action == "SPREAD":
+        c = contract or {}
+        fill = common.spread_value(ticker, c.get("expiry"), c.get("legs"), opening=True)
+        if fill is None:
+            common.ntfy("Confirm refused", "No spread quote")
+            return False
+        _width, max_profit, max_loss = common.spread_numbers(c.get("legs"), fill)
+        if max_profit <= 0 or max_loss <= 0:
+            common.ntfy("Confirm refused", "Spread quotes make no sense")
+            return False
+    elif is_option:
         q = common.option_quote(ticker, contract.get("expiry"), contract.get("strike"), contract.get("right"))
         if not q:
             common.ntfy("Confirm refused", "No option quote")
@@ -180,13 +218,18 @@ def place(tr, ledger, force=False):
             common.ntfy("Confirm refused", "Could not resolve stop/target")
             return False
 
-    qty, risk_frac, p, b, refuse = _kelly_size(tr, ledger, fill, stop, target)
+    qty, risk_frac, p, b, refuse = _kelly_size(tr, ledger, fill, stop, target, max_profit, max_loss)
     if refuse:
         common.ntfy(f"Skipped {ticker}: {refuse}", f"p={p:.2f} b={b:.2f}")
         return False
 
     # Cash check already in sizing
-    cost = fill * qty * (100 if is_option else 1)
+    if action == "SPREAD":
+        cost = max_loss * 100 * qty
+        reserved = (max_loss - fill) * 100 * qty
+    else:
+        cost = fill * qty * (100 if is_option else 1)
+        reserved = 0
     if float(ledger.get("cash") or 0) < cost:
         common.ntfy("Confirm refused", f"Not enough cash (need ${cost:.0f})")
         return False
@@ -203,11 +246,18 @@ def place(tr, ledger, force=False):
         "target": target,
         "max_hold_days": int(ep.get("max_hold_days") or 30),
         "is_option": is_option,
-        "reserved": 0,
+        "reserved": reserved,
         "opened": common.now_ny().isoformat(),
         "source": tr.get("source"),
     }
-    if contract:
+    if action == "SPREAD":
+        pos["expiry"] = contract.get("expiry")
+        pos["legs"] = contract.get("legs")
+        pos["max_profit"] = max_profit
+        pos["max_loss"] = max_loss
+        pos["stop"] = None
+        pos["target"] = None
+    elif contract:
         pos["strike"] = contract.get("strike")
         pos["right"] = contract.get("right")
         pos["expiry"] = contract.get("expiry")
@@ -215,10 +265,18 @@ def place(tr, ledger, force=False):
     tr["frozen"] = True
     tr["status"] = "filled"
 
-    common.ntfy(
-        f"{ticker} paper trade placed",
-        f"Fill: {fill:.2f}\nQty: {qty}\nStop: {stop}\nTarget: {target}\nRisk: {risk_frac*100:.1f}% (win chance {p*100:.0f}%)",
-    )
+    if action == "SPREAD":
+        kind = "Credit" if fill < 0 else "Debit"
+        common.ntfy(
+            f"{ticker} paper trade placed",
+            f"{kind}\nNet: {fill:.2f} per share\nQty: {qty}\n"
+            f"Max loss: ${max_loss * 100 * qty:.2f}\nMax profit: ${max_profit * 100 * qty:.2f}",
+        )
+    else:
+        common.ntfy(
+            f"{ticker} paper trade placed",
+            f"Fill: {fill:.2f}\nQty: {qty}\nStop: {stop}\nTarget: {target}\nRisk: {risk_frac*100:.1f}% (win chance {p*100:.0f}%)",
+        )
 
     ledger.setdefault("positions", []).append(pos)
     return True

@@ -8,11 +8,13 @@ import common
 import confirm
 
 NY = common.NY
-ALLOWED_ACTIONS = {"BUY", "BUY_CALL", "BUY_PUT"}
+ALLOWED_ACTIONS = {"BUY", "BUY_CALL", "BUY_PUT", "SPREAD"}
 
 
 def _bucket(tr):
     source = tr.get("source", "forensic")
+    if tr.get("action") == "SPREAD":
+        return f"{source}-spread"
     is_opt = tr.get("action", "").startswith("BUY_")
     return f"{source}-{'option' if is_opt else 'stock'}"
 
@@ -216,15 +218,36 @@ def _validate_trigger(tr):
     conds = tr.get("conditions") or []
     if not conds:
         return False, "no conditions"
-    is_opt = tr["action"] != "BUY"
-    if not is_opt:
+    action = tr["action"]
+    if action == "BUY":
         ep = tr.get("exit_plan") or {}
         if not ep.get("stop") or not ep.get("target"):
             return False, "stock needs stop and target"
-    if is_opt:
+    if action in ("BUY_CALL", "BUY_PUT"):
         c = tr.get("contract") or {}
         if not c.get("right") or c.get("strike") is None or not c.get("expiry"):
             return False, "option needs contract right/strike/expiry"
+        try:
+            exp_d = date.fromisoformat(str(c.get("expiry")))
+            if (exp_d - date.today()).days <= common.OPTION_TIME_EXIT_DAYS:
+                return False, "expiry is too soon"
+        except Exception:
+            return False, "bad contract expiry"
+    if action == "SPREAD":
+        c = tr.get("contract") or {}
+        legs = c.get("legs")
+        if not c.get("expiry") or not legs:
+            return False, "spread needs contract expiry and legs"
+        if len(legs) != 2:
+            return False, "spread needs exactly 2 legs"
+        sides = [str(leg.get("side") or "").lower() for leg in legs]
+        if sides.count("buy") != 1 or sides.count("sell") != 1:
+            return False, "spread needs one buy leg and one sell leg"
+        rights = [str(leg.get("right") or "").lower() for leg in legs]
+        if rights[0] != rights[1] or rights[0] not in ("call", "put"):
+            return False, "both legs must be the same right"
+        if float(legs[0].get("strike")) == float(legs[1].get("strike")):
+            return False, "legs need different strikes"
         try:
             exp_d = date.fromisoformat(str(c.get("expiry")))
             if (exp_d - date.today()).days <= common.OPTION_TIME_EXIT_DAYS:
@@ -420,7 +443,11 @@ def _close_position(ledger, pos, exit_price, reason, now):
         b["wins"] += 1
     else:
         b["losses"] += 1
-    pct = (pl / (entry * qty * mult) * 100) if entry and qty else 0
+    if pos.get("action") == "SPREAD":
+        max_loss = float(pos.get("max_loss") or 0)
+        pct = (pl / (max_loss * qty * 100) * 100) if max_loss and qty else 0
+    else:
+        pct = (pl / (entry * qty * mult) * 100) if entry and qty else 0
     body = f"Entry: {entry:.2f}\nExit: {exit_price:.2f}\nP/L: ${pl:.2f} ({pct:.1f}%)"
     common.ntfy(f"{pos.get('ticker')} paper trade closed: {reason}", body)
     return True
@@ -483,9 +510,21 @@ def main():
         # compute current equity roughly
         equity = float(ledger.get("cash") or 0)
         for p in ledger.get("positions") or []:
-            px = common.last_price(p.get("ticker")) or float(p.get("entry_price") or 0)
-            mult = 100 if p.get("is_option") else 1
-            equity += px * float(p.get("quantity") or 0) * mult
+            qty = float(p.get("quantity") or 0)
+            entry = float(p.get("entry_price") or 0)
+            if p.get("action") == "SPREAD":
+                px = p.get("last_value")
+                if px is None:
+                    px = entry
+                equity += float(px) * 100 * qty + float(p.get("reserved") or 0)
+            elif p.get("is_option"):
+                px = p.get("last_bid")
+                if px is None:
+                    px = entry
+                equity += float(px) * 100 * qty
+            else:
+                px = common.last_price(p.get("ticker")) or entry
+                equity += px * qty
         ledger["day_start_equity"] = equity
         ledger["day_start_date"] = today
         changed = True
@@ -493,9 +532,21 @@ def main():
     # Peak tracking
     equity = float(ledger.get("cash") or 0)
     for p in ledger.get("positions") or []:
-        px = common.last_price(p.get("ticker")) or float(p.get("entry_price") or 0)
-        mult = 100 if p.get("is_option") else 1
-        equity += px * float(p.get("quantity") or 0) * mult
+        qty = float(p.get("quantity") or 0)
+        entry = float(p.get("entry_price") or 0)
+        if p.get("action") == "SPREAD":
+            px = p.get("last_value")
+            if px is None:
+                px = entry
+            equity += float(px) * 100 * qty + float(p.get("reserved") or 0)
+        elif p.get("is_option"):
+            px = p.get("last_bid")
+            if px is None:
+                px = entry
+            equity += float(px) * 100 * qty
+        else:
+            px = common.last_price(p.get("ticker")) or entry
+            equity += px * qty
     peak = float(ledger.get("peak_equity") or equity)
     if equity > peak:
         ledger["peak_equity"] = equity
@@ -632,7 +683,37 @@ def main():
         entry = float(pos.get("entry_price") or 0)
         exit_reason = None
         exit_price = None
-        if is_option:
+        if pos.get("action") == "SPREAD":
+            value = common.spread_value(ticker, pos.get("expiry"), pos.get("legs"), opening=False)
+            if value is None:
+                pos["no_quote_count"] = pos.get("no_quote_count", 0) + 1
+                if pos["no_quote_count"] >= 2:
+                    exit_reason = "no quote"
+                    exit_price = pos.get("last_value")
+                    if exit_price is None:
+                        exit_price = entry
+                changed = True
+            else:
+                pos["no_quote_count"] = 0
+                pos["last_value"] = value
+                gain = value - entry
+                max_profit = float(pos.get("max_profit") or 0)
+                max_loss = float(pos.get("max_loss") or 0)
+                if gain >= common.SPREAD_TARGET * max_profit:
+                    exit_reason = "target"
+                    exit_price = value
+                elif gain <= -common.SPREAD_STOP * max_loss:
+                    exit_reason = "stop"
+                    exit_price = value
+                try:
+                    exp = date.fromisoformat(str(pos.get("expiry")))
+                    if (exp - now.date()).days <= common.OPTION_TIME_EXIT_DAYS:
+                        exit_reason = "time"
+                        exit_price = value
+                except Exception:
+                    pass
+                changed = True
+        elif is_option:
             q = common.option_quote(ticker, pos.get("expiry"), pos.get("strike"), pos.get("right"))
             bid = q.get("bid") if q else None
             # no quote 2 runs
