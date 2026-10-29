@@ -1900,3 +1900,30 @@ triggers:
     signals: 3
   earnings_date: '2027-02-22'
   earnings_checked: '2026-10-28'
+- id: OGE-forensic-2026-10-28
+  source: forensic
+  ticker: OGE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 47.3
+  exit_plan:
+    stop:
+      price: 44.46
+    target:
+      price: 52.98
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day
+    average ($47.07)), sell at $52.98 (twice the risk taken (no value target above
+    the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small;
+    check the Oklahoma rate case outcome, earnings, filings and news before confirming.'
+  report_date: 2026-10-28
+  expires: 2027-01-26
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-10-28'
+  earnings_checked: '2026-10-28'
