@@ -78,3 +78,24 @@ reason: "Auditor resigned (8-K item 4.01)"
 ```
 
 The bot cancels that ticker's active triggers from the same source, flags any open paper position from that source to be sold at the next market-hours check, and sends a high-priority alert. Value-based buy triggers use `target: {price: <intrinsic value>}`, a wide `stop`, and `max_hold_days: 540` (an 18-month time stop).
+
+## Spread example
+
+```yaml
+id: ABCD-spread-2026-10-29
+source: option
+ticker: ABCD
+action: SPREAD
+conditions:
+  - {type: price, op: ">=", value: 50.00}
+contract:
+  expiry: 2026-12-18
+  legs:
+    - {side: buy, right: put, strike: 45}
+    - {side: sell, right: put, strike: 40}
+recommendation: "Bear put spread if price is at or above 50"
+report_date: 2026-10-29
+expires: 2026-11-29
+```
+
+Spreads exit at +50% of max profit, at -50% of max loss, or 7 days before expiry. Only two-leg spreads with the same expiry are allowed.

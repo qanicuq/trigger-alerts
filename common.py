@@ -28,6 +28,8 @@ MAX_DRAWDOWN = 0.10
 OPTION_TARGET = 0.20
 OPTION_STOP = 0.20
 OPTION_TIME_EXIT_DAYS = 7
+SPREAD_TARGET = 0.50
+SPREAD_STOP = 0.50
 
 # Full-day NYSE holidays 2026-2027 (no early closes)
 HOLIDAYS = {
@@ -326,6 +328,44 @@ def option_quote(ticker, expiry, strike, right):
         "ask": float(row["ask"] or 0),
         "last": float(row["lastPrice"] or 0),
     }
+
+
+def spread_value(ticker, expiry, legs, opening):
+    """Net price of a two-leg spread. Opening uses the price we would pay; closing uses the price we would get."""
+    bought = None
+    sold = None
+    for leg in legs:
+        q = option_quote(ticker, expiry, leg.get("strike"), leg.get("right"))
+        if q is None:
+            return None
+        side = str(leg.get("side") or "").lower()
+        if opening:
+            px = q["ask"] if side == "buy" else q["bid"]
+        else:
+            px = q["bid"] if side == "buy" else q["ask"]
+        use_ask = (opening and side == "buy") or ((not opening) and side == "sell")
+        if use_ask and px == 0:
+            return None
+        if side == "buy":
+            bought = px
+        elif side == "sell":
+            sold = px
+    if bought is None or sold is None:
+        return None
+    return bought - sold
+
+
+def spread_numbers(legs, net):
+    """Width and max profit/loss per share for a two-leg spread. net > 0 is a debit."""
+    width = abs(float(legs[0]["strike"]) - float(legs[1]["strike"]))
+    if net >= 0:
+        max_loss = net
+        max_profit = width - net
+    else:
+        credit = -net
+        max_profit = credit
+        max_loss = width - credit
+    return (width, max_profit, max_loss)
 
 
 def resolve_level(level_spec, refs, entry=None):

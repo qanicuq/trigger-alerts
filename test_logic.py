@@ -223,7 +223,7 @@ class TestShortDated(unittest.TestCase):
 
 class TestBuysOnly(unittest.TestCase):
     def test_allowed_actions_are_buys_only(self):
-        self.assertEqual(check.ALLOWED_ACTIONS, {"BUY", "BUY_CALL", "BUY_PUT"})
+        self.assertEqual(check.ALLOWED_ACTIONS, {"BUY", "BUY_CALL", "BUY_PUT", "SPREAD"})
         self.assertNotIn("SELL_PUT", check.ALLOWED_ACTIONS)
         self.assertNotIn("SELL_CALL", check.ALLOWED_ACTIONS)
         tr = {
@@ -467,6 +467,225 @@ class TestNextEarnings(unittest.TestCase):
         t = self._ticker(cal={}, df=None)
         with patch("common.yf.Ticker", return_value=t):
             self.assertIsNone(common.next_earnings("ITB", date(2026, 10, 14)))
+
+
+class TestSpreads(unittest.TestCase):
+    def test_debit_spread_numbers(self):
+        legs = [
+            {"side": "buy", "right": "put", "strike": 45},
+            {"side": "sell", "right": "put", "strike": 40},
+        ]
+        _width, max_profit, max_loss = common.spread_numbers(legs, 2.00)
+        self.assertEqual(max_loss, 2.00)
+        self.assertEqual(max_profit, 3.00)
+
+    def test_credit_spread_numbers(self):
+        legs = [
+            {"side": "sell", "right": "put", "strike": 45},
+            {"side": "buy", "right": "put", "strike": 40},
+        ]
+        _width, max_profit, max_loss = common.spread_numbers(legs, -1.50)
+        self.assertEqual(max_profit, 1.50)
+        self.assertEqual(max_loss, 3.50)
+
+    def _open_spread(self, legs, quotes, cash=50000.0):
+        tr = {
+            "id": "ABCD-spread",
+            "ticker": "ABCD",
+            "action": "SPREAD",
+            "source": "option",
+            "conditions": [{"type": "price", "op": ">=", "value": 50}],
+            "contract": {"expiry": "2026-12-18", "legs": legs},
+        }
+        ledger = {
+            "cash": cash, "positions": [], "realized_pl": 0.0, "paused": False,
+            "stats": {}, "day_start_equity": cash, "peak_equity": cash,
+        }
+
+        def option_quote(ticker, expiry, strike, right):
+            return quotes[float(strike)]
+
+        with patch("common.option_quote", side_effect=option_quote), \
+             patch("common.last_price", return_value=50.0), \
+             patch("common.get_daily_bars", return_value=None), \
+             patch("common.ntfy"):
+            ok = confirm.place(tr, ledger, force=True)
+        self.assertTrue(ok, ledger)
+        return ledger
+
+    def test_debit_cash_round_trip(self):
+        legs = [
+            {"side": "buy", "right": "put", "strike": 45},
+            {"side": "sell", "right": "put", "strike": 40},
+        ]
+        quotes = {
+            45.0: {"bid": 2.80, "ask": 3.00, "last": 2.90},
+            40.0: {"bid": 1.00, "ask": 1.20, "last": 1.10},
+        }
+        start = 50000.0
+        ledger = self._open_spread(legs, quotes, start)
+        pos = ledger["positions"][0]
+        with patch("common.ntfy"):
+            check._close_position(ledger, pos, 2.50, "target", common.now_ny())
+        pl = ledger["closed_trades"][0]["pl"]
+        self.assertAlmostEqual(ledger["cash"] - start, pl)
+
+    def test_credit_cash_round_trip(self):
+        legs = [
+            {"side": "sell", "right": "put", "strike": 45},
+            {"side": "buy", "right": "put", "strike": 40},
+        ]
+        quotes = {
+            45.0: {"bid": 3.00, "ask": 3.20, "last": 3.10},
+            40.0: {"bid": 1.30, "ask": 1.50, "last": 1.40},
+        }
+        start = 50000.0
+        ledger = self._open_spread(legs, quotes, start)
+        pos = ledger["positions"][0]
+        with patch("common.ntfy"):
+            check._close_position(ledger, pos, -0.50, "target", common.now_ny())
+        pl = ledger["closed_trades"][0]["pl"]
+        self.assertAlmostEqual(ledger["cash"] - start, pl)
+
+    def test_credit_equity_unchanged_at_open(self):
+        legs = [
+            {"side": "sell", "right": "put", "strike": 45},
+            {"side": "buy", "right": "put", "strike": 40},
+        ]
+        quotes = {
+            45.0: {"bid": 3.00, "ask": 3.20, "last": 3.10},
+            40.0: {"bid": 1.30, "ask": 1.50, "last": 1.40},
+        }
+        start = 50000.0
+        ledger = self._open_spread(legs, quotes, start)
+        pos = ledger["positions"][0]
+        pos["last_value"] = pos["entry_price"]  # closing value equals the opening net
+        self.assertAlmostEqual(confirm._compute_equity(ledger), start)
+
+    def _spread_trigger(self, legs, expiry="2026-12-18"):
+        return {
+            "id": "ABCD-spread-2026-10-29",
+            "source": "option",
+            "ticker": "ABCD",
+            "action": "SPREAD",
+            "conditions": [{"type": "price", "op": ">=", "value": 50.00}],
+            "contract": {"expiry": expiry, "legs": legs},
+        }
+
+    def test_reject_three_legs(self):
+        legs = [
+            {"side": "buy", "right": "put", "strike": 45},
+            {"side": "sell", "right": "put", "strike": 40},
+            {"side": "buy", "right": "put", "strike": 35},
+        ]
+        ok, reason = check._validate_trigger(self._spread_trigger(legs))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "spread needs exactly 2 legs")
+
+    def test_reject_two_buys(self):
+        legs = [
+            {"side": "buy", "right": "put", "strike": 45},
+            {"side": "buy", "right": "put", "strike": 40},
+        ]
+        ok, reason = check._validate_trigger(self._spread_trigger(legs))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "spread needs one buy leg and one sell leg")
+
+    def test_reject_same_strike(self):
+        legs = [
+            {"side": "buy", "right": "put", "strike": 45},
+            {"side": "sell", "right": "put", "strike": 45},
+        ]
+        ok, reason = check._validate_trigger(self._spread_trigger(legs))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "legs need different strikes")
+
+    def test_reject_mixed_rights(self):
+        legs = [
+            {"side": "buy", "right": "put", "strike": 45},
+            {"side": "sell", "right": "call", "strike": 40},
+        ]
+        ok, reason = check._validate_trigger(self._spread_trigger(legs))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "both legs must be the same right")
+
+    def test_reject_missing_strike(self):
+        legs = [
+            {"side": "buy", "right": "put"},
+            {"side": "sell", "right": "put", "strike": 40},
+        ]
+        ok, reason = check._validate_trigger(self._spread_trigger(legs))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "each leg needs a number strike")
+
+    def test_reject_text_strike(self):
+        legs = [
+            {"side": "buy", "right": "put", "strike": "abc"},
+            {"side": "sell", "right": "put", "strike": 40},
+        ]
+        ok, reason = check._validate_trigger(self._spread_trigger(legs))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "each leg needs a number strike")
+
+    def _run_spread_exit(self, entry, value, max_profit, max_loss):
+        pos = {
+            "id": "S1",
+            "ticker": "ABCD",
+            "action": "SPREAD",
+            "is_option": True,
+            "entry_price": entry,
+            "quantity": 1,
+            "expiry": "2027-06-18",
+            "legs": [
+                {"side": "buy", "right": "put", "strike": 45},
+                {"side": "sell", "right": "put", "strike": 40},
+            ],
+            "max_profit": max_profit,
+            "max_loss": max_loss,
+            "reserved": 0,
+            "stop": None,
+            "target": None,
+            "source": "option",
+        }
+        today = common.now_ny().date().isoformat()
+        ledger = {
+            "cash": 800.0,
+            "positions": [pos],
+            "closed_trades": [],
+            "realized_pl": 0.0,
+            "peak_equity": 1000.0,
+            "day_start_equity": 1000.0,
+            "day_start_date": today,
+            "paused": False,
+            "stats": {},
+            "sent_slots": {},
+        }
+        files = {"triggers.yml": {"triggers": []}, "ledger.yml": ledger}
+        with patch("common.is_forced", return_value=True), \
+             patch("common.load_yaml", side_effect=lambda p: files.get(p, {})), \
+             patch("common.save_yaml"), \
+             patch("common.spread_value", return_value=value), \
+             patch("common.last_price", return_value=50.0), \
+             patch("common.ntfy"), \
+             patch("check._ingest_inbox", return_value=False), \
+             patch("check._refresh_triggers_page"), \
+             patch("report.send_report"), \
+             patch("report.write_pages"):
+            check.main()
+        self.assertEqual(len(ledger.get("closed_trades") or []), 1)
+        return ledger["closed_trades"][0]
+
+    def test_spread_exit_target(self):
+        # gain = 3.50 - 2.00 = 1.50, which is 50% of max profit 3.00
+        closed = self._run_spread_exit(2.00, 3.50, 3.00, 2.00)
+        self.assertEqual(closed["exit_reason"], "target")
+        self.assertEqual(closed["exit_price"], 3.50)
+
+    def test_spread_exit_stop(self):
+        # gain = 1.00 - 2.00 = -1.00, which is -50% of max loss 2.00
+        closed = self._run_spread_exit(2.00, 1.00, 3.00, 2.00)
+        self.assertEqual(closed["exit_reason"], "stop")
+        self.assertEqual(closed["exit_price"], 1.00)
 
 
 if __name__ == "__main__":

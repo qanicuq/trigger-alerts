@@ -23,6 +23,7 @@ MACRO_NAMES = {
 }
 SOURCE_NAMES = {"forensic": "Forensic Analysis", "option": "Option Calc", "macro": "Macro"}
 OP_WORDS = {">=": "at or above", "<=": "at or below"}
+SPREAD_EXITS = "+50% of max profit / −50% of max loss / 7 days before expiry"
 
 
 def _day(v):
@@ -42,10 +43,20 @@ def _money(v):
         return "—"
 
 
+def _spread_desc(legs, expiry):
+    bits = [f"{lg.get('side')} {lg.get('strike')} {lg.get('right')}" for lg in (legs or [])]
+    return f"{', '.join(bits)}, exp {_day(expiry)}"
+
+
 def _what(tr):
     action = tr.get("action", "")
     if action == "BUY":
         return "Buy shares"
+    if action == "SPREAD":
+        c = tr.get("contract") or {}
+        legs = c.get("legs") or tr.get("legs")
+        expiry = c.get("expiry") or tr.get("expiry")
+        return f"{_spread_desc(legs, expiry)} — {SPREAD_EXITS}"
     c = tr.get("contract") or {}
     kind = "call" if action == "BUY_CALL" else "put" if action == "BUY_PUT" else action
     if c:
@@ -141,7 +152,9 @@ def write_triggers_page():
         for tr in watching:
             resolved = tr.get("resolved") or {}
             conds = "<br>".join(_condition(c, resolved) for c in tr.get("conditions") or [])
-            if tr.get("action", "").startswith("BUY_"):
+            if tr.get("action") == "SPREAD":
+                target, stop = "+50% of max profit", "−50% of max loss / 7 days before expiry"
+            elif tr.get("action", "").startswith("BUY_"):
                 target, stop = "+20% on the option", "−20% on the option"
             else:
                 ep = tr.get("exit_plan") or {}
@@ -170,9 +183,15 @@ def write_triggers_page():
             qty = float(p.get("quantity") or 0)
             amount = f"{qty:g} contract(s)" if is_opt else f"{qty:.2f} shares"
             note = f"Flagged to sell at the next check: {p['thesis_broken']}" if p.get("thesis_broken") else ""
+            if p.get("action") == "SPREAD":
+                what = f"{_spread_desc(p.get('legs'), p.get('expiry'))} — {SPREAD_EXITS}"
+                target, stop = "+50% of max profit", "−50% of max loss / 7 days before expiry"
+            else:
+                what = "Option" if is_opt else "Stock"
+                target, stop = _money(p.get("target")), _money(p.get("stop"))
             L.append("| " + " | ".join(_cell(x) for x in [
-                f"**{p.get('ticker')}**", "Option" if is_opt else "Stock", _money(p.get("entry_price")), amount,
-                _money(p.get("target")), _money(p.get("stop")), _day(p.get("opened")), note,
+                f"**{p.get('ticker')}**", what, _money(p.get("entry_price")), amount,
+                target, stop, _day(p.get("opened")), note,
             ]) + " |")
 
     closed = ledger.get("closed_trades") or []
@@ -222,9 +241,21 @@ def write_pages():
     cash = float(ledger.get("cash") or 0)
     equity = cash
     for p in ledger.get("positions") or []:
-        px = common.last_price(p.get("ticker")) or float(p.get("entry_price") or 0)
-        mult = 100 if p.get("is_option") else 1
-        equity += px * float(p.get("quantity") or 0) * mult
+        qty = float(p.get("quantity") or 0)
+        entry = float(p.get("entry_price") or 0)
+        if p.get("action") == "SPREAD":
+            px = p.get("last_value")
+            if px is None:
+                px = entry
+            equity += float(px) * 100 * qty + float(p.get("reserved") or 0)
+        elif p.get("is_option"):
+            px = p.get("last_bid")
+            if px is None:
+                px = entry
+            equity += float(px) * 100 * qty
+        else:
+            px = common.last_price(p.get("ticker")) or entry
+            equity += px * qty
     peak = float(ledger.get("peak_equity") or equity)
     dd = ((peak - equity) / peak * 100) if peak else 0
     paused = "yes" if ledger.get("paused") else "no"
@@ -254,8 +285,20 @@ def write_pages():
     if not positions:
         report_lines.append("None")
     for p in positions:
-        px = common.last_price(p.get("ticker"))
+        if p.get("action") == "SPREAD":
+            entry = float(p.get("entry_price") or 0)
+            report_lines.append(
+                f"- {p.get('ticker')} {_spread_desc(p.get('legs'), p.get('expiry'))} "
+                f"entry {entry:.2f} exits {SPREAD_EXITS}"
+            )
+            continue
         entry = float(p.get("entry_price") or 0)
+        if p.get("is_option"):
+            px = p.get("last_bid")
+            if px is None:
+                px = entry
+        else:
+            px = common.last_price(p.get("ticker"))
         pl_pct = ((px - entry) / entry * 100) if px and entry else 0
         report_lines.append(
             f"- {p.get('ticker')} entry {entry:.2f} now {px or '?'} P/L {pl_pct:.1f}% "
@@ -288,9 +331,21 @@ def send_report(slot):
     cash = float(ledger.get("cash") or 0)
     equity = cash
     for p in ledger.get("positions") or []:
-        px = common.last_price(p.get("ticker")) or float(p.get("entry_price") or 0)
-        mult = 100 if p.get("is_option") else 1
-        equity += px * float(p.get("quantity") or 0) * mult
+        qty = float(p.get("quantity") or 0)
+        entry = float(p.get("entry_price") or 0)
+        if p.get("action") == "SPREAD":
+            px = p.get("last_value")
+            if px is None:
+                px = entry
+            equity += float(px) * 100 * qty + float(p.get("reserved") or 0)
+        elif p.get("is_option"):
+            px = p.get("last_bid")
+            if px is None:
+                px = entry
+            equity += float(px) * 100 * qty
+        else:
+            px = common.last_price(p.get("ticker")) or entry
+            equity += px * qty
     realized = float(ledger.get("realized_pl") or 0)
     today_str = now.date().isoformat()
     closed = ledger.get("closed_trades") or []
@@ -318,7 +373,10 @@ def send_report(slot):
         f"Paused: {'yes' if ledger.get('paused') else 'no'}",
     ]
     for p in positions[:5]:
-        lines.append(f"{p.get('ticker')} entry {p.get('entry_price')} stop {p.get('stop')}")
+        if p.get("action") == "SPREAD":
+            lines.append(f"{p.get('ticker')} {_spread_desc(p.get('legs'), p.get('expiry'))} exits {SPREAD_EXITS}")
+        else:
+            lines.append(f"{p.get('ticker')} entry {p.get('entry_price')} stop {p.get('stop')}")
     if waiting:
         lines.append(f"Waiting: {', '.join(t.get('id','') for t in waiting)}")
     body = "\n".join(lines[:12])
