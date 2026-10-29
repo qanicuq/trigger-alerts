@@ -1844,3 +1844,31 @@ triggers:
     signals: 3
   earnings_date: '2026-11-04'
   earnings_checked: '2026-10-28'
+- id: DVN-forensic-2026-10-28
+  source: forensic
+  ticker: DVN
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 49.79
+  exit_plan:
+    stop:
+      price: 46.8
+    target:
+      price: 55.76
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 45: buy at or below $49.79 (pullback to the 20-day
+    average ($49.54)), sell at $55.76 (twice the risk taken (no value target above
+    the entry)), stop $46.80; chart-based entry, not a value bargain: keep it small;
+    check whether the 2026-04-21 10-K/A restated any numbers, earnings, filings and
+    news before confirming.'
+  report_date: 2026-10-28
+  expires: 2027-01-26
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-05'
+  earnings_checked: '2026-10-28'

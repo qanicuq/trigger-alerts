@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Oct 28, 2026 at 7:54 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 28, 2026 at 8:08 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**22 watching** · **4 bought (open)** · **17 ended**
+**23 watching** · **4 bought (open)** · **17 ended**
 
 ## Watching now
 
@@ -32,6 +32,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **SN** | Buy shares | Price at or below $188.71 | $213.89 | $176.12 | Nov 4, 2026 | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **NFG** | Buy shares | Price at or below $75.41 | $84.46 | $70.89 | Nov 4, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
+| **DVN** | Buy shares | Price at or below $49.79 | $55.76 | $46.80 | Nov 5, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 
 **Notes from each report**
 
@@ -57,6 +58,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check whether the cash-flow recovery relies on selling receivables, earnings, filings and news before confirming.
 - **SN:** WATCH, confidence 75: buy at or below $188.71 (pullback to the 20-day average ($187.77)), sell at $213.89 (twice the risk taken (no value target above the entry)), stop $176.12; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 55: buy at or below $75.41 (pullback to the 60-day low (support) ($75.03)), sell at $84.46 (twice the risk taken (no value target above the entry)), stop $70.89; chart-based entry, not a value bargain: keep it small; check the 2027 spinoff terms, earnings, filings and news before confirming.
+- **DVN:** WATCH, confidence 45: buy at or below $49.79 (pullback to the 20-day average ($49.54)), sell at $55.76 (twice the risk taken (no value target above the entry)), stop $46.80; chart-based entry, not a value bargain: keep it small; check whether the 2026-04-21 10-K/A restated any numbers, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
