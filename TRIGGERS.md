@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Oct 28, 2026 at 8:16 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 29, 2026 at 9:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **26 watching** · **4 bought (open)** · **17 ended**
 
@@ -13,7 +13,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MU** | Buy shares | Price at or below $856.49<br>Price at least 2% above the 20-day low (support) (≈$866.24) | $1,377.85 | $478.82 | Dec 23, 2026 | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **NOK** | Buy shares | Price at or below $7.08 | $9.20 | $6.02 | Jan 28, 2027 | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
-| **HOPE** | Buy shares | Price at or below $13.56 | $15.19 | $12.75 | Oct 28, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
+| **HOPE** | Buy shares | Price at or below $13.56 | $15.19 | $12.75 | Jan 26, 2027 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **NAT** | Buy shares | Price at or below $7.01 | $8.42 | $6.30 | Nov 27, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **NKE** | Buy put ($37.00, exp Dec 4, 2026) | Price at or below $35.80<br>RSI at or below 50 | +20% on the option | −20% on the option | Dec 17, 2026 | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
 | **RLX** | Buy shares | Price at or below $1.58 | $1.77 | $1.49 | Nov 13, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
@@ -34,7 +34,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **NFG** | Buy shares | Price at or below $75.41 | $84.46 | $70.89 | Nov 4, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **DVN** | Buy shares | Price at or below $49.79 | $55.76 | $46.80 | Nov 5, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OKE** | Buy shares | Price at or below $92.33 | $103.41 | $86.79 | Feb 22, 2027 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
-| **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Oct 28, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
+| **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 10, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 
 **Notes from each report**
