@@ -284,19 +284,39 @@ def _earnings_reminder_body(tr, ed):
     return body, page
 
 
-def _earnings_pass(triggers, now):
+def _position_earnings_body(tr, ed):
+    t = tr.get("ticker", "?")
+    rd = tr.get("report_date", "an earlier date")
+    body = (f"{t} reported earnings on {ed.isoformat()}. You hold a {t} paper position bought on the {rd} report, "
+            f"which didn't have these results.\nOpen Forensic Analysis and run a Full analysis on {t}: "
+            f"if the verdict turns AVOID, the bot sells the position at the next check. "
+            f"Otherwise it keeps holding with the same stop and target.")
+    return body, common.FORENSIC_PAGE
+
+
+def _needs_refresh(tr):
+    """True when earnings came out on or after the trigger's report date (its numbers are out of date)."""
+    last = common._to_date(tr.get("earnings_last"))
+    rd = common._to_date(tr.get("report_date"))
+    return bool(last and (rd is None or rd <= last))
+
+
+def _earnings_pass(triggers, now, open_ids=()):
     """Morning-after-earnings reminders, then refresh each trigger's next earnings date once a day.
+    Covers triggers still waiting to buy and stock positions still open (open_ids = ledger position ids).
     The reminder check runs first so a passed date is never overwritten before its reminder goes out."""
     changed = False
     today = now.date()
     for tr in triggers:
-        if tr.get("status") not in ("active", "awaiting_confirm"):
+        holding = (tr.get("status") == "filled" and tr.get("id") in open_ids
+                   and tr.get("source") != "option" and not tr.get("contract"))
+        if tr.get("status") not in ("active", "awaiting_confirm") and not holding:
             continue
         ed = common._to_date(tr.get("earnings_date"))
         if ed and today > ed and str(tr.get("earnings_reminded")) != ed.isoformat():
             rd = common._to_date(tr.get("report_date"))
             if rd is None or rd <= ed:
-                body, page = _earnings_reminder_body(tr, ed)
+                body, page = (_position_earnings_body if holding else _earnings_reminder_body)(tr, ed)
                 common.ntfy(f"{tr.get('ticker')} earnings are out: update the data", body,
                             priority="high", click_url=page, action_label="Update the data", action_url=page)
                 tr["earnings_last"] = ed.isoformat()
@@ -596,7 +616,8 @@ def main():
         changed = True
 
     # Earnings: morning-after reminders, daily date refresh
-    if _earnings_pass(triggers, now):
+    open_ids = {p.get("id") for p in ledger.get("positions") or []}
+    if _earnings_pass(triggers, now, open_ids):
         changed = True
 
     # Check conditions for active triggers
@@ -620,7 +641,23 @@ def main():
         closes = hist["Close"].tolist() if hist is not None else []
         rsi = common.wilder_rsi(closes) if closes else None
         vol_ratio = common.volume_ratio(hist) if hist is not None else None
-        if _evaluate_conditions(tr, hist, high, low, refs, rsi, vol_ratio):
+        met = _evaluate_conditions(tr, hist, high, low, refs, rsi, vol_ratio)
+        if met and _needs_refresh(tr):
+            # Earnings came out after this trigger's report: don't buy on old numbers.
+            # The trigger stays active; a fresh report replaces it and buying resumes.
+            last = str(tr.get("earnings_last"))
+            if tr.get("hold_alerted") != last:
+                page = common.OPTION_CALC_PAGE if tr.get("source") == "option" else common.FORENSIC_PAGE
+                where = "OPTION CALC" if tr.get("source") == "option" else "Forensic Analysis (Full analysis)"
+                common.ntfy(
+                    f"{ticker}: trigger met, buy on hold",
+                    f"Earnings came out {last}, after this trigger's {tr.get('report_date')} report, "
+                    f"so the bot won't buy on the old numbers.\nRun {ticker} on {where}: "
+                    f"if the fresh report still says buy, the bot buys when its conditions are met.",
+                    priority="high", click_url=page, action_label="Update the data", action_url=page)
+                tr["hold_alerted"] = last
+                changed = True
+        elif met:
             tr["status"] = "awaiting_confirm"
             tr["alerted_at"] = now.isoformat()
             price = common.last_price(ticker) or 0

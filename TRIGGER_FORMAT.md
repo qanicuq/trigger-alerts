@@ -63,6 +63,8 @@ Options ignore exit_plan; use fixed +20%/-20%/7-day rules.
 
 The bot looks up each trigger's next earnings date once a day (Yahoo Finance) and saves it as `earnings_date`. The first check after that date, it sends a high-priority phone alert to update the data: run a fresh Full analysis on Forensic Analysis (or OPTION CALC for option triggers), which replaces the trigger automatically. If the "confirm trade?" alert fires before earnings, or after earnings but before the data was updated, it says so.
 
+Until a fresh report replaces the trigger, the bot will not buy on the old numbers: if the conditions are met it sends one "buy on hold" alert and keeps the trigger active. Open stock positions get the same morning-after alert; a fresh Full analysis that says AVOID sells the position, otherwise it keeps its stop and target. (Option and spread positions use their own short exits and get no earnings alert.)
+
 You can also set the date yourself: `earnings_date: 2026-11-02`. ETFs have no earnings, so they get no reminder.
 
 ## Thesis broken (value exits)

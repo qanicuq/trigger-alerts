@@ -443,6 +443,71 @@ class TestEarnings(unittest.TestCase):
         self.assertIn("Update the data", check._earnings_warning(stale, date(2026, 11, 5)))
         self.assertEqual(check._earnings_warning(self._tr(), today), "")
 
+    @patch("common.next_earnings", return_value=None)
+    @patch("common.ntfy")
+    def test_open_stock_position_gets_reminder(self, ntfy, ne):
+        held = self._tr(status="filled", earnings_date="2026-11-02")
+        check._earnings_pass([held], self._now(2026, 11, 3), open_ids={held["id"]})
+        self.assertEqual(ntfy.call_count, 1)
+        self.assertIn("paper position", ntfy.call_args[0][1])
+        self.assertIn("AVOID", ntfy.call_args[0][1])
+        self.assertEqual(ntfy.call_args[1]["action_url"], common.FORENSIC_PAGE)
+
+    @patch("common.next_earnings", return_value=None)
+    @patch("common.ntfy")
+    def test_closed_or_option_positions_get_no_reminder(self, ntfy, ne):
+        closed = self._tr(status="filled", earnings_date="2026-11-02")  # position no longer in ledger
+        opt = self._tr(id="RIG-option-x", status="filled", source="option", action="BUY_CALL",
+                       contract={"right": "call", "strike": 5, "expiry": "2026-12-18"}, earnings_date="2026-11-02")
+        check._earnings_pass([closed, opt], self._now(2026, 11, 3), open_ids={"RIG-option-x"})
+        ntfy.assert_not_called()
+
+    def test_needs_refresh(self):
+        self.assertTrue(check._needs_refresh(self._tr(earnings_last="2026-11-02")))
+        self.assertFalse(check._needs_refresh(self._tr()))
+        self.assertFalse(check._needs_refresh(self._tr(report_date=date(2026, 11, 4), earnings_last="2026-11-02")))
+
+    def _run_main(self, tr):
+        today = common.now_ny().date().isoformat()
+        tr["earnings_checked"] = today
+        ledger = {"cash": 1000.0, "positions": [], "closed_trades": [], "realized_pl": 0.0,
+                  "peak_equity": 1000.0, "day_start_equity": 1000.0, "day_start_date": today,
+                  "paused": False, "stats": {}, "sent_slots": {}}
+        files = {"triggers.yml": {"triggers": [tr]}, "ledger.yml": ledger}
+        with patch("common.is_forced", return_value=True), \
+             patch("common.load_yaml", side_effect=lambda p: files.get(p, {})), \
+             patch("common.save_yaml"), \
+             patch("common.get_daily_bars", return_value=None), \
+             patch("common.compute_refs", return_value={}), \
+             patch("common.high_low_since", return_value=(None, None)), \
+             patch("common.last_price", return_value=5.0), \
+             patch("common.ntfy") as ntfy, \
+             patch("check._evaluate_conditions", return_value=True), \
+             patch("confirm.place", return_value=True) as place, \
+             patch("check._ingest_inbox", return_value=False), \
+             patch("check._refresh_triggers_page"), \
+             patch("report.send_report"), \
+             patch("report.write_pages"):
+            check.main()
+        return ntfy, place
+
+    def test_buy_held_after_earnings_until_refreshed(self):
+        tr = self._tr(earnings_date="2099-02-18", earnings_last="2026-11-02", expires="2099-01-01")
+        ntfy, place = self._run_main(tr)
+        place.assert_not_called()
+        self.assertEqual(tr["status"], "active")
+        titles = [c[0][0] for c in ntfy.call_args_list]
+        self.assertIn("RIG: trigger met, buy on hold", titles)
+        # second check: still held, no repeat alert
+        ntfy2, place2 = self._run_main(tr)
+        place2.assert_not_called()
+        self.assertNotIn("RIG: trigger met, buy on hold", [c[0][0] for c in ntfy2.call_args_list])
+
+    def test_fresh_trigger_buys_normally(self):
+        tr = self._tr(earnings_date="2099-02-18", expires="2099-01-01")
+        ntfy, place = self._run_main(tr)
+        place.assert_called_once()
+
     def test_validate_bad_earnings_date(self):
         tr = self._tr(earnings_date="soon", conditions=[{"type": "price", "op": ">=", "value": 1}],
                       exit_plan={"stop": {"pct": -8}, "target": {"pct": 15}}, expires="2099-01-01")
