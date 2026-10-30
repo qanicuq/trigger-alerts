@@ -1166,7 +1166,7 @@ triggers:
     confirming.'
   report_date: 2026-10-23
   expires: 2027-01-21
-  status: expired
+  status: awaiting_confirm
   backtest:
     wins: 1
     losses: 0
@@ -1185,7 +1185,7 @@ triggers:
     rsi14: 56.4
   resolved_stop: 3.74
   resolved_target: 9.47
-  alerted_at: '2026-10-23T13:00:32.176344-04:00'
+  alerted_at: '2026-10-30T09:50:00-04:00'
   seen_high: 6.320000171661377
   seen_low: 6.255000114440918
 - id: RES-option-2026-10-23
@@ -1962,7 +1962,7 @@ triggers:
     check earnings, filings and news before confirming.'
   report_date: 2026-10-29
   expires: 2027-01-27
-  status: expired
+  status: awaiting_confirm
   backtest:
     wins: 0
     losses: 3
@@ -1981,7 +1981,7 @@ triggers:
     rsi14: 46.8
   resolved_stop: 12.84
   resolved_target: 15.3
-  alerted_at: '2026-10-29T10:00:35.199668-04:00'
+  alerted_at: '2026-10-30T09:50:00-04:00'
   seen_high: 13.989999771118164
   seen_low: 13.604999542236328
 - id: OGE-forensic-2026-10-29
