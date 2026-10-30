@@ -2074,3 +2074,31 @@ triggers:
   alerted_at: '2026-10-29T11:30:32.823621-04:00'
   seen_high: 63.38999938964844
   seen_low: 62.902801513671875
+- id: PLAB-forensic-2026-10-30
+  source: forensic
+  ticker: PLAB
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 26.21
+  exit_plan:
+    stop:
+      price: 24.12
+    target:
+      price: 30.38
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $26.21 (pullback of 1.5×
+    a normal day''s move (no chart support within 20%)), sell at $30.38 (twice the
+    risk taken (no value target above the entry)), stop $24.12; chart-based entry,
+    not a value bargain: keep it small; check the Dec 8 earnings and the law-firm
+    investigations, earnings, filings and news before confirming.'
+  report_date: 2026-10-30
+  expires: 2027-01-28
+  status: active
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2026-12-09'
+  earnings_checked: '2026-10-30'
