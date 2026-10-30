@@ -2169,3 +2169,30 @@ triggers:
   alerted_at: '2026-10-30T14:30:33.258160-04:00'
   seen_high: 6.349999904632568
   seen_low: 6.280099868774414
+- id: LLY-forensic-2026-10-30
+  source: forensic
+  ticker: LLY
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 1252.24
+  exit_plan:
+    stop:
+      price: 1162.42
+    target:
+      price: 1431.88
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $1,252.24 (pullback to the
+    20-day average ($1,246.01)), sell at $1,431.88 (twice the risk taken (no value
+    target above the entry)), stop $1,162.42; chart-based entry, not a value bargain:
+    keep it small; check earnings, filings and news before confirming.'
+  report_date: 2026-10-30
+  expires: 2027-01-28
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-03'
+  earnings_checked: '2026-10-30'

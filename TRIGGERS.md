@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Oct 30, 2026 at 4:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 30, 2026 at 7:17 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**24 watching** · **8 bought (open)** · **18 ended**
+**25 watching** · **8 bought (open)** · **18 ended**
 
 ## Watching now
 
@@ -34,6 +34,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 10, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
 | **PLAB** | Buy shares | Price at or below $26.21 | $30.38 | $24.12 | Dec 9, 2026 | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
+| **LLY** | Buy shares | Price at or below $1,252.24 | $1,431.88 | $1,162.42 | Feb 3, 2027 | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
 
 **Notes from each report**
 
@@ -61,6 +62,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **NBIS:** WATCH, confidence 75: buy at or below $134.87 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $175.33 (twice the risk taken (no value target above the entry)), stop $114.64; chart-based entry, not a value bargain: keep it small; check whether the 2026-05-22 20-F/A restated numbers, earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day average ($47.07)), sell at $52.98 (twice the risk taken (no value target above the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **PLAB:** WATCH, confidence 60: buy at or below $26.21 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $30.38 (twice the risk taken (no value target above the entry)), stop $24.12; chart-based entry, not a value bargain: keep it small; check the Dec 8 earnings and the law-firm investigations, earnings, filings and news before confirming.
+- **LLY:** WATCH, confidence 75: buy at or below $1,252.24 (pullback to the 20-day average ($1,246.01)), sell at $1,431.88 (twice the risk taken (no value target above the entry)), stop $1,162.42; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
