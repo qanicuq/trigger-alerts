@@ -1,4 +1,4 @@
-cash: 670.5162652645176
+cash: 547.6757225318975
 peak_equity: 1017.6719096627332
 day_start_equity: 1012.9463795381889
 positions:
@@ -49,6 +49,18 @@ positions:
   is_option: false
   reserved: 0
   opened: '2026-10-23T13:00:40.260700-04:00'
+  source: forensic
+- id: RES-forensic-2026-10-23
+  ticker: RES
+  action: BUY
+  entry_price: 6.3532
+  quantity: 19.3353
+  stop: 3.74
+  target: 9.47
+  max_hold_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-10-30T09:41:35.024607-04:00'
   source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17

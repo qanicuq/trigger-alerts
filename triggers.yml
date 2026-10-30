@@ -1166,7 +1166,7 @@ triggers:
     confirming.'
   report_date: 2026-10-23
   expires: 2027-01-21
-  status: awaiting_confirm
+  status: filled
   backtest:
     wins: 1
     losses: 0
@@ -1188,6 +1188,7 @@ triggers:
   alerted_at: '2026-10-30T09:50:00-04:00'
   seen_high: 6.320000171661377
   seen_low: 6.255000114440918
+  frozen: true
 - id: RES-option-2026-10-23
   source: option
   ticker: RES
