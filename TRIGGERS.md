@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Oct 30, 2026 at 3:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 30, 2026 at 4:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**25 watching** · **8 bought (open)** · **17 ended**
+**24 watching** · **8 bought (open)** · **18 ended**
 
 ## Watching now
 
@@ -34,7 +34,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 10, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
 | **PLAB** | Buy shares | Price at or below $26.21 | $30.38 | $24.12 | Dec 9, 2026 | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
-| **RES** | Buy shares — waiting for your OK | Price at or below $6.34<br>Price at least 2% above the 20-day low (support) (≈$5.72) | $9.47 | $3.76 | Feb 2, 2027 | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
 
 **Notes from each report**
 
@@ -62,7 +61,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **NBIS:** WATCH, confidence 75: buy at or below $134.87 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $175.33 (twice the risk taken (no value target above the entry)), stop $114.64; chart-based entry, not a value bargain: keep it small; check whether the 2026-05-22 20-F/A restated numbers, earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day average ($47.07)), sell at $52.98 (twice the risk taken (no value target above the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **PLAB:** WATCH, confidence 60: buy at or below $26.21 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $30.38 (twice the risk taken (no value target above the entry)), stop $24.12; chart-based entry, not a value bargain: keep it small; check the Dec 8 earnings and the law-firm investigations, earnings, filings and news before confirming.
-- **RES:** WATCH, confidence 65: buy at or below $6.34 (price is already below the value buy-below line), sell at $9.47 (sell or trim when price reaches estimated value), stop $3.76; the stop is disaster insurance only, set beyond the stock's worst past fall; check the Q3 Pintail write-down and whether margins recover, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
@@ -87,6 +85,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Added | Status | Why it ended |
 |---|---|---|---|---|
+| **RES** | Buy shares | Oct 30, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **CRWV** | buy 65 put, sell 55 put, exp Dec 18, 2026 — +50% of max profit / −50% of max loss / 7 days before expiry | Oct 29, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **RES** | Buy call ($5.00, exp Mar 19, 2027) | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **VVX** | Buy shares | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
