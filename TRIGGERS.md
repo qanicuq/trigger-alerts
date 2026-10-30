@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Oct 30, 2026 at 2:12 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 30, 2026 at 2:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **26 watching** · **7 bought (open)** · **17 ended**
 
@@ -35,7 +35,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 10, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
 | **PLAB** | Buy shares | Price at or below $26.21 | $30.38 | $24.12 | Dec 9, 2026 | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
-| **RES** | Buy shares | Price at or below $6.34<br>Price at least 2% above the 20-day low (support) | $9.47 | $3.76 | Feb 2, 2027 | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
+| **RES** | Buy shares — waiting for your OK | Price at or below $6.34<br>Price at least 2% above the 20-day low (support) (≈$5.72) | $9.47 | $3.76 | Feb 2, 2027 | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
 
 **Notes from each report**
 
