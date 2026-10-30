@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Oct 30, 2026 at 3:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 30, 2026 at 3:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**26 watching** · **7 bought (open)** · **17 ended**
+**25 watching** · **8 bought (open)** · **17 ended**
 
 ## Watching now
 
@@ -18,7 +18,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RLX** | Buy shares | Price at or below $1.58 | $1.77 | $1.49 | Nov 13, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **DHT** | Buy shares | Price at or below $21.96 | $26.38 | $19.75 | Nov 9, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **SD** | Buy shares | Price at or below $14.19 | $19.65 | $13.34 | Nov 4, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **SPCX** | Buy shares | Price at or below $135.19 | $168.31 | $118.63 | Feb 9, 2027 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **MNST** | Buy shares | Price at or below $45.06 | $50.47 | $42.36 | Nov 5, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **TSLA** | Buy shares | Price at or below $302.84 | $353.31 | $277.60 | Jan 27, 2027 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **TSLA** | Buy call ($290.00, exp Jan 15, 2027) | Price at or below $302.84<br>Price at or above $277.60 | +20% on the option | −20% on the option | Jan 27, 2027 | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
@@ -47,7 +46,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **RLX:** WATCH, confidence 50: buy at or below $1.58 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $1.77 (twice the risk taken, no value target above the entry), stop $1.49; chart-based entry, not a value bargain: keep it small; check before confirming: Q3 earnings on 2026-11-12, the receivables flag, and new filings or news.
 - **DHT:** WATCH, confidence 30: buy at or below $21.96 (pullback to the 50-day average ($21.85)), sell at $26.38 (twice the risk taken (no value target above the entry)), stop $19.75; chart-based entry, not a value bargain: keep it small; check whether VLCC rates are already rolling over from the Q4 peak, earnings, filings and news before confirming.
 - **SD:** WATCH, confidence 55: buy at or below $14.19 (pullback to the 50-day average ($14.12)), sell at $19.65 (sell or trim at estimated value), stop $13.34; chart-based entry, not a value bargain: keep it small; check the Nov 3 earnings report and whether the Cherokee acquisition closed, earnings, filings and news before confirming.
-- **SPCX:** WATCH, confidence 30: buy at or below $135.19 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $168.31 (twice the risk taken (no value target above the entry)), stop $118.63; chart-based entry, not a value bargain: keep it small; check the SpaceX-Tesla merger terms, earnings, filings and news before confirming.
 - **MNST:** WATCH, confidence 65: buy at or below $45.06 (pullback to the 50-day average ($44.84)), sell at $50.47 (twice the risk taken (no value target above the entry)), stop $42.36; chart-based entry, not a value bargain: keep it small; check the Nov 4 earnings result, earnings, filings and news before confirming.
 - **TSLA:** WATCH, confidence 30: buy at or below $302.84 (pullback to the 60-day low (support) ($301.33)), sell at $353.31 (twice the risk taken (no value target above the entry)), stop $277.60; chart-based entry, not a value bargain: keep it small; check the Tesla–SpaceX merger review, earnings, filings and news before confirming.
 - **TSLA:** Watch only (No trade today, research says HOLD): buy the Jan 15 2027 $290 call only if TSLA pulls back to about $302.84 and stays above $277.60; check before confirming that the selling has stopped (RSI turning up), IV is near 40% or lower, no new red-flag news, and the real bid/ask spread is tight.
@@ -77,6 +75,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RES** | Stock | $6.35 | 19.34 shares | $9.47 | $3.74 | Oct 30, 2026 |  |
 | **HOPE** | Stock | $13.31 | 18.98 shares | $15.30 | $12.84 | Oct 30, 2026 |  |
 | **NVDA** | Stock | $203.72 | 1.23 shares | $260.33 | $192.12 | Oct 30, 2026 |  |
+| **SPCX** | Stock | $135.13 | 0.33 shares | $168.31 | $118.63 | Oct 30, 2026 |  |
 
 ## Closed paper trades
 

@@ -1,4 +1,4 @@
-cash: 44.02314849528227
+cash: 0.01211276984587073
 peak_equity: 1017.6719096627332
 day_start_equity: 1012.9463795381889
 positions:
@@ -86,6 +86,18 @@ positions:
   reserved: 0
   opened: '2026-10-30T13:00:42.921762-04:00'
   source: forensic
+- id: SPCX-forensic-2026-10-23
+  ticker: SPCX
+  action: BUY
+  entry_price: 135.1275
+  quantity: 0.3257
+  stop: 118.63
+  target: 168.31
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-10-30T15:30:44.589984-04:00'
+  source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17
   ticker: NP
@@ -107,7 +119,7 @@ closed_trades:
   pl: 10.21
   closed: '2026-10-23T09:30:33.311769-04:00'
 realized_pl: 10.211614487528685
-last_checked: '2026-10-30T15:00:34.666978-04:00'
+last_checked: '2026-10-30T15:30:35.665041-04:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
