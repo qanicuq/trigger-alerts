@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Oct 30, 2026 at 9:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 30, 2026 at 10:00 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**25 watching** · **4 bought (open)** · **19 ended**
+**25 watching** · **6 bought (open)** · **17 ended**
 
 ## Watching now
 
@@ -72,6 +72,8 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **IMXI** | Stock | $9.27 | 11.94 shares | $16.62 | $5.04 | Oct 23, 2026 |  |
 | **APTV** | Stock | $42.83 | 2.04 shares | $81.91 | $18.13 | Oct 23, 2026 |  |
 | **SHOE** | Stock | $14.15 | 6.37 shares | $29.36 | $6.23 | Oct 23, 2026 |  |
+| **RES** | Stock | $6.35 | 19.34 shares | $9.47 | $3.74 | Oct 30, 2026 |  |
+| **HOPE** | Stock | $13.31 | 18.98 shares | $15.30 | $12.84 | Oct 30, 2026 |  |
 
 ## Closed paper trades
 
@@ -83,9 +85,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Added | Status | Why it ended |
 |---|---|---|---|---|
-| **HOPE** | Buy shares | Oct 29, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **CRWV** | buy 65 put, sell 55 put, exp Dec 18, 2026 — +50% of max profit / −50% of max loss / 7 days before expiry | Oct 29, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
-| **RES** | Buy shares | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **RES** | Buy call ($5.00, exp Mar 19, 2027) | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **VVX** | Buy shares | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **NKE** | Buy shares | Oct 21, 2026 | Cancelled | Playbook 2026-10-21: no margin of safety. Value ~$32-37/share vs price $37.53; buy-below ~$21.50. Cash flow ran below net income last year (forensic flag #1). |
