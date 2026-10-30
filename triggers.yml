@@ -2120,3 +2120,35 @@ triggers:
   resolved_target: 30.38
   seen_high: 27.929100036621094
   seen_low: 27.170000076293945
+- id: RES-forensic-2026-10-30
+  source: forensic
+  ticker: RES
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 6.34
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 3.76
+    target:
+      price: 9.47
+    max_hold_days: 540
+  recommendation: 'WATCH, confidence 65: buy at or below $6.34 (price is already below
+    the value buy-below line), sell at $9.47 (sell or trim when price reaches estimated
+    value), stop $3.76; the stop is disaster insurance only, set beyond the stock''s
+    worst past fall; check the Q3 Pintail write-down and whether margins recover,
+    earnings, filings and news before confirming.'
+  report_date: 2026-10-30
+  expires: 2027-01-28
+  status: active
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-02-02'
+  earnings_checked: '2026-10-30'
