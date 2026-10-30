@@ -1,6 +1,6 @@
 cash: 670.5162652645176
 peak_equity: 1017.6719096627332
-day_start_equity: 1010.2374797219867
+day_start_equity: 1012.9463795381889
 positions:
 - id: WIT-forensic-2026-10-23
   ticker: WIT
@@ -71,7 +71,7 @@ closed_trades:
   pl: 10.21
   closed: '2026-10-23T09:30:33.311769-04:00'
 realized_pl: 10.211614487528685
-last_checked: '2026-10-29T16:30:35.258226-04:00'
+last_checked: '2026-10-30T09:30:37.739905-04:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
@@ -108,6 +108,7 @@ sent_slots:
   2026-10-29:morning: true
   2026-10-29:midday: true
   2026-10-29:end of day: true
+  2026-10-30:morning: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
@@ -115,6 +116,6 @@ stats:
   forensic-stock:
     wins: 1
     losses: 0
-day_start_date: '2026-10-29'
+day_start_date: '2026-10-30'
 macro_error_alerted: '2026-10-22'
 max_drawdown_pct: 1.21
