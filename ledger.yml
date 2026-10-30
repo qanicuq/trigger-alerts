@@ -1,4 +1,4 @@
-cash: 547.6757225318975
+cash: 295.1713898407412
 peak_equity: 1017.6719096627332
 day_start_equity: 1012.9463795381889
 positions:
@@ -61,6 +61,18 @@ positions:
   is_option: false
   reserved: 0
   opened: '2026-10-30T09:41:35.024607-04:00'
+  source: forensic
+- id: HOPE-forensic-2026-10-29
+  ticker: HOPE
+  action: BUY
+  entry_price: 13.3067
+  quantity: 18.9758
+  stop: 12.84
+  target: 15.3
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-10-30T09:43:19.443953-04:00'
   source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17

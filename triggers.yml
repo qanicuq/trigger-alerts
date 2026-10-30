@@ -1963,7 +1963,7 @@ triggers:
     check earnings, filings and news before confirming.'
   report_date: 2026-10-29
   expires: 2027-01-27
-  status: awaiting_confirm
+  status: filled
   backtest:
     wins: 0
     losses: 3
@@ -1985,6 +1985,7 @@ triggers:
   alerted_at: '2026-10-30T09:50:00-04:00'
   seen_high: 13.989999771118164
   seen_low: 13.604999542236328
+  frozen: true
 - id: OGE-forensic-2026-10-29
   source: forensic
   ticker: OGE
