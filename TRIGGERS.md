@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Oct 30, 2026 at 4:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 30, 2026 at 4:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **24 watching** · **8 bought (open)** · **18 ended**
 
