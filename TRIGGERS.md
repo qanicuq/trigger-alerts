@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Oct 30, 2026 at 12:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Oct 30, 2026 at 1:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**26 watching** · **6 bought (open)** · **17 ended**
+**25 watching** · **7 bought (open)** · **17 ended**
 
 ## Watching now
 
@@ -24,7 +24,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **TSLA** | Buy call ($290.00, exp Jan 15, 2027) | Price at or below $302.84<br>Price at or above $277.60 | +20% on the option | −20% on the option | Jan 27, 2027 | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
 | **TNC** | Buy shares | Price at or below $63.32 | $71.17 | $59.39 | Nov 2, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **NGVT** | Buy shares | Price at or below $66.76 | $74.77 | $62.75 | Nov 4, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **NVDA** | Buy shares | Price at or below $204.38 | $260.33 | $192.12 | Nov 17, 2026 | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **OKTA** | Buy put ($220.00, exp Feb 19, 2027) | Price at or below $185.00 | +20% on the option | −20% on the option | Dec 1, 2026 | Nov 23, 2026 | Option Calc, Oct 24, 2026 |
 | **SMP** | Buy shares | Price at or below $34.84 | $51.12 | $32.75 | Oct 30, 2026 | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **OKTA** | Buy shares | Price at or below $185.93 | $232.82 | $162.49 | Dec 1, 2026 | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
@@ -53,7 +52,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **TSLA:** Watch only (No trade today, research says HOLD): buy the Jan 15 2027 $290 call only if TSLA pulls back to about $302.84 and stays above $277.60; check before confirming that the selling has stopped (RSI turning up), IV is near 40% or lower, no new red-flag news, and the real bid/ask spread is tight.
 - **TNC:** WATCH, confidence 60: buy at or below $63.32 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $71.17 (twice the risk taken (no value target above the entry)), stop $59.39; chart-based entry, not a value bargain: keep it small; check whether Q3 margins show the ERP damage fading, earnings, filings and news before confirming.
 - **NGVT:** WATCH, confidence 30: buy at or below $66.76 (pullback to the 60-day low (support) ($66.43)), sell at $74.77 (twice the risk taken (no value target above the entry)), stop $62.75; chart-based entry, not a value bargain: keep it small; check the gap between GAAP and adjusted earnings in the Nov 4 report, earnings, filings and news before confirming.
-- **NVDA:** WATCH, confidence 60: buy at or below $204.38 (pullback to the 200-day average ($203.36)), sell at $260.33 (sell or trim at estimated value), stop $192.12; chart-based entry, not a value bargain: keep it small; check how the Nov 17 earnings report lands, earnings, filings and news before confirming.
 - **OKTA:** Watch only (no trade yet): consider the Feb 19 2027 $220 put only if Okta falls to or below its 50-day average near $185; check before confirming that earnings (expected about Nov 30 - Dec 3) are out, that implied volatility is near or under 65%, and that the Ticker Forensics rating has not stayed HOLD in an uptrend.
 - **SMP:** WATCH, confidence 60: buy at or below $34.84 (pullback to the 60-day low (support) ($34.67)), sell at $51.12 (sell or trim at estimated value), stop $32.75; chart-based entry, not a value bargain: keep it small; check who the permanent CFO will be and the Oct 30 earnings, earnings, filings and news before confirming.
 - **OKTA:** WATCH, confidence 30: buy at or below $185.93 (pullback to the 50-day average ($185.00)), sell at $232.82 (twice the risk taken (no value target above the entry)), stop $162.49; chart-based entry, not a value bargain: keep it small; check who left in the 2026-09-18 8-K executive change, earnings, filings and news before confirming.
@@ -76,6 +74,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SHOE** | Stock | $14.15 | 6.37 shares | $29.36 | $6.23 | Oct 23, 2026 |  |
 | **RES** | Stock | $6.35 | 19.34 shares | $9.47 | $3.74 | Oct 30, 2026 |  |
 | **HOPE** | Stock | $13.31 | 18.98 shares | $15.30 | $12.84 | Oct 30, 2026 |  |
+| **NVDA** | Stock | $203.72 | 1.23 shares | $260.33 | $192.12 | Oct 30, 2026 |  |
 
 ## Closed paper trades
 

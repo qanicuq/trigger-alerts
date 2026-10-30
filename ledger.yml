@@ -1,4 +1,4 @@
-cash: 295.1713898407412
+cash: 44.02314849528227
 peak_equity: 1017.6719096627332
 day_start_equity: 1012.9463795381889
 positions:
@@ -74,6 +74,18 @@ positions:
   reserved: 0
   opened: '2026-10-30T09:43:19.443953-04:00'
   source: forensic
+- id: NVDA-forensic-2026-10-24
+  ticker: NVDA
+  action: BUY
+  entry_price: 203.7218
+  quantity: 1.2328
+  stop: 192.12
+  target: 260.33
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-10-30T13:00:42.921762-04:00'
+  source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17
   ticker: NP
@@ -95,7 +107,7 @@ closed_trades:
   pl: 10.21
   closed: '2026-10-23T09:30:33.311769-04:00'
 realized_pl: 10.211614487528685
-last_checked: '2026-10-30T12:30:35.188252-04:00'
+last_checked: '2026-10-30T13:00:35.547367-04:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
@@ -143,4 +155,4 @@ stats:
     losses: 0
 day_start_date: '2026-10-30'
 macro_error_alerted: '2026-10-22'
-max_drawdown_pct: 1.24
+max_drawdown_pct: 1.29
