@@ -155,7 +155,7 @@ def place(tr, ledger, force=False):
         common.ntfy("Confirm refused", "Daily loss limit reached")
         return False
 
-    if len(ledger.get("positions") or []) >= common.MAX_OPEN_POSITIONS:
+    if common.MAX_OPEN_POSITIONS is not None and len(ledger.get("positions") or []) >= common.MAX_OPEN_POSITIONS:
         common.ntfy("Confirm refused", f"Max open positions {common.MAX_OPEN_POSITIONS}")
         return False
 
