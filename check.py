@@ -271,64 +271,158 @@ def _validate_trigger(tr):
     return True, ""
 
 
-def _earnings_reminder_body(tr, ed):
+WHEN_WORDS = {"BMO": "before the open", "AMC": "after the close"}
+
+
+def _when(timing):
+    return WHEN_WORDS.get(timing, "release time not announced")
+
+
+def _reminder_moment(ed, timing):
+    """When the 'earnings are out' reminder may go out: 8 AM New York on the day for a
+    before-the-open report, otherwise 8 AM on the next weekday (after the close, or time unknown)."""
+    d = ed
+    if timing != "BMO":
+        d = ed + timedelta(days=1)
+        while d.weekday() >= 5:
+            d += timedelta(days=1)
+    return datetime.combine(d, dtime(8, 0), tzinfo=common.NY)
+
+
+def _stale(rd, ed, timing):
+    """True when a report dated rd was written before the earnings released on ed came out."""
+    if rd is None:
+        return True
+    return rd < ed or (rd == ed and timing != "BMO")
+
+
+def _bullish(obj):
+    """True for a position or trigger that profits when the stock rises (stock, call, bull spread)."""
+    action = obj.get("action", "BUY")
+    if action == "BUY_PUT":
+        return False
+    if action != "SPREAD":
+        return True
+    legs = obj.get("legs") or (obj.get("contract") or {}).get("legs") or []
+    buy = next((l for l in legs if l.get("side") == "buy"), None)
+    sell = next((l for l in legs if l.get("side") == "sell"), None)
+    if not buy or not sell:
+        return False
+    if buy.get("right") == "call":
+        return float(buy["strike"]) < float(sell["strike"])   # bull call spread
+    return float(sell["strike"]) > float(buy["strike"])        # bull put spread
+
+
+def _rerun_words(tr):
+    return ("Forensic Analysis and OPTION CALC" if tr.get("source") == "option" else "Forensic Analysis")
+
+
+def _earnings_reminder_body(tr, ed, timing):
     t = tr.get("ticker", "?")
     rd = tr.get("report_date", "an earlier date")
-    if tr.get("source") == "option":
-        page, where = common.OPTION_CALC_PAGE, f"Open OPTION CALC and run {t} again"
-    else:
-        page, where = common.FORENSIC_PAGE, f"Open Forensic Analysis and run a Full analysis on {t}"
-    body = (f"{t} reported earnings on {ed.isoformat()}. Your {t} trigger is based on the {rd} report, "
-            f"which didn't have these results.\n{where}: it refreshes the data and replaces the trigger "
-            f"automatically. Don't confirm a {t} trade until then.")
+    page = common.OPTION_CALC_PAGE if tr.get("source") == "option" else common.FORENSIC_PAGE
+    body = (f"{t} reported earnings on {ed.isoformat()} ({_when(timing)}). Your {t} trigger is based on the "
+            f"{rd} report, which didn't have these results, so the bot won't buy {t} on the old numbers.\n"
+            f"A fresh {_rerun_words(tr)} runs automatically once Webull has the new quarter. "
+            f"It replaces the trigger, and buying resumes if it still says buy.")
     return body, page
 
 
-def _position_earnings_body(tr, ed):
+def _position_earnings_body(tr, ed, timing):
     t = tr.get("ticker", "?")
     rd = tr.get("report_date", "an earlier date")
-    body = (f"{t} reported earnings on {ed.isoformat()}. You hold a {t} paper position bought on the {rd} report, "
-            f"which didn't have these results.\nOpen Forensic Analysis and run a Full analysis on {t}: "
-            f"if the verdict turns AVOID, the bot sells the position at the next check. "
-            f"Otherwise it keeps holding with the same stop and target.")
+    what = "option" if tr.get("source") == "option" else "position"
+    body = (f"{t} reported earnings on {ed.isoformat()} ({_when(timing)}). You hold a {t} paper {what} "
+            f"bought on the {rd} report, which didn't have these results.\n"
+            f"A fresh Forensic Analysis runs automatically once Webull has the new quarter. ")
+    if _bullish(tr):
+        body += ("If the verdict is AVOID, the bot sells it at the next check. "
+                 "Otherwise it keeps holding with the same exits; a price drop alone doesn't sell it.")
+    else:
+        body += "This bets on the stock falling, so an AVOID verdict doesn't sell it; its normal exits still apply."
     return body, common.FORENSIC_PAGE
 
 
 def _needs_refresh(tr):
-    """True when earnings came out on or after the trigger's report date (its numbers are out of date)."""
+    """True when earnings came out after the trigger's report was written (its numbers are out of date)."""
     last = common._to_date(tr.get("earnings_last"))
-    rd = common._to_date(tr.get("report_date"))
-    return bool(last and (rd is None or rd <= last))
+    return bool(last and _stale(common._to_date(tr.get("report_date")), last, tr.get("earnings_last_time")))
 
 
 def _earnings_pass(triggers, now, open_ids=()):
-    """Morning-after-earnings reminders, then refresh each trigger's next earnings date once a day.
-    Covers triggers still waiting to buy and stock positions still open (open_ids = ledger position ids).
-    The reminder check runs first so a passed date is never overwritten before its reminder goes out."""
+    """'Earnings are out' reminders, then refresh each trigger's next earnings date and release time
+    once a day. Covers triggers still waiting to buy and every open position (stocks, options, spreads);
+    open_ids = ledger position ids. The reminder check runs first so a passed date is never
+    overwritten before its reminder goes out."""
     changed = False
     today = now.date()
     for tr in triggers:
-        holding = (tr.get("status") == "filled" and tr.get("id") in open_ids
-                   and tr.get("source") != "option" and not tr.get("contract"))
+        holding = tr.get("status") == "filled" and tr.get("id") in open_ids
         if tr.get("status") not in ("active", "awaiting_confirm") and not holding:
             continue
         ed = common._to_date(tr.get("earnings_date"))
-        if ed and today > ed and str(tr.get("earnings_reminded")) != ed.isoformat():
-            rd = common._to_date(tr.get("report_date"))
-            if rd is None or rd <= ed:
-                body, page = (_position_earnings_body if holding else _earnings_reminder_body)(tr, ed)
-                common.ntfy(f"{tr.get('ticker')} earnings are out: update the data", body,
-                            priority="high", click_url=page, action_label="Update the data", action_url=page)
+        timing = tr.get("earnings_time")
+        if ed and now >= _reminder_moment(ed, timing) and str(tr.get("earnings_reminded")) != ed.isoformat():
+            if _stale(common._to_date(tr.get("report_date")), ed, timing):
+                body, page = (_position_earnings_body if holding else _earnings_reminder_body)(tr, ed, timing)
+                common.ntfy(f"{tr.get('ticker')} earnings are out", body,
+                            priority="high", click_url=page, action_label="Open the report", action_url=page)
                 tr["earnings_last"] = ed.isoformat()
+                tr["earnings_last_time"] = timing
             tr["earnings_reminded"] = ed.isoformat()
             changed = True
         if tr.get("earnings_checked") != today.isoformat():
-            nd = common.next_earnings(tr["ticker"], today)
-            if nd and nd >= today and nd != ed:
-                tr["earnings_date"] = nd.isoformat()
+            nd, nt = common.next_earnings_info(tr["ticker"], today)
+            if nd and nd >= today and (nd != ed or nt != timing):
+                if nd != ed or nt:  # never forget a known release time on a lookup that lacks one
+                    tr["earnings_date"] = nd.isoformat()
+                    tr["earnings_time"] = nt
             tr["earnings_checked"] = today.isoformat()
             changed = True
     return changed
+
+
+def _earnings_due(triggers, open_ids, today):
+    """Tickers whose earnings came out (in the last 10 days) and still need a fresh report:
+    waiting triggers on old numbers, and open positions with no newer report for that ticker.
+    The daily cloud task reads this list (earnings_due.json) and re-runs the analyses."""
+    due = []
+    for tr in triggers:
+        last = common._to_date(tr.get("earnings_last"))
+        if not last or (today - last).days > 10:
+            continue
+        holding = tr.get("status") == "filled" and tr.get("id") in open_ids
+        waiting = tr.get("status") in ("active", "awaiting_confirm")
+        if not (holding or waiting) or not _needs_refresh(tr):
+            continue
+        if holding and any(
+                o is not tr and o.get("ticker") == tr.get("ticker") and o.get("source") == tr.get("source")
+                and not _stale(common._to_date(o.get("report_date")), last, tr.get("earnings_last_time"))
+                for o in triggers):
+            continue  # a fresh report for this ticker already came in
+        due.append({
+            "ticker": tr.get("ticker"),
+            "source": tr.get("source", "forensic"),
+            "kind": "holding" if holding else "waiting",
+            "bullish": _bullish(tr),
+            "earnings_date": last.isoformat(),
+            "earnings_time": tr.get("earnings_last_time"),
+            "trigger_id": tr.get("id"),
+        })
+    return sorted(due, key=lambda x: (x["ticker"], x["source"], x["trigger_id"] or ""))
+
+
+def _write_due(due):
+    """Write earnings_due.json only when it changed (no commit noise)."""
+    import json
+    text = json.dumps({"due": due}, indent=1) + "\n"
+    try:
+        if open("earnings_due.json").read() == text:
+            return
+    except FileNotFoundError:
+        pass
+    with open("earnings_due.json", "w") as f:
+        f.write(text)
 
 
 def _earnings_warning(tr, today):
@@ -336,7 +430,7 @@ def _earnings_warning(tr, today):
     ed = common._to_date(tr.get("earnings_date"))
     rd = common._to_date(tr.get("report_date"))
     last = common._to_date(tr.get("earnings_last"))
-    if last and (rd is None or rd <= last):
+    if last and _needs_refresh(tr):
         return f"Earnings came out {last.isoformat()}, after this report. Update the data before confirming."
     if ed and ed >= today:
         return f"Earnings on {ed.isoformat()} haven't happened yet; this trade would be held through them."
@@ -349,13 +443,15 @@ def _thesis_broken(tr, triggers, ledger):
     ticker = tr.get("ticker")
     source = tr.get("source", "forensic")
     reason = tr.get("reason") or "thesis broken"
+    # A broken thesis only ends bets on the stock rising; puts and bear spreads keep their normal exits.
     for t in triggers:
-        if t.get("ticker") == ticker and t.get("source") == source and t.get("status") in ("active", "awaiting_confirm"):
+        if (t.get("ticker") == ticker and t.get("source") == source and t.get("status") in ("active", "awaiting_confirm")
+                and _bullish(t)):
             t["status"] = "cancelled"
             t["cancel_reason"] = f"Thesis broken: {reason}"
     held = False
     for pos in (ledger or {}).get("positions") or []:
-        if pos.get("ticker") == ticker and pos.get("source") == source:
+        if pos.get("ticker") == ticker and pos.get("source") == source and _bullish(pos):
             pos["thesis_broken"] = reason
             held = True
     body = reason + ("\nThe paper position will be sold at the next check." if held else "\nNo open paper position; buy trigger cancelled.")
@@ -424,14 +520,18 @@ def _ingest_inbox(triggers, ledger=None):
                 elif c.get("type") == "manual":
                     lines.append(f"{c.get('key')} {c.get('op')} {c.get('value')}")
             if not tr.get("earnings_date"):
-                nd = common.next_earnings(ticker)
+                nd, nt = common.next_earnings_info(ticker)
                 if nd:
                     tr["earnings_date"] = nd.isoformat()
+                    tr["earnings_time"] = nt
             tr["earnings_checked"] = common.now_ny().date().isoformat()
             ed = common._to_date(tr.get("earnings_date"))
             exp = common._to_date(tr.get("expires"))
             if ed and (exp is None or ed <= exp):
-                lines.append(f"Earnings {ed.isoformat()}: you'll get a reminder to update the data the next morning.")
+                nt = tr.get("earnings_time")
+                day = "that morning" if nt == "BMO" else "the next weekday morning"
+                lines.append(f"Earnings {ed.isoformat()} ({_when(nt)}): you'll get a reminder {day}, "
+                             f"and the analysis re-runs automatically once the new numbers are in.")
             common.ntfy(f"New trigger: {ticker}", "\n".join(lines) or "conditions loaded")
             changed = True
         except Exception as e:
@@ -648,13 +748,12 @@ def main():
             last = str(tr.get("earnings_last"))
             if tr.get("hold_alerted") != last:
                 page = common.OPTION_CALC_PAGE if tr.get("source") == "option" else common.FORENSIC_PAGE
-                where = "OPTION CALC" if tr.get("source") == "option" else "Forensic Analysis (Full analysis)"
                 common.ntfy(
                     f"{ticker}: trigger met, buy on hold",
                     f"Earnings came out {last}, after this trigger's {tr.get('report_date')} report, "
-                    f"so the bot won't buy on the old numbers.\nRun {ticker} on {where}: "
-                    f"if the fresh report still says buy, the bot buys when its conditions are met.",
-                    priority="high", click_url=page, action_label="Update the data", action_url=page)
+                    f"so the bot won't buy on the old numbers.\nA fresh {_rerun_words(tr)} runs automatically "
+                    f"once Webull has the new quarter: if it still says buy, the bot buys when its conditions are met.",
+                    priority="high", click_url=page, action_label="Open the report", action_url=page)
                 tr["hold_alerted"] = last
                 changed = True
         elif met:
@@ -747,6 +846,9 @@ def main():
                 elif gain <= -common.SPREAD_STOP * max_loss:
                     exit_reason = "stop"
                     exit_price = value
+                elif pos.get("thesis_broken"):
+                    exit_reason = "thesis broken"
+                    exit_price = value
                 try:
                     exp = date.fromisoformat(str(pos.get("expiry")))
                     if (exp - now.date()).days <= common.OPTION_TIME_EXIT_DAYS:
@@ -773,6 +875,9 @@ def main():
                     exit_price = bid
                 elif bid <= entry * (1 - common.OPTION_STOP):
                     exit_reason = "stop"
+                    exit_price = bid
+                elif pos.get("thesis_broken"):
+                    exit_reason = "thesis broken"
                     exit_price = bid
                 # time exit
                 try:
@@ -838,6 +943,7 @@ def main():
             print(f"write_pages failed: {e}")
 
     ledger["last_checked"] = now.isoformat()
+    _write_due(_earnings_due(triggers, {p.get("id") for p in ledger.get("positions") or []}, now.date()))
     common.save_yaml("triggers.yml", {"triggers": triggers})
     common.save_yaml("ledger.yml", ledger)
     _refresh_triggers_page()

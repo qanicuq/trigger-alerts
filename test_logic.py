@@ -3,7 +3,7 @@ from unittest.mock import patch, MagicMock
 import sys
 import os
 import yaml
-from datetime import date, datetime, time as dtime
+from datetime import date, datetime, time as dtime, timedelta
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -382,7 +382,7 @@ class TestEarnings(unittest.TestCase):
     def _now(self, y, m, d, hh=9, mm=30):
         return datetime(y, m, d, hh, mm, tzinfo=NY)
 
-    @patch("common.next_earnings", return_value=date(2026, 11, 2))
+    @patch("common.next_earnings_info", return_value=(date(2026, 11, 2), None))
     @patch("common.ntfy")
     def test_no_reminder_before_or_on_earnings_day(self, ntfy, ne):
         tr = self._tr(earnings_date="2026-11-02")
@@ -391,7 +391,7 @@ class TestEarnings(unittest.TestCase):
             check._earnings_pass([tr], self._now(day.year, day.month, day.day))
         ntfy.assert_not_called()
 
-    @patch("common.next_earnings", return_value=date(2027, 2, 18))
+    @patch("common.next_earnings_info", return_value=(date(2027, 2, 18), None))
     @patch("common.ntfy")
     def test_reminder_morning_after_then_date_rolls_forward(self, ntfy, ne):
         tr = self._tr(earnings_date="2026-11-02")
@@ -410,7 +410,7 @@ class TestEarnings(unittest.TestCase):
         check._earnings_pass([tr], self._now(2026, 11, 4))
         self.assertEqual(ntfy.call_count, 1)
 
-    @patch("common.next_earnings", return_value=None)
+    @patch("common.next_earnings_info", return_value=(None, None))
     @patch("common.ntfy")
     def test_option_trigger_points_to_option_calc(self, ntfy, ne):
         tr = self._tr(source="option", action="BUY_CALL", earnings_date="2026-11-02")
@@ -418,17 +418,17 @@ class TestEarnings(unittest.TestCase):
         self.assertEqual(ntfy.call_args[1]["action_url"], common.OPTION_CALC_PAGE)
         self.assertEqual(tr["earnings_date"], "2026-11-02")  # lookup failed: keep known date
 
-    @patch("common.next_earnings", return_value=None)
+    @patch("common.next_earnings_info", return_value=(None, None))
     @patch("common.ntfy")
     def test_report_newer_than_earnings_no_reminder(self, ntfy, ne):
         tr = self._tr(report_date=date(2026, 11, 3), earnings_date="2026-11-02")
         check._earnings_pass([tr], self._now(2026, 11, 4))
         ntfy.assert_not_called()
 
-    @patch("common.next_earnings")
+    @patch("common.next_earnings_info")
     @patch("common.ntfy")
     def test_inactive_triggers_ignored_and_lookup_once_a_day(self, ntfy, ne):
-        ne.return_value = date(2026, 11, 2)
+        ne.return_value = (date(2026, 11, 2), None)
         done = self._tr(status="expired", earnings_date="2026-11-02")
         live = self._tr()
         check._earnings_pass([done, live], self._now(2026, 11, 3))
@@ -443,7 +443,7 @@ class TestEarnings(unittest.TestCase):
         self.assertIn("Update the data", check._earnings_warning(stale, date(2026, 11, 5)))
         self.assertEqual(check._earnings_warning(self._tr(), today), "")
 
-    @patch("common.next_earnings", return_value=None)
+    @patch("common.next_earnings_info", return_value=(None, None))
     @patch("common.ntfy")
     def test_open_stock_position_gets_reminder(self, ntfy, ne):
         held = self._tr(status="filled", earnings_date="2026-11-02")
@@ -453,19 +453,103 @@ class TestEarnings(unittest.TestCase):
         self.assertIn("AVOID", ntfy.call_args[0][1])
         self.assertEqual(ntfy.call_args[1]["action_url"], common.FORENSIC_PAGE)
 
-    @patch("common.next_earnings", return_value=None)
+    @patch("common.next_earnings_info", return_value=(None, None))
     @patch("common.ntfy")
-    def test_closed_or_option_positions_get_no_reminder(self, ntfy, ne):
+    def test_closed_position_no_reminder_open_option_gets_one(self, ntfy, ne):
         closed = self._tr(status="filled", earnings_date="2026-11-02")  # position no longer in ledger
         opt = self._tr(id="RIG-option-x", status="filled", source="option", action="BUY_CALL",
                        contract={"right": "call", "strike": 5, "expiry": "2026-12-18"}, earnings_date="2026-11-02")
         check._earnings_pass([closed, opt], self._now(2026, 11, 3), open_ids={"RIG-option-x"})
-        ntfy.assert_not_called()
+        self.assertEqual(ntfy.call_count, 1)
+        self.assertIn("paper option", ntfy.call_args[0][1])
+        self.assertIn("AVOID", ntfy.call_args[0][1])
 
     def test_needs_refresh(self):
         self.assertTrue(check._needs_refresh(self._tr(earnings_last="2026-11-02")))
         self.assertFalse(check._needs_refresh(self._tr()))
         self.assertFalse(check._needs_refresh(self._tr(report_date=date(2026, 11, 4), earnings_last="2026-11-02")))
+
+    @patch("common.next_earnings_info", return_value=(date(2026, 11, 2), "BMO"))
+    @patch("common.ntfy")
+    def test_before_open_reminder_same_morning(self, ntfy, ne):
+        tr = self._tr(earnings_date="2026-11-02", earnings_time="BMO")
+        check._earnings_pass([tr], self._now(2026, 11, 2, 7, 59))
+        ntfy.assert_not_called()
+        check._earnings_pass([tr], self._now(2026, 11, 2, 9, 0))
+        self.assertEqual(ntfy.call_count, 1)
+        self.assertIn("before the open", ntfy.call_args[0][1])
+        self.assertEqual(tr["earnings_last_time"], "BMO")
+
+    @patch("common.next_earnings_info", return_value=(None, None))
+    @patch("common.ntfy")
+    def test_after_close_friday_reminds_monday(self, ntfy, ne):
+        tr = self._tr(earnings_date="2026-11-06", earnings_time="AMC")  # a Friday
+        for d in (6, 7, 8):
+            tr.pop("earnings_checked", None)
+            check._earnings_pass([tr], self._now(2026, 11, d, 16, 30))
+        ntfy.assert_not_called()
+        check._earnings_pass([tr], self._now(2026, 11, 9, 9, 0))
+        self.assertEqual(ntfy.call_count, 1)
+        self.assertIn("after the close", ntfy.call_args[0][1])
+
+    def test_stale_rules(self):
+        d = date(2026, 11, 2)
+        self.assertTrue(check._stale(None, d, "BMO"))
+        self.assertTrue(check._stale(date(2026, 11, 1), d, "BMO"))
+        self.assertFalse(check._stale(d, d, "BMO"))      # report written the afternoon of a morning release
+        self.assertTrue(check._stale(d, d, "AMC"))       # report written before an evening release
+        self.assertTrue(check._stale(d, d, None))
+        self.assertFalse(check._stale(date(2026, 11, 3), d, "AMC"))
+
+    @patch("common.next_earnings_info", return_value=(date(2026, 11, 2), None))
+    @patch("common.ntfy")
+    def test_known_time_not_erased_by_lookup_without_time(self, ntfy, ne):
+        tr = self._tr(earnings_date="2026-11-02", earnings_time="AMC")
+        check._earnings_pass([tr], self._now(2026, 10, 30))
+        self.assertEqual(tr["earnings_time"], "AMC")
+
+    def test_bullish(self):
+        call = {"action": "BUY_CALL"}
+        put = {"action": "BUY_PUT"}
+        def spread(right, buy, sell):
+            return {"action": "SPREAD", "legs": [{"side": "buy", "right": right, "strike": buy},
+                                                 {"side": "sell", "right": right, "strike": sell}]}
+        self.assertTrue(check._bullish({"action": "BUY"}))
+        self.assertTrue(check._bullish(call))
+        self.assertFalse(check._bullish(put))
+        self.assertTrue(check._bullish(spread("call", 40, 45)))   # bull call
+        self.assertFalse(check._bullish(spread("call", 45, 40)))  # bear call
+        self.assertTrue(check._bullish(spread("put", 40, 45)))    # bull put
+        self.assertFalse(check._bullish(spread("put", 45, 40)))   # bear put
+        trig = {"action": "SPREAD", "contract": spread("put", 40, 45)}
+        trig["contract"]["expiry"] = "2026-12-18"
+        self.assertTrue(check._bullish(trig))
+
+    @patch("common.ntfy")
+    def test_thesis_broken_spares_puts(self, ntfy):
+        ledger = {"positions": [
+            {"id": "a", "ticker": "RIG", "source": "option", "action": "BUY_CALL", "is_option": True},
+            {"id": "b", "ticker": "RIG", "source": "option", "action": "BUY_PUT", "is_option": True}]}
+        put_trig = {"id": "c", "ticker": "RIG", "source": "option", "action": "BUY_PUT", "status": "active"}
+        check._thesis_broken({"ticker": "RIG", "source": "option", "reason": "Verdict AVOID"}, [put_trig], ledger)
+        self.assertIn("thesis_broken", ledger["positions"][0])
+        self.assertNotIn("thesis_broken", ledger["positions"][1])
+        self.assertEqual(put_trig["status"], "active")
+
+    def test_due_list(self):
+        today = date(2026, 11, 3)
+        waiting = self._tr(earnings_last="2026-11-02", earnings_last_time="AMC")
+        held = self._tr(id="NVDA-forensic-1", ticker="NVDA", status="filled",
+                        earnings_last="2026-11-02", earnings_last_time="AMC")
+        fresh = self._tr(id="RTX-forensic-1", ticker="RTX", report_date=date(2026, 11, 3),
+                         earnings_last="2026-11-02", earnings_last_time="AMC")
+        old = self._tr(id="OLD-1", ticker="OLD", earnings_last="2026-10-01")
+        due = check._earnings_due([waiting, held, fresh, old], {"NVDA-forensic-1"}, today)
+        self.assertEqual([(d["ticker"], d["kind"]) for d in due], [("NVDA", "holding"), ("RIG", "waiting")])
+        # a fresh NVDA report clears the holding
+        new = self._tr(id="NVDA-forensic-2", ticker="NVDA", report_date=date(2026, 11, 3))
+        due = check._earnings_due([held, new], {"NVDA-forensic-1"}, today)
+        self.assertEqual(due, [])
 
     def _run_main(self, tr):
         today = common.now_ny().date().isoformat()
@@ -486,10 +570,42 @@ class TestEarnings(unittest.TestCase):
              patch("confirm.place", return_value=True) as place, \
              patch("check._ingest_inbox", return_value=False), \
              patch("check._refresh_triggers_page"), \
+             patch("check._write_due"), \
              patch("report.send_report"), \
              patch("report.write_pages"):
             check.main()
         return ntfy, place
+
+    def test_flagged_option_and_spread_are_sold(self):
+        today = common.now_ny().date().isoformat()
+        exp = (common.now_ny().date() + timedelta(days=60)).isoformat()
+        call = {"id": "o1", "ticker": "RIG", "action": "BUY_CALL", "entry_price": 1.0, "quantity": 1,
+                "is_option": True, "reserved": 0, "strike": 5, "right": "call", "expiry": exp,
+                "opened": "2026-10-01T10:00:00-04:00", "source": "option", "thesis_broken": "Verdict AVOID"}
+        spread = {"id": "s1", "ticker": "RIG", "action": "SPREAD", "entry_price": 1.0, "quantity": 1,
+                  "is_option": True, "reserved": 0, "expiry": exp, "max_profit": 4.0, "max_loss": 1.0,
+                  "legs": [{"side": "buy", "right": "call", "strike": 5}, {"side": "sell", "right": "call", "strike": 10}],
+                  "opened": "2026-10-01T10:00:00-04:00", "source": "option", "thesis_broken": "Verdict AVOID"}
+        ledger = {"cash": 0.0, "positions": [call, spread], "closed_trades": [], "realized_pl": 0.0,
+                  "peak_equity": 1000.0, "day_start_equity": 1000.0, "day_start_date": today,
+                  "paused": False, "stats": {}, "sent_slots": {}}
+        files = {"triggers.yml": {"triggers": []}, "ledger.yml": ledger}
+        with patch("common.is_forced", return_value=True), \
+             patch("common.load_yaml", side_effect=lambda p: files.get(p, {})), \
+             patch("common.save_yaml"), \
+             patch("common.option_quote", return_value={"bid": 1.05, "ask": 1.1}), \
+             patch("common.spread_value", return_value=1.1), \
+             patch("common.last_price", return_value=5.0), \
+             patch("common.ntfy"), \
+             patch("check._ingest_inbox", return_value=False), \
+             patch("check._refresh_triggers_page"), \
+             patch("check._write_due"), \
+             patch("report.send_report"), \
+             patch("report.write_pages"):
+            check.main()
+        self.assertEqual(ledger["positions"], [])
+        self.assertEqual(sorted(t.get("reason") or t.get("exit_reason") for t in ledger["closed_trades"]),
+                         ["thesis broken", "thesis broken"])
 
     def test_buy_held_after_earnings_until_refreshed(self):
         tr = self._tr(earnings_date="2099-02-18", earnings_last="2026-11-02", expires="2099-01-01")
@@ -532,6 +648,19 @@ class TestNextEarnings(unittest.TestCase):
         t = self._ticker(cal={}, df=None)
         with patch("common.yf.Ticker", return_value=t):
             self.assertIsNone(common.next_earnings("ITB", date(2026, 10, 14)))
+
+    def test_release_time_from_yahoo_timestamps(self):
+        import pandas as pd
+        idx = pd.DatetimeIndex([pd.Timestamp("2027-01-07 06:45", tz="America/New_York"),
+                                pd.Timestamp("2026-10-06 06:45", tz="America/New_York")])
+        t = self._ticker(cal={"Earnings Date": [date(2027, 1, 7)]}, df=pd.DataFrame({"EPS Estimate": [2.2, 2.0]}, index=idx))
+        with patch("common.yf.Ticker", return_value=t):
+            self.assertEqual(common.next_earnings_info("RPM", date(2026, 10, 31)), (date(2027, 1, 7), "BMO"))
+        self.assertEqual(common._release_time(pd.Timestamp("2026-11-19 16:05", tz="America/New_York")), "AMC")
+        self.assertIsNone(common._release_time(pd.Timestamp("2026-11-19 00:00", tz="America/New_York")))
+        self.assertIsNone(common._release_time(pd.Timestamp("2026-11-19 12:00", tz="America/New_York")))
+        # UTC timestamps are converted to New York time first (11:45 UTC = 6:45 AM EST)
+        self.assertEqual(common._release_time(pd.Timestamp("2027-01-07 11:45", tz="UTC")), "BMO")
 
 
 class TestSpreads(unittest.TestCase):
@@ -734,6 +863,7 @@ class TestSpreads(unittest.TestCase):
              patch("common.ntfy"), \
              patch("check._ingest_inbox", return_value=False), \
              patch("check._refresh_triggers_page"), \
+             patch("check._write_due"), \
              patch("report.send_report"), \
              patch("report.write_pages"):
             check.main()

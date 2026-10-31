@@ -214,24 +214,53 @@ def _to_date(v):
         return None
 
 
-def next_earnings(ticker, today=None):
-    """Next earnings date on or after `today` (New York), or None (ETFs, or Yahoo doesn't know).
+def _release_time(ts):
+    """'BMO' (before the open), 'AMC' (after the close) or None (unknown) from a Yahoo timestamp.
+    Midnight means Yahoo has no time yet; a time during market hours is treated as unknown."""
+    try:
+        if hasattr(ts, "to_pydatetime"):
+            ts = ts.to_pydatetime()
+        if not isinstance(ts, datetime):
+            return None
+        t = (ts.astimezone(NY) if ts.tzinfo else ts).time()
+    except Exception:
+        return None
+    if t == dtime(0, 0):
+        return None
+    if t < dtime(9, 30):
+        return "BMO"
+    if t >= dtime(16, 0):
+        return "AMC"
+    return None
+
+
+def next_earnings_info(ticker, today=None):
+    """(date, timing) of the next earnings on or after `today` (New York), or (None, None).
+    timing is 'BMO' (before the open), 'AMC' (after the close) or None (not known yet).
     When Yahoo only gives a window (two dates), the later one is used so a reminder never comes early."""
     today = today or now_ny().date()
     t = _yf_call(yf.Ticker, ticker)
     if t is None:
-        return None
+        return None, None
+    rows = []  # (date, timing) from the dated list, which carries release times
+    df = _yf_call(lambda: t.get_earnings_dates(limit=8))
+    if df is not None and not getattr(df, "empty", True):
+        rows = [(_to_date(ts), _release_time(ts)) for ts in df.index]
+        rows = sorted((d, tm) for d, tm in rows if d and d >= today)
     cal = _yf_call(lambda: t.calendar)
     if isinstance(cal, dict):
         cal_dates = [d for d in (_to_date(x) for x in (cal.get("Earnings Date") or [])) if d]
         if cal_dates and max(cal_dates) >= today:
-            return max(cal_dates)
-    df = _yf_call(lambda: t.get_earnings_dates(limit=8))
-    if df is not None and not getattr(df, "empty", True):
-        future = sorted(d for d in (_to_date(ts) for ts in df.index) if d and d >= today)
-        if future:
-            return future[0]
-    return None
+            d = max(cal_dates)
+            return d, next((tm for rd, tm in rows if rd == d), None)
+    if rows:
+        return rows[0]
+    return None, None
+
+
+def next_earnings(ticker, today=None):
+    """Next earnings date on or after `today`, or None. See next_earnings_info."""
+    return next_earnings_info(ticker, today)[0]
 
 
 def get_daily_bars(ticker, period="2y"):

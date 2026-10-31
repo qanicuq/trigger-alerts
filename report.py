@@ -26,6 +26,14 @@ OP_WORDS = {">=": "at or above", "<=": "at or below"}
 SPREAD_EXITS = "+50% of max profit / −50% of max loss / 7 days before expiry"
 
 
+def _earn(tr):
+    """Next earnings date with its release time, e.g. 'Jan 7, 2027 (before open)'."""
+    if not tr or not tr.get("earnings_date"):
+        return "—"
+    when = {"BMO": " (before open)", "AMC": " (after close)"}.get(tr.get("earnings_time"), "")
+    return _day(tr.get("earnings_date")) + when
+
+
 def _day(v):
     """Any date-like value -> 'Oct 22, 2026'."""
     if not v:
@@ -165,7 +173,7 @@ def write_triggers_page():
                 what += " — waiting for your OK"
             L.append("| " + " | ".join(_cell(x) for x in [
                 f"**{tr.get('ticker')}**", what, conds, target, stop,
-                _day(tr.get("earnings_date")), _day(tr.get("expires")),
+                _earn(tr), _day(tr.get("expires")),
                 f"{SOURCE_NAMES.get(tr.get('source'), tr.get('source'))}, {_day(tr.get('report_date'))}",
             ]) + " |")
         L += ["", "**Notes from each report**", ""]
@@ -176,8 +184,9 @@ def write_triggers_page():
     if not positions:
         L.append("No open trades.")
     else:
-        L += ["| Ticker | What | Bought at | Amount | Sell target | Stop | Bought on | Note |",
-              "|---|---|---|---|---|---|---|---|"]
+        by_id = {t.get("id"): t for t in triggers}
+        L += ["| Ticker | What | Bought at | Amount | Sell target | Stop | Bought on | Next earnings | Note |",
+              "|---|---|---|---|---|---|---|---|---|"]
         for p in positions:
             is_opt = p.get("is_option")
             qty = float(p.get("quantity") or 0)
@@ -191,7 +200,7 @@ def write_triggers_page():
                 target, stop = _money(p.get("target")), _money(p.get("stop"))
             L.append("| " + " | ".join(_cell(x) for x in [
                 f"**{p.get('ticker')}**", what, _money(p.get("entry_price")), amount,
-                target, stop, _day(p.get("opened")), note,
+                target, stop, _day(p.get("opened")), _earn(by_id.get(p.get("id"))), note,
             ]) + " |")
 
     closed = ledger.get("closed_trades") or []
