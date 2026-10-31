@@ -1,6 +1,6 @@
-cash: 0.01211276984587073
-peak_equity: 1017.6719096627332
-day_start_equity: 1012.9463795381889
+cash: 9000.012112769846
+peak_equity: 10017.671909662733
+day_start_equity: 10012.946379538189
 positions:
 - id: WIT-forensic-2026-10-23
   ticker: WIT

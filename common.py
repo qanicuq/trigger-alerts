@@ -12,7 +12,7 @@ OPTION_CALC_PAGE = "https://claude.ai/artifact/LmJchqjk1dftRCJD5RHyjW"
 NY = ZoneInfo("America/New_York")
 
 # Account and risk constants
-STARTING_CASH = 1000.0
+STARTING_CASH = 10000.0
 KELLY_FRACTION = 0.25
 PRIOR_ALPHA = 5
 PRIOR_BETA = 5
