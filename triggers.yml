@@ -2224,3 +2224,31 @@ triggers:
     signals: 3
   earnings_date: '2027-01-07'
   earnings_checked: '2026-10-31'
+- id: SPCX-forensic-2026-10-31
+  source: forensic
+  ticker: SPCX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 115.1
+  exit_plan:
+    stop:
+      price: 100.09
+    target:
+      price: 145.13
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 35: buy at or below $115.10 (pullback to the
+    60-day low (support) ($114.53)), sell at $145.13 (twice the risk taken (no value
+    target above the entry)), stop $100.09; chart-based entry, not a value bargain:
+    keep it small; check the $40B AI financing and possible share issuance, earnings,
+    filings and news before confirming.'
+  report_date: 2026-10-31
+  expires: 2027-01-29
+  status: active
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2027-02-09'
+  earnings_checked: '2026-10-31'
