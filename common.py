@@ -22,6 +22,7 @@ WARMUP_RISK = 0.01
 MAX_RISK_PER_TRADE = 0.05
 MAX_POSITION_STOCK = 0.25
 MAX_POSITION_OPTION = 0.10
+MAX_POSITION_COMBO = 0.25  # POSITION trades (short puts, covered calls, etc.); user chose 25% on 2026-10-31
 MAX_OPEN_POSITIONS = None  # None = unlimited (user, 2026-10-30). Original setting was 4.
 DAILY_LOSS_LIMIT = 0.03
 MAX_DRAWDOWN = 0.10

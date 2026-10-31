@@ -259,7 +259,7 @@ def place(tr, ledger, force=False):
         if denom <= 0:
             common.ntfy(f"Skipped {ticker}: one position costs $0, too big for the account", "position cap")
             return False
-        qty = math.floor(common.MAX_POSITION_OPTION * equity / denom)
+        qty = math.floor(common.MAX_POSITION_COMBO * equity / denom)
         if qty < 1:
             common.ntfy(
                 f"Skipped {ticker}: one position costs ${denom:.0f}, too big for the account",

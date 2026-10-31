@@ -466,11 +466,11 @@ class TestEarnings(unittest.TestCase):
 
     @patch("common.next_earnings_info", return_value=(None, None))
     @patch("common.ntfy")
-    def test_open_position_strategy_no_earnings_alert(self, ntfy, ne):
+    def test_open_position_strategy_gets_earnings_alert(self, ntfy, ne):
         held = self._tr(id="ABCD-csp", status="filled", source="option", action="POSITION",
                         strategy="cash_secured_put", bullish=True, earnings_date="2026-11-02")
         check._earnings_pass([held], self._now(2026, 11, 3), open_ids={held["id"]})
-        ntfy.assert_not_called()
+        self.assertEqual(ntfy.call_count, 1)
         self.assertEqual(held["earnings_last"], "2026-11-02")
 
     @patch("common.next_earnings_info", return_value=(None, None))
@@ -924,6 +924,7 @@ class TestOptionExitsAndPositions(unittest.TestCase):
             "bullish": True,
             "conditions": [{"type": "price", "op": "<=", "value": 42}],
             "contract": {"expiry": self._far(), "legs": [{"side": "sell", "right": "put", "strike": 40}]},
+            "option_exits": {"stop_pl": -240},
             "expires": self._far(500),
         }
         tr.update(kw)
@@ -1038,7 +1039,8 @@ class TestOptionExitsAndPositions(unittest.TestCase):
     def test_short_put_open_and_close_cash(self):
         # stock 50, short 40 put at bid 2.00. OTM = 10.
         # margin/share = max(0.20*50 - 10 + 2, 0.10*40 + 2) = max(2, 6) = 6 → reserved 600
-        # entry_value = -200. Closing ask 1.00 → value -100, profit +100.
+        # entry_value = -200. Closing ask 1.00 → value -100, profit +100 per unit.
+        # Size: floor(25% × 10,000 / (200 + 600)) = 3 units.
         tr = self._base(contract={"expiry": "2026-12-18", "legs": [{"side": "sell", "right": "put", "strike": 40}]})
         start = 10000.0
         ledger = {
@@ -1056,10 +1058,10 @@ class TestOptionExitsAndPositions(unittest.TestCase):
             ok = confirm.place(tr, ledger, force=True)
         self.assertTrue(ok)
         pos = ledger["positions"][0]
-        self.assertEqual(pos["quantity"], 1)
+        self.assertEqual(pos["quantity"], 3)
         self.assertAlmostEqual(pos["entry_value"], -200.0)
         self.assertAlmostEqual(pos["reserved"], 600.0)
-        self.assertAlmostEqual(ledger["cash"], start - (-200.0 + 600.0))
+        self.assertAlmostEqual(ledger["cash"], start - (-200.0 + 600.0) * 3)
         pos["last_value"] = pos["entry_value"]
         self.assertAlmostEqual(confirm._compute_equity(ledger), start)
         with patch("common.option_quote", return_value={"bid": 0.9, "ask": 1.0, "last": 0.95}), \
@@ -1069,9 +1071,33 @@ class TestOptionExitsAndPositions(unittest.TestCase):
         self.assertAlmostEqual(value, -100.0)
         with patch("common.ntfy"):
             check._close_position(ledger, pos, value, "target", common.now_ny())
-        self.assertAlmostEqual(ledger["closed_trades"][0]["pl"], 100.0)
-        self.assertAlmostEqual(ledger["cash"], start + 100.0)
+        self.assertAlmostEqual(ledger["closed_trades"][0]["pl"], 300.0)
+        self.assertAlmostEqual(ledger["cash"], start + 300.0)
         self.assertEqual(ledger["positions"], [])
+
+    def test_position_without_stop_rejected(self):
+        tr = self._base()
+        del tr["option_exits"]
+        ok, reason = check._validate_trigger(tr)
+        self.assertFalse(ok)
+        self.assertIn("stop", reason)
+        ok, _ = check._validate_trigger(self._base(option_exits={"stop_price": 30}))
+        self.assertTrue(ok)
+
+    def test_position_skipped_when_one_unit_over_25pct(self):
+        # Covered call on a $48 stock: one unit ≈ $4,650, over 25% of $10,000 → skipped.
+        tr = self._base(strategy="covered_call", contract={"expiry": "2026-12-18", "legs": [
+            {"side": "buy", "right": "stock"}, {"side": "sell", "right": "call", "strike": 50}]})
+        ledger = {"cash": 10000.0, "positions": [], "realized_pl": 0.0, "paused": False,
+                  "stats": {}, "day_start_equity": 10000.0, "peak_equity": 10000.0}
+        with patch("common.option_quote", return_value={"bid": 1.5, "ask": 1.6, "last": 1.55}), \
+             patch("common.last_price", return_value=48.0), \
+             patch("common.get_daily_bars", return_value=None), \
+             patch("common.ntfy") as ntfy:
+            ok = confirm.place(tr, ledger, force=True)
+        self.assertFalse(ok)
+        self.assertEqual(ledger["positions"], [])
+        self.assertIn("too big", ntfy.call_args[0][0])
 
     def test_covered_call_value(self):
         legs = [

@@ -384,6 +384,9 @@ def _validate_trigger(tr):
         ok_ex, ex_reason = _check_option_exits(tr.get("option_exits"), _POSITION_EXIT_KEYS, c.get("expiry"))
         if not ok_ex:
             return False, ex_reason
+        ox = tr.get("option_exits") or {}
+        if ox.get("stop_pl") is None and ox.get("stop_price") is None:
+            return False, "POSITION needs a stop: option_exits stop_pl or stop_price"
     if tr.get("earnings_date") is not None and common._to_date(tr.get("earnings_date")) is None:
         return False, "bad earnings_date (use YYYY-MM-DD)"
     expires = tr.get("expires")
@@ -492,12 +495,9 @@ def _earnings_pass(triggers, now, open_ids=()):
         timing = tr.get("earnings_time")
         if ed and now >= _reminder_moment(ed, timing) and str(tr.get("earnings_reminded")) != ed.isoformat():
             if _stale(common._to_date(tr.get("report_date")), ed, timing):
-                # Open POSITION positions use their own exits, like options: no earnings alert.
-                # A POSITION trigger that has not been bought yet still gets the waiting-trigger alert.
-                if not (holding and tr.get("action") == "POSITION"):
-                    body, page = (_position_earnings_body if holding else _earnings_reminder_body)(tr, ed, timing)
-                    common.ntfy(f"{tr.get('ticker')} earnings are out", body,
-                                priority="high", click_url=page, action_label="Open the report", action_url=page)
+                body, page = (_position_earnings_body if holding else _earnings_reminder_body)(tr, ed, timing)
+                common.ntfy(f"{tr.get('ticker')} earnings are out", body,
+                            priority="high", click_url=page, action_label="Open the report", action_url=page)
                 tr["earnings_last"] = ed.isoformat()
                 tr["earnings_last_time"] = timing
             tr["earnings_reminded"] = ed.isoformat()

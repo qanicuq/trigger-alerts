@@ -143,7 +143,7 @@ action: POSITION holds the Option Calc trades that are not a straight buy or a t
 
 Each leg has side (buy or sell) and right (call, put, or stock). Option legs need a number strike. A stock leg has no strike.
 
-option_exits on a POSITION uses dollars of profit or loss for ONE unit (100 shares, or 1 contract): target_pl, stop_pl (negative), plus target_price, stop_price, and exit_by. A bullish position stops when the stock is at or below stop_price and targets a stock at or above target_price. A bearish position is the reverse. The 7-day-before-expiry exit still applies.
+option_exits on a POSITION uses dollars of profit or loss for ONE unit (100 shares, or 1 contract): target_pl, stop_pl (negative), plus target_price, stop_price, and exit_by. Every POSITION must have a stop: stop_pl or stop_price (or both), or the trigger is rejected. Size: as many units as fit in 25% of the account; if one unit is bigger than that, the trade is skipped. A bullish position stops when the stock is at or below stop_price and targets a stock at or above target_price. A bearish position is the reverse. The 7-day-before-expiry exit still applies.
 
 Short put:
 
