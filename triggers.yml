@@ -2196,3 +2196,31 @@ triggers:
     signals: 3
   earnings_date: '2027-02-03'
   earnings_checked: '2026-10-30'
+- id: RPM-forensic-2026-10-31
+  source: forensic
+  ticker: RPM
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 99.34
+  exit_plan:
+    stop:
+      price: 93.38
+    target:
+      price: 111.26
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $99.34 (pullback to the 20-day
+    average ($98.84)), sell at $111.26 (twice the risk taken (no value target above
+    the entry)), stop $93.38; chart-based entry, not a value bargain: keep it small;
+    check raw-material inflation guidance at the January report, earnings, filings
+    and news before confirming.'
+  report_date: 2026-10-31
+  expires: 2027-01-29
+  status: active
+  backtest:
+    wins: 2
+    losses: 1
+    signals: 3
+  earnings_date: '2027-01-07'
+  earnings_checked: '2026-10-31'
