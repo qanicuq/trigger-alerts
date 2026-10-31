@@ -8,14 +8,17 @@ import common
 import confirm
 
 NY = common.NY
-ALLOWED_ACTIONS = {"BUY", "BUY_CALL", "BUY_PUT", "SPREAD"}
+ALLOWED_ACTIONS = {"BUY", "BUY_CALL", "BUY_PUT", "SPREAD", "POSITION"}
 
 
 def _bucket(tr):
     source = tr.get("source", "forensic")
-    if tr.get("action") == "SPREAD":
+    action = tr.get("action")
+    if action == "POSITION":
+        return f"{source}-position"
+    if action == "SPREAD":
         return f"{source}-spread"
-    is_opt = tr.get("action", "").startswith("BUY_")
+    is_opt = str(action or "").startswith("BUY_")
     return f"{source}-{'option' if is_opt else 'stock'}"
 
 
@@ -209,6 +212,79 @@ def _backtest_trigger(tr):
     return {"wins": wins, "losses": losses, "signals": signals}
 
 
+_OPTION_EXIT_KEYS = {"target_premium", "stop_premium", "target_price", "stop_price", "exit_by"}
+_POSITION_EXIT_KEYS = {"target_pl", "stop_pl", "target_price", "stop_price", "exit_by"}
+_POSITION_STRATEGIES = (
+    "cash_secured_put", "covered_call", "buy_write", "protective_put", "collar", "short_call",
+)
+
+
+def _is_number(v):
+    return isinstance(v, (int, float)) and not isinstance(v, bool)
+
+
+def _check_option_exits(ox, allowed, expiry):
+    """(ok, reason). ox is None when the trigger has no option_exits block."""
+    if ox is None:
+        return True, ""
+    if not isinstance(ox, dict):
+        return False, "option_exits must be a set of exit levels"
+    extra = [k for k in ox if k not in allowed]
+    if extra:
+        return False, "option_exits has unknown key: " + ", ".join(sorted(str(k) for k in extra))
+    for key in ("target_premium", "stop_premium", "target_price", "stop_price", "target_pl", "stop_pl"):
+        if key in ox and not _is_number(ox.get(key)):
+            return False, f"option_exits {key} must be a number"
+    if "stop_pl" in ox and float(ox["stop_pl"]) >= 0:
+        return False, "option_exits stop_pl must be negative"
+    if "exit_by" in ox:
+        exit_by = common._to_date(ox.get("exit_by"))
+        if exit_by is None:
+            return False, "option_exits exit_by is not a valid date"
+        exp_d = common._to_date(expiry)
+        if exp_d is not None and exit_by > exp_d:
+            return False, "option_exits exit_by is after the contract expiry"
+    return True, ""
+
+
+def _leg_side_right(leg):
+    return (str(leg.get("side") or "").lower(), str(leg.get("right") or "").lower())
+
+
+def _position_legs_ok(strategy, legs):
+    """(ok, reason). Legs must match the strategy exactly."""
+    keys = [_leg_side_right(leg) for leg in legs]
+
+    def n(side, right):
+        return keys.count((side, right))
+
+    if strategy == "cash_secured_put":
+        if len(legs) == 1 and n("sell", "put") == 1:
+            return True, ""
+        return False, "cash_secured_put needs one sell put"
+    if strategy == "short_call":
+        if len(legs) == 1 and n("sell", "call") == 1:
+            return True, ""
+        return False, "short_call needs one sell call"
+    if strategy in ("covered_call", "buy_write"):
+        if len(legs) == 2 and n("buy", "stock") == 1 and n("sell", "call") == 1:
+            return True, ""
+        return False, f"{strategy} needs buy stock and sell call"
+    if strategy == "protective_put":
+        if len(legs) == 2 and n("buy", "stock") == 1 and n("buy", "put") == 1:
+            return True, ""
+        return False, "protective_put needs buy stock and buy put"
+    if strategy == "collar":
+        if not (len(legs) == 3 and n("buy", "stock") == 1 and n("buy", "put") == 1 and n("sell", "call") == 1):
+            return False, "collar needs buy stock, buy put, and sell call"
+        put_k = float(next(leg["strike"] for leg in legs if _leg_side_right(leg) == ("buy", "put")))
+        call_k = float(next(leg["strike"] for leg in legs if _leg_side_right(leg) == ("sell", "call")))
+        if not put_k < call_k:
+            return False, "collar put strike must be lower than the call strike"
+        return True, ""
+    return False, "unknown strategy"
+
+
 def _validate_trigger(tr):
     """Return (ok, reason)."""
     if not tr.get("id") or not tr.get("ticker") or not tr.get("action"):
@@ -233,6 +309,9 @@ def _validate_trigger(tr):
                 return False, "expiry is too soon"
         except Exception:
             return False, "bad contract expiry"
+        ok_ex, ex_reason = _check_option_exits(tr.get("option_exits"), _OPTION_EXIT_KEYS, c.get("expiry"))
+        if not ok_ex:
+            return False, ex_reason
     if action == "SPREAD":
         c = tr.get("contract") or {}
         legs = c.get("legs")
@@ -258,6 +337,53 @@ def _validate_trigger(tr):
                 return False, "expiry is too soon"
         except Exception:
             return False, "bad contract expiry"
+        ok_ex, ex_reason = _check_option_exits(tr.get("option_exits"), _OPTION_EXIT_KEYS, c.get("expiry"))
+        if not ok_ex:
+            return False, ex_reason
+    if action == "POSITION":
+        strategy = tr.get("strategy")
+        if strategy not in _POSITION_STRATEGIES:
+            return False, (
+                "strategy must be cash_secured_put, covered_call, buy_write, "
+                "protective_put, collar, or short_call"
+            )
+        if not isinstance(tr.get("bullish"), bool):
+            return False, "bullish must be true or false"
+        c = tr.get("contract") or {}
+        if not c.get("expiry"):
+            return False, "POSITION needs contract expiry"
+        try:
+            exp_d = date.fromisoformat(str(c.get("expiry")))
+            if (exp_d - date.today()).days <= common.OPTION_TIME_EXIT_DAYS:
+                return False, "expiry is too soon"
+        except Exception:
+            return False, "bad contract expiry"
+        legs = c.get("legs")
+        if not isinstance(legs, list) or not (1 <= len(legs) <= 3):
+            return False, "POSITION needs 1 to 3 legs"
+        for leg in legs:
+            if not isinstance(leg, dict):
+                return False, "each leg needs side and right"
+            side = str(leg.get("side") or "").lower()
+            right = str(leg.get("right") or "").lower()
+            if side not in ("buy", "sell"):
+                return False, "each leg needs side buy or sell"
+            if right not in ("call", "put", "stock"):
+                return False, "each leg needs right call, put, or stock"
+            if right == "stock":
+                if leg.get("strike") is not None:
+                    return False, "a stock leg has no strike"
+            else:
+                try:
+                    float(leg.get("strike"))
+                except (TypeError, ValueError):
+                    return False, "each option leg needs a number strike"
+        ok_legs, leg_reason = _position_legs_ok(strategy, legs)
+        if not ok_legs:
+            return False, leg_reason
+        ok_ex, ex_reason = _check_option_exits(tr.get("option_exits"), _POSITION_EXIT_KEYS, c.get("expiry"))
+        if not ok_ex:
+            return False, ex_reason
     if tr.get("earnings_date") is not None and common._to_date(tr.get("earnings_date")) is None:
         return False, "bad earnings_date (use YYYY-MM-DD)"
     expires = tr.get("expires")
@@ -299,6 +425,8 @@ def _stale(rd, ed, timing):
 def _bullish(obj):
     """True for a position or trigger that profits when the stock rises (stock, call, bull spread)."""
     action = obj.get("action", "BUY")
+    if action == "POSITION":
+        return bool(obj.get("bullish"))
     if action == "BUY_PUT":
         return False
     if action != "SPREAD":
@@ -364,9 +492,12 @@ def _earnings_pass(triggers, now, open_ids=()):
         timing = tr.get("earnings_time")
         if ed and now >= _reminder_moment(ed, timing) and str(tr.get("earnings_reminded")) != ed.isoformat():
             if _stale(common._to_date(tr.get("report_date")), ed, timing):
-                body, page = (_position_earnings_body if holding else _earnings_reminder_body)(tr, ed, timing)
-                common.ntfy(f"{tr.get('ticker')} earnings are out", body,
-                            priority="high", click_url=page, action_label="Open the report", action_url=page)
+                # Open POSITION positions use their own exits, like options: no earnings alert.
+                # A POSITION trigger that has not been bought yet still gets the waiting-trigger alert.
+                if not (holding and tr.get("action") == "POSITION"):
+                    body, page = (_position_earnings_body if holding else _earnings_reminder_body)(tr, ed, timing)
+                    common.ntfy(f"{tr.get('ticker')} earnings are out", body,
+                                priority="high", click_url=page, action_label="Open the report", action_url=page)
                 tr["earnings_last"] = ed.isoformat()
                 tr["earnings_last_time"] = timing
             tr["earnings_reminded"] = ed.isoformat()
@@ -546,6 +677,35 @@ def _ingest_inbox(triggers, ledger=None):
 
 
 def _close_position(ledger, pos, exit_price, reason, now):
+    if pos.get("action") == "POSITION":
+        entry = pos.get("entry_value")
+        if entry is None:
+            entry = pos.get("entry_price") or 0
+        entry = float(entry)
+        qty = float(pos.get("quantity") or 1)
+        reserved = float(pos.get("reserved") or 0)
+        pl = (float(exit_price) - entry) * qty
+        ledger["cash"] = float(ledger.get("cash") or 0) + (float(exit_price) + reserved) * qty
+        ledger["realized_pl"] = float(ledger.get("realized_pl") or 0) + pl
+        closed = dict(pos)
+        closed["exit_price"] = exit_price
+        closed["exit_reason"] = reason
+        closed["pl"] = round(pl, 2)
+        closed["closed"] = now.isoformat()
+        ledger.setdefault("closed_trades", []).append(closed)
+        ledger["positions"] = [p for p in ledger.get("positions", []) if p.get("id") != pos.get("id")]
+        bucket = _bucket(pos)
+        stats = ledger.setdefault("stats", {})
+        b = stats.setdefault(bucket, {"wins": 0, "losses": 0})
+        if pl > 0:
+            b["wins"] += 1
+        else:
+            b["losses"] += 1
+        denom = abs(entry) + reserved
+        pct = (pl / denom / qty * 100) if denom and qty else 0
+        body = f"Entry: {entry:.2f}\nExit: {float(exit_price):.2f}\nP/L: ${pl:.2f} ({pct:.1f}%)"
+        common.ntfy(f"{pos.get('ticker')} paper trade closed: {reason}", body)
+        return True
     entry = float(pos.get("entry_price") or 0)
     qty = float(pos.get("quantity") or 1)
     is_option = bool(pos.get("is_option"))
@@ -637,7 +797,14 @@ def main():
         for p in ledger.get("positions") or []:
             qty = float(p.get("quantity") or 0)
             entry = float(p.get("entry_price") or 0)
-            if p.get("action") == "SPREAD":
+            if p.get("action") == "POSITION":
+                px = p.get("last_value")
+                if px is None:
+                    px = p.get("entry_value")
+                    if px is None:
+                        px = entry
+                equity += (float(px) + float(p.get("reserved") or 0)) * qty
+            elif p.get("action") == "SPREAD":
                 px = p.get("last_value")
                 if px is None:
                     px = entry
@@ -659,7 +826,14 @@ def main():
     for p in ledger.get("positions") or []:
         qty = float(p.get("quantity") or 0)
         entry = float(p.get("entry_price") or 0)
-        if p.get("action") == "SPREAD":
+        if p.get("action") == "POSITION":
+            px = p.get("last_value")
+            if px is None:
+                px = p.get("entry_value")
+                if px is None:
+                    px = entry
+            equity += (float(px) + float(p.get("reserved") or 0)) * qty
+        elif p.get("action") == "SPREAD":
             px = p.get("last_value")
             if px is None:
                 px = entry
@@ -824,7 +998,65 @@ def main():
         entry = float(pos.get("entry_price") or 0)
         exit_reason = None
         exit_price = None
-        if pos.get("action") == "SPREAD":
+        if pos.get("action") == "POSITION":
+            value = common.position_value(ticker, pos.get("expiry"), pos.get("legs"), opening=False)
+            if value is None:
+                pos["no_quote_count"] = pos.get("no_quote_count", 0) + 1
+                if pos["no_quote_count"] >= 2:
+                    exit_reason = "no quote"
+                    exit_price = pos.get("last_value")
+                    if exit_price is None:
+                        exit_price = pos.get("entry_value")
+                        if exit_price is None:
+                            exit_price = entry
+                changed = True
+            else:
+                pos["no_quote_count"] = 0
+                pos["last_value"] = value
+                ev = pos.get("entry_value")
+                if ev is None:
+                    ev = entry
+                profit = value - float(ev)
+                ox = pos.get("option_exits") or {}
+                bullish = _bullish(pos)
+                stock = None
+                if ox.get("target_price") is not None or ox.get("stop_price") is not None:
+                    stock = common.last_price(ticker)
+                if ox.get("target_pl") is not None and profit >= float(ox["target_pl"]):
+                    exit_reason = "target"
+                    exit_price = value
+                elif stock is not None and ox.get("target_price") is not None and (
+                    (bullish and stock >= float(ox["target_price"])) or
+                    ((not bullish) and stock <= float(ox["target_price"]))
+                ):
+                    exit_reason = "target"
+                    exit_price = value
+                elif ox.get("stop_pl") is not None and profit <= float(ox["stop_pl"]):
+                    exit_reason = "stop"
+                    exit_price = value
+                elif stock is not None and ox.get("stop_price") is not None and (
+                    (bullish and stock <= float(ox["stop_price"])) or
+                    ((not bullish) and stock >= float(ox["stop_price"]))
+                ):
+                    exit_reason = "stop"
+                    exit_price = value
+                elif pos.get("thesis_broken"):
+                    exit_reason = "thesis broken"
+                    exit_price = value
+                else:
+                    eb = common._to_date(ox.get("exit_by")) if ox.get("exit_by") else None
+                    if eb and now.date() >= eb:
+                        exit_reason = "time"
+                        exit_price = value
+                try:
+                    exp = date.fromisoformat(str(pos.get("expiry")))
+                    if (exp - now.date()).days <= common.OPTION_TIME_EXIT_DAYS:
+                        exit_reason = "time"
+                        exit_price = value
+                except Exception:
+                    pass
+                changed = True
+        elif pos.get("action") == "SPREAD":
             value = common.spread_value(ticker, pos.get("expiry"), pos.get("legs"), opening=False)
             if value is None:
                 pos["no_quote_count"] = pos.get("no_quote_count", 0) + 1
@@ -837,25 +1069,65 @@ def main():
             else:
                 pos["no_quote_count"] = 0
                 pos["last_value"] = value
-                gain = value - entry
-                max_profit = float(pos.get("max_profit") or 0)
-                max_loss = float(pos.get("max_loss") or 0)
-                if gain >= common.SPREAD_TARGET * max_profit:
-                    exit_reason = "target"
-                    exit_price = value
-                elif gain <= -common.SPREAD_STOP * max_loss:
-                    exit_reason = "stop"
-                    exit_price = value
-                elif pos.get("thesis_broken"):
-                    exit_reason = "thesis broken"
-                    exit_price = value
-                try:
-                    exp = date.fromisoformat(str(pos.get("expiry")))
-                    if (exp - now.date()).days <= common.OPTION_TIME_EXIT_DAYS:
-                        exit_reason = "time"
+                ox = pos.get("option_exits")
+                if ox:
+                    bullish = _bullish(pos)
+                    stock = None
+                    if ox.get("target_price") is not None or ox.get("stop_price") is not None:
+                        stock = common.last_price(ticker)
+                    if ox.get("target_premium") is not None and value >= float(ox["target_premium"]):
+                        exit_reason = "target"
                         exit_price = value
-                except Exception:
-                    pass
+                    elif stock is not None and ox.get("target_price") is not None and (
+                        (bullish and stock >= float(ox["target_price"])) or
+                        ((not bullish) and stock <= float(ox["target_price"]))
+                    ):
+                        exit_reason = "target"
+                        exit_price = value
+                    elif ox.get("stop_premium") is not None and value <= float(ox["stop_premium"]):
+                        exit_reason = "stop"
+                        exit_price = value
+                    elif stock is not None and ox.get("stop_price") is not None and (
+                        (bullish and stock <= float(ox["stop_price"])) or
+                        ((not bullish) and stock >= float(ox["stop_price"]))
+                    ):
+                        exit_reason = "stop"
+                        exit_price = value
+                    elif pos.get("thesis_broken"):
+                        exit_reason = "thesis broken"
+                        exit_price = value
+                    else:
+                        eb = common._to_date(ox.get("exit_by")) if ox.get("exit_by") else None
+                        if eb and now.date() >= eb:
+                            exit_reason = "time"
+                            exit_price = value
+                    try:
+                        exp = date.fromisoformat(str(pos.get("expiry")))
+                        if (exp - now.date()).days <= common.OPTION_TIME_EXIT_DAYS:
+                            exit_reason = "time"
+                            exit_price = value
+                    except Exception:
+                        pass
+                else:
+                    gain = value - entry
+                    max_profit = float(pos.get("max_profit") or 0)
+                    max_loss = float(pos.get("max_loss") or 0)
+                    if gain >= common.SPREAD_TARGET * max_profit:
+                        exit_reason = "target"
+                        exit_price = value
+                    elif gain <= -common.SPREAD_STOP * max_loss:
+                        exit_reason = "stop"
+                        exit_price = value
+                    elif pos.get("thesis_broken"):
+                        exit_reason = "thesis broken"
+                        exit_price = value
+                    try:
+                        exp = date.fromisoformat(str(pos.get("expiry")))
+                        if (exp - now.date()).days <= common.OPTION_TIME_EXIT_DAYS:
+                            exit_reason = "time"
+                            exit_price = value
+                    except Exception:
+                        pass
                 changed = True
         elif is_option:
             q = common.option_quote(ticker, pos.get("expiry"), pos.get("strike"), pos.get("right"))
@@ -870,23 +1142,63 @@ def main():
             else:
                 pos["no_quote_count"] = 0
                 pos["last_bid"] = bid
-                if bid >= entry * (1 + common.OPTION_TARGET):
-                    exit_reason = "target"
-                    exit_price = bid
-                elif bid <= entry * (1 - common.OPTION_STOP):
-                    exit_reason = "stop"
-                    exit_price = bid
-                elif pos.get("thesis_broken"):
-                    exit_reason = "thesis broken"
-                    exit_price = bid
-                # time exit
-                try:
-                    exp = date.fromisoformat(str(pos.get("expiry")))
-                    if (exp - now.date()).days <= common.OPTION_TIME_EXIT_DAYS:
-                        exit_reason = "time"
+                ox = pos.get("option_exits")
+                if ox:
+                    bullish = _bullish(pos)
+                    stock = None
+                    if ox.get("target_price") is not None or ox.get("stop_price") is not None:
+                        stock = common.last_price(ticker)
+                    if ox.get("target_premium") is not None and bid >= float(ox["target_premium"]):
+                        exit_reason = "target"
                         exit_price = bid
-                except Exception:
-                    pass
+                    elif stock is not None and ox.get("target_price") is not None and (
+                        (bullish and stock >= float(ox["target_price"])) or
+                        ((not bullish) and stock <= float(ox["target_price"]))
+                    ):
+                        exit_reason = "target"
+                        exit_price = bid
+                    elif ox.get("stop_premium") is not None and bid <= float(ox["stop_premium"]):
+                        exit_reason = "stop"
+                        exit_price = bid
+                    elif stock is not None and ox.get("stop_price") is not None and (
+                        (bullish and stock <= float(ox["stop_price"])) or
+                        ((not bullish) and stock >= float(ox["stop_price"]))
+                    ):
+                        exit_reason = "stop"
+                        exit_price = bid
+                    elif pos.get("thesis_broken"):
+                        exit_reason = "thesis broken"
+                        exit_price = bid
+                    else:
+                        eb = common._to_date(ox.get("exit_by")) if ox.get("exit_by") else None
+                        if eb and now.date() >= eb:
+                            exit_reason = "time"
+                            exit_price = bid
+                    try:
+                        exp = date.fromisoformat(str(pos.get("expiry")))
+                        if (exp - now.date()).days <= common.OPTION_TIME_EXIT_DAYS:
+                            exit_reason = "time"
+                            exit_price = bid
+                    except Exception:
+                        pass
+                else:
+                    if bid >= entry * (1 + common.OPTION_TARGET):
+                        exit_reason = "target"
+                        exit_price = bid
+                    elif bid <= entry * (1 - common.OPTION_STOP):
+                        exit_reason = "stop"
+                        exit_price = bid
+                    elif pos.get("thesis_broken"):
+                        exit_reason = "thesis broken"
+                        exit_price = bid
+                    # time exit
+                    try:
+                        exp = date.fromisoformat(str(pos.get("expiry")))
+                        if (exp - now.date()).days <= common.OPTION_TIME_EXIT_DAYS:
+                            exit_reason = "time"
+                            exit_price = bid
+                    except Exception:
+                        pass
         else:
             # stock
             high, low = common.high_low_since(ticker, last_checked)

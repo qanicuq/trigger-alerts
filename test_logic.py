@@ -223,7 +223,7 @@ class TestShortDated(unittest.TestCase):
 
 class TestBuysOnly(unittest.TestCase):
     def test_allowed_actions_are_buys_only(self):
-        self.assertEqual(check.ALLOWED_ACTIONS, {"BUY", "BUY_CALL", "BUY_PUT", "SPREAD"})
+        self.assertEqual(check.ALLOWED_ACTIONS, {"BUY", "BUY_CALL", "BUY_PUT", "SPREAD", "POSITION"})
         self.assertNotIn("SELL_PUT", check.ALLOWED_ACTIONS)
         self.assertNotIn("SELL_CALL", check.ALLOWED_ACTIONS)
         tr = {
@@ -463,6 +463,33 @@ class TestEarnings(unittest.TestCase):
         self.assertEqual(ntfy.call_count, 1)
         self.assertIn("paper option", ntfy.call_args[0][1])
         self.assertIn("AVOID", ntfy.call_args[0][1])
+
+    @patch("common.next_earnings_info", return_value=(None, None))
+    @patch("common.ntfy")
+    def test_open_position_strategy_no_earnings_alert(self, ntfy, ne):
+        held = self._tr(id="ABCD-csp", status="filled", source="option", action="POSITION",
+                        strategy="cash_secured_put", bullish=True, earnings_date="2026-11-02")
+        check._earnings_pass([held], self._now(2026, 11, 3), open_ids={held["id"]})
+        ntfy.assert_not_called()
+        self.assertEqual(held["earnings_last"], "2026-11-02")
+
+    @patch("common.next_earnings_info", return_value=(None, None))
+    @patch("common.ntfy")
+    def test_waiting_position_trigger_still_alerts(self, ntfy, ne):
+        waiting = self._tr(source="option", action="POSITION", strategy="cash_secured_put",
+                           bullish=True, earnings_date="2026-11-02")
+        check._earnings_pass([waiting], self._now(2026, 11, 3))
+        self.assertEqual(ntfy.call_count, 1)
+        self.assertEqual(ntfy.call_args[1]["action_url"], common.OPTION_CALC_PAGE)
+
+    def test_position_buy_on_hold_like_call(self):
+        tr = self._tr(source="option", action="POSITION", strategy="cash_secured_put", bullish=True,
+                      earnings_date="2099-02-18", earnings_last="2026-11-02", expires="2099-01-01")
+        ntfy, place = self._run_main(tr)
+        place.assert_not_called()
+        self.assertEqual(tr["status"], "active")
+        titles = [c[0][0] for c in ntfy.call_args_list]
+        self.assertIn("RIG: trigger met, buy on hold", titles)
 
     def test_needs_refresh(self):
         self.assertTrue(check._needs_refresh(self._tr(earnings_last="2026-11-02")))
@@ -883,8 +910,254 @@ class TestSpreads(unittest.TestCase):
         self.assertEqual(closed["exit_price"], 1.00)
 
 
-if __name__ == "__main__":
-    unittest.main(verbosity=2)
+class TestOptionExitsAndPositions(unittest.TestCase):
+    def _far(self, days=400):
+        return (date.today() + timedelta(days=days)).isoformat()
+
+    def _base(self, **kw):
+        tr = {
+            "id": "ABCD-pos",
+            "source": "option",
+            "ticker": "ABCD",
+            "action": "POSITION",
+            "strategy": "cash_secured_put",
+            "bullish": True,
+            "conditions": [{"type": "price", "op": "<=", "value": 42}],
+            "contract": {"expiry": self._far(), "legs": [{"side": "sell", "right": "put", "strike": 40}]},
+            "expires": self._far(500),
+        }
+        tr.update(kw)
+        return tr
+
+    def _run_exit(self, pos, bid=None, stock=50.0, spread_value=None, position_value=None):
+        today = common.now_ny().date().isoformat()
+        ledger = {
+            "cash": 1000.0, "positions": [pos], "closed_trades": [], "realized_pl": 0.0,
+            "peak_equity": 5000.0, "day_start_equity": 5000.0, "day_start_date": today,
+            "paused": False, "stats": {}, "sent_slots": {},
+        }
+        files = {"triggers.yml": {"triggers": []}, "ledger.yml": ledger}
+        quote = {"bid": bid, "ask": (bid or 0) + 0.1, "last": bid} if bid is not None else None
+        with patch("common.is_forced", return_value=True), \
+             patch("common.load_yaml", side_effect=lambda p: files.get(p, {})), \
+             patch("common.save_yaml"), \
+             patch("common.option_quote", return_value=quote), \
+             patch("common.spread_value", return_value=spread_value), \
+             patch("common.position_value", return_value=position_value), \
+             patch("common.last_price", return_value=stock), \
+             patch("common.ntfy"), \
+             patch("check._ingest_inbox", return_value=False), \
+             patch("check._refresh_triggers_page"), \
+             patch("check._write_due"), \
+             patch("report.send_report"), \
+             patch("report.write_pages"):
+            check.main()
+        return ledger
+
+    def test_leaps_ignores_25pct_drop_but_stops_on_stop_premium(self):
+        exp = self._far()
+        pos = {
+            "id": "L1", "ticker": "ABCD", "action": "BUY_CALL", "is_option": True,
+            "entry_price": 10.0, "quantity": 1, "strike": 40, "right": "call", "expiry": exp,
+            "reserved": 0, "source": "option",
+            "option_exits": {"target_price": 80, "stop_premium": 6.0, "stop_price": 30, "exit_by": self._far(200)},
+        }
+        held = self._run_exit(dict(pos), bid=7.5, stock=55.0)
+        self.assertEqual(len(held["closed_trades"]), 0)
+        self.assertEqual(len(held["positions"]), 1)
+        sold = self._run_exit(dict(pos), bid=5.9, stock=55.0)
+        self.assertEqual(len(sold["positions"]), 0)
+        self.assertEqual(sold["closed_trades"][0]["exit_reason"], "stop")
+
+    def test_call_without_option_exits_still_stops_at_20pct(self):
+        pos = {
+            "id": "C1", "ticker": "ABCD", "action": "BUY_CALL", "is_option": True,
+            "entry_price": 10.0, "quantity": 1, "strike": 40, "right": "call",
+            "expiry": self._far(), "reserved": 0, "source": "option",
+        }
+        sold = self._run_exit(pos, bid=8.0, stock=55.0)
+        self.assertEqual(sold["closed_trades"][0]["exit_reason"], "stop")
+        self.assertEqual(sold["closed_trades"][0]["exit_price"], 8.0)
+
+    def test_six_strategies_validate_and_bad_legs_reject(self):
+        far = self._far()
+        good = {
+            "cash_secured_put": [{"side": "sell", "right": "put", "strike": 40}],
+            "short_call": [{"side": "sell", "right": "call", "strike": 50}],
+            "covered_call": [{"side": "buy", "right": "stock"}, {"side": "sell", "right": "call", "strike": 50}],
+            "buy_write": [{"side": "buy", "right": "stock"}, {"side": "sell", "right": "call", "strike": 50}],
+            "protective_put": [{"side": "buy", "right": "stock"}, {"side": "buy", "right": "put", "strike": 45}],
+            "collar": [
+                {"side": "buy", "right": "stock"},
+                {"side": "buy", "right": "put", "strike": 45},
+                {"side": "sell", "right": "call", "strike": 55},
+            ],
+        }
+        bad = {
+            "cash_secured_put": [{"side": "buy", "right": "put", "strike": 40}],
+            "short_call": [{"side": "sell", "right": "put", "strike": 50}],
+            "covered_call": [{"side": "buy", "right": "stock"}, {"side": "buy", "right": "call", "strike": 50}],
+            "buy_write": [{"side": "sell", "right": "stock"}, {"side": "sell", "right": "call", "strike": 50}],
+            "protective_put": [{"side": "buy", "right": "stock"}, {"side": "sell", "right": "put", "strike": 45}],
+            "collar": [
+                {"side": "buy", "right": "stock"},
+                {"side": "buy", "right": "put", "strike": 60},
+                {"side": "sell", "right": "call", "strike": 55},
+            ],
+        }
+        bullish = {"short_call": False}
+        for name, legs in good.items():
+            tr = self._base(strategy=name, bullish=bullish.get(name, True),
+                            contract={"expiry": far, "legs": legs})
+            ok, reason = check._validate_trigger(tr)
+            self.assertTrue(ok, f"{name}: {reason}")
+            bad_tr = self._base(strategy=name, bullish=bullish.get(name, True),
+                                contract={"expiry": far, "legs": bad[name]})
+            ok, reason = check._validate_trigger(bad_tr)
+            self.assertFalse(ok, name)
+            self.assertTrue(reason, name)
+
+    def test_option_exits_rejects_unknown_key_and_late_date(self):
+        tr = {
+            "id": "L", "ticker": "ABCD", "action": "BUY_CALL",
+            "conditions": [{"type": "price", "op": ">=", "value": 50}],
+            "contract": {"right": "call", "strike": 40, "expiry": "2028-01-21"},
+            "option_exits": {"target_pl": 10},
+            "expires": "2099-01-01",
+        }
+        ok, reason = check._validate_trigger(tr)
+        self.assertFalse(ok)
+        self.assertIn("unknown key", reason)
+        tr["option_exits"] = {"stop_premium": 6, "exit_by": "2028-06-01"}
+        ok, reason = check._validate_trigger(tr)
+        self.assertFalse(ok)
+        self.assertIn("after the contract expiry", reason)
+        tr["option_exits"] = {"stop_premium": 6, "target_price": 70, "exit_by": "2027-07-21"}
+        self.assertEqual(check._validate_trigger(tr), (True, ""))
+
+    def test_short_put_open_and_close_cash(self):
+        # stock 50, short 40 put at bid 2.00. OTM = 10.
+        # margin/share = max(0.20*50 - 10 + 2, 0.10*40 + 2) = max(2, 6) = 6 → reserved 600
+        # entry_value = -200. Closing ask 1.00 → value -100, profit +100.
+        tr = self._base(contract={"expiry": "2026-12-18", "legs": [{"side": "sell", "right": "put", "strike": 40}]})
+        start = 10000.0
+        ledger = {
+            "cash": start, "positions": [], "realized_pl": 0.0, "paused": False,
+            "stats": {}, "day_start_equity": start, "peak_equity": start,
+        }
+
+        def option_quote(ticker, expiry, strike, right):
+            return {"bid": 2.0, "ask": 2.2, "last": 2.1}
+
+        with patch("common.option_quote", side_effect=option_quote), \
+             patch("common.last_price", return_value=50.0), \
+             patch("common.get_daily_bars", return_value=None), \
+             patch("common.ntfy"):
+            ok = confirm.place(tr, ledger, force=True)
+        self.assertTrue(ok)
+        pos = ledger["positions"][0]
+        self.assertEqual(pos["quantity"], 1)
+        self.assertAlmostEqual(pos["entry_value"], -200.0)
+        self.assertAlmostEqual(pos["reserved"], 600.0)
+        self.assertAlmostEqual(ledger["cash"], start - (-200.0 + 600.0))
+        pos["last_value"] = pos["entry_value"]
+        self.assertAlmostEqual(confirm._compute_equity(ledger), start)
+        with patch("common.option_quote", return_value={"bid": 0.9, "ask": 1.0, "last": 0.95}), \
+             patch("common.last_price", return_value=50.0), \
+             patch("common.ntfy"):
+            value = common.position_value("ABCD", pos["expiry"], pos["legs"], opening=False)
+        self.assertAlmostEqual(value, -100.0)
+        with patch("common.ntfy"):
+            check._close_position(ledger, pos, value, "target", common.now_ny())
+        self.assertAlmostEqual(ledger["closed_trades"][0]["pl"], 100.0)
+        self.assertAlmostEqual(ledger["cash"], start + 100.0)
+        self.assertEqual(ledger["positions"], [])
+
+    def test_covered_call_value(self):
+        legs = [
+            {"side": "buy", "right": "stock"},
+            {"side": "sell", "right": "call", "strike": 50},
+        ]
+        quotes = {"bid": 2.0, "ask": 2.5, "last": 2.2}
+        with patch("common.last_price", return_value=50.0), \
+             patch("common.option_quote", return_value=quotes):
+            opening = common.position_value("ABCD", "2026-12-18", legs, opening=True)
+            closing = common.position_value("ABCD", "2026-12-18", legs, opening=False)
+        self.assertAlmostEqual(opening, 50 * 100 - 2.0 * 100)
+        self.assertAlmostEqual(closing, 50 * 100 - 2.5 * 100)
+
+    def test_naked_margin_hand_calc(self):
+        # put: stock 100, strike 95, premium 3. OTM 5.
+        # max(0.20*100 - 5 + 3, 0.10*95 + 3) = max(18, 12.5) = 18
+        self.assertAlmostEqual(common.naked_margin("put", 100, 95, 3), 18.0)
+        # call: stock 100, strike 110, premium 4. OTM 10.
+        # max(0.20*100 - 10 + 4, 0.10*100 + 4) = max(14, 14) = 14
+        self.assertAlmostEqual(common.naked_margin("call", 100, 110, 4), 14.0)
+
+    def test_position_stop_price_bullish_and_bearish(self):
+        def pos(bullish):
+            return {
+                "id": "P1", "ticker": "ABCD", "action": "POSITION",
+                "strategy": "cash_secured_put" if bullish else "short_call",
+                "bullish": bullish, "is_option": False,
+                "entry_price": -200.0, "entry_value": -200.0, "quantity": 1, "reserved": 600.0,
+                "expiry": self._far(),
+                "legs": [{"side": "sell", "right": "put" if bullish else "call", "strike": 40}],
+                "option_exits": {"stop_price": 30},
+                "source": "option",
+            }
+        # value equals entry, so profit is 0 and the premium stop does not fire
+        bull_hit = self._run_exit(pos(True), stock=29.0, position_value=-200.0)
+        self.assertEqual(bull_hit["closed_trades"][0]["exit_reason"], "stop")
+        bull_ok = self._run_exit(pos(True), stock=31.0, position_value=-200.0)
+        self.assertEqual(len(bull_ok["closed_trades"]), 0)
+        bear_hit = self._run_exit(pos(False), stock=31.0, position_value=-200.0)
+        self.assertEqual(bear_hit["closed_trades"][0]["exit_reason"], "stop")
+        bear_ok = self._run_exit(pos(False), stock=29.0, position_value=-200.0)
+        self.assertEqual(len(bear_ok["closed_trades"]), 0)
+
+    def test_report_plain_words(self):
+        import tempfile
+        import report
+        exp = "2026-12-18"
+        short = self._base(
+            id="ABCD-option-2026-10-31", status="active",
+            contract={"expiry": exp, "legs": [{"side": "sell", "right": "put", "strike": 40}]},
+            recommendation="Sell the put",
+        )
+        covered = self._base(
+            id="ABCD-cc", status="active", strategy="covered_call",
+            contract={"expiry": exp, "legs": [
+                {"side": "buy", "right": "stock"},
+                {"side": "sell", "right": "call", "strike": 50},
+            ]},
+            recommendation="Covered call",
+        )
+        held = {
+            "id": "ABCD-option-2026-10-31", "ticker": "ABCD", "action": "POSITION",
+            "strategy": "cash_secured_put", "bullish": True, "is_option": False,
+            "entry_price": -200.0, "entry_value": -200.0, "quantity": 1, "reserved": 600.0,
+            "expiry": exp, "legs": [{"side": "sell", "right": "put", "strike": 40}],
+            "opened": "2026-10-31T10:00:00-04:00", "source": "option",
+        }
+        old = os.getcwd()
+        with tempfile.TemporaryDirectory() as d:
+            os.chdir(d)
+            try:
+                common.save_yaml("triggers.yml", {"triggers": [short, covered]})
+                common.save_yaml("ledger.yml", {"cash": 10000, "positions": [held], "closed_trades": [],
+                                                "realized_pl": 0, "peak_equity": 10000})
+                report.write_triggers_page()
+                report.write_pages()
+                with open("TRIGGERS.md") as f:
+                    triggers_txt = f.read()
+                with open("REPORT.md") as f:
+                    report_txt = f.read()
+            finally:
+                os.chdir(old)
+        self.assertIn("Short put ($40, exp Dec 18, 2026)", triggers_txt)
+        self.assertIn("Covered call: buy 100 shares + sell $50 call (exp Dec 18, 2026)", triggers_txt)
+        self.assertIn("Short put ($40, exp Dec 18, 2026)", report_txt)
 
 
 class TestOneTickerAtATime(unittest.TestCase):
@@ -914,3 +1187,7 @@ class TestCloseReturnsCost(unittest.TestCase):
             check._close_position(ledger, ledger["positions"][0], 26.0, "target", check.common.now_ny())
         self.assertAlmostEqual(ledger["cash"], 1010.0)
         self.assertAlmostEqual(ledger["realized_pl"], 10.0)
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

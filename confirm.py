@@ -11,9 +11,12 @@ NY = common.NY
 
 def _bucket(tr):
     source = tr.get("source", "forensic")
-    if tr.get("action") == "SPREAD":
+    action = tr.get("action")
+    if action == "POSITION":
+        return f"{source}-position"
+    if action == "SPREAD":
         return f"{source}-spread"
-    is_opt = tr.get("action", "").startswith("BUY_")
+    is_opt = str(action or "").startswith("BUY_")
     return f"{source}-{'option' if is_opt else 'stock'}"
 
 
@@ -22,7 +25,14 @@ def _compute_equity(ledger):
     for p in ledger.get("positions") or []:
         qty = float(p.get("quantity") or 0)
         entry = float(p.get("entry_price") or 0)
-        if p.get("action") == "SPREAD":
+        if p.get("action") == "POSITION":
+            px = p.get("last_value")
+            if px is None:
+                px = p.get("entry_value")
+                if px is None:
+                    px = entry
+            equity += (float(px) + float(p.get("reserved") or 0)) * qty
+        elif p.get("action") == "SPREAD":
             px = p.get("last_value")
             if px is None:
                 px = entry
@@ -170,13 +180,37 @@ def place(tr, ledger, force=False):
         return False
 
     action = tr.get("action", "BUY")
-    is_option = action != "BUY"
+    is_position = action == "POSITION"
+    is_spread = action == "SPREAD"
+    is_single = action in ("BUY_CALL", "BUY_PUT")
+    # Spreads stay "is_option" so close/equity math is unchanged. POSITION is not.
+    is_option = is_single or is_spread
     contract = tr.get("contract")
 
     # Fill price
     max_profit = None
     max_loss = None
-    if action == "SPREAD":
+    reserved_per = 0.0
+    if is_position:
+        c = contract or {}
+        legs = c.get("legs") or []
+        fill = common.position_value(ticker, c.get("expiry"), legs, opening=True)
+        if fill is None:
+            common.ntfy("Confirm refused", "No position quote")
+            return False
+        strategy = tr.get("strategy")
+        if strategy in ("cash_secured_put", "short_call"):
+            opt = next(leg for leg in legs if str(leg.get("right") or "").lower() != "stock")
+            q = common.option_quote(ticker, c.get("expiry"), opt.get("strike"), opt.get("right"))
+            if not q:
+                common.ntfy("Confirm refused", "No position quote")
+                return False
+            side = str(opt.get("side") or "").lower()
+            premium = q["ask"] if side == "buy" else q["bid"]
+            reserved_per = common.naked_margin(opt.get("right"), price, opt.get("strike"), premium) * 100
+        else:
+            reserved_per = 0.0
+    elif is_spread:
         c = contract or {}
         fill = common.spread_value(ticker, c.get("expiry"), c.get("legs"), opening=True)
         if fill is None:
@@ -186,7 +220,7 @@ def place(tr, ledger, force=False):
         if max_profit <= 0 or max_loss <= 0:
             common.ntfy("Confirm refused", "Spread quotes make no sense")
             return False
-    elif is_option:
+    elif is_single:
         q = common.option_quote(ticker, contract.get("expiry"), contract.get("strike"), contract.get("right"))
         if not q:
             common.ntfy("Confirm refused", "No option quote")
@@ -199,7 +233,7 @@ def place(tr, ledger, force=False):
     hist = common.get_daily_bars(ticker, period="1y")
     refs = common.compute_refs(hist) or {}
     ep = tr.get("exit_plan") or {}
-    if is_option:
+    if is_option or is_position:
         stop = None
         target = None
         if contract:
@@ -218,17 +252,35 @@ def place(tr, ledger, force=False):
             common.ntfy("Confirm refused", "Could not resolve stop/target")
             return False
 
-    qty, risk_frac, p, b, refuse = _kelly_size(tr, ledger, fill, stop, target, max_profit, max_loss)
-    if refuse:
-        common.ntfy(f"Skipped {ticker}: {refuse}", f"p={p:.2f} b={b:.2f}")
-        return False
+    risk_frac = 0.0
+    p = 0.0
+    if is_position:
+        denom = abs(fill) + reserved_per
+        if denom <= 0:
+            common.ntfy(f"Skipped {ticker}: one position costs $0, too big for the account", "position cap")
+            return False
+        qty = math.floor(common.MAX_POSITION_OPTION * equity / denom)
+        if qty < 1:
+            common.ntfy(
+                f"Skipped {ticker}: one position costs ${denom:.0f}, too big for the account",
+                "position cap",
+            )
+            return False
+    else:
+        qty, risk_frac, p, b, refuse = _kelly_size(tr, ledger, fill, stop, target, max_profit, max_loss)
+        if refuse:
+            common.ntfy(f"Skipped {ticker}: {refuse}", f"p={p:.2f} b={b:.2f}")
+            return False
 
     # Cash check already in sizing
-    if action == "SPREAD":
+    if is_spread:
         cost = max_loss * 100 * qty
         reserved = (max_loss - fill) * 100 * qty
+    elif is_position:
+        cost = (fill + reserved_per) * qty
+        reserved = reserved_per  # per unit; equity and close multiply by quantity
     else:
-        cost = fill * qty * (100 if is_option else 1)
+        cost = fill * qty * (100 if is_single else 1)
         reserved = 0
     if float(ledger.get("cash") or 0) < cost:
         common.ntfy("Confirm refused", f"Not enough cash (need ${cost:.0f})")
@@ -250,7 +302,16 @@ def place(tr, ledger, force=False):
         "opened": common.now_ny().isoformat(),
         "source": tr.get("source"),
     }
-    if action == "SPREAD":
+    if is_position:
+        pos["entry_value"] = fill
+        pos["strategy"] = tr.get("strategy")
+        pos["bullish"] = bool(tr.get("bullish"))
+        pos["legs"] = (contract or {}).get("legs")
+        pos["expiry"] = (contract or {}).get("expiry")
+        pos["is_option"] = False
+        pos["stop"] = None
+        pos["target"] = None
+    elif is_spread:
         pos["expiry"] = contract.get("expiry")
         pos["legs"] = contract.get("legs")
         pos["max_profit"] = max_profit
@@ -261,16 +322,23 @@ def place(tr, ledger, force=False):
         pos["strike"] = contract.get("strike")
         pos["right"] = contract.get("right")
         pos["expiry"] = contract.get("expiry")
+    if tr.get("option_exits") and (is_single or is_spread or is_position):
+        pos["option_exits"] = dict(tr["option_exits"])
     # freeze
     tr["frozen"] = True
     tr["status"] = "filled"
 
-    if action == "SPREAD":
+    if is_spread:
         kind = "Credit" if fill < 0 else "Debit"
         common.ntfy(
             f"{ticker} paper trade placed",
             f"{kind}\nNet: {fill:.2f} per share\nQty: {qty}\n"
             f"Max loss: ${max_loss * 100 * qty:.2f}\nMax profit: ${max_profit * 100 * qty:.2f}",
+        )
+    elif is_position:
+        common.ntfy(
+            f"{ticker} paper trade placed",
+            f"{tr.get('strategy')}\nValue: {fill:.2f}\nQty: {qty}\nReserved per unit: {reserved_per:.2f}",
         )
     else:
         common.ntfy(

@@ -397,6 +397,56 @@ def spread_numbers(legs, net):
     return (width, max_profit, max_loss)
 
 
+def position_value(ticker, expiry, legs, opening):
+    """Value of ONE unit in dollars. Bought legs add, sold legs subtract.
+    A stock leg is the last price × 100. An option leg is the quote × 100.
+    Opening: buy at the ask, sell at the bid.
+    Closing: a bought leg sells at the bid, a sold leg is bought back at the ask.
+    None if any quote is missing, or if an ask that is needed is 0."""
+    total = 0.0
+    for leg in legs or []:
+        side = str(leg.get("side") or "").lower()
+        right = str(leg.get("right") or "").lower()
+        if side not in ("buy", "sell"):
+            return None
+        if right == "stock":
+            px = last_price(ticker)
+            if px is None:
+                return None
+        else:
+            q = option_quote(ticker, expiry, leg.get("strike"), right)
+            if q is None:
+                return None
+            if opening:
+                px = q["ask"] if side == "buy" else q["bid"]
+            else:
+                px = q["bid"] if side == "buy" else q["ask"]
+            use_ask = (opening and side == "buy") or ((not opening) and side == "sell")
+            if use_ask and px == 0:
+                return None
+        signed = float(px) * 100.0
+        total += signed if side == "buy" else -signed
+    return total
+
+
+def naked_margin(right, stock_price, strike, premium):
+    """Buying power per share for one naked short option.
+    max(0.20 × stock − out-of-the-money amount + premium,
+        0.10 × (strike for a put, stock price for a call) + premium).
+    Out-of-the-money: put = max(stock − strike, 0); call = max(strike − stock, 0)."""
+    right = str(right or "").lower()
+    stock_price = float(stock_price)
+    strike = float(strike)
+    premium = float(premium)
+    if right == "put":
+        otm = max(stock_price - strike, 0.0)
+        floor = 0.10 * strike + premium
+    else:
+        otm = max(strike - stock_price, 0.0)
+        floor = 0.10 * stock_price + premium
+    return max(0.20 * stock_price - otm + premium, floor)
+
+
 def resolve_level(level_spec, refs, entry=None):
     """Resolve stop/target or condition value from spec to a number."""
     if not isinstance(level_spec, dict):
