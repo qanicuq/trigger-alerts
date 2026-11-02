@@ -1,4 +1,4 @@
-cash: 4012.131332018995
+cash: 3918.8581649538523
 peak_equity: 10017.671909662733
 day_start_equity: 10013.919351748493
 positions:
@@ -98,18 +98,6 @@ positions:
   reserved: 0
   opened: '2026-10-30T15:30:44.589984-04:00'
   source: forensic
-- id: SD-forensic-2026-10-23
-  ticker: SD
-  action: BUY
-  entry_price: 14.1071
-  quantity: 177.4861
-  stop: 13.34
-  target: 19.65
-  max_hold_days: 180
-  is_option: false
-  reserved: 0
-  opened: '2026-11-02T09:30:58.327794-05:00'
-  source: forensic
 - id: DVN-forensic-2026-10-28
   ticker: DVN
   action: BUY
@@ -121,6 +109,18 @@ positions:
   is_option: false
   reserved: 0
   opened: '2026-11-02T11:30:43.433767-05:00'
+  source: forensic
+- id: OKE-forensic-2026-10-28
+  ticker: OKE
+  action: BUY
+  entry_price: 92.6063
+  quantity: 26.5742
+  stop: 86.79
+  target: 103.41
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-11-02T13:30:43.049498-05:00'
   source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17
@@ -142,8 +142,24 @@ closed_trades:
   exit_reason: thesis broken
   pl: 10.21
   closed: '2026-10-23T09:30:33.311769-04:00'
-realized_pl: 10.211614487528685
-last_checked: '2026-11-02T13:00:37.212877-05:00'
+- id: SD-forensic-2026-10-23
+  ticker: SD
+  action: BUY
+  entry_price: 14.1071
+  quantity: 177.4861
+  stop: 13.34
+  target: 19.65
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-11-02T09:30:58.327794-05:00'
+  source: forensic
+  exit_price: 13.34
+  exit_reason: stop
+  pl: -136.15
+  closed: '2026-11-02T13:30:36.488498-05:00'
+realized_pl: -125.9379728224715
+last_checked: '2026-11-02T13:30:36.488498-05:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
@@ -191,7 +207,7 @@ paused: false
 stats:
   forensic-stock:
     wins: 1
-    losses: 0
+    losses: 1
 day_start_date: '2026-11-02'
 macro_error_alerted: '2026-10-22'
-max_drawdown_pct: 1.55
+max_drawdown_pct: 1.74

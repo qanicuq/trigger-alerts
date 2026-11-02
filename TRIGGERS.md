@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 2, 2026 at 1:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 2, 2026 at 1:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**25 watching** · **10 bought (open)** · **18 ended**
+**24 watching** · **10 bought (open)** · **18 ended**
 
 ## Watching now
 
@@ -28,7 +28,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **SN** | Buy shares | Price at or below $188.71 | $213.89 | $176.12 | Nov 4, 2026 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **NFG** | Buy shares | Price at or below $75.41 | $84.46 | $70.89 | Nov 4, 2026 (after close) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
-| **OKE** | Buy shares | Price at or below $92.33 | $103.41 | $86.79 | Feb 22, 2027 (after close) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 12, 2026 (before open) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 (before open) | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
 | **PLAB** | Buy shares | Price at or below $26.21 | $30.38 | $24.12 | Dec 9, 2026 (before open) | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
@@ -56,7 +55,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check whether the cash-flow recovery relies on selling receivables, earnings, filings and news before confirming.
 - **SN:** WATCH, confidence 75: buy at or below $188.71 (pullback to the 20-day average ($187.77)), sell at $213.89 (twice the risk taken (no value target above the entry)), stop $176.12; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 55: buy at or below $75.41 (pullback to the 60-day low (support) ($75.03)), sell at $84.46 (twice the risk taken (no value target above the entry)), stop $70.89; chart-based entry, not a value bargain: keep it small; check the 2027 spinoff terms, earnings, filings and news before confirming.
-- **OKE:** WATCH, confidence 30: buy at or below $92.33 (pullback to the 20-day average ($91.87)), sell at $103.41 (twice the risk taken (no value target above the entry)), stop $86.79; chart-based entry, not a value bargain: keep it small; check that the value holds up once the pipeline assets are counted, earnings, filings and news before confirming.
 - **NBIS:** WATCH, confidence 75: buy at or below $134.87 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $175.33 (twice the risk taken (no value target above the entry)), stop $114.64; chart-based entry, not a value bargain: keep it small; check whether the 2026-05-22 20-F/A restated numbers, earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day average ($47.07)), sell at $52.98 (twice the risk taken (no value target above the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **PLAB:** WATCH, confidence 60: buy at or below $26.21 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $30.38 (twice the risk taken (no value target above the entry)), stop $24.12; chart-based entry, not a value bargain: keep it small; check the Dec 8 earnings and the law-firm investigations, earnings, filings and news before confirming.
@@ -76,13 +74,14 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **HOPE** | Stock | $13.31 | 18.98 shares | $15.30 | $12.84 | Oct 30, 2026 | Jan 26, 2027 (before open) |  |
 | **NVDA** | Stock | $203.72 | 1.23 shares | $260.33 | $192.12 | Oct 30, 2026 | Nov 17, 2026 (after close) |  |
 | **SPCX** | Stock | $135.13 | 0.33 shares | $168.31 | $118.63 | Oct 30, 2026 | Feb 9, 2027 (after close) |  |
-| **SD** | Stock | $14.11 | 177.49 shares | $19.65 | $13.34 | Nov 2, 2026 | Nov 4, 2026 (after close) |  |
 | **DVN** | Stock | $49.87 | 49.81 shares | $55.76 | $46.80 | Nov 2, 2026 | Nov 5, 2026 (after close) |  |
+| **OKE** | Stock | $92.61 | 26.57 shares | $103.41 | $86.79 | Nov 2, 2026 | Feb 22, 2027 (after close) |  |
 
 ## Closed paper trades
 
 | Ticker | Closed on | Why | Profit/loss |
 |---|---|---|---|
+| **SD** | Nov 2, 2026 | stop | $-136.15 |
 | **NP** | Oct 23, 2026 | thesis broken | $10.21 |
 
 ## Ended (no longer watched)
