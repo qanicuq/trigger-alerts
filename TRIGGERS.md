@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Oct 31, 2026 at 8:23 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 2, 2026 at 9:31 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**27 watching** · **8 bought (open)** · **18 ended**
+**26 watching** · **9 bought (open)** · **18 ended**
 
 ## Watching now
 
@@ -10,33 +10,32 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Buy when (all true) | Sell target | Stop | Next earnings | Watch ends | From |
 |---|---|---|---|---|---|---|---|
-| **MU** | Buy shares | Price at or below $856.49<br>Price at least 2% above the 20-day low (support) (≈$866.24) | $1,377.85 | $478.82 | Dec 23, 2026 | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
-| **NOK** | Buy shares | Price at or below $7.08 | $9.20 | $6.02 | Jan 28, 2027 | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
-| **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
-| **NAT** | Buy shares | Price at or below $7.01 | $8.42 | $6.30 | Nov 27, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **NKE** | Buy put ($37.00, exp Dec 4, 2026) | Price at or below $35.80<br>RSI at or below 50 | +20% on the option | −20% on the option | Dec 17, 2026 | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
-| **RLX** | Buy shares | Price at or below $1.58 | $1.77 | $1.49 | Nov 13, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **DHT** | Buy shares | Price at or below $21.96 | $26.38 | $19.75 | Nov 9, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **SD** | Buy shares | Price at or below $14.19 | $19.65 | $13.34 | Nov 4, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **MNST** | Buy shares | Price at or below $45.06 | $50.47 | $42.36 | Nov 5, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **TSLA** | Buy shares | Price at or below $302.84 | $353.31 | $277.60 | Jan 27, 2027 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **TSLA** | Buy call ($290.00, exp Jan 15, 2027) | Price at or below $302.84<br>Price at or above $277.60 | +20% on the option | −20% on the option | Jan 27, 2027 | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
-| **TNC** | Buy shares | Price at or below $63.32 | $71.17 | $59.39 | Nov 2, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **NGVT** | Buy shares | Price at or below $66.76 | $74.77 | $62.75 | Nov 4, 2026 | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **OKTA** | Buy put ($220.00, exp Feb 19, 2027) | Price at or below $185.00 | +20% on the option | −20% on the option | Dec 1, 2026 | Nov 23, 2026 | Option Calc, Oct 24, 2026 |
-| **SMP** | Buy shares | Price at or below $34.84 | $51.12 | $32.75 | Oct 30, 2026 | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
-| **OKTA** | Buy shares | Price at or below $185.93 | $232.82 | $162.49 | Dec 1, 2026 | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
-| **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
-| **SN** | Buy shares | Price at or below $188.71 | $213.89 | $176.12 | Nov 4, 2026 | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
-| **NFG** | Buy shares | Price at or below $75.41 | $84.46 | $70.89 | Nov 4, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
-| **DVN** | Buy shares | Price at or below $49.79 | $55.76 | $46.80 | Nov 5, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
-| **OKE** | Buy shares | Price at or below $92.33 | $103.41 | $86.79 | Feb 22, 2027 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
-| **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 10, 2026 | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
-| **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
-| **PLAB** | Buy shares | Price at or below $26.21 | $30.38 | $24.12 | Dec 9, 2026 | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
-| **LLY** | Buy shares | Price at or below $1,252.24 | $1,431.88 | $1,162.42 | Feb 3, 2027 | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
-| **RPM** | Buy shares | Price at or below $99.34 | $111.26 | $93.38 | Jan 7, 2027 | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
-| **SPCX** | Buy shares | Price at or below $115.10 | $145.13 | $100.09 | Feb 9, 2027 | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
+| **MU** | Buy shares | Price at or below $856.49<br>Price at least 2% above the 20-day low (support) (≈$866.24) | $1,377.85 | $478.82 | Dec 23, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
+| **NOK** | Buy shares | Price at or below $7.08 | $9.20 | $6.02 | Jan 28, 2027 (before open) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
+| **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
+| **NAT** | Buy shares | Price at or below $7.01 | $8.42 | $6.30 | Nov 27, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
+| **NKE** | Buy put ($37.00, exp Dec 4, 2026) | Price at or below $35.80<br>RSI at or below 50 | +20% on the option | −20% on the option | Dec 17, 2026 (after close) | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
+| **RLX** | Buy shares | Price at or below $1.58 | $1.77 | $1.49 | Nov 13, 2026 (before open) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
+| **DHT** | Buy shares | Price at or below $21.96 | $26.38 | $19.75 | Nov 9, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
+| **MNST** | Buy shares | Price at or below $45.06 | $50.47 | $42.36 | Nov 5, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
+| **TSLA** | Buy shares | Price at or below $302.84 | $353.31 | $277.60 | Jan 27, 2027 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
+| **TSLA** | Buy call ($290.00, exp Jan 15, 2027) | Price at or below $302.84<br>Price at or above $277.60 | +20% on the option | −20% on the option | Jan 27, 2027 (after close) | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
+| **TNC** | Buy shares | Price at or below $63.32 | $71.17 | $59.39 | Nov 2, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
+| **NGVT** | Buy shares | Price at or below $66.76 | $74.77 | $62.75 | Nov 4, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
+| **OKTA** | Buy put ($220.00, exp Feb 19, 2027) | Price at or below $185.00 | +20% on the option | −20% on the option | Dec 1, 2026 (after close) | Nov 23, 2026 | Option Calc, Oct 24, 2026 |
+| **SMP** | Buy shares | Price at or below $34.84 | $51.12 | $32.75 | Feb 25, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
+| **OKTA** | Buy shares | Price at or below $185.93 | $232.82 | $162.49 | Dec 1, 2026 (after close) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
+| **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
+| **SN** | Buy shares | Price at or below $188.71 | $213.89 | $176.12 | Nov 4, 2026 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
+| **NFG** | Buy shares | Price at or below $75.41 | $84.46 | $70.89 | Nov 4, 2026 (after close) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
+| **DVN** | Buy shares | Price at or below $49.79 | $55.76 | $46.80 | Nov 5, 2026 (after close) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
+| **OKE** | Buy shares | Price at or below $92.33 | $103.41 | $86.79 | Feb 22, 2027 (after close) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
+| **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 12, 2026 (before open) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
+| **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 (before open) | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
+| **PLAB** | Buy shares | Price at or below $26.21 | $30.38 | $24.12 | Dec 9, 2026 (before open) | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
+| **LLY** | Buy shares | Price at or below $1,252.24 | $1,431.88 | $1,162.42 | Feb 3, 2027 (before open) | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
+| **RPM** | Buy shares | Price at or below $99.34 | $111.26 | $93.38 | Jan 7, 2027 (before open) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
+| **SPCX** | Buy shares | Price at or below $115.10 | $145.13 | $100.09 | Feb 9, 2027 (after close) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
 
 **Notes from each report**
 
@@ -47,7 +46,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **NKE:** Watch only (no trade yet): buy the NKE Dec 4 2026 $37 put only after the bounce fails, with a close at or below $35.80 and RSI(14) at or below 50; check before confirming that the put's IV is under about 37%, the spread is under 10% of the mid, and no surprise news or earnings-date change has come out (prices in the evaluation were modeled, not live quotes).
 - **RLX:** WATCH, confidence 50: buy at or below $1.58 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $1.77 (twice the risk taken, no value target above the entry), stop $1.49; chart-based entry, not a value bargain: keep it small; check before confirming: Q3 earnings on 2026-11-12, the receivables flag, and new filings or news.
 - **DHT:** WATCH, confidence 30: buy at or below $21.96 (pullback to the 50-day average ($21.85)), sell at $26.38 (twice the risk taken (no value target above the entry)), stop $19.75; chart-based entry, not a value bargain: keep it small; check whether VLCC rates are already rolling over from the Q4 peak, earnings, filings and news before confirming.
-- **SD:** WATCH, confidence 55: buy at or below $14.19 (pullback to the 50-day average ($14.12)), sell at $19.65 (sell or trim at estimated value), stop $13.34; chart-based entry, not a value bargain: keep it small; check the Nov 3 earnings report and whether the Cherokee acquisition closed, earnings, filings and news before confirming.
 - **MNST:** WATCH, confidence 65: buy at or below $45.06 (pullback to the 50-day average ($44.84)), sell at $50.47 (twice the risk taken (no value target above the entry)), stop $42.36; chart-based entry, not a value bargain: keep it small; check the Nov 4 earnings result, earnings, filings and news before confirming.
 - **TSLA:** WATCH, confidence 30: buy at or below $302.84 (pullback to the 60-day low (support) ($301.33)), sell at $353.31 (twice the risk taken (no value target above the entry)), stop $277.60; chart-based entry, not a value bargain: keep it small; check the Tesla–SpaceX merger review, earnings, filings and news before confirming.
 - **TSLA:** Watch only (No trade today, research says HOLD): buy the Jan 15 2027 $290 call only if TSLA pulls back to about $302.84 and stays above $277.60; check before confirming that the selling has stopped (RSI turning up), IV is near 40% or lower, no new red-flag news, and the real bid/ask spread is tight.
@@ -70,16 +68,17 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 ## Bought (open paper trades)
 
-| Ticker | What | Bought at | Amount | Sell target | Stop | Bought on | Note |
-|---|---|---|---|---|---|---|---|
-| **WIT** | Stock | $2.11 | 24.36 shares | $3.12 | $1.03 | Oct 23, 2026 |  |
-| **IMXI** | Stock | $9.27 | 11.94 shares | $16.62 | $5.04 | Oct 23, 2026 |  |
-| **APTV** | Stock | $42.83 | 2.04 shares | $81.91 | $18.13 | Oct 23, 2026 |  |
-| **SHOE** | Stock | $14.15 | 6.37 shares | $29.36 | $6.23 | Oct 23, 2026 |  |
-| **RES** | Stock | $6.35 | 19.34 shares | $9.47 | $3.74 | Oct 30, 2026 |  |
-| **HOPE** | Stock | $13.31 | 18.98 shares | $15.30 | $12.84 | Oct 30, 2026 |  |
-| **NVDA** | Stock | $203.72 | 1.23 shares | $260.33 | $192.12 | Oct 30, 2026 |  |
-| **SPCX** | Stock | $135.13 | 0.33 shares | $168.31 | $118.63 | Oct 30, 2026 |  |
+| Ticker | What | Bought at | Amount | Sell target | Stop | Bought on | Next earnings | Note |
+|---|---|---|---|---|---|---|---|---|
+| **WIT** | Stock | $2.11 | 24.36 shares | $3.12 | $1.03 | Oct 23, 2026 | Jan 15, 2027 (before open) |  |
+| **IMXI** | Stock | $9.27 | 11.94 shares | $16.62 | $5.04 | Oct 23, 2026 | Nov 9, 2026 (after close) |  |
+| **APTV** | Stock | $42.83 | 2.04 shares | $81.91 | $18.13 | Oct 23, 2026 | Nov 3, 2026 (before open) |  |
+| **SHOE** | Stock | $14.15 | 6.37 shares | $29.36 | $6.23 | Oct 23, 2026 | Nov 26, 2026 (before open) |  |
+| **RES** | Stock | $6.35 | 19.34 shares | $9.47 | $3.74 | Oct 30, 2026 | Feb 2, 2027 (before open) |  |
+| **HOPE** | Stock | $13.31 | 18.98 shares | $15.30 | $12.84 | Oct 30, 2026 | Jan 26, 2027 (before open) |  |
+| **NVDA** | Stock | $203.72 | 1.23 shares | $260.33 | $192.12 | Oct 30, 2026 | Nov 17, 2026 (after close) |  |
+| **SPCX** | Stock | $135.13 | 0.33 shares | $168.31 | $118.63 | Oct 30, 2026 | Feb 9, 2027 (after close) |  |
+| **SD** | Stock | $14.11 | 177.49 shares | $19.65 | $13.34 | Nov 2, 2026 | Nov 4, 2026 (after close) |  |
 
 ## Closed paper trades
 

@@ -1,6 +1,6 @@
-cash: 9000.012112769846
+cash: 6496.206758025419
 peak_equity: 10017.671909662733
-day_start_equity: 10012.946379538189
+day_start_equity: 10013.919351748493
 positions:
 - id: WIT-forensic-2026-10-23
   ticker: WIT
@@ -98,6 +98,18 @@ positions:
   reserved: 0
   opened: '2026-10-30T15:30:44.589984-04:00'
   source: forensic
+- id: SD-forensic-2026-10-23
+  ticker: SD
+  action: BUY
+  entry_price: 14.1071
+  quantity: 177.4861
+  stop: 13.34
+  target: 19.65
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-11-02T09:30:58.327794-05:00'
+  source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17
   ticker: NP
@@ -119,7 +131,7 @@ closed_trades:
   pl: 10.21
   closed: '2026-10-23T09:30:33.311769-04:00'
 realized_pl: 10.211614487528685
-last_checked: '2026-10-30T16:30:35.261149-04:00'
+last_checked: '2026-11-02T09:30:36.343886-05:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
@@ -159,6 +171,7 @@ sent_slots:
   2026-10-30:morning: true
   2026-10-30:midday: true
   2026-10-30:end of day: true
+  2026-11-02:morning: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
@@ -166,6 +179,6 @@ stats:
   forensic-stock:
     wins: 1
     losses: 0
-day_start_date: '2026-10-30'
+day_start_date: '2026-11-02'
 macro_error_alerted: '2026-10-22'
 max_drawdown_pct: 1.29
