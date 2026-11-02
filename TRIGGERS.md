@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 2, 2026 at 3:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 2, 2026 at 4:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**24 watching** · **10 bought (open)** · **18 ended**
+**22 watching** · **10 bought (open)** · **20 ended**
 
 ## Watching now
 
@@ -10,7 +10,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Buy when (all true) | Sell target | Stop | Next earnings | Watch ends | From |
 |---|---|---|---|---|---|---|---|
-| **MU** | Buy shares | Price at or below $856.49<br>Price at least 2% above the 20-day low (support) (≈$847.48) | $1,377.85 | $478.82 | Dec 23, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
+| **MU** | Buy shares | Price at or below $856.49<br>Price at least 2% above the 20-day low (support) (≈$845.82) | $1,377.85 | $478.82 | Dec 23, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **NOK** | Buy shares | Price at or below $7.08 | $9.20 | $6.02 | Jan 28, 2027 (before open) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **NAT** | Buy shares | Price at or below $7.01 | $8.42 | $6.30 | Nov 27, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
@@ -22,9 +22,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **TSLA** | Buy call ($290.00, exp Jan 15, 2027) | Price at or below $302.84<br>Price at or above $277.60 | +20% on the option | −20% on the option | Jan 27, 2027 (after close) | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
 | **TNC** | Buy shares | Price at or below $63.32 | $71.17 | $59.39 | Nov 2, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **NGVT** | Buy shares | Price at or below $66.76 | $74.77 | $62.75 | Nov 4, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **OKTA** | Buy put ($220.00, exp Feb 19, 2027) | Price at or below $185.00 | +20% on the option | −20% on the option | Dec 1, 2026 (after close) | Nov 23, 2026 | Option Calc, Oct 24, 2026 |
 | **SMP** | Buy shares | Price at or below $34.84 | $51.12 | $32.75 | Feb 25, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
-| **OKTA** | Buy shares | Price at or below $185.93 | $232.82 | $162.49 | Dec 1, 2026 (after close) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **SN** | Buy shares | Price at or below $188.71 | $213.89 | $176.12 | Nov 4, 2026 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **NFG** | Buy shares | Price at or below $75.41 | $84.46 | $70.89 | Nov 4, 2026 (after close) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
@@ -49,9 +47,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **TSLA:** Watch only (No trade today, research says HOLD): buy the Jan 15 2027 $290 call only if TSLA pulls back to about $302.84 and stays above $277.60; check before confirming that the selling has stopped (RSI turning up), IV is near 40% or lower, no new red-flag news, and the real bid/ask spread is tight.
 - **TNC:** WATCH, confidence 60: buy at or below $63.32 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $71.17 (twice the risk taken (no value target above the entry)), stop $59.39; chart-based entry, not a value bargain: keep it small; check whether Q3 margins show the ERP damage fading, earnings, filings and news before confirming.
 - **NGVT:** WATCH, confidence 30: buy at or below $66.76 (pullback to the 60-day low (support) ($66.43)), sell at $74.77 (twice the risk taken (no value target above the entry)), stop $62.75; chart-based entry, not a value bargain: keep it small; check the gap between GAAP and adjusted earnings in the Nov 4 report, earnings, filings and news before confirming.
-- **OKTA:** Watch only (no trade yet): consider the Feb 19 2027 $220 put only if Okta falls to or below its 50-day average near $185; check before confirming that earnings (expected about Nov 30 - Dec 3) are out, that implied volatility is near or under 65%, and that the Ticker Forensics rating has not stayed HOLD in an uptrend.
 - **SMP:** WATCH, confidence 60: buy at or below $34.84 (pullback to the 60-day low (support) ($34.67)), sell at $51.12 (sell or trim at estimated value), stop $32.75; chart-based entry, not a value bargain: keep it small; check who the permanent CFO will be and the Oct 30 earnings, earnings, filings and news before confirming.
-- **OKTA:** WATCH, confidence 30: buy at or below $185.93 (pullback to the 50-day average ($185.00)), sell at $232.82 (twice the risk taken (no value target above the entry)), stop $162.49; chart-based entry, not a value bargain: keep it small; check who left in the 2026-09-18 8-K executive change, earnings, filings and news before confirming.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check whether the cash-flow recovery relies on selling receivables, earnings, filings and news before confirming.
 - **SN:** WATCH, confidence 75: buy at or below $188.71 (pullback to the 20-day average ($187.77)), sell at $213.89 (twice the risk taken (no value target above the entry)), stop $176.12; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 55: buy at or below $75.41 (pullback to the 60-day low (support) ($75.03)), sell at $84.46 (twice the risk taken (no value target above the entry)), stop $70.89; chart-based entry, not a value bargain: keep it small; check the 2027 spinoff terms, earnings, filings and news before confirming.
@@ -90,6 +86,8 @@ The bot paper-buys automatically when **every** condition on a line is true.
 |---|---|---|---|---|
 | **RES** | Buy shares | Oct 30, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **CRWV** | buy 65 put, sell 55 put, exp Dec 18, 2026 — +50% of max profit / −50% of max loss / 7 days before expiry | Oct 29, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
+| **OKTA** | Buy put ($220.00, exp Feb 19, 2027) | Oct 24, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
+| **OKTA** | Buy shares | Oct 24, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **RES** | Buy call ($5.00, exp Mar 19, 2027) | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **VVX** | Buy shares | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **NKE** | Buy shares | Oct 21, 2026 | Cancelled | Playbook 2026-10-21: no margin of safety. Value ~$32-37/share vs price $37.53; buy-below ~$21.50. Cash flow ran below net income last year (forensic flag #1). |
