@@ -1,4 +1,4 @@
-cash: 6496.206758025419
+cash: 4012.131332018995
 peak_equity: 10017.671909662733
 day_start_equity: 10013.919351748493
 positions:
@@ -110,6 +110,18 @@ positions:
   reserved: 0
   opened: '2026-11-02T09:30:58.327794-05:00'
   source: forensic
+- id: DVN-forensic-2026-10-28
+  ticker: DVN
+  action: BUY
+  entry_price: 49.8749
+  quantity: 49.8061
+  stop: 46.8
+  target: 55.76
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-11-02T11:30:43.433767-05:00'
+  source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17
   ticker: NP
@@ -131,7 +143,7 @@ closed_trades:
   pl: 10.21
   closed: '2026-10-23T09:30:33.311769-04:00'
 realized_pl: 10.211614487528685
-last_checked: '2026-11-02T11:00:39.302863-05:00'
+last_checked: '2026-11-02T11:30:32.409032-05:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
