@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 2, 2026 at 2:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 2, 2026 at 3:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **24 watching** · **10 bought (open)** · **18 ended**
 
@@ -10,7 +10,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Buy when (all true) | Sell target | Stop | Next earnings | Watch ends | From |
 |---|---|---|---|---|---|---|---|
-| **MU** | Buy shares | Price at or below $856.49<br>Price at least 2% above the 20-day low (support) (≈$854.91) | $1,377.85 | $478.82 | Dec 23, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
+| **MU** | Buy shares | Price at or below $856.49<br>Price at least 2% above the 20-day low (support) (≈$847.48) | $1,377.85 | $478.82 | Dec 23, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **NOK** | Buy shares | Price at or below $7.08 | $9.20 | $6.02 | Jan 28, 2027 (before open) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **NAT** | Buy shares | Price at or below $7.01 | $8.42 | $6.30 | Nov 27, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
