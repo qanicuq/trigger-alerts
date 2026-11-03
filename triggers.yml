@@ -2330,3 +2330,36 @@ triggers:
   earnings_date: '2027-02-22'
   earnings_time: AMC
   earnings_checked: '2026-11-03'
+- id: APTV-forensic-2026-11-03
+  source: forensic
+  ticker: APTV
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 44.03
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 18.07
+    target:
+      price: 90.3
+    max_hold_days: 540
+  recommendation: 'WATCH, confidence 55: buy at or below $44.03 (price is already
+    below the value buy-below line), sell at $90.30 (sell or trim when price reaches
+    estimated value), stop $18.07; the stop is disaster insurance only, set beyond
+    the stock''s worst past fall; check the value after the Versigent spinoff, earnings,
+    filings and news before confirming.'
+  report_date: 2026-11-03
+  expires: 2027-02-01
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-11-03'
+  earnings_time: BMO
+  earnings_checked: '2026-11-03'
