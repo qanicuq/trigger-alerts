@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 3, 2026 at 9:31 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 3, 2026 at 9:47 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **21 watching** · **11 bought (open)** · **20 ended**
 
@@ -19,7 +19,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MNST** | Buy shares | Price at or below $45.06 | $50.47 | $42.36 | Nov 5, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **TSLA** | Buy shares | Price at or below $302.84 | $353.31 | $277.60 | Jan 27, 2027 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **TSLA** | Buy call ($290.00, exp Jan 15, 2027) | Price at or below $302.84<br>Price at or above $277.60 | +20% on the option | −20% on the option | Jan 27, 2027 (after close) | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
-| **TNC** | Buy shares | Price at or below $63.32 | $71.17 | $59.39 | Feb 22, 2027 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **NGVT** | Buy shares | Price at or below $66.76 | $74.77 | $62.75 | Nov 4, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **SMP** | Buy shares | Price at or below $34.84 | $51.12 | $32.75 | Feb 25, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
@@ -31,6 +30,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **LLY** | Buy shares | Price at or below $1,252.24 | $1,431.88 | $1,162.42 | Feb 3, 2027 (before open) | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
 | **RPM** | Buy shares | Price at or below $99.34 | $111.26 | $93.38 | Jan 7, 2027 (before open) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
 | **SPCX** | Buy shares | Price at or below $115.10 | $145.13 | $100.09 | Feb 9, 2027 (after close) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
+| **TNC** | Buy shares | Price at or below $67.95 | $76.10 | $63.87 | Feb 22, 2027 (after close) | Feb 1, 2027 | Forensic Analysis, Nov 3, 2026 |
 
 **Notes from each report**
 
@@ -43,7 +43,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **MNST:** WATCH, confidence 65: buy at or below $45.06 (pullback to the 50-day average ($44.84)), sell at $50.47 (twice the risk taken (no value target above the entry)), stop $42.36; chart-based entry, not a value bargain: keep it small; check the Nov 4 earnings result, earnings, filings and news before confirming.
 - **TSLA:** WATCH, confidence 30: buy at or below $302.84 (pullback to the 60-day low (support) ($301.33)), sell at $353.31 (twice the risk taken (no value target above the entry)), stop $277.60; chart-based entry, not a value bargain: keep it small; check the Tesla–SpaceX merger review, earnings, filings and news before confirming.
 - **TSLA:** Watch only (No trade today, research says HOLD): buy the Jan 15 2027 $290 call only if TSLA pulls back to about $302.84 and stays above $277.60; check before confirming that the selling has stopped (RSI turning up), IV is near 40% or lower, no new red-flag news, and the real bid/ask spread is tight.
-- **TNC:** WATCH, confidence 60: buy at or below $63.32 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $71.17 (twice the risk taken (no value target above the entry)), stop $59.39; chart-based entry, not a value bargain: keep it small; check whether Q3 margins show the ERP damage fading, earnings, filings and news before confirming.
 - **NGVT:** WATCH, confidence 30: buy at or below $66.76 (pullback to the 60-day low (support) ($66.43)), sell at $74.77 (twice the risk taken (no value target above the entry)), stop $62.75; chart-based entry, not a value bargain: keep it small; check the gap between GAAP and adjusted earnings in the Nov 4 report, earnings, filings and news before confirming.
 - **SMP:** WATCH, confidence 60: buy at or below $34.84 (pullback to the 60-day low (support) ($34.67)), sell at $51.12 (sell or trim at estimated value), stop $32.75; chart-based entry, not a value bargain: keep it small; check who the permanent CFO will be and the Oct 30 earnings, earnings, filings and news before confirming.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check whether the cash-flow recovery relies on selling receivables, earnings, filings and news before confirming.
@@ -55,6 +54,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **LLY:** WATCH, confidence 75: buy at or below $1,252.24 (pullback to the 20-day average ($1,246.01)), sell at $1,431.88 (twice the risk taken (no value target above the entry)), stop $1,162.42; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **RPM:** WATCH, confidence 75: buy at or below $99.34 (pullback to the 20-day average ($98.84)), sell at $111.26 (twice the risk taken (no value target above the entry)), stop $93.38; chart-based entry, not a value bargain: keep it small; check raw-material inflation guidance at the January report, earnings, filings and news before confirming.
 - **SPCX:** WATCH, confidence 35: buy at or below $115.10 (pullback to the 60-day low (support) ($114.53)), sell at $145.13 (twice the risk taken (no value target above the entry)), stop $100.09; chart-based entry, not a value bargain: keep it small; check the $40B AI financing and possible share issuance, earnings, filings and news before confirming.
+- **TNC:** WATCH, confidence 60: buy at or below $67.95 (pullback to the 50-day average ($67.61)), sell at $76.10 (twice the risk taken (no value target above the entry)), stop $63.87; chart-based entry, not a value bargain: keep it small; check whether the ERP problems are really behind them, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
