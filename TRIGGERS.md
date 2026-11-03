@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 3, 2026 at 3:31 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 3, 2026 at 4:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**22 watching** · **11 bought (open)** · **20 ended**
+**21 watching** · **11 bought (open)** · **21 ended**
 
 ## Watching now
 
@@ -31,7 +31,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RPM** | Buy shares | Price at or below $99.34 | $111.26 | $93.38 | Jan 7, 2027 (before open) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
 | **SPCX** | Buy shares | Price at or below $115.10 | $145.13 | $100.09 | Feb 9, 2027 (after close) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
 | **TNC** | Buy shares | Price at or below $67.95 | $76.10 | $63.87 | Feb 22, 2027 (after close) | Feb 1, 2027 | Forensic Analysis, Nov 3, 2026 |
-| **APTV** | Buy shares — waiting for your OK | Price at or below $44.03<br>Price at least 2% above the 20-day low (support) (≈$42.32) | $90.30 | $18.07 | Nov 3, 2026 (before open) | Feb 1, 2027 | Forensic Analysis, Nov 3, 2026 |
 
 **Notes from each report**
 
@@ -56,7 +55,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **RPM:** WATCH, confidence 75: buy at or below $99.34 (pullback to the 20-day average ($98.84)), sell at $111.26 (twice the risk taken (no value target above the entry)), stop $93.38; chart-based entry, not a value bargain: keep it small; check raw-material inflation guidance at the January report, earnings, filings and news before confirming.
 - **SPCX:** WATCH, confidence 35: buy at or below $115.10 (pullback to the 60-day low (support) ($114.53)), sell at $145.13 (twice the risk taken (no value target above the entry)), stop $100.09; chart-based entry, not a value bargain: keep it small; check the $40B AI financing and possible share issuance, earnings, filings and news before confirming.
 - **TNC:** WATCH, confidence 60: buy at or below $67.95 (pullback to the 50-day average ($67.61)), sell at $76.10 (twice the risk taken (no value target above the entry)), stop $63.87; chart-based entry, not a value bargain: keep it small; check whether the ERP problems are really behind them, earnings, filings and news before confirming.
-- **APTV:** WATCH, confidence 55: buy at or below $44.03 (price is already below the value buy-below line), sell at $90.30 (sell or trim when price reaches estimated value), stop $18.07; the stop is disaster insurance only, set beyond the stock's worst past fall; check the value after the Versigent spinoff, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
@@ -85,6 +83,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Added | Status | Why it ended |
 |---|---|---|---|---|
+| **APTV** | Buy shares | Nov 3, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **RES** | Buy shares | Oct 30, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **CRWV** | buy 65 put, sell 55 put, exp Dec 18, 2026 — +50% of max profit / −50% of max loss / 7 days before expiry | Oct 29, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **OKTA** | Buy put ($220.00, exp Feb 19, 2027) | Oct 24, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
