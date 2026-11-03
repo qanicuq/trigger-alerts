@@ -425,6 +425,21 @@ def _stale(rd, ed, timing):
     return rd < ed or (rd == ed and timing != "BMO")
 
 
+# A quarter's results come out within about 90 days of its end, so a report whose newest quarter
+# ended more than 100 days before a release can't contain that release.
+DATA_LAG_DAYS = 100
+
+
+def _covers(tr, ed, timing):
+    """True when tr's report already has the results released on ed. A report that records its newest
+    quarter (data_through) is judged on that, because a report written on or after the release day can
+    still hold the old numbers if Webull hadn't loaded the new quarter yet. Older reports use their date."""
+    dt = common._to_date(tr.get("data_through"))
+    if dt:
+        return (ed - dt).days <= DATA_LAG_DAYS
+    return not _stale(common._to_date(tr.get("report_date")), ed, timing)
+
+
 def _bullish(obj):
     """True for a position or trigger that profits when the stock rises (stock, call, bull spread)."""
     action = obj.get("action", "BUY")
@@ -477,7 +492,7 @@ def _position_earnings_body(tr, ed, timing):
 def _needs_refresh(tr):
     """True when earnings came out after the trigger's report was written (its numbers are out of date)."""
     last = common._to_date(tr.get("earnings_last"))
-    return bool(last and _stale(common._to_date(tr.get("report_date")), last, tr.get("earnings_last_time")))
+    return bool(last and not _covers(tr, last, tr.get("earnings_last_time")))
 
 
 def _earnings_pass(triggers, now, open_ids=()):
@@ -494,7 +509,7 @@ def _earnings_pass(triggers, now, open_ids=()):
         ed = common._to_date(tr.get("earnings_date"))
         timing = tr.get("earnings_time")
         if ed and now >= _reminder_moment(ed, timing) and str(tr.get("earnings_reminded")) != ed.isoformat():
-            if _stale(common._to_date(tr.get("report_date")), ed, timing):
+            if not _covers(tr, ed, timing):
                 body, page = (_position_earnings_body if holding else _earnings_reminder_body)(tr, ed, timing)
                 common.ntfy(f"{tr.get('ticker')} earnings are out", body,
                             priority="high", click_url=page, action_label="Open the report", action_url=page)
@@ -528,7 +543,7 @@ def _earnings_due(triggers, open_ids, today):
             continue
         if holding and any(
                 o is not tr and o.get("ticker") == tr.get("ticker") and o.get("source") == tr.get("source")
-                and not _stale(common._to_date(o.get("report_date")), last, tr.get("earnings_last_time"))
+                and _covers(o, last, tr.get("earnings_last_time"))
                 for o in triggers):
             continue  # a fresh report for this ticker already came in
         due.append({
@@ -625,7 +640,14 @@ def _ingest_inbox(triggers, ledger=None):
             # replace same ticker+source
             ticker = tr["ticker"]
             source = tr.get("source", "forensic")
-            triggers[:] = [t for t in triggers if not (t.get("ticker") == ticker and t.get("source") == source and t.get("status") in ("active", "awaiting_confirm"))]
+            replaced = [t for t in triggers if t.get("ticker") == ticker and t.get("source") == source and t.get("status") in ("active", "awaiting_confirm")]
+            triggers[:] = [t for t in triggers if t not in replaced]
+            # keep the last earnings date, so a new report still on old numbers is re-run (see _needs_refresh)
+            for old in replaced:
+                if old.get("earnings_last") and not tr.get("earnings_last"):
+                    for k in ("earnings_last", "earnings_last_time", "earnings_reminded"):
+                        if old.get(k) is not None:
+                            tr[k] = old[k]
             # backtest for stocks
             if tr["action"] == "BUY":
                 tr["backtest"] = _backtest_trigger(tr)

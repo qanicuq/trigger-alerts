@@ -109,6 +109,16 @@ class TestInbox(unittest.TestCase):
             check._ingest_inbox(triggers)
         self.assertEqual(len(triggers), 1)
         self.assertEqual(triggers[0]["id"], "TEST2")
+        # a replacement keeps the last earnings date, so a report on old numbers is still re-run
+        triggers[0].update(earnings_last="2026-11-02", earnings_last_time="AMC", earnings_reminded="2026-11-02")
+        valid3 = dict(valid, id="TEST3", report_date="2026-11-03", data_through="2026-06-30")
+        with open("inbox/v3.yml", "w") as f:
+            yaml.dump(valid3, f)
+        with patch("common.ntfy"), patch("check._backtest_trigger", return_value={"wins": 1, "losses": 0, "signals": 1}):
+            check._ingest_inbox(triggers)
+        self.assertEqual(triggers[0]["id"], "TEST3")
+        self.assertEqual(str(triggers[0]["earnings_last"]), "2026-11-02")
+        self.assertTrue(check._needs_refresh(triggers[0]))
         # invalid
         bad = {"id": "BAD", "ticker": "MSFT", "action": "SELL_PUT"}
         with open("inbox/b.yml", "w") as f:
@@ -495,6 +505,26 @@ class TestEarnings(unittest.TestCase):
         self.assertTrue(check._needs_refresh(self._tr(earnings_last="2026-11-02")))
         self.assertFalse(check._needs_refresh(self._tr()))
         self.assertFalse(check._needs_refresh(self._tr(report_date=date(2026, 11, 4), earnings_last="2026-11-02")))
+
+    def test_needs_refresh_uses_data_quarter(self):
+        # APTV, 2026-11-03: results out before the open, report written that morning but Webull still
+        # had data only through June, so the report doesn't count as fresh until it holds September
+        tr = self._tr(report_date=date(2026, 11, 3), earnings_last="2026-11-03", earnings_last_time="BMO")
+        self.assertFalse(check._needs_refresh(tr))                          # old reports: judged by date
+        self.assertTrue(check._needs_refresh(dict(tr, data_through="2026-06-30")))
+        self.assertFalse(check._needs_refresh(dict(tr, data_through="2026-09-30")))
+        # a 10-K released ~90 days after year end still counts as covered
+        self.assertFalse(check._needs_refresh(self._tr(earnings_last="2027-03-31", data_through="2026-12-31")))
+
+    def test_due_list_holding_waits_for_new_quarter(self):
+        today = date(2026, 11, 3)
+        held = self._tr(id="APTV-forensic-2026-10-22", ticker="APTV", status="filled",
+                        earnings_last="2026-11-03", earnings_last_time="BMO")
+        early = self._tr(id="APTV-forensic-2026-11-03", ticker="APTV", report_date=today, data_through="2026-06-30")
+        due = check._earnings_due([held, early], {held["id"]}, today)
+        self.assertEqual([(d["ticker"], d["kind"]) for d in due], [("APTV", "holding")])
+        early["data_through"] = "2026-09-30"
+        self.assertEqual(check._earnings_due([held, early], {held["id"]}, today), [])
 
     @patch("common.next_earnings_info", return_value=(date(2026, 11, 2), "BMO"))
     @patch("common.ntfy")
