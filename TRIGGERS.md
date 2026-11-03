@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 3, 2026 at 3:01 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 3, 2026 at 3:31 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **22 watching** · **11 bought (open)** · **20 ended**
 
@@ -31,7 +31,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RPM** | Buy shares | Price at or below $99.34 | $111.26 | $93.38 | Jan 7, 2027 (before open) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
 | **SPCX** | Buy shares | Price at or below $115.10 | $145.13 | $100.09 | Feb 9, 2027 (after close) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
 | **TNC** | Buy shares | Price at or below $67.95 | $76.10 | $63.87 | Feb 22, 2027 (after close) | Feb 1, 2027 | Forensic Analysis, Nov 3, 2026 |
-| **APTV** | Buy shares — waiting for your OK | Price at or below $44.03<br>Price at least 2% above the 20-day low (support) (≈$42.35) | $90.30 | $18.07 | Nov 3, 2026 (before open) | Feb 1, 2027 | Forensic Analysis, Nov 3, 2026 |
+| **APTV** | Buy shares — waiting for your OK | Price at or below $44.03<br>Price at least 2% above the 20-day low (support) (≈$42.32) | $90.30 | $18.07 | Nov 3, 2026 (before open) | Feb 1, 2027 | Forensic Analysis, Nov 3, 2026 |
 
 **Notes from each report**
 
