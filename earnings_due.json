@@ -1,15 +1,6 @@
 {
  "due": [
   {
-   "ticker": "APTV",
-   "source": "forensic",
-   "kind": "holding",
-   "bullish": true,
-   "earnings_date": "2026-11-03",
-   "earnings_time": "BMO",
-   "trigger_id": "APTV-forensic-2026-10-22"
-  },
-  {
    "ticker": "SMP",
    "source": "forensic",
    "kind": "waiting",
@@ -17,15 +8,6 @@
    "earnings_date": "2026-10-30",
    "earnings_time": null,
    "trigger_id": "SMP-forensic-2026-10-24"
-  },
-  {
-   "ticker": "TNC",
-   "source": "forensic",
-   "kind": "waiting",
-   "bullish": true,
-   "earnings_date": "2026-11-02",
-   "earnings_time": "AMC",
-   "trigger_id": "TNC-forensic-2026-10-23"
   }
  ]
 }
