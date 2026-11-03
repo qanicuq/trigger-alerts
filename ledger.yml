@@ -1,6 +1,6 @@
-cash: 3918.8581649538523
+cash: 3378.539019323982
 peak_equity: 10017.671909662733
-day_start_equity: 10013.919351748493
+day_start_equity: 9767.381991773775
 positions:
 - id: WIT-forensic-2026-10-23
   ticker: WIT
@@ -122,6 +122,18 @@ positions:
   reserved: 0
   opened: '2026-11-02T13:30:43.049498-05:00'
   source: forensic
+- id: MU-forensic-2026-10-22
+  ticker: MU
+  action: BUY
+  entry_price: 859.5596
+  quantity: 0.6286
+  stop: 478.82
+  target: 1377.85
+  max_hold_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-11-03T09:31:06.173519-05:00'
+  source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17
   ticker: NP
@@ -159,7 +171,7 @@ closed_trades:
   pl: -136.15
   closed: '2026-11-02T13:30:36.488498-05:00'
 realized_pl: -125.9379728224715
-last_checked: '2026-11-02T16:30:29.376928-05:00'
+last_checked: '2026-11-03T09:30:38.102923-05:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
@@ -202,6 +214,7 @@ sent_slots:
   2026-11-02:morning: true
   2026-11-02:midday: true
   2026-11-02:end of day: true
+  2026-11-03:morning: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
@@ -209,6 +222,6 @@ stats:
   forensic-stock:
     wins: 1
     losses: 1
-day_start_date: '2026-11-02'
+day_start_date: '2026-11-03'
 macro_error_alerted: '2026-10-22'
-max_drawdown_pct: 2.07
+max_drawdown_pct: 2.5

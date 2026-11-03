@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 2, 2026 at 4:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 3, 2026 at 9:31 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**22 watching** · **10 bought (open)** · **20 ended**
+**21 watching** · **11 bought (open)** · **20 ended**
 
 ## Watching now
 
@@ -10,7 +10,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Buy when (all true) | Sell target | Stop | Next earnings | Watch ends | From |
 |---|---|---|---|---|---|---|---|
-| **MU** | Buy shares | Price at or below $856.49<br>Price at least 2% above the 20-day low (support) (≈$845.82) | $1,377.85 | $478.82 | Dec 23, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **NOK** | Buy shares | Price at or below $7.08 | $9.20 | $6.02 | Jan 28, 2027 (before open) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **NAT** | Buy shares | Price at or below $7.01 | $8.42 | $6.30 | Nov 27, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
@@ -20,7 +19,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MNST** | Buy shares | Price at or below $45.06 | $50.47 | $42.36 | Nov 5, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **TSLA** | Buy shares | Price at or below $302.84 | $353.31 | $277.60 | Jan 27, 2027 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **TSLA** | Buy call ($290.00, exp Jan 15, 2027) | Price at or below $302.84<br>Price at or above $277.60 | +20% on the option | −20% on the option | Jan 27, 2027 (after close) | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
-| **TNC** | Buy shares | Price at or below $63.32 | $71.17 | $59.39 | Nov 2, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
+| **TNC** | Buy shares | Price at or below $63.32 | $71.17 | $59.39 | Feb 22, 2027 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **NGVT** | Buy shares | Price at or below $66.76 | $74.77 | $62.75 | Nov 4, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **SMP** | Buy shares | Price at or below $34.84 | $51.12 | $32.75 | Feb 25, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
@@ -35,7 +34,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 **Notes from each report**
 
-- **MU:** BUY, confidence 65: buy at or below $856.49 (price is already below the value buy-below line), sell at $1377.85 (sell or trim when price reaches estimated value), stop $478.82 as disaster insurance only, set beyond the stock's worst past fall; cyclical at peak margins so keep it small; check before confirming: Dec 15 earnings, the Netlist ITC patent case and SEC filings (not checked this run).
 - **NOK:** WATCH, confidence 60: buy at or below $7.08 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $9.20 (twice the risk taken, no value target above the entry), stop $6.02; chart-based entry, not a value bargain: keep it small; fell 15% on 2026-10-22 on news (Q3 cash-flow outlook cut): wait until about 2026-11-12 before confirming; SEC filings were not cross-checked this run and the Q4 report is due 2027-01-28: check before confirming.
 - **BB:** WATCH, confidence 30: buy at or below $7.50 (pullback to the 60-day low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small; check before confirming: Dec 17 earnings, new filings, further CEO selling and news.
 - **NAT:** WATCH, confidence 60: buy at or below $7.01 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $8.42 (twice the risk taken, no value target above the entry), stop $6.30; chart-based entry, not a value bargain: keep it small; check before confirming: Q3 earnings on 2026-11-26, new filings or share sales, and tanker-rate news.
@@ -72,6 +70,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SPCX** | Stock | $135.13 | 0.33 shares | $168.31 | $118.63 | Oct 30, 2026 | Feb 9, 2027 (after close) |  |
 | **DVN** | Stock | $49.87 | 49.81 shares | $55.76 | $46.80 | Nov 2, 2026 | Nov 5, 2026 (after close) |  |
 | **OKE** | Stock | $92.61 | 26.57 shares | $103.41 | $86.79 | Nov 2, 2026 | Feb 22, 2027 (after close) |  |
+| **MU** | Stock | $859.56 | 0.63 shares | $1,377.85 | $478.82 | Nov 3, 2026 | Dec 23, 2026 (after close) |  |
 
 ## Closed paper trades
 
