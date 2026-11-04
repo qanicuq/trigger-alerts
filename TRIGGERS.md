@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 4, 2026 at 12:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 4, 2026 at 12:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**21 watching** · **10 bought (open)** · **21 ended**
+**20 watching** · **11 bought (open)** · **21 ended**
 
 ## Watching now
 
@@ -12,7 +12,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 |---|---|---|---|---|---|---|---|
 | **NOK** | Buy shares | Price at or below $7.08 | $9.20 | $6.02 | Jan 28, 2027 (before open) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
-| **NAT** | Buy shares | Price at or below $7.01 | $8.42 | $6.30 | Nov 27, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **NKE** | Buy put ($37.00, exp Dec 4, 2026) | Price at or below $35.80<br>RSI at or below 50 | +20% on the option | −20% on the option | Dec 17, 2026 (after close) | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
 | **RLX** | Buy shares | Price at or below $1.58 | $1.77 | $1.49 | Nov 13, 2026 (before open) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **DHT** | Buy shares | Price at or below $21.96 | $26.38 | $19.75 | Nov 9, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
@@ -36,7 +35,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 - **NOK:** WATCH, confidence 60: buy at or below $7.08 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $9.20 (twice the risk taken, no value target above the entry), stop $6.02; chart-based entry, not a value bargain: keep it small; fell 15% on 2026-10-22 on news (Q3 cash-flow outlook cut): wait until about 2026-11-12 before confirming; SEC filings were not cross-checked this run and the Q4 report is due 2027-01-28: check before confirming.
 - **BB:** WATCH, confidence 30: buy at or below $7.50 (pullback to the 60-day low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small; check before confirming: Dec 17 earnings, new filings, further CEO selling and news.
-- **NAT:** WATCH, confidence 60: buy at or below $7.01 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $8.42 (twice the risk taken, no value target above the entry), stop $6.30; chart-based entry, not a value bargain: keep it small; check before confirming: Q3 earnings on 2026-11-26, new filings or share sales, and tanker-rate news.
 - **NKE:** Watch only (no trade yet): buy the NKE Dec 4 2026 $37 put only after the bounce fails, with a close at or below $35.80 and RSI(14) at or below 50; check before confirming that the put's IV is under about 37%, the spread is under 10% of the mid, and no surprise news or earnings-date change has come out (prices in the evaluation were modeled, not live quotes).
 - **RLX:** WATCH, confidence 50: buy at or below $1.58 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $1.77 (twice the risk taken, no value target above the entry), stop $1.49; chart-based entry, not a value bargain: keep it small; check before confirming: Q3 earnings on 2026-11-12, the receivables flag, and new filings or news.
 - **DHT:** WATCH, confidence 30: buy at or below $21.96 (pullback to the 50-day average ($21.85)), sell at $26.38 (twice the risk taken (no value target above the entry)), stop $19.75; chart-based entry, not a value bargain: keep it small; check whether VLCC rates are already rolling over from the Q4 peak, earnings, filings and news before confirming.
@@ -70,6 +68,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SPCX** | Stock | $135.13 | 0.33 shares | $168.31 | $118.63 | Oct 30, 2026 | Feb 9, 2027 (after close) |  |
 | **OKE** | Stock | $92.61 | 26.57 shares | $103.41 | $86.79 | Nov 2, 2026 | Feb 22, 2027 (after close) |  |
 | **MU** | Stock | $859.56 | 0.63 shares | $1,377.85 | $478.82 | Nov 3, 2026 | Dec 23, 2026 (after close) |  |
+| **NAT** | Stock | $6.97 | 341.98 shares | $8.42 | $6.30 | Nov 4, 2026 | Nov 27, 2026 (after close) |  |
 
 ## Closed paper trades
 

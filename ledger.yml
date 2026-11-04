@@ -1,4 +1,4 @@
-cash: 5691.534234925712
+cash: 3306.873815329942
 peak_equity: 10017.671909662733
 day_start_equity: 9596.769796156703
 positions:
@@ -122,6 +122,18 @@ positions:
   reserved: 0
   opened: '2026-11-03T09:31:06.173519-05:00'
   source: forensic
+- id: NAT-forensic-2026-10-23
+  ticker: NAT
+  action: BUY
+  entry_price: 6.9732
+  quantity: 341.9758
+  stop: 6.3
+  target: 8.42
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-11-04T12:30:47.553687-05:00'
+  source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17
   ticker: NP
@@ -175,7 +187,7 @@ closed_trades:
   pl: -171.08
   closed: '2026-11-04T09:30:31.203602-05:00'
 realized_pl: -297.017014110741
-last_checked: '2026-11-04T12:00:32.092693-05:00'
+last_checked: '2026-11-04T12:30:42.518616-05:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
@@ -222,6 +234,7 @@ sent_slots:
   2026-11-03:midday: true
   2026-11-03:end of day: true
   2026-11-04:morning: true
+  2026-11-04:midday: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
@@ -231,4 +244,4 @@ stats:
     losses: 2
 day_start_date: '2026-11-04'
 macro_error_alerted: '2026-10-22'
-max_drawdown_pct: 4.67
+max_drawdown_pct: 4.78
