@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 4, 2026 at 3:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 4, 2026 at 3:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**19 watching** · **12 bought (open)** · **21 ended**
+**18 watching** · **13 bought (open)** · **21 ended**
 
 ## Watching now
 
@@ -14,7 +14,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Jan 20, 2027 | Forensic Analysis, Oct 22, 2026 |
 | **NKE** | Buy put ($37.00, exp Dec 4, 2026) | Price at or below $35.80<br>RSI at or below 50 | +20% on the option | −20% on the option | Dec 17, 2026 (after close) | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
 | **RLX** | Buy shares | Price at or below $1.58 | $1.77 | $1.49 | Nov 13, 2026 (before open) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
-| **DHT** | Buy shares | Price at or below $21.96 | $26.38 | $19.75 | Nov 9, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **MNST** | Buy shares | Price at or below $45.06 | $50.47 | $42.36 | Nov 5, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **TSLA** | Buy shares | Price at or below $302.84 | $353.31 | $277.60 | Jan 27, 2027 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **TSLA** | Buy call ($290.00, exp Jan 15, 2027) | Price at or below $302.84<br>Price at or above $277.60 | +20% on the option | −20% on the option | Jan 27, 2027 (after close) | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
@@ -36,7 +35,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **BB:** WATCH, confidence 30: buy at or below $7.50 (pullback to the 60-day low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small; check before confirming: Dec 17 earnings, new filings, further CEO selling and news.
 - **NKE:** Watch only (no trade yet): buy the NKE Dec 4 2026 $37 put only after the bounce fails, with a close at or below $35.80 and RSI(14) at or below 50; check before confirming that the put's IV is under about 37%, the spread is under 10% of the mid, and no surprise news or earnings-date change has come out (prices in the evaluation were modeled, not live quotes).
 - **RLX:** WATCH, confidence 50: buy at or below $1.58 (pullback of 1.5x a normal day's move, no chart support within 20%), sell at $1.77 (twice the risk taken, no value target above the entry), stop $1.49; chart-based entry, not a value bargain: keep it small; check before confirming: Q3 earnings on 2026-11-12, the receivables flag, and new filings or news.
-- **DHT:** WATCH, confidence 30: buy at or below $21.96 (pullback to the 50-day average ($21.85)), sell at $26.38 (twice the risk taken (no value target above the entry)), stop $19.75; chart-based entry, not a value bargain: keep it small; check whether VLCC rates are already rolling over from the Q4 peak, earnings, filings and news before confirming.
 - **MNST:** WATCH, confidence 65: buy at or below $45.06 (pullback to the 50-day average ($44.84)), sell at $50.47 (twice the risk taken (no value target above the entry)), stop $42.36; chart-based entry, not a value bargain: keep it small; check the Nov 4 earnings result, earnings, filings and news before confirming.
 - **TSLA:** WATCH, confidence 30: buy at or below $302.84 (pullback to the 60-day low (support) ($301.33)), sell at $353.31 (twice the risk taken (no value target above the entry)), stop $277.60; chart-based entry, not a value bargain: keep it small; check the Tesla–SpaceX merger review, earnings, filings and news before confirming.
 - **TSLA:** Watch only (No trade today, research says HOLD): buy the Jan 15 2027 $290 call only if TSLA pulls back to about $302.84 and stays above $277.60; check before confirming that the selling has stopped (RSI turning up), IV is near 40% or lower, no new red-flag news, and the real bid/ask spread is tight.
@@ -68,6 +66,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MU** | Stock | $859.56 | 0.63 shares | $1,377.85 | $478.82 | Nov 3, 2026 | Dec 23, 2026 (after close) |  |
 | **NAT** | Stock | $6.97 | 341.98 shares | $8.42 | $6.30 | Nov 4, 2026 | Nov 27, 2026 (after close) |  |
 | **NFG** | Stock | $75.33 | 31.71 shares | $84.46 | $70.89 | Nov 4, 2026 | Nov 4, 2026 (after close) |  |
+| **DHT** | Stock | $22.05 | 41.64 shares | $26.38 | $19.75 | Nov 4, 2026 | Nov 9, 2026 (after close) |  |
 
 ## Closed paper trades
 

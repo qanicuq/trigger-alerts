@@ -1,4 +1,4 @@
-cash: 918.0530214030168
+cash: 0.0017440165853486178
 peak_equity: 10017.671909662733
 day_start_equity: 9596.769796156703
 positions:
@@ -146,6 +146,18 @@ positions:
   reserved: 0
   opened: '2026-11-04T15:00:45.303146-05:00'
   source: forensic
+- id: DHT-forensic-2026-10-23
+  ticker: DHT
+  action: BUY
+  entry_price: 22.046
+  quantity: 41.6425
+  stop: 19.75
+  target: 26.38
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-11-04T15:30:39.656257-05:00'
+  source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17
   ticker: NP
@@ -199,7 +211,7 @@ closed_trades:
   pl: -171.08
   closed: '2026-11-04T09:30:31.203602-05:00'
 realized_pl: -297.017014110741
-last_checked: '2026-11-04T15:00:37.642713-05:00'
+last_checked: '2026-11-04T15:30:33.501625-05:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
