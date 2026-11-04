@@ -1,4 +1,4 @@
-cash: 3306.873815329942
+cash: 918.0530214030168
 peak_equity: 10017.671909662733
 day_start_equity: 9596.769796156703
 positions:
@@ -134,6 +134,18 @@ positions:
   reserved: 0
   opened: '2026-11-04T12:30:47.553687-05:00'
   source: forensic
+- id: NFG-forensic-2026-10-28
+  ticker: NFG
+  action: BUY
+  entry_price: 75.3326
+  quantity: 31.7103
+  stop: 70.89
+  target: 84.46
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-11-04T15:00:45.303146-05:00'
+  source: forensic
 closed_trades:
 - id: NP-forensic-2026-10-17
   ticker: NP
@@ -187,7 +199,7 @@ closed_trades:
   pl: -171.08
   closed: '2026-11-04T09:30:31.203602-05:00'
 realized_pl: -297.017014110741
-last_checked: '2026-11-04T14:30:37.182888-05:00'
+last_checked: '2026-11-04T15:00:37.642713-05:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
