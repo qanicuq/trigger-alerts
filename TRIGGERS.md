@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 5, 2026 at 3:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 5, 2026 at 4:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**18 watching** · **11 bought (open)** · **21 ended**
+**16 watching** · **11 bought (open)** · **23 ended**
 
 ## Watching now
 
@@ -21,9 +21,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SMP** | Buy shares | Price at or below $34.84 | $51.12 | $32.75 | Feb 25, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **SN** | Buy shares | Price at or below $188.71 | $213.89 | $176.12 | Feb 10, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
-| **NBIS** | Buy shares — waiting for your OK | Price at or below $134.87 | $175.33 | $114.64 | Nov 12, 2026 (before open) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 (before open) | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
-| **PLAB** | Buy shares — waiting for your OK | Price at or below $26.21 | $30.38 | $24.12 | Dec 9, 2026 (before open) | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
 | **LLY** | Buy shares | Price at or below $1,252.24 | $1,431.88 | $1,162.42 | Feb 3, 2027 (before open) | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
 | **RPM** | Buy shares | Price at or below $99.34 | $111.26 | $93.38 | Jan 7, 2027 (before open) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
 | **SPCX** | Buy shares | Price at or below $115.10 | $145.13 | $100.09 | Feb 9, 2027 (after close) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
@@ -42,9 +40,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **SMP:** WATCH, confidence 60: buy at or below $34.84 (pullback to the 60-day low (support) ($34.67)), sell at $51.12 (sell or trim at estimated value), stop $32.75; chart-based entry, not a value bargain: keep it small; check who the permanent CFO will be and the Oct 30 earnings, earnings, filings and news before confirming.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check whether the cash-flow recovery relies on selling receivables, earnings, filings and news before confirming.
 - **SN:** WATCH, confidence 75: buy at or below $188.71 (pullback to the 20-day average ($187.77)), sell at $213.89 (twice the risk taken (no value target above the entry)), stop $176.12; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
-- **NBIS:** WATCH, confidence 75: buy at or below $134.87 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $175.33 (twice the risk taken (no value target above the entry)), stop $114.64; chart-based entry, not a value bargain: keep it small; check whether the 2026-05-22 20-F/A restated numbers, earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day average ($47.07)), sell at $52.98 (twice the risk taken (no value target above the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
-- **PLAB:** WATCH, confidence 60: buy at or below $26.21 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $30.38 (twice the risk taken (no value target above the entry)), stop $24.12; chart-based entry, not a value bargain: keep it small; check the Dec 8 earnings and the law-firm investigations, earnings, filings and news before confirming.
 - **LLY:** WATCH, confidence 75: buy at or below $1,252.24 (pullback to the 20-day average ($1,246.01)), sell at $1,431.88 (twice the risk taken (no value target above the entry)), stop $1,162.42; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **RPM:** WATCH, confidence 75: buy at or below $99.34 (pullback to the 20-day average ($98.84)), sell at $111.26 (twice the risk taken (no value target above the entry)), stop $93.38; chart-based entry, not a value bargain: keep it small; check raw-material inflation guidance at the January report, earnings, filings and news before confirming.
 - **SPCX:** WATCH, confidence 35: buy at or below $115.10 (pullback to the 60-day low (support) ($114.53)), sell at $145.13 (twice the risk taken (no value target above the entry)), stop $100.09; chart-based entry, not a value bargain: keep it small; check the $40B AI financing and possible share issuance, earnings, filings and news before confirming.
@@ -81,8 +77,10 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | Ticker | What | Added | Status | Why it ended |
 |---|---|---|---|---|
 | **APTV** | Buy shares | Nov 3, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
+| **PLAB** | Buy shares | Oct 30, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **RES** | Buy shares | Oct 30, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **CRWV** | buy 65 put, sell 55 put, exp Dec 18, 2026 — +50% of max profit / −50% of max loss / 7 days before expiry | Oct 29, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
+| **NBIS** | Buy shares | Oct 28, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **OKTA** | Buy put ($220.00, exp Feb 19, 2027) | Oct 24, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **OKTA** | Buy shares | Oct 24, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **RES** | Buy call ($5.00, exp Mar 19, 2027) | Oct 23, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
