@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 5, 2026 at 2:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 5, 2026 at 2:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**18 watching** · **12 bought (open)** · **21 ended**
+**18 watching** · **11 bought (open)** · **21 ended**
 
 ## Watching now
 
@@ -61,7 +61,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RES** | Stock | $6.35 | 19.34 shares | $9.47 | $3.74 | Oct 30, 2026 | Feb 2, 2027 (before open) |  |
 | **HOPE** | Stock | $13.31 | 18.98 shares | $15.30 | $12.84 | Oct 30, 2026 | Jan 26, 2027 (before open) |  |
 | **SPCX** | Stock | $135.13 | 0.33 shares | $168.31 | $118.63 | Oct 30, 2026 | Feb 9, 2027 (after close) |  |
-| **OKE** | Stock | $92.61 | 26.57 shares | $103.41 | $86.79 | Nov 2, 2026 | Feb 22, 2027 (after close) |  |
 | **MU** | Stock | $859.56 | 0.63 shares | $1,377.85 | $478.82 | Nov 3, 2026 | Dec 23, 2026 (after close) |  |
 | **NAT** | Stock | $6.97 | 341.98 shares | $8.42 | $6.30 | Nov 4, 2026 | Nov 27, 2026 (after close) |  |
 | **NFG** | Stock | $75.33 | 31.71 shares | $84.46 | $70.89 | Nov 4, 2026 | Jan 27, 2027 (after close) |  |
@@ -71,6 +70,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | Closed on | Why | Profit/loss |
 |---|---|---|---|
+| **OKE** | Nov 5, 2026 | stop | $-154.56 |
 | **NVDA** | Nov 5, 2026 | stop | $-16.85 |
 | **DVN** | Nov 4, 2026 | stop | $-171.08 |
 | **SD** | Nov 2, 2026 | stop | $-136.15 |
