@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 4, 2026 at 4:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 5, 2026 at 9:31 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **18 watching** · **13 bought (open)** · **21 ended**
 
@@ -17,13 +17,13 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MNST** | Buy shares | Price at or below $45.06 | $50.47 | $42.36 | Nov 5, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **TSLA** | Buy shares | Price at or below $302.84 | $353.31 | $277.60 | Jan 27, 2027 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **TSLA** | Buy call ($290.00, exp Jan 15, 2027) | Price at or below $302.84<br>Price at or above $277.60 | +20% on the option | −20% on the option | Jan 27, 2027 (after close) | Nov 22, 2026 | Option Calc, Oct 23, 2026 |
-| **NGVT** | Buy shares | Price at or below $66.76 | $74.77 | $62.75 | Nov 4, 2026 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
+| **NGVT** | Buy shares | Price at or below $66.76 | $74.77 | $62.75 | Feb 24, 2027 (after close) | Jan 21, 2027 | Forensic Analysis, Oct 23, 2026 |
 | **SMP** | Buy shares | Price at or below $34.84 | $51.12 | $32.75 | Feb 25, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
-| **SN** | Buy shares | Price at or below $188.71 | $213.89 | $176.12 | Nov 4, 2026 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
-| **NBIS** | Buy shares | Price at or below $134.87 | $175.33 | $114.64 | Nov 12, 2026 (before open) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
+| **SN** | Buy shares | Price at or below $188.71 | $213.89 | $176.12 | Feb 10, 2027 (before open) | Jan 22, 2027 | Forensic Analysis, Oct 24, 2026 |
+| **NBIS** | Buy shares — waiting for your OK | Price at or below $134.87 | $175.33 | $114.64 | Nov 12, 2026 (before open) | Jan 26, 2027 | Forensic Analysis, Oct 28, 2026 |
 | **OGE** | Buy shares | Price at or below $47.30 | $52.98 | $44.46 | Feb 17, 2027 (before open) | Jan 27, 2027 | Forensic Analysis, Oct 29, 2026 |
-| **PLAB** | Buy shares | Price at or below $26.21 | $30.38 | $24.12 | Dec 9, 2026 (before open) | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
+| **PLAB** | Buy shares — waiting for your OK | Price at or below $26.21 | $30.38 | $24.12 | Dec 9, 2026 (before open) | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
 | **LLY** | Buy shares | Price at or below $1,252.24 | $1,431.88 | $1,162.42 | Feb 3, 2027 (before open) | Jan 28, 2027 | Forensic Analysis, Oct 30, 2026 |
 | **RPM** | Buy shares | Price at or below $99.34 | $111.26 | $93.38 | Jan 7, 2027 (before open) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
 | **SPCX** | Buy shares | Price at or below $115.10 | $145.13 | $100.09 | Feb 9, 2027 (after close) | Jan 29, 2027 | Forensic Analysis, Oct 31, 2026 |
@@ -65,7 +65,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **OKE** | Stock | $92.61 | 26.57 shares | $103.41 | $86.79 | Nov 2, 2026 | Feb 22, 2027 (after close) |  |
 | **MU** | Stock | $859.56 | 0.63 shares | $1,377.85 | $478.82 | Nov 3, 2026 | Dec 23, 2026 (after close) |  |
 | **NAT** | Stock | $6.97 | 341.98 shares | $8.42 | $6.30 | Nov 4, 2026 | Nov 27, 2026 (after close) |  |
-| **NFG** | Stock | $75.33 | 31.71 shares | $84.46 | $70.89 | Nov 4, 2026 | Nov 4, 2026 (after close) |  |
+| **NFG** | Stock | $75.33 | 31.71 shares | $84.46 | $70.89 | Nov 4, 2026 | Jan 27, 2027 (after close) |  |
 | **DHT** | Stock | $22.05 | 41.64 shares | $26.38 | $19.75 | Nov 4, 2026 | Nov 9, 2026 (after close) |  |
 
 ## Closed paper trades

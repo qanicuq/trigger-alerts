@@ -1,6 +1,24 @@
 {
  "due": [
   {
+   "ticker": "NFG",
+   "source": "forensic",
+   "kind": "holding",
+   "bullish": true,
+   "earnings_date": "2026-11-04",
+   "earnings_time": "AMC",
+   "trigger_id": "NFG-forensic-2026-10-28"
+  },
+  {
+   "ticker": "NGVT",
+   "source": "forensic",
+   "kind": "waiting",
+   "bullish": true,
+   "earnings_date": "2026-11-04",
+   "earnings_time": "AMC",
+   "trigger_id": "NGVT-forensic-2026-10-23"
+  },
+  {
    "ticker": "SMP",
    "source": "forensic",
    "kind": "waiting",
