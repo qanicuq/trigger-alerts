@@ -215,7 +215,7 @@ closed_trades:
   pl: -16.85
   closed: '2026-11-05T10:00:42.741959-05:00'
 realized_pl: -313.87160538853396
-last_checked: '2026-11-05T12:00:35.840153-05:00'
+last_checked: '2026-11-05T12:30:31.423796-05:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
@@ -265,6 +265,7 @@ sent_slots:
   2026-11-04:midday: true
   2026-11-04:end of day: true
   2026-11-05:morning: true
+  2026-11-05:midday: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
@@ -274,4 +275,4 @@ stats:
     losses: 3
 day_start_date: '2026-11-05'
 macro_error_alerted: '2026-10-22'
-max_drawdown_pct: 6.76
+max_drawdown_pct: 7.25
