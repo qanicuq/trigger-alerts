@@ -1,4 +1,4 @@
-cash: 0.0017440165853486178
+cash: 234.29538777879236
 peak_equity: 10017.671909662733
 day_start_equity: 9535.758454674422
 positions:
@@ -73,18 +73,6 @@ positions:
   is_option: false
   reserved: 0
   opened: '2026-10-30T09:43:19.443953-04:00'
-  source: forensic
-- id: NVDA-forensic-2026-10-24
-  ticker: NVDA
-  action: BUY
-  entry_price: 203.7218
-  quantity: 1.2328
-  stop: 192.12
-  target: 260.33
-  max_hold_days: 180
-  is_option: false
-  reserved: 0
-  opened: '2026-10-30T13:00:42.921762-04:00'
   source: forensic
 - id: SPCX-forensic-2026-10-23
   ticker: SPCX
@@ -210,8 +198,24 @@ closed_trades:
   exit_reason: stop
   pl: -171.08
   closed: '2026-11-04T09:30:31.203602-05:00'
-realized_pl: -297.017014110741
-last_checked: '2026-11-05T09:30:32.385083-05:00'
+- id: NVDA-forensic-2026-10-24
+  ticker: NVDA
+  action: BUY
+  entry_price: 203.7218
+  quantity: 1.2328
+  stop: 192.12
+  target: 260.33
+  max_hold_days: 180
+  is_option: false
+  reserved: 0
+  opened: '2026-10-30T13:00:42.921762-04:00'
+  source: forensic
+  exit_price: 190.0500030517578
+  exit_reason: stop
+  pl: -16.85
+  closed: '2026-11-05T10:00:42.741959-05:00'
+realized_pl: -313.87160538853396
+last_checked: '2026-11-05T10:00:42.741959-05:00'
 sent_slots:
   2026-10-13:morning: true
   2026-10-13:midday: true
@@ -267,7 +271,7 @@ paused: false
 stats:
   forensic-stock:
     wins: 1
-    losses: 2
+    losses: 3
 day_start_date: '2026-11-05'
 macro_error_alerted: '2026-10-22'
 max_drawdown_pct: 4.81

@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 5, 2026 at 9:31 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 5, 2026 at 10:01 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**18 watching** · **13 bought (open)** · **21 ended**
+**18 watching** · **12 bought (open)** · **21 ended**
 
 ## Watching now
 
@@ -60,7 +60,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SHOE** | Stock | $14.15 | 6.37 shares | $29.36 | $6.23 | Oct 23, 2026 | Nov 26, 2026 (before open) |  |
 | **RES** | Stock | $6.35 | 19.34 shares | $9.47 | $3.74 | Oct 30, 2026 | Feb 2, 2027 (before open) |  |
 | **HOPE** | Stock | $13.31 | 18.98 shares | $15.30 | $12.84 | Oct 30, 2026 | Jan 26, 2027 (before open) |  |
-| **NVDA** | Stock | $203.72 | 1.23 shares | $260.33 | $192.12 | Oct 30, 2026 | Nov 17, 2026 (after close) |  |
 | **SPCX** | Stock | $135.13 | 0.33 shares | $168.31 | $118.63 | Oct 30, 2026 | Feb 9, 2027 (after close) |  |
 | **OKE** | Stock | $92.61 | 26.57 shares | $103.41 | $86.79 | Nov 2, 2026 | Feb 22, 2027 (after close) |  |
 | **MU** | Stock | $859.56 | 0.63 shares | $1,377.85 | $478.82 | Nov 3, 2026 | Dec 23, 2026 (after close) |  |
@@ -72,6 +71,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | Closed on | Why | Profit/loss |
 |---|---|---|---|
+| **NVDA** | Nov 5, 2026 | stop | $-16.85 |
 | **DVN** | Nov 4, 2026 | stop | $-171.08 |
 | **SD** | Nov 2, 2026 | stop | $-136.15 |
 | **NP** | Oct 23, 2026 | thesis broken | $10.21 |
