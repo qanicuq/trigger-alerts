@@ -725,6 +725,15 @@ def _ingest_inbox(triggers, ledger=None):
     return changed
 
 
+def _review_due(pos, today):
+    """True once, when a position with review_days has been held that long (value trades: 18-month review)."""
+    rd = pos.get("review_days")
+    if not rd or pos.get("review_sent") or not pos.get("opened"):
+        return False
+    held = (today - datetime.fromisoformat(pos["opened"]).date()).days
+    return int(rd) <= held < int(pos.get("max_hold_days") or 30)
+
+
 def _close_position(ledger, pos, exit_price, reason, now):
     if pos.get("action") == "POSITION":
         entry = pos.get("entry_value")
@@ -1278,6 +1287,12 @@ def main():
             if opened and exit_reason is None:
                 try:
                     opend = datetime.fromisoformat(opened).date()
+                    if _review_due(pos, now.date()):
+                        pos["review_sent"] = now.date().isoformat()
+                        changed = True
+                        common.ntfy(f"{ticker}: review this trade",
+                                    f"Held {(now.date() - opend).days} days. If nothing has improved and no catalyst is in sight, "
+                                    f"re-check the value or trim. It sells automatically on day {max_hold} if it still hasn't worked.")
                     if (now.date() - opend).days >= max_hold:
                         exit_reason = "time"
                         exit_price = common.last_price(ticker) or entry

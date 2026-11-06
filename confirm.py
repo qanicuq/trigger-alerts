@@ -76,6 +76,7 @@ def _kelly_size(tr, ledger, entry, stop, target, max_profit=None, max_loss=None)
         risk_fraction = max(risk_fraction, common.WARMUP_RISK)
     elif k <= 0:
         return None, risk_fraction, p, b, f"odds not good enough (p={p:.2f}, b={b:.2f})"
+    risk_fraction *= common.streak_factor(ledger)
     equity = _compute_equity(ledger)
     dollars_at_risk = risk_fraction * equity
     cash = float(ledger.get("cash") or 0)
@@ -259,7 +260,7 @@ def place(tr, ledger, force=False):
         if denom <= 0:
             common.ntfy(f"Skipped {ticker}: one position costs $0, too big for the account", "position cap")
             return False
-        qty = math.floor(common.MAX_POSITION_COMBO * equity / denom)
+        qty = math.floor(common.MAX_POSITION_COMBO * common.streak_factor(ledger) * equity / denom)
         if qty < 1:
             common.ntfy(
                 f"Skipped {ticker}: one position costs ${denom:.0f}, too big for the account",
@@ -297,6 +298,7 @@ def place(tr, ledger, force=False):
         "stop": stop,
         "target": target,
         "max_hold_days": int(ep.get("max_hold_days") or 30),
+        "review_days": int(ep["review_days"]) if ep.get("review_days") else None,
         "is_option": is_option,
         "reserved": reserved,
         "opened": common.now_ny().isoformat(),
@@ -346,6 +348,9 @@ def place(tr, ledger, force=False):
             f"Fill: {fill:.2f}\nQty: {qty}\nStop: {stop}\nTarget: {target}\nRisk: {risk_frac*100:.1f}% (win chance {p*100:.0f}%)",
         )
 
+    streak = common.losing_streak(ledger.get("closed_trades"))
+    if streak >= common.LOSING_STREAK_HALVE:
+        common.ntfy(f"{ticker}: half size", f"{streak} losing trades in a row, so this trade was sized at half until a winner.")
     ledger.setdefault("positions", []).append(pos)
     return True
 
