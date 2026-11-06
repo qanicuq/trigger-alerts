@@ -551,3 +551,38 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-06'
   earnings_soon_noted: '2026-11-09'
+- id: RES-forensic-2026-11-06
+  source: forensic
+  ticker: RES
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 5.59
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 3.32
+    target:
+      price: 8.69
+    max_hold_days: 1260
+    review_days: 540
+  recommendation: 'WATCH, confidence 65: buy at or below $5.59 (price is already below
+    the value buy-below line), sell at $8.69 (sell or trim when price reaches estimated
+    value), stop $3.32; the stop is disaster insurance only, set beyond the stock''s
+    worst past fall; check that margins recover after the Pintail impairment and a
+    new CEO is named, earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-02-02'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'
