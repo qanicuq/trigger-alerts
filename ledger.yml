@@ -1,5 +1,5 @@
 cash: 6595.778748576293
-peak_equity: 10054.560794284187
+peak_equity: 10060.518113731321
 day_start_equity: 10000.0
 positions:
 - id: MNST-forensic-2026-11-06
@@ -30,7 +30,7 @@ positions:
   source: forensic
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-06T11:00:33.611647-05:00'
+last_checked: '2026-11-06T11:30:32.525988-05:00'
 sent_slots:
   2026-11-06:morning: true
 usage_checked_date: null
