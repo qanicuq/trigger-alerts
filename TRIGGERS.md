@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 6, 2026 at 8:55 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 6, 2026 at 8:58 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**14 watching** · **0 bought (open)** · **0 ended**
+**15 watching** · **0 bought (open)** · **0 ended**
 
 ## Watching now
 
@@ -24,6 +24,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **LLY** | Buy shares | Price at or below $1,299.68 | $1,490.10 | $1,204.47 | Feb 3, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RPM** | Buy shares | Price at or below $101.27 | $113.88 | $94.96 | Jan 7, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **OGE** | Buy shares | Price at or below $48.64 | $54.48 | $45.72 | Feb 17, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **WIT** | Buy shares | Price at or below $2.06<br>Price at least 2% above the 20-day low (support) | $3.08 | $1.02 | Jan 15, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
@@ -41,6 +42,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **LLY:** WATCH, confidence 80: buy at or below $1,299.68 (pullback to the 20-day average ($1,293.22)), sell at $1,490.10 (twice the risk taken (no value target above the entry)), stop $1,204.47; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **RPM:** WATCH, confidence 75: buy at or below $101.27 (pullback to the 20-day average ($100.77)), sell at $113.88 (twice the risk taken (no value target above the entry)), stop $94.96; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 30: buy at or below $48.64 (pullback to the 20-day average ($48.40)), sell at $54.48 (twice the risk taken (no value target above the entry)), stop $45.72; chart-based entry, not a value bargain: keep it small; check how much of the new 750M dollar share program is being sold, earnings, filings and news before confirming.
+- **WIT:** WATCH, confidence 70: buy at or below $2.06 (value buy-below line (within reach of the price)), sell at $3.08 (sell or trim when price reaches estimated value), stop $1.02; the stop is disaster insurance only, set beyond the stock's worst past fall; check that bookings are not falling further after the flat Q3 guidance, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

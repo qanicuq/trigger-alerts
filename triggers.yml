@@ -414,3 +414,38 @@ triggers:
   earnings_date: '2027-02-17'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
+- id: WIT-forensic-2026-11-06
+  source: forensic
+  ticker: WIT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 2.06
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 1.02
+    target:
+      price: 3.08
+    max_hold_days: 1080
+    review_days: 540
+  recommendation: 'WATCH, confidence 70: buy at or below $2.06 (value buy-below line
+    (within reach of the price)), sell at $3.08 (sell or trim when price reaches estimated
+    value), stop $1.02; the stop is disaster insurance only, set beyond the stock''s
+    worst past fall; check that bookings are not falling further after the flat Q3
+    guidance, earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-01-15'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'
