@@ -1,3 +1,31 @@
 {
- "due": []
+ "due": [
+  {
+   "ticker": "NFG",
+   "source": "forensic",
+   "kind": "waiting",
+   "bullish": true,
+   "earnings_date": "2026-11-04",
+   "earnings_time": "AMC",
+   "trigger_id": "NFG-forensic-2026-11-06"
+  },
+  {
+   "ticker": "SMP",
+   "source": "forensic",
+   "kind": "waiting",
+   "bullish": true,
+   "earnings_date": "2026-10-30",
+   "earnings_time": null,
+   "trigger_id": "SMP-forensic-2026-11-06"
+  },
+  {
+   "ticker": "TNC",
+   "source": "forensic",
+   "kind": "waiting",
+   "bullish": true,
+   "earnings_date": "2026-11-02",
+   "earnings_time": null,
+   "trigger_id": "TNC-forensic-2026-11-06"
+  }
+ ]
 }
