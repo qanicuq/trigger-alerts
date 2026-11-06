@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 6, 2026 at 4:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 6, 2026 at 4:04 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **21 watching** · **2 bought (open)** · **0 ended**
 
@@ -10,7 +10,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Buy when (all true) | Sell target | Stop | Next earnings | Watch ends | From |
 |---|---|---|---|---|---|---|---|
-| **TNC** | Buy shares | Price at or below $67.95 | $76.10 | $63.87 | Feb 22, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **SPCX** | Buy shares | Price at or below $111.55 | $143.73 | $95.46 | Feb 9, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **SN** | Buy shares | Price at or below $200.13 | $231.45 | $184.47 | Feb 10, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **SMP** | Buy shares | Price at or below $39.28 | $49.29 | $36.19 | Feb 25, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
@@ -31,10 +30,10 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MU** | Buy shares | Price at or below $656.39<br>Price at least 2% above the 20-day low (support) (≈$663.00) | $1,339.75 | $322.32 | Dec 23, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **NFG** | Buy shares | Price at or below $70.99 | $79.51 | $66.73 | Jan 27, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **OGE** | Buy shares | Price at or below $48.64 | $54.48 | $45.72 | Feb 17, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **TNC** | Buy shares | Price at or below $68.11 | $77.95 | $63.19 | Feb 22, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
-- **TNC:** WATCH, confidence 65: buy at or below $67.95 (pullback to the 50-day average ($67.61)), sell at $76.10 (twice the risk taken (no value target above the entry)), stop $63.87; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **SPCX:** WATCH, confidence 35: buy at or below $111.55 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $143.73 (twice the risk taken (no value target above the entry)), stop $95.46; chart-based entry, not a value bargain: keep it small; check that a price no value method supports still fits your plan, earnings, filings and news before confirming.
 - **SN:** WATCH, confidence 75: buy at or below $200.13 (pullback to the 20-day average ($199.13)), sell at $231.45 (twice the risk taken (no value target above the entry)), stop $184.47; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **SMP:** WATCH, confidence 70: buy at or below $39.28 (pullback to the 20-day average ($39.08)), sell at $49.29 (sell or trim at estimated value), stop $36.19; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
@@ -55,6 +54,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **MU:** WATCH, confidence 80: buy at or below $656.39 (price is already below the value buy-below line), sell at $1,339.75 (sell or trim when price reaches estimated value), stop $322.32; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 17% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check whether memory prices are holding after the November selloff, earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 35: buy at or below $70.99 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $79.51 (twice the risk taken (no value target above the entry)), stop $66.73; chart-based entry, not a value bargain: keep it small; check the lower fiscal 2027 guidance and Ohio deal debt, earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 35: buy at or below $48.64 (pullback to the 20-day average ($48.40)), sell at $54.48 (twice the risk taken (no value target above the entry)), stop $45.72; chart-based entry, not a value bargain: keep it small; check the new $750M stock-sale program, earnings, filings and news before confirming.
+- **TNC:** WATCH, confidence 60: buy at or below $68.11 (pullback to the 50-day average ($67.77)), sell at $77.95 (twice the risk taken (no value target above the entry)), stop $63.19; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

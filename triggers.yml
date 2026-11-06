@@ -1,48 +1,4 @@
 triggers:
-- id: TNC-forensic-2026-11-06
-  source: forensic
-  ticker: TNC
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 67.95
-  exit_plan:
-    stop:
-      price: 63.87
-    target:
-      price: 76.1
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 65: buy at or below $67.95 (pullback to the 50-day
-    average ($67.61)), sell at $76.10 (twice the risk taken (no value target above
-    the entry)), stop $63.87; chart-based entry, not a value bargain: keep it small;
-    check earnings, filings and news before confirming.'
-  report_date: 2026-11-06
-  expires: 2027-02-04
-  data_through: 2026-06-30
-  status: active
-  backtest:
-    wins: 1
-    losses: 1
-    signals: 2
-  earnings_date: '2027-02-22'
-  earnings_time: AMC
-  earnings_checked: '2026-11-06'
-  earnings_last: '2026-11-02'
-  resolved:
-    sma20: 67.26049995422363
-    sma50: 67.81
-    sma200: 75.3092784500122
-    ema20: 68.28928017079991
-    52w_high: 91.52042474784236
-    52w_low: 59.61983630956174
-    support20: 64.4800033569336
-    resistance20: 74.87000274658203
-    rsi14: 63.3
-  resolved_stop: 63.87
-  resolved_target: 76.1
-  seen_high: 71.87999725341797
-  seen_low: 68.01000213623047
 - id: SPCX-forensic-2026-11-06
   source: forensic
   ticker: SPCX
@@ -1033,3 +989,33 @@ triggers:
   resolved_target: 54.48
   seen_high: 50.904998779296875
   seen_low: 50.63999938964844
+- id: TNC-forensic-2026-11-06
+  source: forensic
+  ticker: TNC
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 68.11
+  exit_plan:
+    stop:
+      price: 63.19
+    target:
+      price: 77.95
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $68.11 (pullback to the 50-day
+    average ($67.77)), sell at $77.95 (twice the risk taken (no value target above
+    the entry)), stop $63.19; chart-based entry, not a value bargain: keep it small;
+    check earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  earnings_last: '2026-11-02'
+  backtest:
+    wins: 1
+    losses: 1
+    signals: 2
+  earnings_date: '2027-02-22'
+  earnings_time: AMC
+  earnings_checked: '2026-11-06'
