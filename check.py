@@ -571,6 +571,27 @@ def _write_due(due):
         f.write(text)
 
 
+EARNINGS_WINDOW_DAYS = 14
+
+
+def _earnings_soon(tr, today):
+    """The trigger's next earnings date if it is within the next 14 days and its report doesn't
+    have those results yet, else None. Inside that window a trigger never buys: the fresh analysis
+    that runs after earnings replaces it."""
+    ed = common._to_date(tr.get("earnings_date"))
+    if ed and today <= ed <= today + timedelta(days=EARNINGS_WINDOW_DAYS) \
+            and not _covers(tr, ed, tr.get("earnings_time")):
+        return ed
+    return None
+
+
+def _earnings_soon_body(tr, ed):
+    t = tr.get("ticker", "?")
+    return (f"{t} reports earnings on {ed.isoformat()} ({_when(tr.get('earnings_time'))}), within 2 weeks, "
+            f"so no buy trigger is set for {t}.\nAfter earnings you'll get a reminder and a fresh "
+            f"{_rerun_words(tr)} runs automatically on the new numbers. Its trigger replaces this one.")
+
+
 def _earnings_warning(tr, today):
     """Extra line for a 'confirm trade?' alert when earnings matter, else ''."""
     ed = common._to_date(tr.get("earnings_date"))
@@ -678,6 +699,12 @@ def _ingest_inbox(triggers, ledger=None):
                     tr["earnings_date"] = nd.isoformat()
                     tr["earnings_time"] = nt
             tr["earnings_checked"] = common.now_ny().date().isoformat()
+            soon = _earnings_soon(tr, common.now_ny().date())
+            if soon:
+                tr["earnings_soon_noted"] = soon.isoformat()
+                common.ntfy(f"No trigger yet: {ticker}", _earnings_soon_body(tr, soon))
+                changed = True
+                continue
             ed = common._to_date(tr.get("earnings_date"))
             exp = common._to_date(tr.get("expires"))
             if ed and (exp is None or ed <= exp):
@@ -931,6 +958,15 @@ def main():
             except Exception:
                 pass
         ticker = tr["ticker"]
+        soon = _earnings_soon(tr, now.date())
+        if soon:
+            # Earnings within 2 weeks: no buying. One notice per earnings date for a trigger
+            # that was set earlier and has now come inside the window.
+            if tr.get("earnings_soon_noted") != soon.isoformat():
+                common.ntfy(f"{ticker}: trigger paused for earnings", _earnings_soon_body(tr, soon))
+                tr["earnings_soon_noted"] = soon.isoformat()
+                changed = True
+            continue
         high, low = common.high_low_since(ticker, last_checked)
         hist = common.get_daily_bars(ticker, period="1y")
         refs = common.compute_refs(hist) or tr.get("resolved") or {}

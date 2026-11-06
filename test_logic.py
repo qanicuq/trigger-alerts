@@ -1234,6 +1234,42 @@ class TestOneTickerAtATime(unittest.TestCase):
         self.assertEqual(sent, ["Already holding TBF"])
 
 
+class TestEarningsSoon(unittest.TestCase):
+    def test_window(self):
+        today = date(2026, 11, 5)
+        tr = {"ticker": "X", "report_date": "2026-11-05", "earnings_date": "2026-11-19"}
+        self.assertEqual(check._earnings_soon(tr, today), date(2026, 11, 19))   # 14 days: paused
+        tr["earnings_date"] = "2026-11-20"
+        self.assertIsNone(check._earnings_soon(tr, today))                      # 15 days: allowed
+        tr["earnings_date"] = "2026-11-04"
+        self.assertIsNone(check._earnings_soon(tr, today))                      # already past
+        self.assertIsNone(check._earnings_soon({"ticker": "SPY"}, today))      # no earnings (ETF)
+
+    def test_new_report_with_earnings_soon_sets_no_live_trigger(self):
+        import tempfile, shutil as sh
+        d = tempfile.mkdtemp()
+        cwd = os.getcwd()
+        try:
+            os.chdir(d)
+            os.makedirs("inbox")
+            today = check.common.now_ny().date()
+            with open("inbox/x.yml", "w") as f:
+                yaml.safe_dump({"id": "X-forensic-1", "ticker": "X", "source": "forensic", "action": "BUY",
+                                "report_date": today.isoformat(),
+                                "earnings_date": (today + timedelta(days=7)).isoformat(),
+                                "conditions": [{"type": "price", "op": "<=", "value": 10}],
+                                "exit_plan": {"stop": 8, "target": 12}}, f)
+            triggers = []
+            with patch("common.ntfy") as n, patch.object(check, "_backtest_trigger", return_value={}):
+                check._ingest_inbox(triggers)
+            titles = [c.args[0] for c in n.call_args_list]
+            self.assertEqual(titles, ["No trigger yet: X"])
+            self.assertTrue(check._earnings_soon(triggers[0], today))
+        finally:
+            os.chdir(cwd)
+            sh.rmtree(d)
+
+
 class TestCloseReturnsCost(unittest.TestCase):
     def test_sale_returns_full_proceeds(self):
         import check

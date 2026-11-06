@@ -94,6 +94,8 @@ The bot looks up each trigger's next earnings date once a day (Yahoo Finance) an
 
 Until a fresh report replaces the trigger, the bot will not buy on the old numbers: if the conditions are met it sends one "buy on hold" alert and keeps the trigger active. Open stock positions get the same morning-after alert; a fresh Full analysis that says AVOID sells the position, otherwise it keeps its stop and target. (Option and spread positions use their own short exits and get no earnings alert.)
 
+**Earnings within 2 weeks: no trigger.** If a new report arrives with earnings 14 days away or less, no buy trigger is set: you get one "No trigger yet" alert instead, the earnings reminder still goes out, and the fresh analysis after earnings sets the real trigger. A trigger set earlier that comes within 14 days of earnings is paused the same way (one "trigger paused for earnings" alert) and never buys before the results. Positions you already hold are not affected.
+
 You can also set the date yourself: `earnings_date: 2026-11-02`. ETFs have no earnings, so they get no reminder.
 
 ## Thesis broken (value exits)
