@@ -116,3 +116,34 @@ triggers:
   earnings_date: '2027-02-25'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
+- id: TSLA-forensic-2026-11-06
+  source: forensic
+  ticker: TSLA
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 326.87
+  exit_plan:
+    stop:
+      price: 293.99
+    target:
+      price: 392.64
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 40: buy at or below $326.87 (pullback to the
+    60-day low (support) ($325.24)), sell at $392.64 (twice the risk taken (no value
+    target above the entry)), stop $293.99; chart-based entry, not a value bargain:
+    keep it small; fell 11% on 2026-11-05 on news: wait until about 2026-11-26 before
+    confirming; check that the post-election selling has settled, earnings, filings
+    and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 1
+    signals: 2
+  earnings_date: '2027-01-27'
+  earnings_time: AMC
+  earnings_checked: '2026-11-06'
