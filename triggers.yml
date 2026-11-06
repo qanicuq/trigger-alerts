@@ -565,50 +565,6 @@ triggers:
   resolved_target: 113.88
   seen_high: 105.12000274658203
   seen_low: 102.27999877929688
-- id: OGE-forensic-2026-11-06
-  source: forensic
-  ticker: OGE
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 48.64
-  exit_plan:
-    stop:
-      price: 45.72
-    target:
-      price: 54.48
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 30: buy at or below $48.64 (pullback to the 20-day
-    average ($48.40)), sell at $54.48 (twice the risk taken (no value target above
-    the entry)), stop $45.72; chart-based entry, not a value bargain: keep it small;
-    check how much of the new 750M dollar share program is being sold, earnings, filings
-    and news before confirming.'
-  report_date: 2026-11-06
-  expires: 2027-02-04
-  data_through: 2026-09-30
-  status: active
-  backtest:
-    wins: 0
-    losses: 3
-    signals: 3
-  earnings_date: '2027-02-17'
-  earnings_time: BMO
-  earnings_checked: '2026-11-06'
-  resolved:
-    sma20: 48.616499710083005
-    sma50: 46.7218692779541
-    sma200: 46.6009073638916
-    ema20: 48.78260283594945
-    52w_high: 51.599998474121094
-    52w_low: 40.593441100381945
-    support20: 46.209999084472656
-    resistance20: 51.599998474121094
-    rsi14: 70.3
-  resolved_stop: 45.72
-  resolved_target: 54.48
-  seen_high: 50.849998474121094
-  seen_low: 50.22999954223633
 - id: WIT-forensic-2026-11-06
   source: forensic
   ticker: WIT
@@ -1015,4 +971,33 @@ triggers:
     signals: 1
   earnings_date: '2027-01-27'
   earnings_time: AMC
+  earnings_checked: '2026-11-06'
+- id: OGE-forensic-2026-11-06
+  source: forensic
+  ticker: OGE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 48.64
+  exit_plan:
+    stop:
+      price: 45.72
+    target:
+      price: 54.48
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 35: buy at or below $48.64 (pullback to the 20-day
+    average ($48.40)), sell at $54.48 (twice the risk taken (no value target above
+    the entry)), stop $45.72; chart-based entry, not a value bargain: keep it small;
+    check the new $750M stock-sale program, earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-17'
+  earnings_time: BMO
   earnings_checked: '2026-11-06'
