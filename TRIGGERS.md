@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 6, 2026 at 9:01 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 6, 2026 at 9:02 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**17 watching** · **0 bought (open)** · **0 ended**
+**18 watching** · **0 bought (open)** · **0 ended**
 
 ## Watching now
 
@@ -27,6 +27,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **WIT** | Buy shares | Price at or below $2.06<br>Price at least 2% above the 20-day low (support) | $3.08 | $1.02 | Jan 15, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **IMXI** | Buy shares | Price at or below $7.30<br>Price at least 2% above the 20-day low (support) | $15.74 | $2.98 | Nov 9, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **SHOE** | Buy shares | Price at or below $15.18<br>Price at least 2% above the 20-day low (support) | $27.95 | $6.71 | Nov 26, 2026 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **DHT** | Buy shares | Price at or below $17.96 | $22.55 | $15.66 | Nov 9, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
@@ -47,6 +48,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **WIT:** WATCH, confidence 70: buy at or below $2.06 (value buy-below line (within reach of the price)), sell at $3.08 (sell or trim when price reaches estimated value), stop $1.02; the stop is disaster insurance only, set beyond the stock's worst past fall; check that bookings are not falling further after the flat Q3 guidance, earnings, filings and news before confirming.
 - **IMXI:** WATCH, confidence 55: buy at or below $7.30 (price is already below the value buy-below line), sell at $15.74 (sell or trim when price reaches estimated value), stop $2.98; the stop is disaster insurance only, set beyond the stock's worst past fall; check the Western Union deal outcome after Nov 10, earnings, filings and news before confirming.
 - **SHOE:** WATCH, confidence 70: buy at or below $15.18 (price is already below the value buy-below line), sell at $27.95 (sell or trim when price reaches estimated value), stop $6.71; the stop is disaster insurance only, set beyond the stock's worst past fall; check that gross margin has stopped falling in the next quarterly report, earnings, filings and news before confirming.
+- **DHT:** WATCH, confidence 35: buy at or below $17.96 (pullback to the 200-day average ($17.87)), sell at $22.55 (twice the risk taken (no value target above the entry)), stop $15.66; chart-based entry, not a value bargain: keep it small; check tanker rates after the Nov 9 Q3 results, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

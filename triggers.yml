@@ -520,3 +520,34 @@ triggers:
   earnings_date: '2026-11-26'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
+- id: DHT-forensic-2026-11-06
+  source: forensic
+  ticker: DHT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 17.96
+  exit_plan:
+    stop:
+      price: 15.66
+    target:
+      price: 22.55
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 35: buy at or below $17.96 (pullback to the 200-day
+    average ($17.87)), sell at $22.55 (twice the risk taken (no value target above
+    the entry)), stop $15.66; chart-based entry, not a value bargain: keep it small;
+    check tanker rates after the Nov 9 Q3 results, earnings, filings and news before
+    confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-09'
+  earnings_time: AMC
+  earnings_checked: '2026-11-06'
+  earnings_soon_noted: '2026-11-09'
