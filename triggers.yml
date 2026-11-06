@@ -236,3 +236,34 @@ triggers:
   earnings_date: '2026-12-17'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
+- id: RLX-forensic-2026-11-06
+  source: forensic
+  ticker: RLX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 1.55
+  exit_plan:
+    stop:
+      price: 1.45
+    target:
+      price: 1.74
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $1.55 (pullback of 1.5× a
+    normal day''s move (no chart support within 20%)), sell at $1.74 (twice the risk
+    taken (no value target above the entry)), stop $1.45; chart-based entry, not a
+    value bargain: keep it small; check the Q3 results on 2026-11-12 and why customers
+    are paying slower, earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-11-13'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'
+  earnings_soon_noted: '2026-11-13'
