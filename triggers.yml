@@ -972,6 +972,8 @@ triggers:
   earnings_date: '2027-01-27'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
+  earnings_last: '2026-11-04'
+  earnings_last_time: AMC
 - id: OGE-forensic-2026-11-06
   source: forensic
   ticker: OGE
