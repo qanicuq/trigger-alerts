@@ -616,3 +616,33 @@ triggers:
   earnings_date: '2027-01-27'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
+- id: HOPE-forensic-2026-11-06
+  source: forensic
+  ticker: HOPE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 12.65
+  exit_plan:
+    stop:
+      price: 11.89
+    target:
+      price: 14.17
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $12.65 (pullback to the 200-day
+    average ($12.58)), sell at $14.17 (twice the risk taken (no value target above
+    the entry)), stop $11.89; chart-based entry, not a value bargain: keep it small;
+    check who left or joined in the August 2026 executive-change 8-K, earnings, filings
+    and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2027-01-26'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'

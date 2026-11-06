@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 6, 2026 at 9:04 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 6, 2026 at 9:05 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**20 watching** · **0 bought (open)** · **0 ended**
+**21 watching** · **0 bought (open)** · **0 ended**
 
 ## Watching now
 
@@ -30,6 +30,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **DHT** | Buy shares | Price at or below $17.96 | $22.55 | $15.66 | Nov 9, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RES** | Buy shares | Price at or below $5.59<br>Price at least 2% above the 20-day low (support) | $8.69 | $3.32 | Feb 2, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **NFG** | Buy shares | Price at or below $70.98 | $79.50 | $66.72 | Jan 27, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **HOPE** | Buy shares | Price at or below $12.65 | $14.17 | $11.89 | Jan 26, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
@@ -53,6 +54,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **DHT:** WATCH, confidence 35: buy at or below $17.96 (pullback to the 200-day average ($17.87)), sell at $22.55 (twice the risk taken (no value target above the entry)), stop $15.66; chart-based entry, not a value bargain: keep it small; check tanker rates after the Nov 9 Q3 results, earnings, filings and news before confirming.
 - **RES:** WATCH, confidence 65: buy at or below $5.59 (price is already below the value buy-below line), sell at $8.69 (sell or trim when price reaches estimated value), stop $3.32; the stop is disaster insurance only, set beyond the stock's worst past fall; check that margins recover after the Pintail impairment and a new CEO is named, earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 35: buy at or below $70.98 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $79.50 (twice the risk taken (no value target above the entry)), stop $66.72; chart-based entry, not a value bargain: keep it small; check the spinoff terms and any new share offering, earnings, filings and news before confirming.
+- **HOPE:** WATCH, confidence 65: buy at or below $12.65 (pullback to the 200-day average ($12.58)), sell at $14.17 (twice the risk taken (no value target above the entry)), stop $11.89; chart-based entry, not a value bargain: keep it small; check who left or joined in the August 2026 executive-change 8-K, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
