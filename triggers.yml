@@ -296,3 +296,33 @@ triggers:
   earnings_date: '2027-02-25'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
+- id: RTX-forensic-2026-11-06
+  source: forensic
+  ticker: RTX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 179.92
+  exit_plan:
+    stop:
+      price: 169.12
+    target:
+      price: 201.51
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 70: buy at or below $179.92 (pullback to the
+    60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value
+    target above the entry)), stop $169.12; chart-based entry, not a value bargain:
+    keep it small; check how post-midterm defense budget plans affect RTX, earnings,
+    filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2027-01-26'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'

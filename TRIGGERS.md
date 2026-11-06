@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 6, 2026 at 8:51 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 6, 2026 at 8:52 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**10 watching** · **0 bought (open)** · **0 ended**
+**11 watching** · **0 bought (open)** · **0 ended**
 
 ## Watching now
 
@@ -20,6 +20,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RLX** | Buy shares | Price at or below $1.55 | $1.74 | $1.45 | Nov 13, 2026 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **MNST** | Buy shares | Price at or below $46.38 | $51.95 | $43.60 | Feb 25, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
@@ -33,6 +34,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **BB:** WATCH, confidence 40: buy at or below $7.50 (pullback to the 60-day low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small; check that QNX growth can justify a price 14 times the value estimate, earnings, filings and news before confirming.
 - **RLX:** WATCH, confidence 65: buy at or below $1.55 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $1.74 (twice the risk taken (no value target above the entry)), stop $1.45; chart-based entry, not a value bargain: keep it small; check the Q3 results on 2026-11-12 and why customers are paying slower, earnings, filings and news before confirming.
 - **MNST:** WATCH, confidence 75: buy at or below $46.38 (pullback to the 20-day average ($46.15)), sell at $51.95 (twice the risk taken (no value target above the entry)), stop $43.60; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
+- **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check how post-midterm defense budget plans affect RTX, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
