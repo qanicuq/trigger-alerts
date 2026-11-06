@@ -324,7 +324,14 @@ def write_triggers_page():
 def _scorecard(ledger, closed):
     exp, n = common.expectancy(closed)
     exp_txt = f"${exp:,.2f} per trade ({n} closed)" if n else "n/a (no closed trades yet)"
-    return f"Worst drawdown: {float(ledger.get('max_drawdown_pct') or 0):.1f}%  Expectancy: {exp_txt}"
+    return (f"Worst drawdown: {float(ledger.get('max_drawdown_pct') or 0):.1f}%  Expectancy: {exp_txt}\n"
+            f"Track record: {_track_record(n)}")
+
+
+def _track_record(n):
+    if n < common.SKILL_MIN_TRADES:
+        return f"{n} closed trades. Too few to judge skill: a short record can't tell skill from luck."
+    return f"{n} closed trades."
 
 
 def write_pages():

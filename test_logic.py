@@ -1281,5 +1281,55 @@ class TestCloseReturnsCost(unittest.TestCase):
         self.assertAlmostEqual(ledger["realized_pl"], 10.0)
 
 
+class TestBookRules20261106(unittest.TestCase):
+    """Dreman/Bernstein rules added 2026-11-06: 18-month review alert, losing-streak halving, track-record line."""
+
+    def test_losing_streak_counts_back_to_last_winner(self):
+        closed = [{"pl": -5}, {"pl": 10}, {"pl": -1}, {"pl": 0}, {"pl": -2}, {"pl": -3}]
+        self.assertEqual(common.losing_streak(closed), 3)  # break-even skipped, stops at the winner
+        self.assertEqual(common.losing_streak([]), 0)
+        self.assertEqual(common.losing_streak([{"pl": -1}, {"pl": 4}]), 0)
+
+    def test_streak_halves_kelly_risk(self):
+        tr = {"action": "BUY", "source": "forensic", "backtest": {"wins": 10, "losses": 5}}
+        base = {"cash": 100000, "stats": {"forensic-stock": {"wins": 30, "losses": 10}}, "positions": [],
+                "closed_trades": [{"pl": 5}, {"pl": -1}, {"pl": -1}]}
+        with patch("confirm._compute_equity", return_value=100000):
+            q1, rf1, _, _, r1 = confirm._kelly_size(tr, base, 100, 50, 200)
+            base["closed_trades"].append({"pl": -1})  # third loss in a row
+            q2, rf2, _, _, r2 = confirm._kelly_size(tr, base, 100, 50, 200)
+            base["closed_trades"].append({"pl": 2})  # a winner ends it
+            q3, rf3, _, _, r3 = confirm._kelly_size(tr, base, 100, 50, 200)
+        self.assertIsNone(r1); self.assertIsNone(r2); self.assertIsNone(r3)
+        self.assertAlmostEqual(rf2, rf1 / 2)
+        self.assertAlmostEqual(rf3, rf1)
+        self.assertLess(q2, q1)
+
+    def test_review_alert_once_before_time_stop(self):
+        today = date(2028, 6, 1)
+        pos = {"opened": (datetime(2028, 6, 1) - timedelta(days=540)).isoformat(), "review_days": 540, "max_hold_days": 1080}
+        self.assertTrue(check._review_due(pos, today))
+        pos["review_sent"] = today.isoformat()
+        self.assertFalse(check._review_due(pos, today))
+        early = {"opened": (datetime(2028, 6, 1) - timedelta(days=539)).isoformat(), "review_days": 540, "max_hold_days": 1080}
+        self.assertFalse(check._review_due(early, today))
+        chart = {"opened": (datetime(2028, 6, 1) - timedelta(days=600)).isoformat(), "max_hold_days": 180}
+        self.assertFalse(check._review_due(chart, today))  # no review_days: chart trades keep their plain time stop
+
+    def test_value_trigger_with_review_validates(self):
+        tr = {"id": "X-forensic-1", "ticker": "X", "action": "BUY", "source": "forensic",
+              "conditions": [{"type": "price", "op": "<=", "value": 10}],
+              "exit_plan": {"stop": {"price": 7.5}, "target": {"price": 17}, "max_hold_days": 1080, "review_days": 540}}
+        ok, why = check._validate_trigger(tr)
+        self.assertTrue(ok, why)
+
+    def test_track_record_line(self):
+        import report
+        self.assertIn("Too few to judge skill", report._track_record(0))
+        self.assertIn("Too few to judge skill", report._track_record(common.SKILL_MIN_TRADES - 1))
+        self.assertEqual(report._track_record(common.SKILL_MIN_TRADES), f"{common.SKILL_MIN_TRADES} closed trades.")
+        self.assertIn("Track record: 2 closed trades. Too few", report._scorecard({}, [{"pl": 1}, {"pl": -1}]))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

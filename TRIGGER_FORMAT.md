@@ -110,7 +110,9 @@ action: THESIS_BROKEN
 reason: "Auditor resigned (8-K item 4.01)"
 ```
 
-The bot cancels that ticker's active triggers from the same source, flags any open paper position from that source to be sold at the next market-hours check, and sends a high-priority alert. Value-based buy triggers use `target: {price: <intrinsic value>}`, a wide `stop`, and `max_hold_days: 540` (an 18-month time stop).
+The bot cancels that ticker's active triggers from the same source, flags any open paper position from that source to be sold at the next market-hours check, and sends a high-priority alert. Value-based buy triggers use `target: {price: <intrinsic value>}`, a wide `stop`, `review_days: 540` and `max_hold_days: 1080` (1260 for a cyclical): one "review this trade" alert at 18 months, then an automatic sell at 36 months (42 for a cyclical) if the value still hasn't shown up (Dreman). `review_days` is optional; without it there is no review alert. Chart-based triggers keep a plain `max_hold_days`.
+
+After 3 losing closed trades in a row (break-even trades skipped), new trades are sized at half until a winner closes (`LOSING_STREAK_HALVE` in common.py).
 
 ## Spread example
 

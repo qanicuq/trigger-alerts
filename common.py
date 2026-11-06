@@ -25,6 +25,8 @@ MAX_POSITION_OPTION = 0.10
 MAX_POSITION_COMBO = 0.25  # POSITION trades (short puts, covered calls, etc.); user chose 25% on 2026-10-31
 MAX_OPEN_POSITIONS = None  # None = unlimited (user, 2026-10-30). Original setting was 4.
 DAILY_LOSS_LIMIT = 0.03
+LOSING_STREAK_HALVE = 3  # after this many losing trades in a row, new trades are half size until a winner (skill §7)
+SKILL_MIN_TRADES = 30  # below this many closed trades the report says the record is too short to judge skill
 MAX_DRAWDOWN = 0.10
 OPTION_TARGET = 0.20
 OPTION_STOP = 0.20
@@ -101,6 +103,23 @@ def expectancy(closed_trades):
     if not pls:
         return None, 0
     return sum(pls) / len(pls), len(pls)
+
+
+def losing_streak(closed_trades):
+    """Losing closed trades in a row, counted back from the newest. Break-even trades are skipped; a winner ends the streak."""
+    n = 0
+    for c in reversed(closed_trades or []):
+        pl = float(c.get("pl") or 0)
+        if pl > 0:
+            break
+        if pl < 0:
+            n += 1
+    return n
+
+
+def streak_factor(ledger):
+    """0.5 while the losing streak is at least LOSING_STREAK_HALVE, else 1.0."""
+    return 0.5 if losing_streak(ledger.get("closed_trades")) >= LOSING_STREAK_HALVE else 1.0
 
 
 def load_yaml(path):
