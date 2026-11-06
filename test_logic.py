@@ -301,7 +301,7 @@ TODAY = {
 
 class TestMacroTriggers(unittest.TestCase):
     def setUp(self):
-        trs = {t["id"]: t for t in common.load_yaml("triggers.yml")["triggers"]}
+        trs = {t["id"]: t for t in common.load_yaml("archive/2026-11-06/triggers.yml")["triggers"]}
         self.a = trs["TLT-macro-recession-2026-10-13"]
         self.b1 = trs["TBF-macro-yields-path1-2026-10-13"]
         self.b2 = trs["TBF-macro-yields-path2-2026-10-13"]

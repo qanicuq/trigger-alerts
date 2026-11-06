@@ -1,0 +1,2413 @@
+triggers:
+- source: macro
+  action: BUY
+  exit_plan: &id001
+    stop:
+      pct: -8
+    target:
+      pct: 15
+    max_hold_days: 30
+  report_date: '2026-10-13'
+  expires: '2027-01-13'
+  status: cancelled
+  cancel_reason: 'Playbook 2026-10-22: macro rate bet, not a hedge; no value check,
+    chases the move, no thesis-break exit, untested.'
+  backtest: &id002
+    wins: 0
+    losses: 0
+    signals: 0
+  id: TLT-macro-recession-2026-10-13
+  ticker: TLT
+  conditions:
+  - type: macro
+    series: SAHMREALTIME
+    op: '>='
+    value: 0.5
+  - type: macro
+    series: DGS10
+    op: <=
+    value: 4.0
+  - type: macro
+    series: VIXCLS
+    op: '>='
+    value: 25
+  recommendation: 'Trade A (recession): buy $1,000 TLT when Sahm >= 0.50, 10-year
+    <= 4.00% and VIX >= 25'
+  resolved:
+    sma20: 78.60853309631348
+    sma50: 80.27622741699219
+    sma200: 83.32697933197022
+    ema20: 79.45061729603395
+    52w_high: 88.13329053868206
+    52w_low: 76.43000030517578
+    support20: 76.43000030517578
+    resistance20: 81.91999816894531
+    rsi14: 67.4
+  resolved_stop: null
+  resolved_target: null
+  seen_high: 81.9000015258789
+  seen_low: 77.80000305175781
+  earnings_checked: '2026-10-22'
+- source: macro
+  action: BUY
+  exit_plan: *id001
+  report_date: '2026-10-13'
+  expires: '2027-01-13'
+  status: cancelled
+  cancel_reason: 'Playbook 2026-10-22: macro rate bet, not a hedge; no value check,
+    chases the move, no thesis-break exit, untested.'
+  backtest: *id002
+  id: TBF-macro-yields-path1-2026-10-13
+  ticker: TBF
+  conditions:
+  - type: macro
+    series: DGS10
+    op: '>='
+    value: 5.75
+    closes: 2
+  recommendation: 'Trade B path 1 (rising yields): buy $1,000 TBF when the 10-year
+    closes >= 5.75% two days in a row. Skip if path 2 already entered'
+  resolved:
+    sma20: 26.457499980926514
+    sma50: 25.843032455444337
+    sma200: 24.540273323059083
+    ema20: 26.178158661346203
+    52w_high: 27.209999084472656
+    52w_low: 22.49442431532917
+    support20: 25.415000915527344
+    resistance20: 27.209999084472656
+    rsi14: 34.5
+  resolved_stop: null
+  resolved_target: null
+  seen_high: 26.729999542236328
+  seen_low: 25.415000915527344
+  earnings_checked: '2026-10-22'
+- source: macro
+  action: BUY
+  exit_plan: *id001
+  report_date: '2026-10-13'
+  expires: '2027-01-13'
+  status: cancelled
+  cancel_reason: 'Playbook 2026-10-22: macro rate bet, not a hedge; no value check,
+    chases the move, no thesis-break exit, untested.'
+  backtest: *id002
+  id: TBF-macro-yields-path2-2026-10-13
+  ticker: TBF
+  conditions:
+  - type: manual
+    key: auction_tail_30y_bp
+    op: '>='
+    value: 5
+  - type: macro
+    series: CPIAUCNS
+    transform: yoy
+    op: '>='
+    value: 3.5
+  - type: macro
+    series: BAMLH0A0HYM2
+    op: '>='
+    value: 4.5
+  recommendation: 'Trade B path 2 (bond stress): buy $1,000 TBF when 30-year auction
+    tail >= 5bp, CPI >= 3.5% y/y and HY spread >= 4.50%. Skip if path 1 already entered'
+  resolved:
+    sma20: 26.457499980926514
+    sma50: 25.843032455444337
+    sma200: 24.540273323059083
+    ema20: 26.178158661346203
+    52w_high: 27.209999084472656
+    52w_low: 22.49442431532917
+    support20: 25.415000915527344
+    resistance20: 27.209999084472656
+    rsi14: 34.5
+  resolved_stop: null
+  resolved_target: null
+  seen_high: 26.729999542236328
+  seen_low: 25.415000915527344
+  earnings_checked: '2026-10-22'
+- id: RIG-forensic-2026-10-14
+  source: forensic
+  ticker: RIG
+  action: BUY
+  conditions:
+  - type: price
+    op: '>='
+    value: 5.8
+  - type: price_vs
+    ref: sma200
+    op: '>='
+    pct: 1
+  - type: volume_ratio
+    op: '>='
+    value: 1.2
+  - type: rsi14
+    op: <=
+    value: 70
+  exit_plan:
+    stop:
+      pct: -8
+    target:
+      pct: 15
+    max_hold_days: 30
+  recommendation: Forensic HOLD (60% confidence). Buy only if RIG reclaims its 200-day
+    average (~5.74) on above-normal volume. Report's full BUY case also needs Q3 results
+    (about Nov 2) to show EBITDA recovering and debt falling; check that before confirming.
+  report_date: 2026-10-14
+  expires: 2026-11-13
+  earnings_date: '2026-11-02'
+  status: cancelled
+  backtest:
+    wins: 2
+    losses: 1
+    signals: 3
+  resolved:
+    sma20: 5.433499979972839
+    sma50: 5.6343999862670895
+    sma200: 5.754949984550476
+    ema20: 5.513078108452602
+    52w_high: 7.659999847412109
+    52w_low: 3.140000104904175
+    support20: 5.119999885559082
+    resistance20: 5.820000171661377
+    rsi14: 53.9
+  resolved_stop: null
+  resolved_target: null
+  earnings_checked: '2026-10-16'
+  seen_high: 5.730000019073486
+  seen_low: 5.420000076293945
+- id: BBD-option-2026-10-16
+  source: option
+  ticker: BBD
+  action: BUY_CALL
+  conditions:
+  - type: price
+    op: '>='
+    value: 3.45
+  - type: price
+    op: <=
+    value: 4.05
+  contract:
+    right: call
+    strike: 3.5
+    expiry: 2027-01-15
+  recommendation: 'Watch only: buy the BBD Jan 15 2027 $3.50 call at $0.65 or less
+    while the stock holds between $3.45 and $4.05; check before confirming that the
+    Oct 22 earnings report has passed, the bid-ask gap is $0.10 or less, and Ticker
+    Forensics'' value estimate has been fixed (current one looks like a currency mix-up).'
+  report_date: 2026-10-16
+  expires: 2026-11-15
+  status: expired
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-10-22'
+  earnings_checked: '2026-10-16'
+  resolved:
+    sma20: 3.789794385433197
+    sma50: 3.4653385925292968
+    sma200: 3.507737270593643
+    ema20: 3.8653343782625056
+    52w_high: 4.499241591185831
+    52w_low: 2.920855760574341
+    support20: 3.238258927025019
+    resistance20: 4.499241591185831
+    rsi14: 57.5
+  resolved_stop: null
+  resolved_target: null
+  alerted_at: '2026-10-16T15:00:38.591896-04:00'
+  seen_high: 3.990000009536743
+  seen_low: 3.9700000286102295
+- id: AMD-forensic-2026-10-17
+  source: forensic
+  ticker: AMD
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 22.2
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 16.65
+    target:
+      price: 33.13
+    max_hold_days: 540
+  recommendation: 'WATCH at 80% confidence: buy below $22.20 (33% under the $33.13
+    estimated value), sell at value; check before confirming: earnings on 2026-11-03,
+    any new share issuance under the August 2026 shelf, and recent news.'
+  report_date: 2026-10-17
+  expires: 2027-01-15
+  status: cancelled
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-11-03'
+  earnings_checked: '2026-10-17'
+- id: NB-forensic-2026-10-17
+  source: forensic
+  ticker: NB
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 2.83
+  exit_plan:
+    stop:
+      price: 2.43
+    target:
+      price: 3.63
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 40: buy at or below $2.83 (pullback of 1.5x a
+    normal day''s move, no chart support within 20%), sell at $3.63 (twice the risk
+    taken, no value target above the entry), stop $2.43; chart-based entry, not a
+    value bargain: keep it small; check before confirming: 10-Q due by Nov 16, any
+    new share offering, EXIM financing news.'
+  report_date: 2026-10-17
+  expires: 2027-01-15
+  status: cancelled
+  cancel_reason: 'Playbook 2026-10-21: not cheap. Price $3.13 vs asset value ~$2.62-2.71/share;
+    no revenue, burning cash, heavy share issuance (playbook drops loss-making net-nets).'
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-11-16'
+  earnings_checked: '2026-10-21'
+  resolved:
+    sma20: 3.3552500009536743
+    sma50: 3.8409999895095823
+    sma200: 5.011300020217895
+    ema20: 3.3499649522336092
+    52w_high: 9.050000190734863
+    52w_low: 2.944999933242798
+    support20: 2.944999933242798
+    resistance20: 3.690000057220459
+    rsi14: 36.4
+  resolved_stop: 2.43
+  resolved_target: 3.63
+  seen_high: 3.200000047683716
+  seen_low: 2.944999933242798
+- id: NP-forensic-2026-10-17
+  source: forensic
+  ticker: NP
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 28.18
+  exit_plan:
+    stop:
+      price: 25.91
+    target:
+      price: 32.73
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $28.18 (pullback to the 20-day
+    average ($28.04)), sell at $32.73 (twice the risk taken (no value target above
+    the entry)), stop $25.91; chart-based entry, not a value bargain: keep it small;
+    check before confirming: Q3 earnings on 2026-10-20, SEC filings (not cross-checked
+    this run) and news.'
+  report_date: 2026-10-17
+  expires: 2027-01-15
+  status: filled
+  backtest:
+    wins: 1
+    losses: 1
+    signals: 2
+  earnings_date: '2027-02-17'
+  earnings_checked: '2026-10-21'
+  resolved:
+    sma20: 28.176750087738036
+    sma50: 30.359700050354004
+    sma200: 27.387974977493286
+    ema20: 28.81850803364048
+    52w_high: 35.150001525878906
+    52w_low: 14.779999732971191
+    support20: 26.510000228881836
+    resistance20: 30.3799991607666
+    rsi14: 40.5
+  resolved_stop: 25.91
+  resolved_target: 32.73
+  seen_high: 30.299999237060547
+  seen_low: 27.829999923706055
+  earnings_last: '2026-10-20'
+  earnings_reminded: '2026-10-20'
+  alerted_at: '2026-10-21T12:30:36.533668-04:00'
+  frozen: true
+- id: TGT-forensic-2026-10-17
+  source: forensic
+  ticker: TGT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 133.87
+  exit_plan:
+    stop:
+      price: 125.84
+    target:
+      price: 149.93
+    max_hold_days: 180
+  recommendation: 'WATCH at 45% confidence: buy at or below $133.87 (pullback to the
+    60-day low (support) ($133.21)), sell at $149.93 (twice the risk taken (no value
+    target above the entry)), stop $125.84; chart-based entry, not a value bargain:
+    keep it small; check before confirming: Q3 earnings on 2026-11-18, new SEC filings
+    (not checked this run) and news.'
+  report_date: 2026-10-17
+  expires: 2027-01-15
+  status: cancelled
+  cancel_reason: 'Playbook 2026-10-21: not cheap. Earnings-power value ~$63-115/share
+    vs price $152; buy-below would be ~$42-65.'
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-18'
+  earnings_checked: '2026-10-21'
+  resolved:
+    sma20: 154.79849853515626
+    sma50: 157.5933987426758
+    sma200: 131.10638725280762
+    ema20: 154.73672102607424
+    52w_high: 170.75
+    52w_low: 81.20354574102596
+    support20: 150.4600067138672
+    resistance20: 160.8000030517578
+    rsi14: 44.2
+  resolved_stop: 125.84
+  resolved_target: 149.93
+  seen_high: 157.36000061035156
+  seen_low: 152.1699981689453
+- id: BTG-option-2026-10-17
+  source: option
+  ticker: BTG
+  action: BUY_CALL
+  conditions:
+  - type: price
+    op: '>='
+    value: 5.88
+  contract:
+    right: call
+    strike: 5
+    expiry: 2027-01-15
+  recommendation: 'BTG Jan 15 2027 $5 call, verdict pass for now: consider it only
+    after BTG trades above $5.88 (60-day high); check that the Nov 4 Q3 results showed
+    positive free cash flow and the live bid/ask before confirming.'
+  report_date: 2026-10-17
+  expires: 2026-11-16
+  status: cancelled
+  cancel_reason: 'Playbook 2026-10-21: stock not cheap (value ~$2.70-4.85 vs $5.25
+    at mid-cycle and spot gold) and a 3-month call is short-dated speculation; playbook
+    allows only small LEAPS on researched cheap names.'
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-11-04'
+  earnings_checked: '2026-10-21'
+  resolved:
+    sma20: 5.216999959945679
+    sma50: 5.3283320236206055
+    sma200: 4.787285304069519
+    ema20: 5.2233992737850246
+    52w_high: 6.212172845833705
+    52w_low: 3.5571117873954496
+    support20: 4.920000076293945
+    resistance20: 5.510000228881836
+    rsi14: 51.0
+  resolved_stop: null
+  resolved_target: null
+  seen_high: 5.369999885559082
+  seen_low: 5.130000114440918
+- id: AMD-forensic-2026-10-17
+  source: forensic
+  ticker: AMD
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 426.15
+  exit_plan:
+    stop:
+      price: 371.61
+    target:
+      price: 535.23
+    max_hold_days: 180
+  recommendation: 'WATCH at 30% confidence: buy at or below $426.15 (pullback to the
+    60-day low (support) ($424.03)), sell at $535.23 (twice the risk taken (no value
+    target above the entry)), stop $371.61; chart-based entry, not a value bargain:
+    keep it small; check before confirming: Q3 earnings on 2026-11-03, new SEC filings
+    (not checked this run) and news.'
+  report_date: 2026-10-17
+  expires: 2027-01-15
+  status: cancelled
+  cancel_reason: 'Playbook 2026-10-21: not cheap. Zero-growth value ~$27-32/share
+    vs price $553; returns on capital below cost of capital, so growth adds no value
+    under the playbook.'
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2026-11-03'
+  earnings_checked: '2026-10-21'
+  resolved:
+    sma20: 598.9809936523437
+    sma50: 541.103798828125
+    sma200: 399.08150001525877
+    ema20: 574.7260381271021
+    52w_high: 658.52001953125
+    52w_low: 188.22000122070312
+    support20: 524.5999755859375
+    resistance20: 658.52001953125
+    rsi14: 45.1
+  resolved_stop: 371.61
+  resolved_target: 535.23
+  seen_high: 556.7899780273438
+  seen_low: 524.5999755859375
+- id: ITB-option-2026-10-17
+  source: option
+  ticker: ITB
+  action: BUY_PUT
+  conditions:
+  - type: price
+    op: '>='
+    value: 84.67
+  - type: price
+    op: <=
+    value: 91.1
+  contract:
+    right: put
+    strike: 88
+    expiry: 2027-01-15
+  recommendation: 'ITB Jan 15 2027 $88 put, verdict adjust: buy while ITB is between
+    $84.67 and $91.10, ideally after a bounce toward $88-91, paying no more than about
+    $5.75; check before confirming: a live quote with open interest of 500+ and a
+    spread under 10% of the mid.'
+  report_date: 2026-10-17
+  expires: 2026-11-16
+  status: expired
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_checked: '2026-10-19'
+  resolved:
+    sma20: 86.68649978637696
+    sma50: 90.80062316894531
+    sma200: 95.78278106689453
+    ema20: 86.59930587023536
+    52w_high: 113.88961814933928
+    52w_low: 82.08000183105469
+    support20: 82.08000183105469
+    resistance20: 91.26000213623047
+    rsi14: 42.5
+  resolved_stop: null
+  resolved_target: null
+  alerted_at: '2026-10-19T09:30:35.967116-04:00'
+  seen_high: 86.26000213623047
+  seen_low: 86.26000213623047
+- id: NKE-forensic-2026-10-21
+  source: forensic
+  ticker: NKE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 35.86
+  exit_plan:
+    stop:
+      price: 33.71
+    target:
+      price: 40.16
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 45: buy at or below $35.86 (pullback to the 20-day
+    average ($35.68)), sell at $40.16 (twice the risk taken (no value target above
+    the entry)), stop $33.71; chart-based entry, not a value bargain: keep it small;
+    check before confirming: earnings expected 16-21 Dec 2026, SEC filings (packet
+    unavailable this run) and news after the 1 Oct guidance cut.'
+  report_date: 2026-10-21
+  expires: 2027-01-19
+  status: cancelled
+  cancel_reason: 'Playbook 2026-10-21: no margin of safety. Value ~$32-37/share vs
+    price $37.53; buy-below ~$21.50. Cash flow ran below net income last year (forensic
+    flag #1).'
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-12-17'
+  earnings_checked: '2026-10-21'
+- id: NKE-option-2026-10-21
+  source: option
+  ticker: NKE
+  action: BUY_CALL
+  conditions:
+  - type: price
+    op: <=
+    value: 35.86
+  - type: price
+    op: '>='
+    value: 33.71
+  contract:
+    right: call
+    strike: 35
+    expiry: 2026-12-18
+  recommendation: 'Watch only (no trade today): buy the Nike Dec 18 2026 $35 call
+    only if the stock pulls back to $35.86 or lower and holds above $33.71; check
+    before confirming that implied volatility is near 37% or lower, the real bid/ask
+    spread is tight, and the earnings date (expected around Dec 17) and the Nov 16-17
+    Investor Day; close by Nov 27.'
+  report_date: 2026-10-21
+  expires: 2026-11-20
+  status: cancelled
+  cancel_reason: 'Playbook 2026-10-21: stock has no margin of safety and a Dec 2026
+    call is short-dated speculation; playbook allows only small LEAPS on researched
+    cheap names.'
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-12-17'
+  earnings_checked: '2026-10-21'
+- id: DDOG-forensic-2026-10-21
+  source: forensic
+  ticker: DDOG
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 249.31
+  exit_plan:
+    stop:
+      price: 221.79
+    target:
+      price: 304.35
+    max_hold_days: 180
+  recommendation: 'WATCH at 30% confidence: buy at or below $249.31 (pullback to the
+    50-day average ($248.07)), sell at $304.35 (twice the risk taken (no value target
+    above the entry)), stop $221.79; chart-based entry, not a value bargain: keep
+    it small; check before confirming: Q3 earnings on 2026-11-04, new filings and
+    news.'
+  report_date: 2026-10-21
+  expires: 2027-01-19
+  status: cancelled
+  cancel_reason: 'Playbook 2026-10-21: not cheap. GAAP operating loss once stock pay
+    is counted as a cost; value ~$23-25/share vs price $273.'
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-04'
+  earnings_checked: '2026-10-21'
+- id: APTV-forensic-2026-10-22
+  source: forensic
+  ticker: APTV
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 43.81
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 18.13
+    target:
+      price: 81.91
+    max_hold_days: 540
+  recommendation: 'WATCH, confidence 50: buy at or below $43.81 (price is already
+    below the value buy-below line), sell at $81.91 (sell or trim when price reaches
+    estimated value), stop $18.13 as disaster insurance only, set beyond the stock''s
+    worst past fall; check before confirming: the value estimate still includes the
+    Versigent business spun off in April 2026 and is likely too high, Q3 earnings
+    on 2026-11-03, filings and news.'
+  report_date: 2026-10-22
+  expires: 2027-01-20
+  status: filled
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-02-01'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 44.028500175476076
+    sma50: 45.11659988403321
+    sma200: 60.778099899291995
+    ema20: 44.24374145167926
+    52w_high: 88.93000030517578
+    52w_low: 41.880001068115234
+    support20: 41.880001068115234
+    resistance20: 46.08000183105469
+    rsi14: 40.0
+  resolved_stop: 18.13
+  resolved_target: 81.91
+  seen_high: 43.02000045776367
+  seen_low: 41.880001068115234
+  alerted_at: '2026-10-23T13:00:32.176344-04:00'
+  frozen: true
+  earnings_time: BMO
+  earnings_last: '2026-11-03'
+  earnings_last_time: BMO
+  earnings_reminded: '2026-11-03'
+- id: MU-forensic-2026-10-22
+  source: forensic
+  ticker: MU
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 856.49
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 478.82
+    target:
+      price: 1377.85
+    max_hold_days: 540
+  recommendation: 'BUY, confidence 65: buy at or below $856.49 (price is already below
+    the value buy-below line), sell at $1377.85 (sell or trim when price reaches estimated
+    value), stop $478.82 as disaster insurance only, set beyond the stock''s worst
+    past fall; cyclical at peak margins so keep it small; check before confirming:
+    Dec 15 earnings, the Netlist ITC patent case and SEC filings (not checked this
+    run).'
+  report_date: 2026-10-22
+  expires: 2027-01-20
+  status: filled
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-12-23'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 929.7219207763671
+    sma50: 974.905458984375
+    sma200: 751.5934550476074
+    ema20: 925.1700892954832
+    52w_high: 1254.6095437059498
+    52w_low: 192.3715041476699
+    support20: 829.239990234375
+    resistance20: 1089.0486362234087
+    rsi14: 40.9
+  resolved_stop: 478.82
+  resolved_target: 1377.85
+  seen_high: 982.989990234375
+  seen_low: 829.2401123046875
+  earnings_time: AMC
+  alerted_at: '2026-11-03T09:30:38.102923-05:00'
+  frozen: true
+- id: NOK-forensic-2026-10-22
+  source: forensic
+  ticker: NOK
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 7.08
+  exit_plan:
+    stop:
+      price: 6.02
+    target:
+      price: 9.2
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $7.08 (pullback of 1.5x a
+    normal day''s move, no chart support within 20%), sell at $9.20 (twice the risk
+    taken, no value target above the entry), stop $6.02; chart-based entry, not a
+    value bargain: keep it small; fell 15% on 2026-10-22 on news (Q3 cash-flow outlook
+    cut): wait until about 2026-11-12 before confirming; SEC filings were not cross-checked
+    this run and the Q4 report is due 2027-01-28: check before confirming.'
+  report_date: 2026-10-22
+  expires: 2027-01-20
+  status: active
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2027-01-28'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 8.936000061035156
+    sma50: 9.800600070953369
+    sma200: 10.33910001039505
+    ema20: 8.881505785706198
+    52w_high: 17.450000762939453
+    52w_low: 5.860000133514404
+    support20: 7.360000133514404
+    resistance20: 10.529999732971191
+    rsi14: 32.8
+  resolved_stop: 6.02
+  resolved_target: 9.2
+  earnings_last: '2026-10-22'
+  earnings_reminded: '2026-10-22'
+  seen_high: 9.390000343322754
+  seen_low: 7.360000133514404
+  earnings_time: BMO
+- id: BB-forensic-2026-10-22
+  source: forensic
+  ticker: BB
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 7.5
+  exit_plan:
+    stop:
+      price: 6.38
+    target:
+      price: 9.75
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $7.50 (pullback to the 60-day
+    low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above
+    the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small;
+    check before confirming: Dec 17 earnings, new filings, further CEO selling and
+    news.'
+  report_date: 2026-10-22
+  expires: 2027-01-20
+  status: active
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2026-12-17'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 8.692999935150146
+    sma50: 8.463599958419799
+    sma200: 6.953799976110458
+    ema20: 8.678385025942614
+    52w_high: 13.59000015258789
+    52w_low: 3.119999885559082
+    support20: 7.960000038146973
+    resistance20: 9.640000343322754
+    rsi14: 46.9
+  resolved_stop: 6.38
+  resolved_target: 9.75
+  seen_high: 9.640000343322754
+  seen_low: 7.989999771118164
+  earnings_time: AMC
+- id: NAT-forensic-2026-10-23
+  source: forensic
+  ticker: NAT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 7.01
+  exit_plan:
+    stop:
+      price: 6.3
+    target:
+      price: 8.42
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $7.01 (pullback of 1.5x a
+    normal day''s move, no chart support within 20%), sell at $8.42 (twice the risk
+    taken, no value target above the entry), stop $6.30; chart-based entry, not a
+    value bargain: keep it small; check before confirming: Q3 earnings on 2026-11-26,
+    new filings or share sales, and tanker-rate news.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: filled
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-27'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 7.880749964714051
+    sma50: 7.658187713623047
+    sma200: 5.846140414476395
+    ema20: 7.724217996314305
+    52w_high: 8.880000114440918
+    52w_low: 2.980922209288994
+    support20: 6.940000057220459
+    resistance20: 8.880000114440918
+    rsi14: 36.5
+  resolved_stop: 6.3
+  resolved_target: 8.42
+  seen_high: 8.199999809265137
+  seen_low: 6.940000057220459
+  earnings_time: AMC
+  alerted_at: '2026-11-04T12:30:42.518616-05:00'
+  frozen: true
+- id: NKE-option-2026-10-23
+  source: option
+  ticker: NKE
+  action: BUY_PUT
+  conditions:
+  - type: price
+    op: <=
+    value: 35.8
+  - type: rsi14
+    op: <=
+    value: 50
+  contract:
+    right: put
+    strike: 37
+    expiry: 2026-12-04
+  recommendation: 'Watch only (no trade yet): buy the NKE Dec 4 2026 $37 put only
+    after the bounce fails, with a close at or below $35.80 and RSI(14) at or below
+    50; check before confirming that the put''s IV is under about 37%, the spread
+    is under 10% of the mid, and no surprise news or earnings-date change has come
+    out (prices in the evaluation were modeled, not live quotes).'
+  report_date: 2026-10-23
+  expires: 2026-11-22
+  status: active
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-12-17'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 37.52799987792969
+    sma50: 36.8812166595459
+    sma200: 44.90235992431641
+    ema20: 37.885304523450955
+    52w_high: 67.36040489291355
+    52w_low: 31.969999313354492
+    support20: 34.099998474121094
+    resistance20: 41.099998474121094
+    rsi14: 61.1
+  resolved_stop: null
+  resolved_target: null
+  seen_high: 41.099998474121094
+  seen_low: 36.842098236083984
+  earnings_time: AMC
+- id: RLX-forensic-2026-10-23
+  source: forensic
+  ticker: RLX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 1.58
+  exit_plan:
+    stop:
+      price: 1.49
+    target:
+      price: 1.77
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 50: buy at or below $1.58 (pullback of 1.5x a
+    normal day''s move, no chart support within 20%), sell at $1.77 (twice the risk
+    taken, no value target above the entry), stop $1.49; chart-based entry, not a
+    value bargain: keep it small; check before confirming: Q3 earnings on 2026-11-12,
+    the receivables flag, and new filings or news.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: active
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-11-13'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 1.6615000069141388
+    sma50: 1.711200008392334
+    sma200: 2.015600004196167
+    ema20: 1.6548186774882452
+    52w_high: 2.5999999046325684
+    52w_low: 1.5800000429153442
+    support20: 1.5800000429153442
+    resistance20: 1.75
+    rsi14: 41.0
+  resolved_stop: 1.49
+  resolved_target: 1.77
+  seen_high: 1.6799999475479126
+  seen_low: 1.5800000429153442
+  earnings_time: BMO
+- id: WIT-forensic-2026-10-23
+  source: forensic
+  ticker: WIT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 2.09
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 1.03
+    target:
+      price: 3.12
+    max_hold_days: 540
+  recommendation: 'WATCH at 60% confidence: buy at or below $2.09 (value buy-below
+    line), sell at $3.12 (estimated value), stop $1.03 as disaster insurance only,
+    set beyond the stock''s worst past fall; check before confirming: Q3 results due
+    about 13 Jan 2027, deal bookings trend, and any new filings or news (SEC cross-check
+    was unavailable this run).'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: filled
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-01-15'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 1.815750002861023
+    sma50: 1.7956999969482421
+    sma200: 2.0721626836061477
+    ema20: 1.8868781024104992
+    52w_high: 3.055299509120359
+    52w_low: 1.590000033378601
+    support20: 1.590000033378601
+    resistance20: 2.2200000286102295
+    rsi14: 70.1
+  resolved_stop: 1.03
+  resolved_target: 3.12
+  seen_high: 2.1649999618530273
+  seen_low: 2.0799999237060547
+  alerted_at: '2026-10-23T10:30:36.626515-04:00'
+  frozen: true
+  earnings_time: BMO
+- id: IMXI-forensic-2026-10-23
+  source: forensic
+  ticker: IMXI
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 9.3
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 5.04
+    target:
+      price: 16.62
+    max_hold_days: 540
+  recommendation: 'WATCH, confidence 50: buy at or below $9.30 (price is already below
+    the value buy-below line), sell at $16.62 (sell or trim when price reaches estimated
+    value), stop $5.04 as disaster insurance only, set beyond the stock''s worst past
+    fall; fell 14% on 2026-10-12 on news: wait until about 2026-11-02 before confirming;
+    check before confirming the Western Union $16 deal status (Nov 10 long-stop date),
+    Q3 earnings around Nov 9, filings and news.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: filled
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-11-09'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 10.99424991607666
+    sma50: 12.607399997711182
+    sma200: 14.395725016593934
+    ema20: 10.79309025297068
+    52w_high: 15.949999809265137
+    52w_low: 9.005000114440918
+    support20: 9.005000114440918
+    resistance20: 12.729999542236328
+    rsi14: 25.4
+  resolved_stop: 5.04
+  resolved_target: 16.62
+  alerted_at: '2026-10-23T10:00:34.623816-04:00'
+  seen_high: 9.4350004196167
+  seen_low: 9.25
+  frozen: true
+  earnings_time: AMC
+- id: DHT-forensic-2026-10-23
+  source: forensic
+  ticker: DHT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 21.96
+  exit_plan:
+    stop:
+      price: 19.75
+    target:
+      price: 26.38
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $21.96 (pullback to the 50-day
+    average ($21.85)), sell at $26.38 (twice the risk taken (no value target above
+    the entry)), stop $19.75; chart-based entry, not a value bargain: keep it small;
+    check whether VLCC rates are already rolling over from the Q4 peak, earnings,
+    filings and news before confirming.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: filled
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-09'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 24.33625011444092
+    sma50: 22.742100105285644
+    sma200: 17.828176469802855
+    ema20: 23.875739227893966
+    52w_high: 26.90999984741211
+    52w_low: 10.272415161132812
+    support20: 21.93000030517578
+    resistance20: 26.90999984741211
+    rsi14: 39.4
+  resolved_stop: 19.75
+  resolved_target: 26.38
+  seen_high: 25.354999542236328
+  seen_low: 21.93000030517578
+  earnings_time: AMC
+  alerted_at: '2026-11-04T15:30:33.501625-05:00'
+  frozen: true
+- id: SD-forensic-2026-10-23
+  source: forensic
+  ticker: SD
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 14.19
+  exit_plan:
+    stop:
+      price: 13.34
+    target:
+      price: 19.65
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 55: buy at or below $14.19 (pullback to the 50-day
+    average ($14.12)), sell at $19.65 (sell or trim at estimated value), stop $13.34;
+    chart-based entry, not a value bargain: keep it small; check the Nov 3 earnings
+    report and whether the Cherokee acquisition closed, earnings, filings and news
+    before confirming.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: filled
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-04'
+  earnings_checked: '2026-11-02'
+  resolved:
+    sma20: 14.24600009918213
+    sma50: 14.175400047302245
+    sma200: 14.680507793426514
+    ema20: 14.295157418533675
+    52w_high: 17.776164109297373
+    52w_low: 11.224171235267809
+    support20: 13.569999694824219
+    resistance20: 14.850000381469727
+    rsi14: 46.8
+  resolved_stop: 13.34
+  resolved_target: 19.65
+  seen_high: 14.829999923706055
+  seen_low: 14.100000381469727
+  earnings_time: AMC
+  alerted_at: '2026-11-02T09:30:36.343886-05:00'
+  frozen: true
+- id: SHOE-forensic-2026-10-23
+  source: forensic
+  ticker: SHOE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 14.09
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 6.23
+    target:
+      price: 29.36
+    max_hold_days: 540
+  recommendation: 'WATCH, confidence 55: buy at or below $14.09 (price is already
+    below the value buy-below line), sell at $29.36 (sell or trim when price reaches
+    estimated value), stop $6.23; the stop is disaster insurance only, set beyond
+    the stock''s worst past fall; check whether Q3 gross margin has stabilised, earnings,
+    filings and news before confirming.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: filled
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-11-26'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 13.178090953826905
+    sma50: 13.455845432281494
+    sma200: 16.091033120155334
+    ema20: 13.395835235931022
+    52w_high: 20.859206741064842
+    52w_low: 10.064741920158665
+    support20: 12.05795639386257
+    resistance20: 14.279999732971191
+    rsi14: 59.9
+  resolved_stop: 6.23
+  resolved_target: 29.36
+  alerted_at: '2026-10-23T13:00:32.176344-04:00'
+  frozen: true
+  seen_high: 14.229900360107422
+  seen_low: 14.0600004196167
+  earnings_time: BMO
+- id: RES-forensic-2026-10-23
+  source: forensic
+  ticker: RES
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 6.3
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 3.74
+    target:
+      price: 9.47
+    max_hold_days: 540
+  recommendation: 'BUY, confidence 50: buy at or below $6.30 (price is already below
+    the value buy-below line), sell at $9.47 (sell or trim when price reaches estimated
+    value), stop $3.74; the stop is disaster insurance only, set beyond the stock''s
+    worst past fall; check Q3 results on Oct 29, earnings, filings and news before
+    confirming.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: filled
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-02-02'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 5.982250022888183
+    sma50: 6.138100004196167
+    sma200: 6.322251183986664
+    ema20: 6.064650041914704
+    52w_high: 8.056721611509406
+    52w_low: 4.613420132189525
+    support20: 5.579999923706055
+    resistance20: 6.400000095367432
+    rsi14: 56.4
+  resolved_stop: 3.74
+  resolved_target: 9.47
+  alerted_at: '2026-10-30T09:50:00-04:00'
+  seen_high: 6.320000171661377
+  seen_low: 6.255000114440918
+  frozen: true
+  earnings_last: '2026-10-29'
+  earnings_reminded: '2026-10-29'
+  earnings_time: BMO
+- id: RES-option-2026-10-23
+  source: option
+  ticker: RES
+  action: BUY_CALL
+  conditions:
+  - type: price
+    op: '>='
+    value: 5.17
+  - type: price
+    op: <=
+    value: 6.35
+  contract:
+    right: call
+    strike: 5
+    expiry: 2027-03-19
+  recommendation: 'Watch only (no trade yet): RES Mar 19 2027 $5 call, only while
+    the stock holds between $5.17 and the $6.35 value buy-below line; check before
+    confirming that the Oct 29 earnings report is out, that the bid-ask gap is under
+    15% of mid (it was about 73%), and pay no more than about $1.60.'
+  report_date: 2026-10-23
+  expires: 2026-11-22
+  status: expired
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-10-29'
+  earnings_checked: '2026-10-23'
+  resolved:
+    sma20: 5.982250022888183
+    sma50: 6.138100004196167
+    sma200: 6.322251183986664
+    ema20: 6.064650041914704
+    52w_high: 8.056721611509406
+    52w_low: 4.613420132189525
+    support20: 5.579999923706055
+    resistance20: 6.400000095367432
+    rsi14: 56.4
+  resolved_stop: null
+  resolved_target: null
+  alerted_at: '2026-10-23T13:00:32.176344-04:00'
+  seen_high: 6.320000171661377
+  seen_low: 6.255000114440918
+- id: SPCX-forensic-2026-10-23
+  source: forensic
+  ticker: SPCX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 135.19
+  exit_plan:
+    stop:
+      price: 118.63
+    target:
+      price: 168.31
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $135.19 (pullback of 1.5×
+    a normal day''s move (no chart support within 20%)), sell at $168.31 (twice the
+    risk taken (no value target above the entry)), stop $118.63; chart-based entry,
+    not a value bargain: keep it small; check the SpaceX-Tesla merger terms, earnings,
+    filings and news before confirming.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: filled
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-02-09'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 153.375
+    sma50: 149.56860076904297
+    ema20: 148.87418133815726
+    52w_high: 225.63999938964844
+    52w_low: 104.83000183105469
+    support20: 135.02000427246094
+    resistance20: 176.4199981689453
+    rsi14: 37.4
+  resolved_stop: 118.63
+  resolved_target: 168.31
+  seen_high: 151.35000610351562
+  seen_low: 135.05999755859375
+  alerted_at: '2026-10-30T15:30:35.665041-04:00'
+  frozen: true
+  earnings_time: AMC
+- id: MNST-forensic-2026-10-23
+  source: forensic
+  ticker: MNST
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 45.06
+  exit_plan:
+    stop:
+      price: 42.36
+    target:
+      price: 50.47
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $45.06 (pullback to the 50-day
+    average ($44.84)), sell at $50.47 (twice the risk taken (no value target above
+    the entry)), stop $42.36; chart-based entry, not a value bargain: keep it small;
+    check the Nov 4 earnings result, earnings, filings and news before confirming.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-05'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 46.14849987030029
+    sma50: 44.72819999694824
+    sma200: 43.24420007705689
+    ema20: 46.332826082657306
+    52w_high: 50.16999816894531
+    52w_low: 32.939998626708984
+    support20: 43.22999954223633
+    resistance20: 49.5
+    rsi14: 60.0
+  resolved_stop: 42.36
+  resolved_target: 50.47
+  seen_high: 49.14500045776367
+  seen_low: 45.064998626708984
+  earnings_time: AMC
+- id: TSLA-forensic-2026-10-23
+  source: forensic
+  ticker: TSLA
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 302.84
+  exit_plan:
+    stop:
+      price: 277.6
+    target:
+      price: 353.31
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $302.84 (pullback to the
+    60-day low (support) ($301.33)), sell at $353.31 (twice the risk taken (no value
+    target above the entry)), stop $277.60; chart-based entry, not a value bargain:
+    keep it small; check the Tesla–SpaceX merger review, earnings, filings and news
+    before confirming.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: active
+  backtest:
+    wins: 1
+    losses: 1
+    signals: 2
+  earnings_date: '2027-01-27'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 381.64649963378906
+    sma50: 372.0689984130859
+    sma200: 384.3207989501953
+    ema20: 382.0679465155164
+    52w_high: 498.8299865722656
+    52w_low: 297.3800048828125
+    support20: 338.1499938964844
+    resistance20: 414.2300109863281
+    rsi14: 35.8
+  resolved_stop: 277.6
+  resolved_target: 353.31
+  seen_high: 414.2300109863281
+  seen_low: 338.1499938964844
+  earnings_time: AMC
+- id: TSLA-option-2026-10-23
+  source: option
+  ticker: TSLA
+  action: BUY_CALL
+  conditions:
+  - type: price
+    op: <=
+    value: 302.84
+  - type: price
+    op: '>='
+    value: 277.6
+  contract:
+    right: call
+    strike: 290
+    expiry: 2027-01-15
+  recommendation: 'Watch only (No trade today, research says HOLD): buy the Jan 15
+    2027 $290 call only if TSLA pulls back to about $302.84 and stays above $277.60;
+    check before confirming that the selling has stopped (RSI turning up), IV is near
+    40% or lower, no new red-flag news, and the real bid/ask spread is tight.'
+  report_date: 2026-10-23
+  expires: 2026-11-22
+  status: active
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2027-01-27'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 381.64649963378906
+    sma50: 372.0689984130859
+    sma200: 384.3207989501953
+    ema20: 382.0679465155164
+    52w_high: 498.8299865722656
+    52w_low: 297.3800048828125
+    support20: 338.1499938964844
+    resistance20: 414.2300109863281
+    rsi14: 35.8
+  resolved_stop: null
+  resolved_target: null
+  seen_high: 414.2300109863281
+  seen_low: 338.1499938964844
+  earnings_time: AMC
+- id: VVX-forensic-2026-10-23
+  source: forensic
+  ticker: VVX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 74.09
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 51.83
+    target:
+      price: 177.05
+    max_hold_days: 540
+  recommendation: 'BUY, confidence 65: buy at or below $74.09 (price is already below
+    the value buy-below line), sell at $177.05 (sell or trim when price reaches estimated
+    value), stop $51.83; the stop is disaster insurance only, set beyond the stock''s
+    worst past fall; check the Q3 bookings on 2026-11-02, earnings, filings and news
+    before confirming.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: expired
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-11-02'
+  earnings_checked: '2026-10-26'
+  resolved:
+    sma20: 70.84099998474122
+    sma50: 74.15080001831055
+    sma200: 73.577050075531
+    ema20: 72.00712057333715
+    52w_high: 93.9800033569336
+    52w_low: 50.888999938964844
+    support20: 66.83000183105469
+    resistance20: 77.29000091552734
+    rsi14: 64.1
+  resolved_stop: 51.83
+  resolved_target: 177.05
+  alerted_at: '2026-10-26T09:30:37.423133-04:00'
+  seen_high: 73.94000244140625
+  seen_low: 73.94000244140625
+- id: NGVT-forensic-2026-10-23
+  source: forensic
+  ticker: NGVT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 66.76
+  exit_plan:
+    stop:
+      price: 62.75
+    target:
+      price: 74.77
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $66.76 (pullback to the 60-day
+    low (support) ($66.43)), sell at $74.77 (twice the risk taken (no value target
+    above the entry)), stop $62.75; chart-based entry, not a value bargain: keep it
+    small; check the gap between GAAP and adjusted earnings in the Nov 4 report, earnings,
+    filings and news before confirming.'
+  report_date: 2026-10-23
+  expires: 2027-01-21
+  status: active
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2027-02-24'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 71.21749992370606
+    sma50: 70.56239990234376
+    sma200: 71.35599996566772
+    ema20: 71.49169111485571
+    52w_high: 79.29000091552734
+    52w_low: 45.849998474121094
+    support20: 61.67250061035156
+    resistance20: 76.33000183105469
+    rsi14: 29.1
+  resolved_stop: 62.75
+  resolved_target: 74.77
+  seen_high: 76.33000183105469
+  seen_low: 61.67250061035156
+  earnings_time: AMC
+  earnings_last: '2026-11-04'
+  earnings_last_time: AMC
+  earnings_reminded: '2026-11-04'
+  hold_alerted: '2026-11-04'
+- id: NVDA-forensic-2026-10-24
+  source: forensic
+  ticker: NVDA
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 204.38
+  exit_plan:
+    stop:
+      price: 192.12
+    target:
+      price: 260.33
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $204.38 (pullback to the
+    200-day average ($203.36)), sell at $260.33 (sell or trim at estimated value),
+    stop $192.12; chart-based entry, not a value bargain: keep it small; check how
+    the Nov 17 earnings report lands, earnings, filings and news before confirming.'
+  report_date: 2026-10-24
+  expires: 2027-01-22
+  status: filled
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-17'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 221.40900192260742
+    sma50: 221.66441680908204
+    sma200: 204.08711921691895
+    ema20: 218.0764968441992
+    52w_high: 243.3699951171875
+    52w_low: 163.89537828689438
+    support20: 203.41000366210938
+    resistance20: 243.3699951171875
+    rsi14: 34.4
+  resolved_stop: 192.12
+  resolved_target: 260.33
+  seen_high: 219.69000244140625
+  seen_low: 203.41000366210938
+  alerted_at: '2026-10-30T13:00:35.547367-04:00'
+  frozen: true
+  earnings_time: AMC
+- id: OKTA-option-2026-10-24
+  source: option
+  ticker: OKTA
+  action: BUY_PUT
+  conditions:
+  - type: price
+    op: <=
+    value: 185
+  contract:
+    right: put
+    strike: 220
+    expiry: 2027-02-19
+  recommendation: 'Watch only (no trade yet): consider the Feb 19 2027 $220 put only
+    if Okta falls to or below its 50-day average near $185; check before confirming
+    that earnings (expected about Nov 30 - Dec 3) are out, that implied volatility
+    is near or under 65%, and that the Ticker Forensics rating has not stayed HOLD
+    in an uptrend.'
+  report_date: 2026-10-24
+  expires: 2026-11-23
+  status: expired
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-12-01'
+  earnings_checked: '2026-11-02'
+  resolved:
+    sma20: 212.04975051879882
+    sma50: 193.77699981689454
+    sma200: 124.9670002746582
+    ema20: 208.08263972052103
+    52w_high: 235.0
+    52w_low: 62.65999984741211
+    support20: 183.22000122070312
+    resistance20: 235.0
+    rsi14: 40.1
+  resolved_stop: null
+  resolved_target: null
+  seen_high: 228.72000122070312
+  seen_low: 183.1199951171875
+  earnings_time: AMC
+  alerted_at: '2026-11-02T16:00:40.179481-05:00'
+- id: SMP-forensic-2026-10-24
+  source: forensic
+  ticker: SMP
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 34.84
+  exit_plan:
+    stop:
+      price: 32.75
+    target:
+      price: 51.12
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $34.84 (pullback to the 60-day
+    low (support) ($34.67)), sell at $51.12 (sell or trim at estimated value), stop
+    $32.75; chart-based entry, not a value bargain: keep it small; check who the permanent
+    CFO will be and the Oct 30 earnings, earnings, filings and news before confirming.'
+  report_date: 2026-10-24
+  expires: 2027-01-22
+  status: active
+  backtest:
+    wins: 1
+    losses: 1
+    signals: 2
+  earnings_date: '2027-02-25'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 39.08449993133545
+    sma50: 38.32999984741211
+    sma200: 38.302545318603514
+    ema20: 40.39056368503434
+    52w_high: 47.27000045776367
+    52w_low: 33.688773312486
+    support20: 34.66999816894531
+    resistance20: 47.27000045776367
+    rsi14: 77.1
+  resolved_stop: 32.75
+  resolved_target: 51.12
+  seen_high: 47.27000045776367
+  seen_low: 36.83000183105469
+  earnings_last: '2026-10-30'
+  earnings_last_time: null
+  earnings_reminded: '2026-10-30'
+  earnings_time: BMO
+- id: OKTA-forensic-2026-10-24
+  source: forensic
+  ticker: OKTA
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 185.93
+  exit_plan:
+    stop:
+      price: 162.49
+    target:
+      price: 232.82
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $185.93 (pullback to the
+    50-day average ($185.00)), sell at $232.82 (twice the risk taken (no value target
+    above the entry)), stop $162.49; chart-based entry, not a value bargain: keep
+    it small; check who left in the 2026-09-18 8-K executive change, earnings, filings
+    and news before confirming.'
+  report_date: 2026-10-24
+  expires: 2027-01-22
+  status: expired
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-12-01'
+  earnings_checked: '2026-11-02'
+  resolved:
+    sma20: 212.04975051879882
+    sma50: 193.77699981689454
+    sma200: 124.9670002746582
+    ema20: 208.08263972052103
+    52w_high: 235.0
+    52w_low: 62.65999984741211
+    support20: 183.22000122070312
+    resistance20: 235.0
+    rsi14: 40.1
+  resolved_stop: 162.49
+  resolved_target: 232.82
+  seen_high: 228.72000122070312
+  seen_low: 183.1199951171875
+  earnings_time: AMC
+  alerted_at: '2026-11-02T16:00:40.179481-05:00'
+- id: RTX-forensic-2026-10-24
+  source: forensic
+  ticker: RTX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 179.92
+  exit_plan:
+    stop:
+      price: 169.12
+    target:
+      price: 201.51
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 70: buy at or below $179.92 (pullback to the
+    60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value
+    target above the entry)), stop $169.12; chart-based entry, not a value bargain:
+    keep it small; check whether the cash-flow recovery relies on selling receivables,
+    earnings, filings and news before confirming.'
+  report_date: 2026-10-24
+  expires: 2027-01-22
+  status: active
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2027-01-26'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 193.4900001525879
+    sma50: 193.9043994140625
+    sma200: 194.45733390808107
+    ema20: 194.97143206265298
+    52w_high: 226.41000366210938
+    52w_low: 164.95067760811705
+    support20: 181.14999389648438
+    resistance20: 205.6199951171875
+    rsi14: 46.4
+  resolved_stop: 169.12
+  resolved_target: 201.51
+  seen_high: 205.61500549316406
+  seen_low: 190.10000610351562
+  earnings_time: BMO
+- id: SN-forensic-2026-10-24
+  source: forensic
+  ticker: SN
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 188.71
+  exit_plan:
+    stop:
+      price: 176.12
+    target:
+      price: 213.89
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $188.71 (pullback to the
+    20-day average ($187.77)), sell at $213.89 (twice the risk taken (no value target
+    above the entry)), stop $176.12; chart-based entry, not a value bargain: keep
+    it small; check earnings, filings and news before confirming.'
+  report_date: 2026-10-24
+  expires: 2027-01-22
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-10'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 199.1345001220703
+    sma50: 185.38380065917968
+    sma200: 144.3931503677368
+    ema20: 201.08776613460844
+    52w_high: 225.68499755859375
+    52w_low: 83.20999908447266
+    support20: 183.35499572753906
+    resistance20: 225.68499755859375
+    rsi14: 71.4
+  resolved_stop: 176.12
+  resolved_target: 213.89
+  seen_high: 225.68499755859375
+  seen_low: 192.35780334472656
+  earnings_time: BMO
+  earnings_last: '2026-11-04'
+  earnings_last_time: BMO
+  earnings_reminded: '2026-11-04'
+- id: NFG-forensic-2026-10-28
+  source: forensic
+  ticker: NFG
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 75.41
+  exit_plan:
+    stop:
+      price: 70.89
+    target:
+      price: 84.46
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 55: buy at or below $75.41 (pullback to the 60-day
+    low (support) ($75.03)), sell at $84.46 (twice the risk taken (no value target
+    above the entry)), stop $70.89; chart-based entry, not a value bargain: keep it
+    small; check the 2027 spinoff terms, earnings, filings and news before confirming.'
+  report_date: 2026-10-28
+  expires: 2027-01-26
+  status: filled
+  backtest:
+    wins: 2
+    losses: 1
+    signals: 3
+  earnings_date: '2027-01-27'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 79.4952491760254
+    sma50: 79.75496795654297
+    sma200: 82.34502922058105
+    ema20: 79.18445931908522
+    52w_high: 95.33606468292564
+    52w_low: 74.10207157869631
+    support20: 75.11000061035156
+    resistance20: 81.98999786376953
+    rsi14: 35.1
+  resolved_stop: 70.89
+  resolved_target: 84.46
+  seen_high: 81.27059936523438
+  seen_low: 75.11000061035156
+  earnings_time: AMC
+  alerted_at: '2026-11-04T15:00:37.642713-05:00'
+  frozen: true
+  earnings_last: '2026-11-04'
+  earnings_last_time: AMC
+  earnings_reminded: '2026-11-04'
+- id: DVN-forensic-2026-10-28
+  source: forensic
+  ticker: DVN
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 49.79
+  exit_plan:
+    stop:
+      price: 46.8
+    target:
+      price: 55.76
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 45: buy at or below $49.79 (pullback to the 20-day
+    average ($49.54)), sell at $55.76 (twice the risk taken (no value target above
+    the entry)), stop $46.80; chart-based entry, not a value bargain: keep it small;
+    check whether the 2026-04-21 10-K/A restated any numbers, earnings, filings and
+    news before confirming.'
+  report_date: 2026-10-28
+  expires: 2027-01-26
+  status: filled
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-05'
+  earnings_checked: '2026-11-04'
+  resolved:
+    sma20: 50.05949954986572
+    sma50: 48.83040802001953
+    sma200: 45.59100341796875
+    ema20: 50.150210209721074
+    52w_high: 52.279998779296875
+    52w_low: 31.1168596767225
+    support20: 47.209999084472656
+    resistance20: 52.279998779296875
+    rsi14: 50.4
+  resolved_stop: 46.8
+  resolved_target: 55.76
+  seen_high: 52.279998779296875
+  seen_low: 49.720001220703125
+  earnings_time: AMC
+  alerted_at: '2026-11-02T11:30:32.409032-05:00'
+  frozen: true
+- id: OKE-forensic-2026-10-28
+  source: forensic
+  ticker: OKE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 92.33
+  exit_plan:
+    stop:
+      price: 86.79
+    target:
+      price: 103.41
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $92.33 (pullback to the 20-day
+    average ($91.87)), sell at $103.41 (twice the risk taken (no value target above
+    the entry)), stop $86.79; chart-based entry, not a value bargain: keep it small;
+    check that the value holds up once the pipeline assets are counted, earnings,
+    filings and news before confirming.'
+  report_date: 2026-10-28
+  expires: 2027-01-26
+  status: filled
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-22'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 92.95900039672851
+    sma50: 92.810400390625
+    sma200: 87.71832344055176
+    ema20: 93.50767647919552
+    52w_high: 99.8499984741211
+    52w_low: 61.671785114849555
+    support20: 87.16000366210938
+    resistance20: 97.6500015258789
+    rsi14: 48.4
+  resolved_stop: 86.79
+  resolved_target: 103.41
+  seen_high: 97.6500015258789
+  seen_low: 92.0199966430664
+  earnings_time: AMC
+  alerted_at: '2026-11-02T13:30:36.488498-05:00'
+  frozen: true
+- id: NBIS-forensic-2026-10-28
+  source: forensic
+  ticker: NBIS
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 134.87
+  exit_plan:
+    stop:
+      price: 114.64
+    target:
+      price: 175.33
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $134.87 (pullback of 1.5×
+    a normal day''s move (no chart support within 20%)), sell at $175.33 (twice the
+    risk taken (no value target above the entry)), stop $114.64; chart-based entry,
+    not a value bargain: keep it small; check whether the 2026-05-22 20-F/A restated
+    numbers, earnings, filings and news before confirming.'
+  report_date: 2026-10-28
+  expires: 2027-01-26
+  status: expired
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2026-11-12'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 169.8090015411377
+    sma50: 203.4801005554199
+    sma200: 178.21285049438475
+    ema20: 168.56890262899108
+    52w_high: 299.8599853515625
+    52w_low: 73.5199966430664
+    support20: 113.30000305175781
+    resistance20: 225.3000030517578
+    rsi14: 29.7
+  resolved_stop: 114.64
+  resolved_target: 175.33
+  seen_high: 178.0500030517578
+  seen_low: 131.9199981689453
+  earnings_time: BMO
+  alerted_at: '2026-11-05T09:30:32.385083-05:00'
+- id: HOPE-forensic-2026-10-29
+  source: forensic
+  ticker: HOPE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 13.66
+  exit_plan:
+    stop:
+      price: 12.84
+    target:
+      price: 15.3
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $13.66 (pullback to the 20-day
+    average ($13.60)), sell at $15.30 (twice the risk taken (no value target above
+    the entry)), stop $12.84; chart-based entry, not a value bargain: keep it small;
+    check earnings, filings and news before confirming.'
+  report_date: 2026-10-29
+  expires: 2027-01-27
+  status: filled
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-01-26'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 13.60024995803833
+    sma50: 13.747699947357178
+    sma200: 12.67172269821167
+    ema20: 13.711353499829272
+    52w_high: 14.59000015258789
+    52w_low: 9.488475127654802
+    support20: 13.029999732971191
+    resistance20: 14.279999732971191
+    rsi14: 46.8
+  resolved_stop: 12.84
+  resolved_target: 15.3
+  alerted_at: '2026-10-30T09:50:00-04:00'
+  seen_high: 13.989999771118164
+  seen_low: 13.604999542236328
+  frozen: true
+  earnings_time: BMO
+- id: OGE-forensic-2026-10-29
+  source: forensic
+  ticker: OGE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 47.3
+  exit_plan:
+    stop:
+      price: 44.46
+    target:
+      price: 52.98
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $47.30 (pullback to the 20-day
+    average ($47.07)), sell at $52.98 (twice the risk taken (no value target above
+    the entry)), stop $44.46; chart-based entry, not a value bargain: keep it small;
+    check earnings, filings and news before confirming.'
+  report_date: 2026-10-29
+  expires: 2027-01-27
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-17'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 48.39949970245361
+    sma50: 46.616958694458006
+    sma200: 46.55687812805176
+    ema20: 48.566034697360095
+    52w_high: 51.58000183105469
+    52w_low: 40.59343732909513
+    support20: 45.880001068115234
+    resistance20: 51.58000183105469
+    rsi14: 70.2
+  resolved_stop: 44.46
+  resolved_target: 52.98
+  seen_high: 51.599998474121094
+  seen_low: 48.689998626708984
+  earnings_time: BMO
+- id: CRWV-spread-2026-10-29
+  source: option
+  ticker: CRWV
+  action: SPREAD
+  conditions:
+  - type: price
+    op: '>='
+    value: 61.66
+  - type: price
+    op: <=
+    value: 74.89
+  contract:
+    expiry: 2026-12-18
+    legs:
+    - side: buy
+      right: put
+      strike: 65
+    - side: sell
+      right: put
+      strike: 55
+  recommendation: 'Bear put spread: buy the CRWV Dec 18 $65 put, sell the $55 put
+    for about $4.93 or less, while CRWV is between $61.66 and $74.89. Holds through
+    Nov 10 earnings on purpose; close by Nov 27.'
+  report_date: 2026-10-29
+  expires: 2026-11-27
+  status: expired
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-11-10'
+  earnings_checked: '2026-10-29'
+  resolved:
+    sma20: 70.50625
+    sma50: 80.15050018310546
+    sma200: 91.52409996032715
+    ema20: 67.80886709546553
+    52w_high: 138.36000061035156
+    52w_low: 51.2400016784668
+    support20: 51.2400016784668
+    resistance20: 93.20999908447266
+    rsi14: 38.0
+  resolved_stop: null
+  resolved_target: null
+  alerted_at: '2026-10-29T11:30:32.823621-04:00'
+  seen_high: 63.38999938964844
+  seen_low: 62.902801513671875
+- id: PLAB-forensic-2026-10-30
+  source: forensic
+  ticker: PLAB
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 26.21
+  exit_plan:
+    stop:
+      price: 24.12
+    target:
+      price: 30.38
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $26.21 (pullback of 1.5×
+    a normal day''s move (no chart support within 20%)), sell at $30.38 (twice the
+    risk taken (no value target above the entry)), stop $24.12; chart-based entry,
+    not a value bargain: keep it small; check the Dec 8 earnings and the law-firm
+    investigations, earnings, filings and news before confirming.'
+  report_date: 2026-10-30
+  expires: 2027-01-28
+  status: expired
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2026-12-09'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 28.26750020980835
+    sma50: 28.928200073242188
+    sma200: 35.28354995727539
+    ema20: 28.221806323920873
+    52w_high: 56.0
+    52w_low: 20.049999237060547
+    support20: 24.920000076293945
+    resistance20: 30.229999542236328
+    rsi14: 32.4
+  resolved_stop: 24.12
+  resolved_target: 30.38
+  seen_high: 29.020000457763672
+  seen_low: 26.100000381469727
+  earnings_time: BMO
+  alerted_at: '2026-11-05T09:30:32.385083-05:00'
+- id: RES-forensic-2026-10-30
+  source: forensic
+  ticker: RES
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 6.34
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 3.76
+    target:
+      price: 9.47
+    max_hold_days: 540
+  recommendation: 'WATCH, confidence 65: buy at or below $6.34 (price is already below
+    the value buy-below line), sell at $9.47 (sell or trim when price reaches estimated
+    value), stop $3.76; the stop is disaster insurance only, set beyond the stock''s
+    worst past fall; check the Q3 Pintail write-down and whether margins recover,
+    earnings, filings and news before confirming.'
+  report_date: 2026-10-30
+  expires: 2027-01-28
+  status: expired
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-02-02'
+  earnings_checked: '2026-10-30'
+  resolved:
+    sma20: 6.165000033378601
+    sma50: 6.143999996185303
+    sma200: 6.336164274215698
+    ema20: 6.209046437069003
+    52w_high: 8.056721611509406
+    52w_low: 4.902193994752978
+    support20: 5.610000133514404
+    resistance20: 6.809999942779541
+    rsi14: 49.1
+  resolved_stop: 3.76
+  resolved_target: 9.47
+  alerted_at: '2026-10-30T14:30:33.258160-04:00'
+  seen_high: 6.349999904632568
+  seen_low: 6.280099868774414
+- id: LLY-forensic-2026-10-30
+  source: forensic
+  ticker: LLY
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 1252.24
+  exit_plan:
+    stop:
+      price: 1162.42
+    target:
+      price: 1431.88
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $1,252.24 (pullback to the
+    20-day average ($1,246.01)), sell at $1,431.88 (twice the risk taken (no value
+    target above the entry)), stop $1,162.42; chart-based entry, not a value bargain:
+    keep it small; check earnings, filings and news before confirming.'
+  report_date: 2026-10-30
+  expires: 2027-01-28
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-03'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 1293.217999267578
+    sma50: 1210.6945922851562
+    sma200: 1096.4427404785156
+    ema20: 1310.2178215252718
+    52w_high: 1453.0
+    52w_low: 847.8335017278876
+    support20: 1151.6700439453125
+    resistance20: 1453.0
+    rsi14: 63.4
+  resolved_stop: 1162.42
+  resolved_target: 1431.88
+  earnings_time: BMO
+  seen_high: 1452.719970703125
+  seen_low: 1367.199951171875
+- id: RPM-forensic-2026-10-31
+  source: forensic
+  ticker: RPM
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 99.34
+  exit_plan:
+    stop:
+      price: 93.38
+    target:
+      price: 111.26
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $99.34 (pullback to the 20-day
+    average ($98.84)), sell at $111.26 (twice the risk taken (no value target above
+    the entry)), stop $93.38; chart-based entry, not a value bargain: keep it small;
+    check raw-material inflation guidance at the January report, earnings, filings
+    and news before confirming.'
+  report_date: 2026-10-31
+  expires: 2027-01-29
+  status: active
+  backtest:
+    wins: 2
+    losses: 1
+    signals: 3
+  earnings_date: '2027-01-07'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 100.77053909301758
+    sma50: 100.33409759521484
+    sma200: 104.15990436553955
+    ema20: 102.02989188276544
+    52w_high: 119.82899637626507
+    52w_low: 91.43135809054705
+    support20: 96.0465001838997
+    resistance20: 110.87000274658203
+    rsi14: 58.1
+  resolved_stop: 93.38
+  resolved_target: 111.26
+  earnings_time: BMO
+  seen_high: 110.87000274658203
+  seen_low: 104.56500244140625
+- id: SPCX-forensic-2026-10-31
+  source: forensic
+  ticker: SPCX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 115.1
+  exit_plan:
+    stop:
+      price: 100.09
+    target:
+      price: 145.13
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 35: buy at or below $115.10 (pullback to the
+    60-day low (support) ($114.53)), sell at $145.13 (twice the risk taken (no value
+    target above the entry)), stop $100.09; chart-based entry, not a value bargain:
+    keep it small; check the $40B AI financing and possible share issuance, earnings,
+    filings and news before confirming.'
+  report_date: 2026-10-31
+  expires: 2027-01-29
+  status: active
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2027-02-09'
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 146.65899925231935
+    sma50: 149.31480056762695
+    ema20: 143.8580983551685
+    52w_high: 225.63999938964844
+    52w_low: 104.83000183105469
+    support20: 120.41999816894531
+    resistance20: 167.07000732421875
+    rsi14: 32.9
+  resolved_stop: 100.09
+  resolved_target: 145.13
+  earnings_time: AMC
+  seen_high: 142.72999572753906
+  seen_low: 120.4000015258789
+- id: TNC-forensic-2026-11-03
+  source: forensic
+  ticker: TNC
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 67.95
+  exit_plan:
+    stop:
+      price: 63.87
+    target:
+      price: 76.1
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $67.95 (pullback to the 50-day
+    average ($67.61)), sell at $76.10 (twice the risk taken (no value target above
+    the entry)), stop $63.87; chart-based entry, not a value bargain: keep it small;
+    check whether the ERP problems are really behind them, earnings, filings and news
+    before confirming.'
+  report_date: 2026-11-03
+  expires: 2027-02-01
+  status: active
+  backtest:
+    wins: 1
+    losses: 1
+    signals: 2
+  earnings_date: '2027-02-22'
+  earnings_time: AMC
+  earnings_checked: '2026-11-05'
+  resolved:
+    sma20: 66.98299980163574
+    sma50: 67.77416244506836
+    sma200: 75.34291147232055
+    ema20: 67.9534145722784
+    52w_high: 91.52042474784236
+    52w_low: 59.61983996566645
+    support20: 64.4800033569336
+    resistance20: 74.87000274658203
+    rsi14: 61.6
+  resolved_stop: 63.87
+  resolved_target: 76.1
+  seen_high: 74.75990295410156
+  seen_low: 70.06500244140625
+- id: APTV-forensic-2026-11-03
+  source: forensic
+  ticker: APTV
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 44.03
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 18.07
+    target:
+      price: 90.3
+    max_hold_days: 540
+  recommendation: 'WATCH, confidence 55: buy at or below $44.03 (price is already
+    below the value buy-below line), sell at $90.30 (sell or trim when price reaches
+    estimated value), stop $18.07; the stop is disaster insurance only, set beyond
+    the stock''s worst past fall; check the value after the Versigent spinoff, earnings,
+    filings and news before confirming.'
+  report_date: 2026-11-03
+  expires: 2027-02-01
+  status: expired
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-11-03'
+  earnings_time: BMO
+  earnings_checked: '2026-11-03'
+  resolved:
+    sma20: 43.97400016784668
+    sma50: 44.42239997863769
+    sma200: 59.33164991378784
+    ema20: 43.862605126349955
+    52w_high: 88.93000030517578
+    52w_low: 41.11000061035156
+    support20: 41.11000061035156
+    resistance20: 46.08000183105469
+    rsi14: 35.3
+  resolved_stop: 18.07
+  resolved_target: 90.3
+  earnings_reminded: '2026-11-03'
+  alerted_at: '2026-11-03T10:00:42.656861-05:00'
+  seen_high: 45.21500015258789
+  seen_low: 43.91999816894531
