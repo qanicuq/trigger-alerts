@@ -1,12 +1,40 @@
-cash: 10000.0
+cash: 6595.778748576293
 peak_equity: 10000.0
 day_start_equity: 10000.0
-positions: []
+positions:
+- id: MNST-forensic-2026-11-06
+  ticker: MNST
+  action: BUY
+  entry_price: 44.7524
+  quantity: 55.8629
+  stop: 43.6
+  target: 51.95
+  max_hold_days: 180
+  review_days: null
+  is_option: false
+  reserved: 0
+  opened: '2026-11-06T09:30:36.318042-05:00'
+  source: forensic
+- id: SHOE-forensic-2026-11-06
+  ticker: SHOE
+  action: BUY
+  entry_price: 15.0075
+  quantity: 60.2515
+  stop: 6.71
+  target: 27.95
+  max_hold_days: 1080
+  review_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-11-06T09:30:37.308604-05:00'
+  source: forensic
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-05T16:30:32.554432-05:00'
-sent_slots: {}
+last_checked: '2026-11-06T09:30:31.754665-05:00'
+sent_slots:
+  2026-11-06:morning: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
 stats: {}
+day_start_date: '2026-11-06'

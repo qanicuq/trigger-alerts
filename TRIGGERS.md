@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 6, 2026 at 9:07 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 6, 2026 at 9:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**23 watching** · **0 bought (open)** · **0 ended**
+**21 watching** · **2 bought (open)** · **0 ended**
 
 ## Watching now
 
@@ -19,20 +19,18 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **NOK** | Buy shares | Price at or below $6.67 | $8.67 | $5.67 | Jan 28, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RLX** | Buy shares | Price at or below $1.55 | $1.74 | $1.45 | Nov 13, 2026 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
-| **MNST** | Buy shares | Price at or below $46.38 | $51.95 | $43.60 | Feb 25, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **LLY** | Buy shares | Price at or below $1,299.68 | $1,490.10 | $1,204.47 | Feb 3, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RPM** | Buy shares | Price at or below $101.27 | $113.88 | $94.96 | Jan 7, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **OGE** | Buy shares | Price at or below $48.64 | $54.48 | $45.72 | Feb 17, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
-| **WIT** | Buy shares | Price at or below $2.06<br>Price at least 2% above the 20-day low (support) | $3.08 | $1.02 | Jan 15, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
-| **IMXI** | Buy shares | Price at or below $7.30<br>Price at least 2% above the 20-day low (support) | $15.74 | $2.98 | Nov 9, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
-| **SHOE** | Buy shares | Price at or below $15.18<br>Price at least 2% above the 20-day low (support) | $27.95 | $6.71 | Nov 26, 2026 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **WIT** | Buy shares | Price at or below $2.06<br>Price at least 2% above the 20-day low (support) (≈$1.72) | $3.08 | $1.02 | Jan 15, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **IMXI** | Buy shares | Price at or below $7.30<br>Price at least 2% above the 20-day low (support) (≈$7.16) | $15.74 | $2.98 | Nov 9, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **DHT** | Buy shares | Price at or below $17.96 | $22.55 | $15.66 | Nov 9, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
-| **RES** | Buy shares | Price at or below $5.59<br>Price at least 2% above the 20-day low (support) | $8.69 | $3.32 | Feb 2, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **RES** | Buy shares | Price at or below $5.59<br>Price at least 2% above the 20-day low (support) (≈$5.70) | $8.69 | $3.32 | Feb 2, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **NFG** | Buy shares | Price at or below $70.98 | $79.50 | $66.72 | Jan 27, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **HOPE** | Buy shares | Price at or below $12.65 | $14.17 | $11.89 | Jan 26, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **NAT** | Buy shares | Price at or below $5.89 | $7.40 | $5.13 | Nov 27, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
-| **MU** | Buy shares | Price at or below $656.39<br>Price at least 2% above the 20-day low (support) | $1,339.75 | $322.32 | Dec 23, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **MU** | Buy shares | Price at or below $656.39<br>Price at least 2% above the 20-day low (support) (≈$663.00) | $1,339.75 | $322.32 | Dec 23, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
@@ -45,14 +43,12 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **NOK:** WATCH, confidence 70: buy at or below $6.67 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $8.67 (twice the risk taken (no value target above the entry)), stop $5.67; chart-based entry, not a value bargain: keep it small; check whether Q4 margins recover despite the supply-cost increase, earnings, filings and news before confirming.
 - **BB:** WATCH, confidence 40: buy at or below $7.50 (pullback to the 60-day low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small; check that QNX growth can justify a price 14 times the value estimate, earnings, filings and news before confirming.
 - **RLX:** WATCH, confidence 65: buy at or below $1.55 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $1.74 (twice the risk taken (no value target above the entry)), stop $1.45; chart-based entry, not a value bargain: keep it small; check the Q3 results on 2026-11-12 and why customers are paying slower, earnings, filings and news before confirming.
-- **MNST:** WATCH, confidence 75: buy at or below $46.38 (pullback to the 20-day average ($46.15)), sell at $51.95 (twice the risk taken (no value target above the entry)), stop $43.60; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check how post-midterm defense budget plans affect RTX, earnings, filings and news before confirming.
 - **LLY:** WATCH, confidence 80: buy at or below $1,299.68 (pullback to the 20-day average ($1,293.22)), sell at $1,490.10 (twice the risk taken (no value target above the entry)), stop $1,204.47; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **RPM:** WATCH, confidence 75: buy at or below $101.27 (pullback to the 20-day average ($100.77)), sell at $113.88 (twice the risk taken (no value target above the entry)), stop $94.96; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 30: buy at or below $48.64 (pullback to the 20-day average ($48.40)), sell at $54.48 (twice the risk taken (no value target above the entry)), stop $45.72; chart-based entry, not a value bargain: keep it small; check how much of the new 750M dollar share program is being sold, earnings, filings and news before confirming.
 - **WIT:** WATCH, confidence 70: buy at or below $2.06 (value buy-below line (within reach of the price)), sell at $3.08 (sell or trim when price reaches estimated value), stop $1.02; the stop is disaster insurance only, set beyond the stock's worst past fall; check that bookings are not falling further after the flat Q3 guidance, earnings, filings and news before confirming.
 - **IMXI:** WATCH, confidence 55: buy at or below $7.30 (price is already below the value buy-below line), sell at $15.74 (sell or trim when price reaches estimated value), stop $2.98; the stop is disaster insurance only, set beyond the stock's worst past fall; check the Western Union deal outcome after Nov 10, earnings, filings and news before confirming.
-- **SHOE:** WATCH, confidence 70: buy at or below $15.18 (price is already below the value buy-below line), sell at $27.95 (sell or trim when price reaches estimated value), stop $6.71; the stop is disaster insurance only, set beyond the stock's worst past fall; check that gross margin has stopped falling in the next quarterly report, earnings, filings and news before confirming.
 - **DHT:** WATCH, confidence 35: buy at or below $17.96 (pullback to the 200-day average ($17.87)), sell at $22.55 (twice the risk taken (no value target above the entry)), stop $15.66; chart-based entry, not a value bargain: keep it small; check tanker rates after the Nov 9 Q3 results, earnings, filings and news before confirming.
 - **RES:** WATCH, confidence 65: buy at or below $5.59 (price is already below the value buy-below line), sell at $8.69 (sell or trim when price reaches estimated value), stop $3.32; the stop is disaster insurance only, set beyond the stock's worst past fall; check that margins recover after the Pintail impairment and a new CEO is named, earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 35: buy at or below $70.98 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $79.50 (twice the risk taken (no value target above the entry)), stop $66.72; chart-based entry, not a value bargain: keep it small; check the spinoff terms and any new share offering, earnings, filings and news before confirming.
@@ -62,7 +58,10 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 ## Bought (open paper trades)
 
-No open trades.
+| Ticker | What | Bought at | Amount | Sell target | Stop | Bought on | Next earnings | Note |
+|---|---|---|---|---|---|---|---|---|
+| **MNST** | Stock | $44.75 | 55.86 shares | $51.95 | $43.60 | Nov 6, 2026 | Feb 25, 2027 (after close) |  |
+| **SHOE** | Stock | $15.01 | 60.25 shares | $27.95 | $6.71 | Nov 6, 2026 | Nov 26, 2026 (before open) |  |
 
 ## Closed paper trades
 
