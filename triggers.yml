@@ -1,1 +1,30 @@
-triggers: []
+triggers:
+- id: TNC-forensic-2026-11-06
+  source: forensic
+  ticker: TNC
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 67.95
+  exit_plan:
+    stop:
+      price: 63.87
+    target:
+      price: 76.1
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $67.95 (pullback to the 50-day
+    average ($67.61)), sell at $76.10 (twice the risk taken (no value target above
+    the entry)), stop $63.87; chart-based entry, not a value bargain: keep it small;
+    check earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 1
+    signals: 2
+  earnings_date: '2027-02-22'
+  earnings_time: AMC
+  earnings_checked: '2026-11-06'
