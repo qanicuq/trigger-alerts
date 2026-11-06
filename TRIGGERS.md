@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 6, 2026 at 8:54 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 6, 2026 at 8:55 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**12 watching** · **0 bought (open)** · **0 ended**
+**13 watching** · **0 bought (open)** · **0 ended**
 
 ## Watching now
 
@@ -22,6 +22,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MNST** | Buy shares | Price at or below $46.38 | $51.95 | $43.60 | Feb 25, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **LLY** | Buy shares | Price at or below $1,299.68 | $1,490.10 | $1,204.47 | Feb 3, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **RPM** | Buy shares | Price at or below $101.27 | $113.88 | $94.96 | Jan 7, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
@@ -37,6 +38,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **MNST:** WATCH, confidence 75: buy at or below $46.38 (pullback to the 20-day average ($46.15)), sell at $51.95 (twice the risk taken (no value target above the entry)), stop $43.60; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check how post-midterm defense budget plans affect RTX, earnings, filings and news before confirming.
 - **LLY:** WATCH, confidence 80: buy at or below $1,299.68 (pullback to the 20-day average ($1,293.22)), sell at $1,490.10 (twice the risk taken (no value target above the entry)), stop $1,204.47; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
+- **RPM:** WATCH, confidence 75: buy at or below $101.27 (pullback to the 20-day average ($100.77)), sell at $113.88 (twice the risk taken (no value target above the entry)), stop $94.96; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
