@@ -87,3 +87,32 @@ triggers:
   earnings_date: '2027-02-09'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
+- id: SN-forensic-2026-11-06
+  source: forensic
+  ticker: SN
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 200.13
+  exit_plan:
+    stop:
+      price: 184.47
+    target:
+      price: 231.45
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $200.13 (pullback to the
+    20-day average ($199.13)), sell at $231.45 (twice the risk taken (no value target
+    above the entry)), stop $184.47; chart-based entry, not a value bargain: keep
+    it small; check earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-10'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'
