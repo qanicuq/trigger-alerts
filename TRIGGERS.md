@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 6, 2026 at 3:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 6, 2026 at 3:42 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **21 watching** · **2 bought (open)** · **0 ended**
 
@@ -27,10 +27,10 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **IMXI** | Buy shares | Price at or below $7.30<br>Price at least 2% above the 20-day low (support) (≈$7.14) | $15.74 | $2.98 | Nov 9, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **DHT** | Buy shares | Price at or below $17.96 | $22.55 | $15.66 | Nov 9, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RES** | Buy shares | Price at or below $5.59<br>Price at least 2% above the 20-day low (support) (≈$5.41) | $8.69 | $3.32 | Feb 2, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
-| **NFG** | Buy shares | Price at or below $70.98 | $79.50 | $66.72 | Jan 27, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **HOPE** | Buy shares | Price at or below $12.65 | $14.17 | $11.89 | Jan 26, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **NAT** | Buy shares | Price at or below $5.89 | $7.40 | $5.13 | Nov 27, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **MU** | Buy shares | Price at or below $656.39<br>Price at least 2% above the 20-day low (support) (≈$663.00) | $1,339.75 | $322.32 | Dec 23, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **NFG** | Buy shares | Price at or below $70.99 | $79.51 | $66.73 | Jan 27, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
@@ -51,10 +51,10 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **IMXI:** WATCH, confidence 55: buy at or below $7.30 (price is already below the value buy-below line), sell at $15.74 (sell or trim when price reaches estimated value), stop $2.98; the stop is disaster insurance only, set beyond the stock's worst past fall; check the Western Union deal outcome after Nov 10, earnings, filings and news before confirming.
 - **DHT:** WATCH, confidence 35: buy at or below $17.96 (pullback to the 200-day average ($17.87)), sell at $22.55 (twice the risk taken (no value target above the entry)), stop $15.66; chart-based entry, not a value bargain: keep it small; check tanker rates after the Nov 9 Q3 results, earnings, filings and news before confirming.
 - **RES:** WATCH, confidence 65: buy at or below $5.59 (price is already below the value buy-below line), sell at $8.69 (sell or trim when price reaches estimated value), stop $3.32; the stop is disaster insurance only, set beyond the stock's worst past fall; check that margins recover after the Pintail impairment and a new CEO is named, earnings, filings and news before confirming.
-- **NFG:** WATCH, confidence 35: buy at or below $70.98 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $79.50 (twice the risk taken (no value target above the entry)), stop $66.72; chart-based entry, not a value bargain: keep it small; check the spinoff terms and any new share offering, earnings, filings and news before confirming.
 - **HOPE:** WATCH, confidence 65: buy at or below $12.65 (pullback to the 200-day average ($12.58)), sell at $14.17 (twice the risk taken (no value target above the entry)), stop $11.89; chart-based entry, not a value bargain: keep it small; check who left or joined in the August 2026 executive-change 8-K, earnings, filings and news before confirming.
 - **NAT:** WATCH, confidence 70: buy at or below $5.89 (pullback to the 200-day average ($5.86)), sell at $7.40 (twice the risk taken (no value target above the entry)), stop $5.13; chart-based entry, not a value bargain: keep it small; check tanker rates at the Q3 report, earnings, filings and news before confirming.
 - **MU:** WATCH, confidence 80: buy at or below $656.39 (price is already below the value buy-below line), sell at $1,339.75 (sell or trim when price reaches estimated value), stop $322.32; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 17% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check whether memory prices are holding after the November selloff, earnings, filings and news before confirming.
+- **NFG:** WATCH, confidence 35: buy at or below $70.99 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $79.51 (twice the risk taken (no value target above the entry)), stop $66.73; chart-based entry, not a value bargain: keep it small; check the lower fiscal 2027 guidance and Ohio deal debt, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

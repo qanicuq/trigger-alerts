@@ -849,50 +849,6 @@ triggers:
   resolved_target: 8.69
   seen_high: 5.679999828338623
   seen_low: 5.300000190734863
-- id: NFG-forensic-2026-11-06
-  source: forensic
-  ticker: NFG
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 70.98
-  exit_plan:
-    stop:
-      price: 66.72
-    target:
-      price: 79.5
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 35: buy at or below $70.98 (pullback of 1.5×
-    a normal day''s move (no chart support within 20%)), sell at $79.50 (twice the
-    risk taken (no value target above the entry)), stop $66.72; chart-based entry,
-    not a value bargain: keep it small; check the spinoff terms and any new share
-    offering, earnings, filings and news before confirming.'
-  report_date: 2026-11-06
-  expires: 2027-02-04
-  data_through: 2026-06-30
-  status: active
-  backtest:
-    wins: 0
-    losses: 1
-    signals: 1
-  earnings_date: '2027-01-27'
-  earnings_time: AMC
-  earnings_checked: '2026-11-06'
-  resolved:
-    sma20: 79.10824928283691
-    sma50: 79.43371047973633
-    sma200: 82.28443080902099
-    ema20: 78.33034983932899
-    52w_high: 95.3360723703471
-    52w_low: 73.68000030517578
-    support20: 73.68000030517578
-    resistance20: 81.98999786376953
-    rsi14: 31.6
-  resolved_stop: 66.72
-  resolved_target: 79.5
-  seen_high: 74.61000061035156
-  seen_low: 73.68000030517578
 - id: HOPE-forensic-2026-11-06
   source: forensic
   ticker: HOPE
@@ -1030,3 +986,33 @@ triggers:
   resolved_target: 1339.75
   seen_high: 724.7999877929688
   seen_low: 676.0006103515625
+- id: NFG-forensic-2026-11-06
+  source: forensic
+  ticker: NFG
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 70.99
+  exit_plan:
+    stop:
+      price: 66.73
+    target:
+      price: 79.51
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 35: buy at or below $70.99 (pullback of 1.5×
+    a normal day''s move (no chart support within 20%)), sell at $79.51 (twice the
+    risk taken (no value target above the entry)), stop $66.73; chart-based entry,
+    not a value bargain: keep it small; check the lower fiscal 2027 guidance and Ohio
+    deal debt, earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2027-01-27'
+  earnings_time: AMC
+  earnings_checked: '2026-11-06'
