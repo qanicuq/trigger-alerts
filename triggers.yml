@@ -174,49 +174,6 @@ triggers:
   resolved_target: 392.64
   seen_high: 363.8398132324219
   seen_low: 347.6000061035156
-- id: NKE-forensic-2026-11-06
-  source: forensic
-  ticker: NKE
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 37.72
-  exit_plan:
-    stop:
-      price: 35.29
-    target:
-      price: 42.57
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 55: buy at or below $37.72 (pullback to the 20-day
-    average ($37.53)), sell at $42.57 (twice the risk taken (no value target above
-    the entry)), stop $35.29; chart-based entry, not a value bargain: keep it small;
-    check earnings, filings and news before confirming.'
-  report_date: 2026-11-06
-  expires: 2027-02-04
-  data_through: 2026-08-31
-  status: active
-  backtest:
-    wins: 0
-    losses: 1
-    signals: 1
-  earnings_date: '2026-12-17'
-  earnings_time: AMC
-  earnings_checked: '2026-11-06'
-  resolved:
-    sma20: 37.721999931335446
-    sma50: 36.89228652954102
-    sma200: 44.77643426895142
-    ema20: 37.952418392889214
-    52w_high: 67.36040489291355
-    52w_low: 31.969999313354492
-    support20: 34.380001068115234
-    resistance20: 41.099998474121094
-    rsi14: 55.0
-  resolved_stop: 35.29
-  resolved_target: 42.57
-  seen_high: 39.17499923706055
-  seen_low: 38.16999816894531
 - id: NOK-forensic-2026-11-06
   source: forensic
   ticker: NOK
@@ -1016,4 +973,33 @@ triggers:
     signals: 3
   earnings_date: '2027-01-26'
   earnings_time: BMO
+  earnings_checked: '2026-11-06'
+- id: NKE-forensic-2026-11-06
+  source: forensic
+  ticker: NKE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 37.08
+  exit_plan:
+    stop:
+      price: 34.6
+    target:
+      price: 42.04
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $37.08 (pullback to the 50-day
+    average ($36.89)), sell at $42.04 (twice the risk taken (no value target above
+    the entry)), stop $34.60; chart-based entry, not a value bargain: keep it small;
+    check the Nov 16-17 Investor Day targets, earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-08-31
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-12-17'
+  earnings_time: AMC
   earnings_checked: '2026-11-06'
