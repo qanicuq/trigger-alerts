@@ -393,50 +393,6 @@ triggers:
   frozen: true
   seen_high: 44.72999954223633
   seen_low: 44.72999954223633
-- id: RTX-forensic-2026-11-06
-  source: forensic
-  ticker: RTX
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 179.92
-  exit_plan:
-    stop:
-      price: 169.12
-    target:
-      price: 201.51
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 70: buy at or below $179.92 (pullback to the
-    60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value
-    target above the entry)), stop $169.12; chart-based entry, not a value bargain:
-    keep it small; check how post-midterm defense budget plans affect RTX, earnings,
-    filings and news before confirming.'
-  report_date: 2026-11-06
-  expires: 2027-02-04
-  data_through: 2026-09-30
-  status: active
-  backtest:
-    wins: 1
-    losses: 2
-    signals: 3
-  earnings_date: '2027-01-26'
-  earnings_time: BMO
-  earnings_checked: '2026-11-06'
-  resolved:
-    sma20: 193.6680000305176
-    sma50: 193.45339935302735
-    sma200: 194.43381881713867
-    ema20: 194.45320032138517
-    52w_high: 226.41000366210938
-    52w_low: 164.95067760811705
-    support20: 181.14999389648438
-    resistance20: 205.6199951171875
-    rsi14: 43.6
-  resolved_stop: 169.12
-  resolved_target: 201.51
-  seen_high: 192.96279907226562
-  seen_low: 187.7100067138672
 - id: LLY-forensic-2026-11-06
   source: forensic
   ticker: LLY
@@ -1031,3 +987,33 @@ triggers:
     rsi14: 63.4
   resolved_stop: 63.19
   resolved_target: 77.95
+- id: RTX-forensic-2026-11-06
+  source: forensic
+  ticker: RTX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 179.92
+  exit_plan:
+    stop:
+      price: 169.12
+    target:
+      price: 201.51
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 80: buy at or below $179.92 (pullback to the
+    60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value
+    target above the entry)), stop $169.12; chart-based entry, not a value bargain:
+    keep it small; check the US defense budget outlook after the midterms, earnings,
+    filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2027-01-26'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'
