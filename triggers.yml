@@ -384,3 +384,33 @@ triggers:
   earnings_date: '2027-01-07'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
+- id: OGE-forensic-2026-11-06
+  source: forensic
+  ticker: OGE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 48.64
+  exit_plan:
+    stop:
+      price: 45.72
+    target:
+      price: 54.48
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 30: buy at or below $48.64 (pullback to the 20-day
+    average ($48.40)), sell at $54.48 (twice the risk taken (no value target above
+    the entry)), stop $45.72; chart-based entry, not a value bargain: keep it small;
+    check how much of the new 750M dollar share program is being sold, earnings, filings
+    and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-17'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'

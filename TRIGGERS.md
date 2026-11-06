@@ -2,7 +2,7 @@
 
 Updated Nov 6, 2026 at 8:55 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**13 watching** · **0 bought (open)** · **0 ended**
+**14 watching** · **0 bought (open)** · **0 ended**
 
 ## Watching now
 
@@ -23,6 +23,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **LLY** | Buy shares | Price at or below $1,299.68 | $1,490.10 | $1,204.47 | Feb 3, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RPM** | Buy shares | Price at or below $101.27 | $113.88 | $94.96 | Jan 7, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **OGE** | Buy shares | Price at or below $48.64 | $54.48 | $45.72 | Feb 17, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
@@ -39,6 +40,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check how post-midterm defense budget plans affect RTX, earnings, filings and news before confirming.
 - **LLY:** WATCH, confidence 80: buy at or below $1,299.68 (pullback to the 20-day average ($1,293.22)), sell at $1,490.10 (twice the risk taken (no value target above the entry)), stop $1,204.47; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **RPM:** WATCH, confidence 75: buy at or below $101.27 (pullback to the 20-day average ($100.77)), sell at $113.88 (twice the risk taken (no value target above the entry)), stop $94.96; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
+- **OGE:** WATCH, confidence 30: buy at or below $48.64 (pullback to the 20-day average ($48.40)), sell at $54.48 (twice the risk taken (no value target above the entry)), stop $45.72; chart-based entry, not a value bargain: keep it small; check how much of the new 750M dollar share program is being sold, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
