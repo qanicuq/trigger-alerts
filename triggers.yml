@@ -449,3 +449,39 @@ triggers:
   earnings_date: '2027-01-15'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
+- id: IMXI-forensic-2026-11-06
+  source: forensic
+  ticker: IMXI
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 7.3
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 2.98
+    target:
+      price: 15.74
+    max_hold_days: 1080
+    review_days: 540
+  recommendation: 'WATCH, confidence 55: buy at or below $7.30 (price is already below
+    the value buy-below line), sell at $15.74 (sell or trim when price reaches estimated
+    value), stop $2.98; the stop is disaster insurance only, set beyond the stock''s
+    worst past fall; check the Western Union deal outcome after Nov 10, earnings,
+    filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-11-09'
+  earnings_time: AMC
+  earnings_checked: '2026-11-06'
+  earnings_soon_noted: '2026-11-09'
