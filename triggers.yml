@@ -326,3 +326,32 @@ triggers:
   earnings_date: '2027-01-26'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
+- id: LLY-forensic-2026-11-06
+  source: forensic
+  ticker: LLY
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 1299.68
+  exit_plan:
+    stop:
+      price: 1204.47
+    target:
+      price: 1490.1
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 80: buy at or below $1,299.68 (pullback to the
+    20-day average ($1,293.22)), sell at $1,490.10 (twice the risk taken (no value
+    target above the entry)), stop $1,204.47; chart-based entry, not a value bargain:
+    keep it small; check earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-03'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'
