@@ -28,6 +28,7 @@ triggers:
   earnings_date: '2027-02-22'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
+  earnings_last: '2026-11-02'
   resolved:
     sma20: 67.25499992370605
     sma50: 67.80779998779298
@@ -157,6 +158,7 @@ triggers:
   earnings_date: '2027-02-25'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
+  earnings_last: '2026-10-30'
   resolved:
     sma20: 39.49724998474121
     sma50: 38.48669982910156
