@@ -675,3 +675,39 @@ triggers:
   earnings_date: '2026-11-27'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
+- id: MU-forensic-2026-11-06
+  source: forensic
+  ticker: MU
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 656.39
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 322.32
+    target:
+      price: 1339.75
+    max_hold_days: 1260
+    review_days: 540
+  recommendation: 'WATCH, confidence 80: buy at or below $656.39 (price is already
+    below the value buy-below line), sell at $1,339.75 (sell or trim when price reaches
+    estimated value), stop $322.32; the stop is disaster insurance only, set beyond
+    the stock''s worst past fall; fell 17% on 2026-11-05 on news: wait until about
+    2026-11-26 before confirming; check whether memory prices are holding after the
+    November selloff, earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-03
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-12-23'
+  earnings_time: AMC
+  earnings_checked: '2026-11-06'
