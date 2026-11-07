@@ -1,5 +1,6 @@
 import os
 import glob
+import math
 import shutil
 from datetime import datetime, date, time as dtime, timedelta
 from zoneinfo import ZoneInfo
@@ -625,6 +626,24 @@ def _thesis_broken(tr, triggers, ledger):
     common.ntfy(f"Thesis broken: {ticker}", body, priority="high")
 
 
+def _recheck(tr, ledger):
+    matched = False
+    for pos in (ledger or {}).get("positions") or []:
+        if (pos.get("ticker") == tr.get("ticker") and pos.get("source") == "forensic"
+                and not pos.get("is_option") and pos.get("action") not in ("SPREAD", "POSITION")
+                and "target_reached" in pos):
+            pos["recheck"] = {
+                "target": tr.get("target"),
+                "target_is_value": bool(tr.get("target_is_value")),
+                "franchise": bool(tr.get("franchise")),
+            }
+            pos["recheck_received"] = common.now_ny().date().isoformat()
+            matched = True
+    if not matched:
+        common.ntfy(f"{tr.get('ticker')}: fresh analysis received",
+                    "No held position was waiting on it, so nothing changed.")
+
+
 def _ingest_inbox(triggers, ledger=None):
     """Ingest inbox/*.yml. Returns True if any change."""
     os.makedirs("inbox", exist_ok=True)
@@ -641,6 +660,11 @@ def _ingest_inbox(triggers, ledger=None):
                 continue
             if tr.get("action") == "THESIS_BROKEN":
                 _thesis_broken(tr, triggers, ledger)
+                os.remove(path)
+                changed = True
+                continue
+            if tr.get("action") == "RECHECK":
+                _recheck(tr, ledger)
                 os.remove(path)
                 changed = True
                 continue
@@ -774,7 +798,7 @@ def _close_position(ledger, pos, exit_price, reason, now):
     closed = dict(pos)
     closed["exit_price"] = exit_price
     closed["exit_reason"] = reason
-    closed["pl"] = round(pl, 2)
+    closed["pl"] = round(pl + float(pos.get("trimmed_pl") or 0), 2)
     closed["closed"] = now.isoformat()
     ledger.setdefault("closed_trades", []).append(closed)
     ledger["positions"] = [p for p in ledger.get("positions", []) if p.get("id") != pos.get("id")]
@@ -782,7 +806,7 @@ def _close_position(ledger, pos, exit_price, reason, now):
     bucket = _bucket(pos)
     stats = ledger.setdefault("stats", {})
     b = stats.setdefault(bucket, {"wins": 0, "losses": 0})
-    if pl > 0:
+    if pl + float(pos.get("trimmed_pl") or 0) > 0:
         b["wins"] += 1
     else:
         b["losses"] += 1
@@ -794,6 +818,27 @@ def _close_position(ledger, pos, exit_price, reason, now):
     body = f"Entry: {entry:.2f}\nExit: {exit_price:.2f}\nP/L: ${pl:.2f} ({pct:.1f}%)"
     common.ntfy(f"{pos.get('ticker')} paper trade closed: {reason}", body)
     return True
+
+
+def _trim_position(ledger, pos, sell_qty, price, now):
+    entry = float(pos.get("entry_price") or 0)
+    pl = (price - entry) * sell_qty
+    ledger["cash"] = float(ledger.get("cash") or 0) + sell_qty * price
+    ledger["realized_pl"] = float(ledger.get("realized_pl") or 0) + pl
+    pos["quantity"] = round(pos["quantity"] - sell_qty, 4)
+    pos["trimmed_pl"] = round(float(pos.get("trimmed_pl") or 0) + pl, 2)
+    ledger.setdefault("trims", []).append({
+        "id": pos.get("id"),
+        "ticker": pos.get("ticker"),
+        "quantity": sell_qty,
+        "price": price,
+        "pl": round(pl, 2),
+        "date": now.isoformat(),
+    })
+    common.ntfy(
+        f"{pos.get('ticker')}: trimmed 10% of the profit",
+        f"Sold {sell_qty} shares at {price:.2f} for ${sell_qty * price:.2f} (profit ${pl:.2f}). Kept {pos['quantity']} shares. The next fresh Forensic Analysis decides again.",
+    )
 
 
 def _refresh_triggers_page():
@@ -1275,12 +1320,47 @@ def main():
                 exit_reason = "stop"
                 cur = common.last_price(ticker)
                 exit_price = min(float(stop), cur) if cur is not None else float(stop)
+            elif target is not None and high is not None and high >= float(target) and pos.get("source") == "forensic":
+                if not pos.get("target_reached"):
+                    pos["target_reached"] = now.date().isoformat()
+                    changed = True
+                    common.ntfy(
+                        f"{ticker} hit its target: run a fresh Forensic Analysis",
+                        f"{ticker} reached its target of ${float(target):.2f}. It is NOT sold yet. Run a fresh Full analysis on Forensic Analysis. Then the bot follows your playbook: a higher value target means keep holding; otherwise it sells, or trims 10% of the profit if the stock is a franchise. The stop still applies while you wait.",
+                        priority="high", click_url=common.FORENSIC_PAGE)
             elif target is not None and high is not None and high >= float(target):
                 exit_reason = "target"
                 exit_price = float(target)
             if exit_reason is None and pos.get("thesis_broken"):
                 exit_reason = "thesis broken"
                 exit_price = common.last_price(ticker) or entry
+            if exit_reason is None and pos.get("recheck"):
+                rc = pos["recheck"]
+                cur = common.last_price(ticker)
+                if cur is not None:
+                    if rc.get("target") is not None and rc.get("target_is_value") and float(rc["target"]) > cur:
+                        pos["target"] = float(rc["target"])
+                        pos.pop("target_reached", None)
+                        pos.pop("recheck", None)
+                        common.ntfy(
+                            f"{ticker}: keep holding",
+                            f"The fresh Forensic Analysis puts value above the price (${cur:.2f}). New target: ${float(rc['target']):.2f}. The stop is unchanged.")
+                    elif rc.get("franchise"):
+                        entry_px = float(pos.get("entry_price") or 0)
+                        qty = float(pos.get("quantity") or 0)
+                        profit = (cur - entry_px) * qty
+                        sell_qty = math.floor(0.10 * profit / cur * 10000) / 10000 if profit > 0 else 0
+                        if sell_qty > 0:
+                            _trim_position(ledger, pos, sell_qty, cur, now)
+                        else:
+                            common.ntfy(
+                                f"{ticker}: nothing to trim",
+                                f"The fresh Forensic Analysis says franchise, but there is no profit at ${cur:.2f}, so nothing was sold. Still holding; the stop still applies.")
+                        pos.pop("recheck", None)
+                    else:
+                        exit_reason = "value reached (fresh analysis)"
+                        exit_price = cur
+                    changed = True
             # max hold
             opened = pos.get("opened")
             max_hold = int(pos.get("max_hold_days") or 30)

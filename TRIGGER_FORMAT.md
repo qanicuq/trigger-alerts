@@ -306,3 +306,36 @@ report_date: 2026-10-31
 expires: 2026-11-30
 ```
 
+## Target reached (forensic stock positions)
+
+This applies only to a stock position that came from Forensic Analysis. Other stock positions still sell when the price reaches the target. Options, spreads, and POSITION trades are unchanged.
+
+1. When the price reaches the target, the bot does not sell.
+2. Instead, the bot sends one phone alert telling you to run a fresh Forensic Analysis.
+3. The stop-loss, the "thesis broken" sale, and the time limit keep working the whole time you wait.
+4. When the fresh Forensic Analysis finishes, the worker sends the bot a short message called RECHECK.
+5. The bot reads the RECHECK at its next market-hours check and does one of three things:
+   - Rule A: If the new target is a value target and it is above the current price, keep holding and change the position's target to the new target.
+   - Rule B: Otherwise, if the stock is a franchise, sell only enough shares to take 10% of the profit, and keep the rest.
+   - Rule C: Otherwise, sell the whole position at the current price.
+
+How "10% of the profit" works. The owner bought 100 shares at $40. The price is now $43.
+
+- Profit = (43 − 40) × 100 = $300.
+- 10% of the profit = $30.
+- Shares to sell = $30 ÷ $43 = 0.69767… shares.
+- Round down to 4 decimal places: 0.6976 shares.
+- The position keeps 100 − 0.6976 = 99.3024 shares.
+
+RECHECK example:
+
+```yaml
+id: XYZ-recheck-2026-11-07
+source: forensic
+ticker: XYZ
+action: RECHECK
+target: 49.29
+target_is_value: true
+franchise: false
+```
+

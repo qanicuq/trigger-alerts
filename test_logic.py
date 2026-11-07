@@ -1331,5 +1331,148 @@ class TestBookRules20261106(unittest.TestCase):
         self.assertIn("Track record: 2 closed trades. Too few", report._scorecard({}, [{"pl": 1}, {"pl": -1}]))
 
 
+class TestForensicTargetRecheck(unittest.TestCase):
+    def _stock(self, **kw):
+        pos = {
+            "id": "XYZ-1", "ticker": "XYZ", "source": "forensic", "action": "BUY",
+            "entry_price": 40.0, "quantity": 100, "stop": 30.0, "target": 42.0,
+            "opened": common.now_ny().isoformat(), "max_hold_days": 30, "reserved": 0,
+        }
+        pos.update(kw)
+        return pos
+
+    def _run(self, positions, high=None, low=None, price=None):
+        today = common.now_ny().date().isoformat()
+        equity = 0.0
+        for p in positions:
+            px = price if price is not None else float(p.get("entry_price") or 0)
+            equity += float(p.get("quantity") or 0) * px
+        ledger = {
+            "cash": 0.0, "positions": positions, "closed_trades": [], "realized_pl": 0.0,
+            "peak_equity": equity, "day_start_equity": equity, "day_start_date": today,
+            "paused": False, "stats": {}, "sent_slots": {},
+            "cpi_gap_watch_alerted": today, "macro_error_alerted": today,
+        }
+        files = {"triggers.yml": {"triggers": []}, "ledger.yml": ledger}
+        with patch("common.is_forced", return_value=True), \
+             patch("common.load_yaml", side_effect=lambda p: files.get(p, {})), \
+             patch("common.save_yaml"), \
+             patch("common.get_daily_bars", return_value=None), \
+             patch("common.compute_refs", return_value={}), \
+             patch("common.high_low_since", return_value=(high, low)), \
+             patch("common.last_price", return_value=price), \
+             patch("common.ntfy") as ntfy, \
+             patch("check._ingest_inbox", return_value=False), \
+             patch("check._refresh_triggers_page"), \
+             patch("check._write_due"), \
+             patch("check._cpi_gap_watch", return_value=False), \
+             patch("report.send_report"), \
+             patch("report.write_pages"):
+            check.main()
+        return ledger, ntfy
+
+    def test_forensic_target_is_not_sold_and_alerts_once(self):
+        pos = self._stock()
+        ledger, ntfy = self._run([pos], high=43.0, low=40.0, price=42.5)
+        self.assertEqual(len(ledger["positions"]), 1)
+        self.assertEqual(ledger["closed_trades"], [])
+        self.assertEqual(ledger["positions"][0]["target_reached"], common.now_ny().date().isoformat())
+        self.assertEqual([c[0][0] for c in ntfy.call_args_list],
+                         ["XYZ hit its target: run a fresh Forensic Analysis"])
+
+    def test_second_check_sends_no_second_alert(self):
+        pos = self._stock()
+        ledger, ntfy = self._run([pos], high=43.0, low=40.0, price=42.5)
+        self.assertEqual(ntfy.call_count, 1)
+        ledger2, ntfy2 = self._run(ledger["positions"], high=43.0, low=40.0, price=42.5)
+        self.assertEqual(ntfy2.call_count, 0)
+        self.assertEqual(len(ledger2["positions"]), 1)
+        self.assertEqual(ledger2["closed_trades"], [])
+
+    def test_non_forensic_still_sells_at_target(self):
+        pos = self._stock(source="manual")
+        ledger, ntfy = self._run([pos], high=43.0, low=40.0, price=42.5)
+        self.assertEqual(ledger["positions"], [])
+        self.assertEqual(len(ledger["closed_trades"]), 1)
+        self.assertEqual(ledger["closed_trades"][0]["exit_reason"], "target")
+        self.assertEqual(ledger["closed_trades"][0]["exit_price"], 42.0)
+
+    def test_recheck_higher_value_target_keeps_holding(self):
+        pos = self._stock(target=42.0, target_reached="2026-11-01",
+                          recheck={"target": 50, "target_is_value": True, "franchise": False})
+        ledger, ntfy = self._run([pos], high=41.0, low=40.0, price=45.0)
+        p = ledger["positions"][0]
+        self.assertEqual(ledger["closed_trades"], [])
+        self.assertEqual(p["target"], 50.0)
+        self.assertNotIn("target_reached", p)
+        self.assertNotIn("recheck", p)
+        self.assertIn("XYZ: keep holding", [c[0][0] for c in ntfy.call_args_list])
+
+    def test_recheck_franchise_trims_ten_percent_of_profit(self):
+        pos = self._stock(quantity=100, entry_price=40.0, target=50.0, target_reached="2026-11-01",
+                          recheck={"target": None, "target_is_value": False, "franchise": True})
+        ledger, ntfy = self._run([pos], high=42.0, low=40.0, price=43.0)
+        p = ledger["positions"][0]
+        self.assertEqual(p["quantity"], 99.3024)
+        self.assertEqual(ledger["cash"], 29.9968)
+        self.assertEqual(ledger["closed_trades"], [])
+        self.assertNotIn("recheck", p)
+        self.assertIn("target_reached", p)
+
+    def test_recheck_otherwise_sells_in_full(self):
+        pos = self._stock(target=50.0, target_reached="2026-11-01",
+                          recheck={"target": 42, "target_is_value": False, "franchise": False})
+        ledger, ntfy = self._run([pos], high=41.0, low=40.0, price=43.0)
+        self.assertEqual(ledger["positions"], [])
+        self.assertEqual(ledger["closed_trades"][0]["exit_reason"], "value reached (fresh analysis)")
+        self.assertEqual(ledger["closed_trades"][0]["exit_price"], 43.0)
+
+    def test_waiting_position_still_stops_out(self):
+        pos = self._stock(stop=38.0, target=50.0, target_reached="2026-11-01",
+                          recheck={"target": 50, "target_is_value": True, "franchise": False})
+        ledger, ntfy = self._run([pos], high=40.0, low=37.0, price=37.5)
+        self.assertEqual(ledger["positions"], [])
+        self.assertEqual(ledger["closed_trades"][0]["exit_reason"], "stop")
+
+    def test_close_after_trim_includes_trimmed_pl(self):
+        pos = self._stock(quantity=100, entry_price=40.0)
+        ledger = {"cash": 0.0, "positions": [pos], "closed_trades": [], "realized_pl": 0.0}
+        now = common.now_ny()
+        with patch("common.ntfy"):
+            check._trim_position(ledger, pos, 0.6976, 43.0, now)
+            left = pos["quantity"]
+            trimmed = pos["trimmed_pl"]
+            check._close_position(ledger, pos, 43.0, "value reached (fresh analysis)", now)
+        self.assertEqual(left, 99.3024)
+        self.assertEqual(ledger["closed_trades"][0]["pl"], round((43.0 - 40.0) * left + trimmed, 2))
+
+    def test_recheck_with_no_waiting_position_changes_nothing(self):
+        import tempfile
+        import shutil
+        d = tempfile.mkdtemp()
+        cwd = os.getcwd()
+        try:
+            os.chdir(d)
+            os.makedirs("inbox")
+            with open("inbox/x.yml", "w") as f:
+                yaml.safe_dump({"id": "XYZ-recheck-2026-11-07", "source": "forensic", "ticker": "XYZ",
+                                "action": "RECHECK", "target": 50, "target_is_value": True, "franchise": False}, f)
+            triggers = [{"id": "keep", "ticker": "XYZ", "status": "active"}]
+            held = {"id": "p", "ticker": "XYZ", "source": "manual", "quantity": 1}
+            ledger = {"positions": [held]}
+            with patch("common.ntfy") as ntfy:
+                changed = check._ingest_inbox(triggers, ledger)
+            self.assertTrue(changed)
+            self.assertEqual(ntfy.call_count, 1)
+            self.assertEqual(ntfy.call_args[0][0], "XYZ: fresh analysis received")
+            self.assertEqual(ntfy.call_args[0][1], "No held position was waiting on it, so nothing changed.")
+            self.assertEqual(ledger["positions"], [{"id": "p", "ticker": "XYZ", "source": "manual", "quantity": 1}])
+            self.assertEqual(triggers, [{"id": "keep", "ticker": "XYZ", "status": "active"}])
+            self.assertFalse(os.path.exists("inbox/x.yml"))
+        finally:
+            os.chdir(cwd)
+            shutil.rmtree(d)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
