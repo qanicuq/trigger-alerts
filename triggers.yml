@@ -88,8 +88,8 @@ triggers:
   resolved_target: 231.45
   seen_high: 224.44500732421875
   seen_low: 216.22999572753906
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: SMP-forensic-2026-11-06-paused2
   source: forensic
   ticker: SMP
@@ -134,8 +134,8 @@ triggers:
   resolved_target: 49.29
   seen_high: 45.73500061035156
   seen_low: 44.47999954223633
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: TSLA-forensic-2026-11-06-paused2
   source: forensic
   ticker: TSLA
@@ -181,8 +181,8 @@ triggers:
   resolved_target: 392.64
   seen_high: 363.8398132324219
   seen_low: 347.6000061035156
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: NOK-forensic-2026-11-06-paused
   source: forensic
   ticker: NOK
@@ -274,8 +274,8 @@ triggers:
   resolved_target: 9.75
   seen_high: 8.920000076293945
   seen_low: 8.614999771118164
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: RLX-forensic-2026-11-06-paused
   source: forensic
   ticker: RLX
@@ -559,8 +559,8 @@ triggers:
     rsi14: 24.1
   resolved_stop: 2.98
   resolved_target: 15.74
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: SHOE-forensic-2026-11-06
   source: forensic
   ticker: SHOE
@@ -707,8 +707,8 @@ triggers:
   resolved_target: 8.69
   seen_high: 5.679999828338623
   seen_low: 5.269999980926514
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: HOPE-forensic-2026-11-06-paused
   source: forensic
   ticker: HOPE
@@ -852,8 +852,8 @@ triggers:
   resolved_target: 1339.75
   seen_high: 724.7999877929688
   seen_low: 676.0006103515625
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: NFG-forensic-2026-11-06-paused2
   source: forensic
   ticker: NFG
@@ -900,8 +900,8 @@ triggers:
   resolved_target: 79.51
   seen_high: 74.01000213623047
   seen_low: 73.62000274658203
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: OGE-forensic-2026-11-06-paused2
   source: forensic
   ticker: OGE
@@ -945,8 +945,8 @@ triggers:
   resolved_target: 54.48
   seen_high: 50.904998779296875
   seen_low: 50.63999938964844
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: TNC-forensic-2026-11-06-paused2
   source: forensic
   ticker: TNC
@@ -989,8 +989,8 @@ triggers:
     rsi14: 63.4
   resolved_stop: 63.19
   resolved_target: 77.95
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: RTX-forensic-2026-11-06-paused2
   source: forensic
   ticker: RTX
@@ -1021,8 +1021,8 @@ triggers:
   earnings_date: '2027-01-26'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
-  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with the
-    current checks. A fresh report sets a new trigger.'
+  cancel_reason: 'Paused Nov 6 at your request: every trigger is being re-run with
+    the current checks. A fresh report sets a new trigger.'
 - id: NKE-forensic-2026-11-06-paused2
   source: forensic
   ticker: NKE
@@ -1054,8 +1054,8 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-06'
   cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
-    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
-    a new trigger.'
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets a
+    new trigger.'
 - id: DHT-forensic-2026-11-06-paused2
   source: forensic
   ticker: DHT
@@ -1087,8 +1087,8 @@ triggers:
   earnings_checked: '2026-11-06'
   earnings_soon_noted: '2026-11-09'
   cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
-    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
-    a new trigger.'
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets a
+    new trigger.'
 - id: HOPE-forensic-2026-11-06-paused2
   source: forensic
   ticker: HOPE
@@ -1151,8 +1151,8 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-06'
   cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
-    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
-    a new trigger.'
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets a
+    new trigger.'
 - id: NAT-forensic-2026-11-06-paused2
   source: forensic
   ticker: NAT
@@ -1183,8 +1183,8 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-06'
   cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
-    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
-    a new trigger.'
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets a
+    new trigger.'
 - id: NOK-forensic-2026-11-06-paused2
   source: forensic
   ticker: NOK
@@ -1215,8 +1215,8 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-06'
   cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
-    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
-    a new trigger.'
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets a
+    new trigger.'
 - id: RLX-forensic-2026-11-06-paused2
   source: forensic
   ticker: RLX
@@ -1249,8 +1249,8 @@ triggers:
   earnings_checked: '2026-11-06'
   earnings_soon_noted: '2026-11-13'
   cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
-    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
-    a new trigger.'
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets a
+    new trigger.'
 - id: RPM-forensic-2026-11-06-paused2
   source: forensic
   ticker: RPM
@@ -1282,8 +1282,8 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-06'
   cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
-    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
-    a new trigger.'
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets a
+    new trigger.'
 - id: SPCX-forensic-2026-11-06-paused2
   source: forensic
   ticker: SPCX
@@ -1314,8 +1314,8 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-06'
   cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
-    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
-    a new trigger.'
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets a
+    new trigger.'
 - id: WIT-forensic-2026-11-06-paused2
   source: forensic
   ticker: WIT
@@ -1352,5 +1352,36 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-06'
   cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
-    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
-    a new trigger.'
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets a
+    new trigger.'
+- id: DHT-forensic-2026-11-07
+  source: forensic
+  ticker: DHT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 18.12
+  exit_plan:
+    stop:
+      price: 15.89
+    target:
+      price: 22.58
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 40: buy at or below $18.12 (pullback to the 60-day
+    low (support) ($18.03)), sell at $22.58 (twice the risk taken (no value target
+    above the entry)), stop $15.89; chart-based entry, not a value bargain: keep it
+    small; check the Nov 9 Q3 results and whether tanker rates are holding, earnings,
+    filings and news before confirming.'
+  report_date: 2026-11-07
+  expires: 2027-02-05
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-09'
+  earnings_time: AMC
+  earnings_checked: '2026-11-07'
+  earnings_soon_noted: '2026-11-09'
