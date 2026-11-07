@@ -1148,3 +1148,32 @@ triggers:
   earnings_date: '2026-11-27'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
+- id: NOK-forensic-2026-11-06
+  source: forensic
+  ticker: NOK
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 6.89
+  exit_plan:
+    stop:
+      price: 5.87
+    target:
+      price: 8.94
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $6.89 (pullback of 1.5× a
+    normal day''s move (no chart support within 20%)), sell at $8.94 (twice the risk
+    taken (no value target above the entry)), stop $5.87; chart-based entry, not a
+    value bargain: keep it small; check earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2027-01-28'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'
