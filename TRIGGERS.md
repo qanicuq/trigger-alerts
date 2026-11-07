@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 6, 2026 at 7:16 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 6, 2026 at 7:18 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**19 watching** · **2 bought (open)** · **9 ended**
+**20 watching** · **2 bought (open)** · **9 ended**
 
 ## Watching now
 
@@ -29,6 +29,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **NOK** | Buy shares | Price at or below $6.89 | $8.94 | $5.87 | Jan 28, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RLX** | Buy shares | Price at or below $1.54 | $1.73 | $1.45 | Nov 13, 2026 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **RPM** | Buy shares | Price at or below $94.97 | $107.59 | $88.66 | Jan 7, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **SPCX** | Buy shares | Price at or below $120.99 | $154.21 | $104.38 | Feb 9, 2027 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
@@ -51,6 +52,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **NOK:** WATCH, confidence 65: buy at or below $6.89 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $8.94 (twice the risk taken (no value target above the entry)), stop $5.87; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **RLX:** WATCH, confidence 50: buy at or below $1.54 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $1.73 (twice the risk taken (no value target above the entry)), stop $1.45; chart-based entry, not a value bargain: keep it small; check why customer payments slowed and 2026 operating cash flow was negative, earnings, filings and news before confirming.
 - **RPM:** WATCH, confidence 60: buy at or below $94.97 (pullback to the 60-day low (support) ($94.50)), sell at $107.59 (twice the risk taken (no value target above the entry)), stop $88.66; chart-based entry, not a value bargain: keep it small; check what RPM says at the 9 November Investor Day, earnings, filings and news before confirming.
+- **SPCX:** WATCH, confidence 30: buy at or below $120.99 (pullback to the 60-day low (support) ($120.39)), sell at $154.21 (twice the risk taken (no value target above the entry)), stop $104.38; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
