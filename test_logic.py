@@ -1446,6 +1446,25 @@ class TestForensicTargetRecheck(unittest.TestCase):
         self.assertEqual(left, 99.3024)
         self.assertEqual(ledger["closed_trades"][0]["pl"], round((43.0 - 40.0) * left + trimmed, 2))
 
+    def test_close_alert_shows_trim_and_total_pl(self):
+        pos = self._stock(quantity=100, entry_price=40.0)
+        ledger = {"cash": 0.0, "positions": [pos], "closed_trades": [], "realized_pl": 0.0}
+        now = common.now_ny()
+        with patch("common.ntfy") as ntfy:
+            check._trim_position(ledger, pos, 0.6976, 43.0, now)
+            check._close_position(ledger, pos, 43.0, "value reached (fresh analysis)", now)
+        body = ntfy.call_args_list[-1][0][1]
+        self.assertIn("P/L: $297.91", body)
+        self.assertIn("Earlier trims: $2.09", body)
+        self.assertIn("Total P/L: $300.00", body)
+
+    def test_close_alert_unchanged_without_trim(self):
+        pos = self._stock(quantity=100, entry_price=40.0)
+        ledger = {"cash": 0.0, "positions": [pos], "closed_trades": [], "realized_pl": 0.0}
+        with patch("common.ntfy") as ntfy:
+            check._close_position(ledger, pos, 43.0, "target", common.now_ny())
+        self.assertEqual(ntfy.call_args_list[-1][0][1], "Entry: 40.00\nExit: 43.00\nP/L: $300.00 (7.5%)")
+
     def test_recheck_with_no_waiting_position_changes_nothing(self):
         import tempfile
         import shutil

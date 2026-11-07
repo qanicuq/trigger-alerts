@@ -816,6 +816,9 @@ def _close_position(ledger, pos, exit_price, reason, now):
     else:
         pct = (pl / (entry * qty * mult) * 100) if entry and qty else 0
     body = f"Entry: {entry:.2f}\nExit: {exit_price:.2f}\nP/L: ${pl:.2f} ({pct:.1f}%)"
+    trimmed = float(pos.get("trimmed_pl") or 0)
+    if trimmed:
+        body += f"\nEarlier trims: ${trimmed:.2f}\nTotal P/L: ${pl + trimmed:.2f}"
     common.ntfy(f"{pos.get('ticker')} paper trade closed: {reason}", body)
     return True
 
