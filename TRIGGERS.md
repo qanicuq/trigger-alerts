@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 7, 2026 at 9:01 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 7, 2026 at 12:36 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**4 watching** · **2 bought (open)** · **30 ended**
+**5 watching** · **2 bought (open)** · **30 ended**
 
 ## Watching now
 
@@ -14,6 +14,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **LLY** | Buy shares | Price at or below $1,308.46 | $1,497.86 | $1,213.76 | Feb 3, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **NAT** | Buy shares | Price at or below $6.20 | $7.68 | $5.46 | Nov 27, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **NKE** | Buy shares | Price at or below $37.08 | $42.04 | $34.60 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **NOK** | Buy shares | Price at or below $6.89 | $8.94 | $5.87 | Jan 28, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 
 **Notes from each report**
 
@@ -21,6 +22,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **LLY:** WATCH, confidence 65: buy at or below $1,308.46 (pullback to the 20-day average ($1,301.95)), sell at $1,497.86 (twice the risk taken (no value target above the entry)), stop $1,213.76; chart-based entry, not a value bargain: keep it small; check whether Q3's ~$900M of one-off revenue benefits flatter the growth, earnings, filings and news before confirming.
 - **NAT:** WATCH, confidence 65: buy at or below $6.20 (pullback to the 60-day low (support) ($6.17)), sell at $7.68 (twice the risk taken (no value target above the entry)), stop $5.46; chart-based entry, not a value bargain: keep it small; check the Nov 26 Q3 results and whether tanker charter rates are holding, earnings, filings and news before confirming.
 - **NKE:** WATCH, confidence 65: buy at or below $37.08 (pullback to the 50-day average ($36.89)), sell at $42.04 (twice the risk taken (no value target above the entry)), stop $34.60; chart-based entry, not a value bargain: keep it small; check what Nike says at its November Investor Day, earnings, filings and news before confirming.
+- **NOK:** WATCH, confidence 60: buy at or below $6.89 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $8.94 (twice the risk taken (no value target above the entry)), stop $5.87; chart-based entry, not a value bargain: keep it small; check the gap between Nokia's adjusted and reported profit, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
