@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 7, 2026 at 6:16 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 7, 2026 at 6:26 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**12 watching** · **2 bought (open)** · **30 ended**
+**13 watching** · **2 bought (open)** · **30 ended**
 
 ## Watching now
 
@@ -22,6 +22,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **IMXI** | Buy shares | Price at or below $7.34<br>Price at least 2% above the 20-day low (support) | $16.13 | $2.99 | Nov 9, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **MU** | Buy shares | Price at or below $690.00<br>Price at least 2% above the 20-day low (support) | $1,420.54 | $338.82 | Dec 23, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **NFG** | Buy shares | Price at or below $70.53 | $78.99 | $66.30 | Jan 27, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **OGE** | Buy shares | Price at or below $48.85 | $54.71 | $45.92 | Feb 17, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 
 **Notes from each report**
 
@@ -37,6 +38,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **IMXI:** WATCH, confidence 50: buy at or below $7.34 (price is already below the value buy-below line), sell at $16.13 (sell or trim when price reaches estimated value), stop $2.99; the stop is disaster insurance only, set beyond the stock's worst past fall; check whether the Western Union deal was ended or extended on Nov 10, earnings, filings and news before confirming.
 - **MU:** WATCH, confidence 70: buy at or below $690.00 (price is already below the value buy-below line), sell at $1,420.54 (sell or trim when price reaches estimated value), stop $338.82; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 17% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check the Taiwan plant labor dispute and the Dec 15 earnings, earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 35: buy at or below $70.53 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $78.99 (twice the risk taken (no value target above the entry)), stop $66.30; chart-based entry, not a value bargain: keep it small; check the lower fiscal 2027 guidance ($6.00-6.40 vs $7.55), earnings, filings and news before confirming.
+- **OGE:** WATCH, confidence 35: buy at or below $48.85 (pullback to the 20-day average ($48.61)), sell at $54.71 (twice the risk taken (no value target above the entry)), stop $45.92; chart-based entry, not a value bargain: keep it small; check the officer change in the 2026-10-08 8-K, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

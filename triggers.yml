@@ -1733,3 +1733,33 @@ triggers:
   earnings_date: '2027-01-27'
   earnings_time: AMC
   earnings_checked: '2026-11-07'
+- id: OGE-forensic-2026-11-07
+  source: forensic
+  ticker: OGE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 48.85
+  exit_plan:
+    stop:
+      price: 45.92
+    target:
+      price: 54.71
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 35: buy at or below $48.85 (pullback to the 20-day
+    average ($48.61)), sell at $54.71 (twice the risk taken (no value target above
+    the entry)), stop $45.92; chart-based entry, not a value bargain: keep it small;
+    check the officer change in the 2026-10-08 8-K, earnings, filings and news before
+    confirming.'
+  report_date: 2026-11-07
+  expires: 2027-02-05
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-17'
+  earnings_time: BMO
+  earnings_checked: '2026-11-07'
