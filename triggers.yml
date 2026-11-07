@@ -1666,3 +1666,39 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-07'
   earnings_soon_noted: '2026-11-09'
+- id: MU-forensic-2026-11-07
+  source: forensic
+  ticker: MU
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 690.0
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 338.82
+    target:
+      price: 1420.54
+    max_hold_days: 1260
+    review_days: 540
+  recommendation: 'WATCH, confidence 70: buy at or below $690.00 (price is already
+    below the value buy-below line), sell at $1,420.54 (sell or trim when price reaches
+    estimated value), stop $338.82; the stop is disaster insurance only, set beyond
+    the stock''s worst past fall; fell 17% on 2026-11-05 on news: wait until about
+    2026-11-26 before confirming; check the Taiwan plant labor dispute and the Dec
+    15 earnings, earnings, filings and news before confirming.'
+  report_date: 2026-11-07
+  expires: 2027-02-05
+  data_through: 2026-09-03
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-12-23'
+  earnings_time: AMC
+  earnings_checked: '2026-11-07'
