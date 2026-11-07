@@ -1119,3 +1119,32 @@ triggers:
   earnings_date: '2027-02-03'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
+- id: NAT-forensic-2026-11-06
+  source: forensic
+  ticker: NAT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 6.2
+  exit_plan:
+    stop:
+      price: 5.46
+    target:
+      price: 7.68
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $6.20 (pullback to the 60-day
+    low (support) ($6.17)), sell at $7.68 (twice the risk taken (no value target above
+    the entry)), stop $5.46; chart-based entry, not a value bargain: keep it small;
+    check the Q3 results around 26 November, earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-27'
+  earnings_time: AMC
+  earnings_checked: '2026-11-06'

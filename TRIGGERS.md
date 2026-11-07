@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 6, 2026 at 7:10 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 6, 2026 at 7:11 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**15 watching** · **2 bought (open)** · **9 ended**
+**16 watching** · **2 bought (open)** · **9 ended**
 
 ## Watching now
 
@@ -25,6 +25,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **DHT** | Buy shares | Price at or below $18.12 | $22.58 | $15.89 | Nov 9, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **HOPE** | Buy shares | Price at or below $12.87 | $14.41 | $12.10 | Jan 26, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 | **LLY** | Buy shares | Price at or below $1,308.46 | $1,497.86 | $1,213.76 | Feb 3, 2027 (before open) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
+| **NAT** | Buy shares | Price at or below $6.20 | $7.68 | $5.46 | Nov 27, 2026 (after close) | Feb 4, 2027 | Forensic Analysis, Nov 6, 2026 |
 
 **Notes from each report**
 
@@ -43,6 +44,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **DHT:** WATCH, confidence 40: buy at or below $18.12 (pullback to the 60-day low (support) ($18.03)), sell at $22.58 (twice the risk taken (no value target above the entry)), stop $15.89; chart-based entry, not a value bargain: keep it small; check the Q3 results on 9 November, earnings, filings and news before confirming.
 - **HOPE:** WATCH, confidence 55: buy at or below $12.87 (pullback to the 60-day low (support) ($12.80)), sell at $14.41 (twice the risk taken (no value target above the entry)), stop $12.10; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **LLY:** WATCH, confidence 70: buy at or below $1,308.46 (pullback to the 20-day average ($1,301.95)), sell at $1,497.86 (twice the risk taken (no value target above the entry)), stop $1,213.76; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
+- **NAT:** WATCH, confidence 60: buy at or below $6.20 (pullback to the 60-day low (support) ($6.17)), sell at $7.68 (twice the risk taken (no value target above the entry)), stop $5.46; chart-based entry, not a value bargain: keep it small; check the Q3 results around 26 November, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
