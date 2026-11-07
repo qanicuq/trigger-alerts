@@ -1,5 +1,5 @@
 triggers:
-- id: SPCX-forensic-2026-11-06
+- id: SPCX-forensic-2026-11-06-paused
   source: forensic
   ticker: SPCX
   action: BUY
@@ -21,7 +21,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-09-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 0
@@ -42,6 +42,9 @@ triggers:
   resolved_target: 143.73
   seen_high: 135.13999938964844
   seen_low: 128.5749969482422
+  cancel_reason: 'Paused Nov 6 for a re-run: this report was made before the new SEC
+    checks (operating income, share count and foreign annual reports). A fresh report
+    sets a new trigger.'
 - id: SN-forensic-2026-11-06
   source: forensic
   ticker: SN
@@ -174,7 +177,7 @@ triggers:
   resolved_target: 392.64
   seen_high: 363.8398132324219
   seen_low: 347.6000061035156
-- id: NOK-forensic-2026-11-06
+- id: NOK-forensic-2026-11-06-paused
   source: forensic
   ticker: NOK
   action: BUY
@@ -196,7 +199,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-09-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 2
@@ -218,6 +221,9 @@ triggers:
   resolved_target: 8.67
   seen_high: 7.789999961853027
   seen_low: 7.565000057220459
+  cancel_reason: 'Paused Nov 6 for a re-run: this report was made before the new SEC
+    checks (operating income, share count and foreign annual reports). A fresh report
+    sets a new trigger.'
 - id: BB-forensic-2026-11-06
   source: forensic
   ticker: BB
@@ -262,7 +268,7 @@ triggers:
   resolved_target: 9.75
   seen_high: 8.920000076293945
   seen_low: 8.614999771118164
-- id: RLX-forensic-2026-11-06
+- id: RLX-forensic-2026-11-06-paused
   source: forensic
   ticker: RLX
   action: BUY
@@ -284,7 +290,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-06-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 0
@@ -305,6 +311,9 @@ triggers:
     rsi14: 39.5
   resolved_stop: 1.45
   resolved_target: 1.74
+  cancel_reason: 'Paused Nov 6 for a re-run: this report was made before the new SEC
+    checks (operating income, share count and foreign annual reports). A fresh report
+    sets a new trigger.'
 - id: MNST-forensic-2026-11-06
   source: forensic
   ticker: MNST
@@ -350,7 +359,7 @@ triggers:
   frozen: true
   seen_high: 44.72999954223633
   seen_low: 44.72999954223633
-- id: LLY-forensic-2026-11-06
+- id: LLY-forensic-2026-11-06-paused
   source: forensic
   ticker: LLY
   action: BUY
@@ -371,7 +380,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-09-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 3
@@ -393,7 +402,10 @@ triggers:
   resolved_target: 1490.1
   seen_high: 1377.277099609375
   seen_low: 1335.780029296875
-- id: RPM-forensic-2026-11-06
+  cancel_reason: 'Paused Nov 6 for a re-run: this report was made before the new SEC
+    checks (operating income, share count and foreign annual reports). A fresh report
+    sets a new trigger.'
+- id: RPM-forensic-2026-11-06-paused
   source: forensic
   ticker: RPM
   action: BUY
@@ -414,7 +426,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-08-31
-  status: active
+  status: paused
   backtest:
     wins: 1
     losses: 2
@@ -436,7 +448,10 @@ triggers:
   resolved_target: 113.88
   seen_high: 105.12000274658203
   seen_low: 102.27999877929688
-- id: WIT-forensic-2026-11-06
+  cancel_reason: 'Paused Nov 6 for a re-run: this report was made before the new SEC
+    checks (operating income, share count and foreign annual reports). A fresh report
+    sets a new trigger.'
+- id: WIT-forensic-2026-11-06-paused
   source: forensic
   ticker: WIT
   action: BUY
@@ -463,7 +478,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-09-30
-  status: active
+  status: paused
   backtest:
     wins: 1
     losses: 0
@@ -485,6 +500,9 @@ triggers:
   resolved_target: 3.08
   seen_high: 2.180000066757202
   seen_low: 2.130000114440918
+  cancel_reason: 'Paused Nov 6 for a re-run: this report was made before the new SEC
+    checks (operating income, share count and foreign annual reports). A fresh report
+    sets a new trigger.'
 - id: IMXI-forensic-2026-11-06
   source: forensic
   ticker: IMXI
@@ -584,7 +602,7 @@ triggers:
   frozen: true
   seen_high: 15.0
   seen_low: 15.0
-- id: DHT-forensic-2026-11-06
+- id: DHT-forensic-2026-11-06-paused
   source: forensic
   ticker: DHT
   action: BUY
@@ -606,7 +624,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-06-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 3
@@ -627,6 +645,9 @@ triggers:
     rsi14: 34.3
   resolved_stop: 15.66
   resolved_target: 22.55
+  cancel_reason: 'Paused Nov 6 for a re-run: this report was made before the new SEC
+    checks (operating income, share count and foreign annual reports). A fresh report
+    sets a new trigger.'
 - id: RES-forensic-2026-11-06
   source: forensic
   ticker: RES
@@ -676,7 +697,7 @@ triggers:
   resolved_target: 8.69
   seen_high: 5.679999828338623
   seen_low: 5.269999980926514
-- id: HOPE-forensic-2026-11-06
+- id: HOPE-forensic-2026-11-06-paused
   source: forensic
   ticker: HOPE
   action: BUY
@@ -698,7 +719,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-09-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 2
@@ -720,7 +741,10 @@ triggers:
   resolved_target: 14.17
   seen_high: 13.21500015258789
   seen_low: 12.9399995803833
-- id: NAT-forensic-2026-11-06
+  cancel_reason: 'Paused Nov 6 for a re-run: this report was made before the new SEC
+    checks (operating income, share count and foreign annual reports). A fresh report
+    sets a new trigger.'
+- id: NAT-forensic-2026-11-06-paused
   source: forensic
   ticker: NAT
   action: BUY
@@ -741,7 +765,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-06-30
-  status: active
+  status: paused
   backtest:
     wins: 1
     losses: 2
@@ -763,6 +787,9 @@ triggers:
   resolved_target: 7.4
   seen_high: 6.78000020980835
   seen_low: 6.559999942779541
+  cancel_reason: 'Paused Nov 6 for a re-run: this report was made before the new SEC
+    checks (operating income, share count and foreign annual reports). A fresh report
+    sets a new trigger.'
 - id: MU-forensic-2026-11-06
   source: forensic
   ticker: MU
