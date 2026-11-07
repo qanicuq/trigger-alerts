@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 7, 2026 at 4:51 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 7, 2026 at 4:59 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**8 watching** · **2 bought (open)** · **30 ended**
+**9 watching** · **2 bought (open)** · **30 ended**
 
 ## Watching now
 
@@ -18,6 +18,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RLX** | Buy shares | Price at or below $1.54 | $1.73 | $1.45 | Nov 13, 2026 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **RPM** | Buy shares | Price at or below $94.97 | $107.59 | $88.66 | Jan 7, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **WIT** | Buy shares | Price at or below $2.11<br>Price at least 2% above the 20-day low (support) | $3.15 | $1.05 | Jan 15, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 
 **Notes from each report**
 
@@ -29,6 +30,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **RLX:** WATCH, confidence 50: buy at or below $1.54 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $1.73 (twice the risk taken (no value target above the entry)), stop $1.45; chart-based entry, not a value bargain: keep it small; check Q3 results due around Nov 12-16 (cash flow recovery), earnings, filings and news before confirming.
 - **RPM:** WATCH, confidence 60: buy at or below $94.97 (pullback to the 60-day low (support) ($94.50)), sell at $107.59 (twice the risk taken (no value target above the entry)), stop $88.66; chart-based entry, not a value bargain: keep it small; check who succeeds the retiring CEO and what the November 9 Investor Day says about growth, earnings, filings and news before confirming.
 - **WIT:** WATCH, confidence 60: buy at or below $2.11 (value buy-below line (within reach of the price)), sell at $3.15 (sell or trim when price reaches estimated value), stop $1.05; the stop is disaster insurance only, set beyond the stock's worst past fall; check whether Wipro's deal wins have recovered, earnings, filings and news before confirming.
+- **BB:** WATCH, confidence 40: buy at or below $7.50 (pullback to the 60-day low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small; check whether QNX growth can hold up after the Dec 17 results, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
