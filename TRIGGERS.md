@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 7, 2026 at 7:53 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 7, 2026 at 8:36 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**1 watching** · **2 bought (open)** · **30 ended**
+**2 watching** · **2 bought (open)** · **30 ended**
 
 ## Watching now
 
@@ -11,10 +11,12 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | Ticker | What | Buy when (all true) | Sell target | Stop | Next earnings | Watch ends | From |
 |---|---|---|---|---|---|---|---|
 | **DHT** | Buy shares | Price at or below $18.12 | $22.58 | $15.89 | Nov 9, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **LLY** | Buy shares | Price at or below $1,308.46 | $1,497.86 | $1,213.76 | Feb 3, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 
 **Notes from each report**
 
 - **DHT:** WATCH, confidence 40: buy at or below $18.12 (pullback to the 60-day low (support) ($18.03)), sell at $22.58 (twice the risk taken (no value target above the entry)), stop $15.89; chart-based entry, not a value bargain: keep it small; check the Nov 9 Q3 results and whether tanker rates are holding, earnings, filings and news before confirming.
+- **LLY:** WATCH, confidence 65: buy at or below $1,308.46 (pullback to the 20-day average ($1,301.95)), sell at $1,497.86 (twice the risk taken (no value target above the entry)), stop $1,213.76; chart-based entry, not a value bargain: keep it small; check whether Q3's ~$900M of one-off revenue benefits flatter the growth, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
