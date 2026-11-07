@@ -1031,3 +1031,33 @@ triggers:
   earnings_date: '2026-12-17'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
+- id: DHT-forensic-2026-11-06
+  source: forensic
+  ticker: DHT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 18.12
+  exit_plan:
+    stop:
+      price: 15.89
+    target:
+      price: 22.58
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 40: buy at or below $18.12 (pullback to the 60-day
+    low (support) ($18.03)), sell at $22.58 (twice the risk taken (no value target
+    above the entry)), stop $15.89; chart-based entry, not a value bargain: keep it
+    small; check the Q3 results on 9 November, earnings, filings and news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-09'
+  earnings_time: AMC
+  earnings_checked: '2026-11-06'
+  earnings_soon_noted: '2026-11-09'
