@@ -1001,7 +1001,7 @@ triggers:
   earnings_date: '2027-01-26'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
-- id: NKE-forensic-2026-11-06
+- id: NKE-forensic-2026-11-06-paused2
   source: forensic
   ticker: NKE
   action: BUY
@@ -1023,7 +1023,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-08-31
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 1
@@ -1031,7 +1031,10 @@ triggers:
   earnings_date: '2026-12-17'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
-- id: DHT-forensic-2026-11-06
+  cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
+    a new trigger.'
+- id: DHT-forensic-2026-11-06-paused2
   source: forensic
   ticker: DHT
   action: BUY
@@ -1052,7 +1055,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-06-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 3
@@ -1061,6 +1064,9 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-06'
   earnings_soon_noted: '2026-11-09'
+  cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
+    a new trigger.'
 - id: HOPE-forensic-2026-11-06-paused2
   source: forensic
   ticker: HOPE
@@ -1093,7 +1099,7 @@ triggers:
   cancel_reason: 'Paused Nov 6: HOPE''s revenue could not be checked against SEC filings
     (no SEC revenue figure found), so the report can not be verified. A fresh report
     after the fix sets a new trigger.'
-- id: LLY-forensic-2026-11-06
+- id: LLY-forensic-2026-11-06-paused2
   source: forensic
   ticker: LLY
   action: BUY
@@ -1114,7 +1120,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-09-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 3
@@ -1122,7 +1128,10 @@ triggers:
   earnings_date: '2027-02-03'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
-- id: NAT-forensic-2026-11-06
+  cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
+    a new trigger.'
+- id: NAT-forensic-2026-11-06-paused2
   source: forensic
   ticker: NAT
   action: BUY
@@ -1143,7 +1152,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-06-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 3
@@ -1151,7 +1160,10 @@ triggers:
   earnings_date: '2026-11-27'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
-- id: NOK-forensic-2026-11-06
+  cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
+    a new trigger.'
+- id: NOK-forensic-2026-11-06-paused2
   source: forensic
   ticker: NOK
   action: BUY
@@ -1172,7 +1184,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-09-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 2
@@ -1180,7 +1192,10 @@ triggers:
   earnings_date: '2027-01-28'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
-- id: RLX-forensic-2026-11-06
+  cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
+    a new trigger.'
+- id: RLX-forensic-2026-11-06-paused2
   source: forensic
   ticker: RLX
   action: BUY
@@ -1202,7 +1217,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-06-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 0
@@ -1211,7 +1226,10 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-06'
   earnings_soon_noted: '2026-11-13'
-- id: RPM-forensic-2026-11-06
+  cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
+    a new trigger.'
+- id: RPM-forensic-2026-11-06-paused2
   source: forensic
   ticker: RPM
   action: BUY
@@ -1233,7 +1251,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-08-31
-  status: active
+  status: paused
   backtest:
     wins: 2
     losses: 0
@@ -1241,7 +1259,10 @@ triggers:
   earnings_date: '2027-01-07'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
-- id: SPCX-forensic-2026-11-06
+  cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
+    a new trigger.'
+- id: SPCX-forensic-2026-11-06-paused2
   source: forensic
   ticker: SPCX
   action: BUY
@@ -1262,7 +1283,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-09-30
-  status: active
+  status: paused
   backtest:
     wins: 1
     losses: 0
@@ -1270,7 +1291,10 @@ triggers:
   earnings_date: '2027-02-09'
   earnings_time: AMC
   earnings_checked: '2026-11-06'
-- id: WIT-forensic-2026-11-06
+  cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
+    a new trigger.'
+- id: WIT-forensic-2026-11-06-paused2
   source: forensic
   ticker: WIT
   action: BUY
@@ -1297,7 +1321,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-09-30
-  status: active
+  status: paused
   backtest:
     wins: 1
     losses: 0
@@ -1305,3 +1329,6 @@ triggers:
   earnings_date: '2027-01-15'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
+  cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
+    (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets
+    a new trigger.'
