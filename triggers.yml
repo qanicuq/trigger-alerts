@@ -1630,3 +1630,39 @@ triggers:
   earnings_date: '2026-12-17'
   earnings_time: AMC
   earnings_checked: '2026-11-07'
+- id: IMXI-forensic-2026-11-07
+  source: forensic
+  ticker: IMXI
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 7.34
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 2.99
+    target:
+      price: 16.13
+    max_hold_days: 1080
+    review_days: 540
+  recommendation: 'WATCH, confidence 50: buy at or below $7.34 (price is already below
+    the value buy-below line), sell at $16.13 (sell or trim when price reaches estimated
+    value), stop $2.99; the stop is disaster insurance only, set beyond the stock''s
+    worst past fall; check whether the Western Union deal was ended or extended on
+    Nov 10, earnings, filings and news before confirming.'
+  report_date: 2026-11-07
+  expires: 2027-02-05
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2026-11-09'
+  earnings_time: AMC
+  earnings_checked: '2026-11-07'
+  earnings_soon_noted: '2026-11-09'
