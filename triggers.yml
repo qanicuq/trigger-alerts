@@ -1061,7 +1061,7 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-06'
   earnings_soon_noted: '2026-11-09'
-- id: HOPE-forensic-2026-11-06
+- id: HOPE-forensic-2026-11-06-paused2
   source: forensic
   ticker: HOPE
   action: BUY
@@ -1082,7 +1082,7 @@ triggers:
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-09-30
-  status: active
+  status: paused
   backtest:
     wins: 0
     losses: 2
@@ -1090,6 +1090,9 @@ triggers:
   earnings_date: '2027-01-26'
   earnings_time: BMO
   earnings_checked: '2026-11-06'
+  cancel_reason: 'Paused Nov 6: HOPE''s revenue could not be checked against SEC filings
+    (no SEC revenue figure found), so the report can not be verified. A fresh report
+    after the fix sets a new trigger.'
 - id: LLY-forensic-2026-11-06
   source: forensic
   ticker: LLY
