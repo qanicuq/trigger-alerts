@@ -327,6 +327,11 @@ How "10% of the profit" works. The owner bought 100 shares at $40. The price is 
 - Round down to 4 decimal places: 0.6976 shares.
 - The position keeps 100 − 0.6976 = 99.3024 shares.
 
+Raising the stop (Rules A and B). Whenever the bot keeps the position, it moves the stop up to the same "disaster insurance" rule the Forensic Analysis uses, measured from today's price: `stop_pct` under today's price. `stop_pct` is the stock's worst past drop plus 5%, and never less than 25%. The stop only ever goes up, never down. After a trim, the position waits quietly with no new alert; the stop, the time limit, a "thesis broken" report, or your next fresh Forensic Analysis decides what happens next.
+
+- Old stop $30, price $43, `stop_pct` 0.25 → new stop = 43 × 0.75 = $32.25 (raised).
+- Old stop $36, price $43, `stop_pct` 0.30 → 43 × 0.70 = $30.10 is lower, so the stop stays $36.
+
 RECHECK example:
 
 ```yaml
@@ -337,5 +342,6 @@ action: RECHECK
 target: 49.29
 target_is_value: true
 franchise: false
+stop_pct: 0.25
 ```
 

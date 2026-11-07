@@ -636,12 +636,25 @@ def _recheck(tr, ledger):
                 "target": tr.get("target"),
                 "target_is_value": bool(tr.get("target_is_value")),
                 "franchise": bool(tr.get("franchise")),
+                "stop_pct": tr.get("stop_pct"),
             }
             pos["recheck_received"] = common.now_ny().date().isoformat()
             matched = True
     if not matched:
         common.ntfy(f"{tr.get('ticker')}: fresh analysis received",
                     "No held position was waiting on it, so nothing changed.")
+
+
+def _raise_stop(pos, cur, rc):
+    """Kept after a fresh analysis: move the disaster stop up to stop_pct under today's price. Never lower it."""
+    pct = max(0.25, float(rc.get("stop_pct") or 0.25))
+    new = round(cur * (1 - pct), 2)
+    old = float(pos["stop"]) if pos.get("stop") is not None else None
+    if new > 0 and (old is None or new > old):
+        pos["stop"] = new
+        was = f" (was ${old:.2f})" if old is not None else ""
+        return f" Stop raised to ${new:.2f}{was}, {pct * 100:.0f}% under today's price."
+    return f" The stop stays at ${old:.2f}." if old is not None else ""
 
 
 def _ingest_inbox(triggers, ledger=None):
@@ -823,7 +836,7 @@ def _close_position(ledger, pos, exit_price, reason, now):
     return True
 
 
-def _trim_position(ledger, pos, sell_qty, price, now):
+def _trim_position(ledger, pos, sell_qty, price, now, stop_note=""):
     entry = float(pos.get("entry_price") or 0)
     pl = (price - entry) * sell_qty
     ledger["cash"] = float(ledger.get("cash") or 0) + sell_qty * price
@@ -840,7 +853,7 @@ def _trim_position(ledger, pos, sell_qty, price, now):
     })
     common.ntfy(
         f"{pos.get('ticker')}: trimmed 10% of the profit",
-        f"Sold {sell_qty} shares at {price:.2f} for ${sell_qty * price:.2f} (profit ${pl:.2f}). Kept {pos['quantity']} shares. The next fresh Forensic Analysis decides again.",
+        f"Sold {sell_qty} shares at {price:.2f} for ${sell_qty * price:.2f} (profit ${pl:.2f}). Kept {pos['quantity']} shares.{stop_note} The next fresh Forensic Analysis decides again.",
     )
 
 
@@ -1345,20 +1358,22 @@ def main():
                         pos["target"] = float(rc["target"])
                         pos.pop("target_reached", None)
                         pos.pop("recheck", None)
+                        stop_note = _raise_stop(pos, cur, rc)
                         common.ntfy(
                             f"{ticker}: keep holding",
-                            f"The fresh Forensic Analysis puts value above the price (${cur:.2f}). New target: ${float(rc['target']):.2f}. The stop is unchanged.")
+                            f"The fresh Forensic Analysis puts value above the price (${cur:.2f}). New target: ${float(rc['target']):.2f}.{stop_note}")
                     elif rc.get("franchise"):
                         entry_px = float(pos.get("entry_price") or 0)
                         qty = float(pos.get("quantity") or 0)
                         profit = (cur - entry_px) * qty
                         sell_qty = math.floor(0.10 * profit / cur * 10000) / 10000 if profit > 0 else 0
+                        stop_note = _raise_stop(pos, cur, rc)
                         if sell_qty > 0:
-                            _trim_position(ledger, pos, sell_qty, cur, now)
+                            _trim_position(ledger, pos, sell_qty, cur, now, stop_note)
                         else:
                             common.ntfy(
                                 f"{ticker}: nothing to trim",
-                                f"The fresh Forensic Analysis says franchise, but there is no profit at ${cur:.2f}, so nothing was sold. Still holding; the stop still applies.")
+                                f"The fresh Forensic Analysis says franchise, but there is no profit at ${cur:.2f}, so nothing was sold. Still holding.{stop_note}")
                         pos.pop("recheck", None)
                     else:
                         exit_reason = "value reached (fresh analysis)"

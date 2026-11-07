@@ -1465,6 +1465,55 @@ class TestForensicTargetRecheck(unittest.TestCase):
             check._close_position(ledger, pos, 43.0, "target", common.now_ny())
         self.assertEqual(ntfy.call_args_list[-1][0][1], "Entry: 40.00\nExit: 43.00\nP/L: $300.00 (7.5%)")
 
+    def test_keep_holding_raises_stop(self):
+        pos = self._stock(stop=30.0, target_reached="2026-11-01",
+                          recheck={"target": 50, "target_is_value": True, "franchise": False, "stop_pct": 0.25})
+        ledger, ntfy = self._run([pos], high=41.0, low=40.0, price=45.0)
+        self.assertEqual(ledger["positions"][0]["stop"], 33.75)
+        self.assertIn("Stop raised to $33.75 (was $30.00)", ntfy.call_args_list[-1][0][1])
+
+    def test_trim_raises_stop(self):
+        pos = self._stock(stop=30.0, target_reached="2026-11-01",
+                          recheck={"target": 41, "target_is_value": True, "franchise": True, "stop_pct": 0.25})
+        ledger, ntfy = self._run([pos], high=43.0, low=42.0, price=43.0)
+        p = ledger["positions"][0]
+        self.assertEqual(p["quantity"], 99.3024)
+        self.assertEqual(p["stop"], 32.25)
+        self.assertIn("Stop raised to $32.25", ntfy.call_args_list[-1][0][1])
+
+    def test_franchise_no_profit_raises_stop_too(self):
+        pos = self._stock(stop=20.0, target_reached="2026-11-01",
+                          recheck={"target": 38, "target_is_value": True, "franchise": True, "stop_pct": 0.25})
+        ledger, _ = self._run([pos], high=39.0, low=38.5, price=39.0)
+        self.assertEqual(ledger["positions"][0]["stop"], 29.25)
+
+    def test_stop_never_lowered(self):
+        pos = self._stock(stop=36.0, target_reached="2026-11-01",
+                          recheck={"target": 41, "target_is_value": True, "franchise": True, "stop_pct": 0.30})
+        ledger, ntfy = self._run([pos], high=43.0, low=42.0, price=43.0)
+        self.assertEqual(ledger["positions"][0]["stop"], 36.0)
+        self.assertIn("The stop stays at $36.00.", ntfy.call_args_list[-1][0][1])
+
+    def test_missing_stop_pct_uses_25_percent(self):
+        pos = self._stock(stop=30.0, target_reached="2026-11-01",
+                          recheck={"target": 50, "target_is_value": True, "franchise": False})
+        ledger, _ = self._run([pos], high=41.0, low=40.0, price=45.0)
+        self.assertEqual(ledger["positions"][0]["stop"], 33.75)
+
+    def test_stop_pct_below_25_is_raised_to_25(self):
+        pos = self._stock(stop=30.0, target_reached="2026-11-01",
+                          recheck={"target": 50, "target_is_value": True, "franchise": False, "stop_pct": 0.10})
+        ledger, _ = self._run([pos], high=41.0, low=40.0, price=45.0)
+        self.assertEqual(ledger["positions"][0]["stop"], 33.75)
+
+    def test_recheck_message_saves_stop_pct(self):
+        pos = self._stock(target_reached="2026-11-01")
+        ledger = {"positions": [pos]}
+        with patch("common.ntfy"):
+            check._recheck({"ticker": "XYZ", "action": "RECHECK", "target": 49.29, "target_is_value": True,
+                            "franchise": False, "stop_pct": 0.35}, ledger)
+        self.assertEqual(pos["recheck"]["stop_pct"], 0.35)
+
     def test_recheck_with_no_waiting_position_changes_nothing(self):
         import tempfile
         import shutil
