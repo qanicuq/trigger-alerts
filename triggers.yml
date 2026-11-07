@@ -1208,3 +1208,33 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-06'
   earnings_soon_noted: '2026-11-13'
+- id: RPM-forensic-2026-11-06
+  source: forensic
+  ticker: RPM
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 94.97
+  exit_plan:
+    stop:
+      price: 88.66
+    target:
+      price: 107.59
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $94.97 (pullback to the 60-day
+    low (support) ($94.50)), sell at $107.59 (twice the risk taken (no value target
+    above the entry)), stop $88.66; chart-based entry, not a value bargain: keep it
+    small; check what RPM says at the 9 November Investor Day, earnings, filings and
+    news before confirming.'
+  report_date: 2026-11-06
+  expires: 2027-02-04
+  data_through: 2026-08-31
+  status: active
+  backtest:
+    wins: 2
+    losses: 0
+    signals: 2
+  earnings_date: '2027-01-07'
+  earnings_time: BMO
+  earnings_checked: '2026-11-06'
