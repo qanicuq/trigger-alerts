@@ -1566,3 +1566,38 @@ triggers:
   earnings_date: '2027-01-07'
   earnings_time: BMO
   earnings_checked: '2026-11-07'
+- id: WIT-forensic-2026-11-07
+  source: forensic
+  ticker: WIT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 2.11
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 1.05
+    target:
+      price: 3.15
+    max_hold_days: 1080
+    review_days: 540
+  recommendation: 'WATCH, confidence 60: buy at or below $2.11 (value buy-below line
+    (within reach of the price)), sell at $3.15 (sell or trim when price reaches estimated
+    value), stop $1.05; the stop is disaster insurance only, set beyond the stock''s
+    worst past fall; check whether Wipro''s deal wins have recovered, earnings, filings
+    and news before confirming.'
+  report_date: 2026-11-07
+  expires: 2027-02-05
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-01-15'
+  earnings_time: BMO
+  earnings_checked: '2026-11-07'
