@@ -1445,3 +1445,33 @@ triggers:
   earnings_date: '2026-11-27'
   earnings_time: AMC
   earnings_checked: '2026-11-07'
+- id: NKE-forensic-2026-11-07
+  source: forensic
+  ticker: NKE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 37.08
+  exit_plan:
+    stop:
+      price: 34.6
+    target:
+      price: 42.04
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $37.08 (pullback to the 50-day
+    average ($36.89)), sell at $42.04 (twice the risk taken (no value target above
+    the entry)), stop $34.60; chart-based entry, not a value bargain: keep it small;
+    check what Nike says at its November Investor Day, earnings, filings and news
+    before confirming.'
+  report_date: 2026-11-07
+  expires: 2027-02-05
+  data_through: 2026-08-31
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-12-17'
+  earnings_time: AMC
+  earnings_checked: '2026-11-07'
