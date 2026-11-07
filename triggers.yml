@@ -1505,3 +1505,34 @@ triggers:
   earnings_date: '2027-01-28'
   earnings_time: BMO
   earnings_checked: '2026-11-07'
+- id: RLX-forensic-2026-11-07
+  source: forensic
+  ticker: RLX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 1.54
+  exit_plan:
+    stop:
+      price: 1.45
+    target:
+      price: 1.73
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 50: buy at or below $1.54 (pullback of 1.5× a
+    normal day''s move (no chart support within 20%)), sell at $1.73 (twice the risk
+    taken (no value target above the entry)), stop $1.45; chart-based entry, not a
+    value bargain: keep it small; check Q3 results due around Nov 12-16 (cash flow
+    recovery), earnings, filings and news before confirming.'
+  report_date: 2026-11-07
+  expires: 2027-02-05
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2026-11-13'
+  earnings_time: BMO
+  earnings_checked: '2026-11-07'
+  earnings_soon_noted: '2026-11-13'
