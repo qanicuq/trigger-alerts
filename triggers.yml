@@ -1702,3 +1702,34 @@ triggers:
   earnings_date: '2026-12-23'
   earnings_time: AMC
   earnings_checked: '2026-11-07'
+- id: NFG-forensic-2026-11-07
+  source: forensic
+  ticker: NFG
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 70.53
+  exit_plan:
+    stop:
+      price: 66.3
+    target:
+      price: 78.99
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 35: buy at or below $70.53 (pullback of 1.5×
+    a normal day''s move (no chart support within 20%)), sell at $78.99 (twice the
+    risk taken (no value target above the entry)), stop $66.30; chart-based entry,
+    not a value bargain: keep it small; check the lower fiscal 2027 guidance ($6.00-6.40
+    vs $7.55), earnings, filings and news before confirming.'
+  report_date: 2026-11-07
+  expires: 2027-02-05
+  data_through: 2026-06-30
+  earnings_last: '2026-11-05'
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2027-01-27'
+  earnings_time: AMC
+  earnings_checked: '2026-11-07'
