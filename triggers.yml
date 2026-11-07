@@ -1015,10 +1015,11 @@ triggers:
     target:
       price: 42.04
     max_hold_days: 180
-  recommendation: 'WATCH, confidence 75: buy at or below $37.08 (pullback to the 50-day
+  recommendation: 'WATCH, confidence 60: buy at or below $37.08 (pullback to the 50-day
     average ($36.89)), sell at $42.04 (twice the risk taken (no value target above
     the entry)), stop $34.60; chart-based entry, not a value bargain: keep it small;
-    check the Nov 16-17 Investor Day targets, earnings, filings and news before confirming.'
+    check what Nike announces at the November Investor Day, earnings, filings and
+    news before confirming.'
   report_date: 2026-11-06
   expires: 2027-02-04
   data_through: 2026-08-31
