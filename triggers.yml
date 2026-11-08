@@ -1828,3 +1828,32 @@ triggers:
   earnings_date: '2027-01-26'
   earnings_time: BMO
   earnings_checked: '2026-11-07'
+- id: SMP-forensic-2026-11-08
+  source: forensic
+  ticker: SMP
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 39.67
+  exit_plan:
+    stop:
+      price: 36.62
+    target:
+      price: 55.1
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $39.67 (pullback to the 20-day
+    average ($39.47)), sell at $55.10 (sell or trim at estimated value), stop $36.62;
+    chart-based entry, not a value bargain: keep it small; check the CFO handover
+    (interim CFO since Oct 30), earnings, filings and news before confirming.'
+  report_date: 2026-11-08
+  expires: 2027-02-06
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-25'
+  earnings_time: BMO
+  earnings_checked: '2026-11-08'
