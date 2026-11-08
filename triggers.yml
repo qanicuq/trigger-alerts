@@ -1763,3 +1763,38 @@ triggers:
   earnings_date: '2027-02-17'
   earnings_time: BMO
   earnings_checked: '2026-11-07'
+- id: RES-forensic-2026-11-07
+  source: forensic
+  ticker: RES
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 5.31
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 3.15
+    target:
+      price: 9.13
+    max_hold_days: 1260
+    review_days: 540
+  recommendation: 'WATCH, confidence 55: buy at or below $5.31 (price is already below
+    the value buy-below line), sell at $9.13 (sell or trim when price reaches estimated
+    value), stop $3.15; the stop is disaster insurance only, set beyond the stock''s
+    worst past fall; check whether margins recover after the Pintail wireline write-down,
+    earnings, filings and news before confirming.'
+  report_date: 2026-11-07
+  expires: 2027-02-05
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-02-02'
+  earnings_time: BMO
+  earnings_checked: '2026-11-07'
