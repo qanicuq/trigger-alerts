@@ -1857,3 +1857,33 @@ triggers:
   earnings_date: '2027-02-25'
   earnings_time: BMO
   earnings_checked: '2026-11-08'
+- id: SN-forensic-2026-11-08
+  source: forensic
+  ticker: SN
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 202.04
+  exit_plan:
+    stop:
+      price: 186.3
+    target:
+      price: 233.52
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $202.04 (pullback to the
+    20-day average ($201.03)), sell at $233.52 (twice the risk taken (no value target
+    above the entry)), stop $186.30; chart-based entry, not a value bargain: keep
+    it small; check whether margins hold up once the one-off tariff refunds stop,
+    earnings, filings and news before confirming.'
+  report_date: 2026-11-08
+  expires: 2027-02-06
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-10'
+  earnings_time: BMO
+  earnings_checked: '2026-11-08'

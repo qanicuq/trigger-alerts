@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 8, 2026 at 9:22 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 8, 2026 at 10:07 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**16 watching** · **2 bought (open)** · **30 ended**
+**17 watching** · **2 bought (open)** · **30 ended**
 
 ## Watching now
 
@@ -26,6 +26,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RES** | Buy shares | Price at or below $5.31<br>Price at least 2% above the 20-day low (support) | $9.13 | $3.15 | Feb 2, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **SMP** | Buy shares | Price at or below $39.67 | $55.10 | $36.62 | Feb 25, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
+| **SN** | Buy shares | Price at or below $202.04 | $233.52 | $186.30 | Feb 10, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 
 **Notes from each report**
 
@@ -45,6 +46,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **RES:** WATCH, confidence 55: buy at or below $5.31 (price is already below the value buy-below line), sell at $9.13 (sell or trim when price reaches estimated value), stop $3.15; the stop is disaster insurance only, set beyond the stock's worst past fall; check whether margins recover after the Pintail wireline write-down, earnings, filings and news before confirming.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check the U.S. defense budget outlook after the midterms, earnings, filings and news before confirming.
 - **SMP:** WATCH, confidence 60: buy at or below $39.67 (pullback to the 20-day average ($39.47)), sell at $55.10 (sell or trim at estimated value), stop $36.62; chart-based entry, not a value bargain: keep it small; check the CFO handover (interim CFO since Oct 30), earnings, filings and news before confirming.
+- **SN:** WATCH, confidence 65: buy at or below $202.04 (pullback to the 20-day average ($201.03)), sell at $233.52 (twice the risk taken (no value target above the entry)), stop $186.30; chart-based entry, not a value bargain: keep it small; check whether margins hold up once the one-off tariff refunds stop, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
