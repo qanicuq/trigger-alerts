@@ -43,12 +43,13 @@ positions:
   source: forensic
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-09T12:00:39.263725-05:00'
+last_checked: '2026-11-09T12:30:35.089159-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
   2026-11-06:end of day: true
   2026-11-09:morning: true
+  2026-11-09:midday: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
