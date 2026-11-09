@@ -43,7 +43,7 @@ positions:
   source: forensic
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-09T10:00:40.104824-05:00'
+last_checked: '2026-11-09T10:30:36.570722-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -54,4 +54,4 @@ usage_alerted_month: null
 paused: false
 stats: {}
 day_start_date: '2026-11-09'
-max_drawdown_pct: 0.62
+max_drawdown_pct: 0.8
