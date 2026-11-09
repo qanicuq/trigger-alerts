@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 9, 2026 at 11:00 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 9, 2026 at 11:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **16 watching** · **3 bought (open)** · **30 ended**
 
@@ -19,7 +19,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RPM** | Buy shares | Price at or below $94.97 | $107.59 | $88.66 | Jan 7, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **WIT** | Buy shares | Price at or below $2.11<br>Price at least 2% above the 20-day low (support) (≈$1.76) | $3.15 | $1.05 | Jan 15, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **IMXI** | Buy shares | Price at or below $7.34<br>Price at least 2% above the 20-day low (support) (≈$7.13) | $16.13 | $2.99 | Nov 9, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **IMXI** | Buy shares | Price at or below $7.34<br>Price at least 2% above the 20-day low (support) (≈$7.02) | $16.13 | $2.99 | Nov 9, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **MU** | Buy shares | Price at or below $690.00<br>Price at least 2% above the 20-day low (support) (≈$663.00) | $1,420.54 | $338.82 | Dec 23, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **NFG** | Buy shares | Price at or below $70.53 | $78.99 | $66.30 | Jan 27, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **OGE** | Buy shares | Price at or below $48.85 | $54.71 | $45.92 | Feb 17, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
