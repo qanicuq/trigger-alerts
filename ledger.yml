@@ -1,4 +1,4 @@
-cash: 6595.778748576293
+cash: 5369.110635583395
 peak_equity: 10086.346764150749
 day_start_equity: 10037.37301637634
 positions:
@@ -28,9 +28,22 @@ positions:
   reserved: 0
   opened: '2026-11-06T09:30:37.308604-05:00'
   source: forensic
+- id: RES-forensic-2026-11-07
+  ticker: RES
+  action: BUY
+  entry_price: 5.3327
+  quantity: 230.0291
+  stop: 3.15
+  target: 9.13
+  max_hold_days: 1260
+  review_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-11-09T10:00:46.456470-05:00'
+  source: forensic
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-09T09:30:33.094953-05:00'
+last_checked: '2026-11-09T10:00:40.104824-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true

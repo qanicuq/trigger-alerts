@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 9, 2026 at 9:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 9, 2026 at 10:00 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**17 watching** · **2 bought (open)** · **30 ended**
+**16 watching** · **3 bought (open)** · **30 ended**
 
 ## Watching now
 
@@ -23,7 +23,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MU** | Buy shares | Price at or below $690.00<br>Price at least 2% above the 20-day low (support) (≈$663.00) | $1,420.54 | $338.82 | Dec 23, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **NFG** | Buy shares | Price at or below $70.53 | $78.99 | $66.30 | Jan 27, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **OGE** | Buy shares | Price at or below $48.85 | $54.71 | $45.92 | Feb 17, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **RES** | Buy shares | Price at or below $5.31<br>Price at least 2% above the 20-day low (support) (≈$5.38) | $9.13 | $3.15 | Feb 2, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **SMP** | Buy shares | Price at or below $39.67 | $55.10 | $36.62 | Feb 25, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 | **SN** | Buy shares | Price at or below $202.04 | $233.52 | $186.30 | Feb 10, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
@@ -43,7 +42,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **MU:** WATCH, confidence 70: buy at or below $690.00 (price is already below the value buy-below line), sell at $1,420.54 (sell or trim when price reaches estimated value), stop $338.82; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 17% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check the Taiwan plant labor dispute and the Dec 15 earnings, earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 35: buy at or below $70.53 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $78.99 (twice the risk taken (no value target above the entry)), stop $66.30; chart-based entry, not a value bargain: keep it small; check the lower fiscal 2027 guidance ($6.00-6.40 vs $7.55), earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 35: buy at or below $48.85 (pullback to the 20-day average ($48.61)), sell at $54.71 (twice the risk taken (no value target above the entry)), stop $45.92; chart-based entry, not a value bargain: keep it small; check the officer change in the 2026-10-08 8-K, earnings, filings and news before confirming.
-- **RES:** WATCH, confidence 55: buy at or below $5.31 (price is already below the value buy-below line), sell at $9.13 (sell or trim when price reaches estimated value), stop $3.15; the stop is disaster insurance only, set beyond the stock's worst past fall; check whether margins recover after the Pintail wireline write-down, earnings, filings and news before confirming.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check the U.S. defense budget outlook after the midterms, earnings, filings and news before confirming.
 - **SMP:** WATCH, confidence 60: buy at or below $39.67 (pullback to the 20-day average ($39.47)), sell at $55.10 (sell or trim at estimated value), stop $36.62; chart-based entry, not a value bargain: keep it small; check the CFO handover (interim CFO since Oct 30), earnings, filings and news before confirming.
 - **SN:** WATCH, confidence 65: buy at or below $202.04 (pullback to the 20-day average ($201.03)), sell at $233.52 (twice the risk taken (no value target above the entry)), stop $186.30; chart-based entry, not a value bargain: keep it small; check whether margins hold up once the one-off tariff refunds stop, earnings, filings and news before confirming.
@@ -54,6 +52,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 |---|---|---|---|---|---|---|---|---|
 | **MNST** | Stock | $44.75 | 55.86 shares | $51.95 | $43.60 | Nov 6, 2026 | Feb 25, 2027 (after close) |  |
 | **SHOE** | Stock | $15.01 | 60.25 shares | $27.95 | $6.71 | Nov 6, 2026 | Nov 26, 2026 (before open) |  |
+| **RES** | Stock | $5.33 | 230.03 shares | $9.13 | $3.15 | Nov 9, 2026 | Feb 2, 2027 (before open) |  |
 
 ## Closed paper trades
 
