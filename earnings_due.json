@@ -1,6 +1,24 @@
 {
  "due": [
   {
+   "ticker": "DHT",
+   "source": "forensic",
+   "kind": "waiting",
+   "bullish": true,
+   "earnings_date": "2026-11-09",
+   "earnings_time": "AMC",
+   "trigger_id": "DHT-forensic-2026-11-07"
+  },
+  {
+   "ticker": "IMXI",
+   "source": "forensic",
+   "kind": "waiting",
+   "bullish": true,
+   "earnings_date": "2026-11-09",
+   "earnings_time": "AMC",
+   "trigger_id": "IMXI-forensic-2026-11-07"
+  },
+  {
    "ticker": "NFG",
    "source": "forensic",
    "kind": "waiting",

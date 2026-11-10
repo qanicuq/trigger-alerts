@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 9, 2026 at 4:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 10, 2026 at 9:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**16 watching** · **3 bought (open)** · **30 ended**
+**15 watching** · **4 bought (open)** · **30 ended**
 
 ## Watching now
 
@@ -10,16 +10,15 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Buy when (all true) | Sell target | Stop | Next earnings | Watch ends | From |
 |---|---|---|---|---|---|---|---|
-| **DHT** | Buy shares | Price at or below $18.12 | $22.58 | $15.89 | Nov 9, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **DHT** | Buy shares | Price at or below $18.12 | $22.58 | $15.89 | Feb 3, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **LLY** | Buy shares | Price at or below $1,308.46 | $1,497.86 | $1,213.76 | Feb 3, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **NAT** | Buy shares | Price at or below $6.20 | $7.68 | $5.46 | Nov 27, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **NKE** | Buy shares | Price at or below $37.08 | $42.04 | $34.60 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **NOK** | Buy shares | Price at or below $6.89 | $8.94 | $5.87 | Jan 28, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **RLX** | Buy shares | Price at or below $1.54 | $1.73 | $1.45 | Nov 13, 2026 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **RLX** | Buy shares | Price at or below $1.54 | $1.73 | $1.45 | Nov 20, 2026 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **RPM** | Buy shares | Price at or below $94.97 | $107.59 | $88.66 | Jan 7, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **WIT** | Buy shares | Price at or below $2.11<br>Price at least 2% above the 20-day low (support) (≈$1.76) | $3.15 | $1.05 | Jan 15, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **WIT** | Buy shares | Price at or below $2.11<br>Price at least 2% above the 20-day low (support) (≈$1.82) | $3.15 | $1.05 | Jan 15, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **IMXI** | Buy shares | Price at or below $7.34<br>Price at least 2% above the 20-day low (support) (≈$7.00) | $16.13 | $2.99 | Nov 9, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **IMXI** | Buy shares | Price at or below $7.34<br>Price at least 2% above the 20-day low (support) (≈$7.00) | $16.13 | $2.99 | Mar 1, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **MU** | Buy shares | Price at or below $690.00<br>Price at least 2% above the 20-day low (support) (≈$663.00) | $1,420.54 | $338.82 | Dec 23, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **NFG** | Buy shares | Price at or below $70.53 | $78.99 | $66.30 | Jan 27, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **OGE** | Buy shares | Price at or below $48.85 | $54.71 | $45.92 | Feb 17, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
@@ -31,7 +30,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 - **DHT:** WATCH, confidence 40: buy at or below $18.12 (pullback to the 60-day low (support) ($18.03)), sell at $22.58 (twice the risk taken (no value target above the entry)), stop $15.89; chart-based entry, not a value bargain: keep it small; check the Nov 9 Q3 results and whether tanker rates are holding, earnings, filings and news before confirming.
 - **LLY:** WATCH, confidence 65: buy at or below $1,308.46 (pullback to the 20-day average ($1,301.95)), sell at $1,497.86 (twice the risk taken (no value target above the entry)), stop $1,213.76; chart-based entry, not a value bargain: keep it small; check whether Q3's ~$900M of one-off revenue benefits flatter the growth, earnings, filings and news before confirming.
-- **NAT:** WATCH, confidence 65: buy at or below $6.20 (pullback to the 60-day low (support) ($6.17)), sell at $7.68 (twice the risk taken (no value target above the entry)), stop $5.46; chart-based entry, not a value bargain: keep it small; check the Nov 26 Q3 results and whether tanker charter rates are holding, earnings, filings and news before confirming.
 - **NKE:** WATCH, confidence 65: buy at or below $37.08 (pullback to the 50-day average ($36.89)), sell at $42.04 (twice the risk taken (no value target above the entry)), stop $34.60; chart-based entry, not a value bargain: keep it small; check what Nike says at its November Investor Day, earnings, filings and news before confirming.
 - **NOK:** WATCH, confidence 60: buy at or below $6.89 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $8.94 (twice the risk taken (no value target above the entry)), stop $5.87; chart-based entry, not a value bargain: keep it small; check the gap between Nokia's adjusted and reported profit, earnings, filings and news before confirming.
 - **RLX:** WATCH, confidence 50: buy at or below $1.54 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $1.73 (twice the risk taken (no value target above the entry)), stop $1.45; chart-based entry, not a value bargain: keep it small; check Q3 results due around Nov 12-16 (cash flow recovery), earnings, filings and news before confirming.
@@ -53,6 +51,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MNST** | Stock | $44.75 | 55.86 shares | $51.95 | $43.60 | Nov 6, 2026 | Feb 25, 2027 (after close) |  |
 | **SHOE** | Stock | $15.01 | 60.25 shares | $27.95 | $6.71 | Nov 6, 2026 | Nov 26, 2026 (before open) |  |
 | **RES** | Stock | $5.33 | 230.03 shares | $9.13 | $3.15 | Nov 9, 2026 | Feb 2, 2027 (before open) |  |
+| **NAT** | Stock | $6.18 | 405.39 shares | $7.68 | $5.46 | Nov 10, 2026 | Nov 27, 2026 (after close) |  |
 
 ## Closed paper trades
 
