@@ -1,16 +1,17 @@
-# Report 2026-11-10 09:30 NY
+# Report 2026-11-10 10:00 NY
 
-Equity: $10,026  Peak: $10,086  Drawdown: 0.6%  Paused: no
-Cash: $5,369
+Equity: $10,103  Peak: $10,086  Drawdown: -0.2%  Paused: no
+Cash: $2,863
 P/L today: $0
 P/L overall: $0
 Worst drawdown: 0.8%  Expectancy: n/a (no closed trades yet)
 Track record: 0 closed trades. Too few to judge skill: a short record can't tell skill from luck.
 
 ## Open trades
-- MNST entry 44.75 now 45.599998474121094 P/L 1.9% stop 43.6 target 51.95
-- SHOE entry 15.01 now 15.3149995803833 P/L 2.0% stop 6.71 target 27.95
-- RES entry 5.33 now 5.159999847412109 P/L -3.2% stop 3.15 target 9.13
+- MNST entry 44.75 now 45.53499984741211 P/L 1.7% stop 43.6 target 51.95
+- SHOE entry 15.01 now 15.029999732971191 P/L 0.1% stop 6.71 target 27.95
+- RES entry 5.33 now 5.070000171661377 P/L -4.9% stop 3.15 target 9.13
+- NAT entry 6.18 now 6.474999904632568 P/L 4.7% stop 5.46 target 7.68
 
 ## Exits today
 None
