@@ -2134,3 +2134,33 @@ triggers:
   resolved_target: 233.52
   seen_high: 232.75999450683594
   seen_low: 223.10000610351562
+- id: HOPE-forensic-2026-11-10
+  source: forensic
+  ticker: HOPE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 12.87
+  exit_plan:
+    stop:
+      price: 12.1
+    target:
+      price: 14.41
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 55: buy at or below $12.87 (pullback to the 60-day
+    low (support) ($12.80)), sell at $14.41 (twice the risk taken (no value target
+    above the entry)), stop $12.10; chart-based entry, not a value bargain: keep it
+    small; check how the MANUBANK acquisition is being integrated, earnings, filings
+    and news before confirming.'
+  report_date: 2026-11-10
+  expires: 2027-02-08
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2027-01-26'
+  earnings_time: BMO
+  earnings_checked: '2026-11-10'
