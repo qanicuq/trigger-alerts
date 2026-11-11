@@ -350,7 +350,7 @@ triggers:
     signals: 3
   earnings_date: '2027-02-25'
   earnings_time: AMC
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
     sma20: 46.202999877929685
     sma50: 44.68879997253418
@@ -593,9 +593,9 @@ triggers:
     wins: 1
     losses: 0
     signals: 1
-  earnings_date: '2026-11-26'
+  earnings_date: '2026-11-24'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
     sma20: 14.164500093460083
     sma50: 13.42894453048706
@@ -1383,24 +1383,24 @@ triggers:
     signals: 3
   earnings_date: '2027-02-03'
   earnings_time: AMC
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   earnings_soon_noted: '2026-11-09'
   resolved:
-    sma20: 23.344500064849854
-    sma50: 22.854400062561034
-    sma200: 18.001432399749756
-    ema20: 22.810343718450113
+    sma20: 23.173750019073488
+    sma50: 22.891300048828125
+    sma200: 18.04905264377594
+    ema20: 22.688882397398128
     52w_high: 26.90999984741211
-    52w_low: 10.272414207458496
-    support20: 19.250099182128906
-    resistance20: 26.90999984741211
-    rsi14: 35.8
+    52w_low: 10.272415161132812
+    support20: 19.25
+    resistance20: 25.3799991607666
+    rsi14: 41.6
   resolved_stop: 15.89
   resolved_target: 22.58
   earnings_last: '2026-11-09'
   earnings_last_time: AMC
   earnings_reminded: '2026-11-09'
-  seen_high: 21.0
+  seen_high: 21.440000534057617
   seen_low: 19.250099182128906
 - id: LLY-forensic-2026-11-07
   source: forensic
@@ -1431,17 +1431,17 @@ triggers:
     signals: 3
   earnings_date: '2027-02-03'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 1326.7099975585938
-    sma50: 1224.5105932617187
-    sma200: 1101.4391152954101
-    ema20: 1334.023098298681
+    sma20: 1337.0114990234374
+    sma50: 1229.6059936523438
+    sma200: 1103.3404028320313
+    ema20: 1341.7132812732114
     52w_high: 1453.0
     52w_low: 847.8335017278876
-    support20: 1174.239990234375
+    support20: 1230.6600341796875
     resistance20: 1453.0
-    rsi14: 69.8
+    rsi14: 66.1
   resolved_stop: 1213.76
   resolved_target: 1497.86
   seen_high: 1438.8800048828125
@@ -1475,7 +1475,7 @@ triggers:
     signals: 3
   earnings_date: '2026-11-27'
   earnings_time: AMC
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
     sma20: 7.448249959945679
     sma50: 7.6601535987854
@@ -1521,21 +1521,21 @@ triggers:
     signals: 1
   earnings_date: '2026-12-17'
   earnings_time: AMC
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 38.115499877929686
-    sma50: 36.906599884033206
-    sma200: 44.53576850891113
-    ema20: 38.18685488328656
+    sma20: 38.2607500076294
+    sma50: 36.908299942016605
+    sma200: 44.419462814331055
+    ema20: 38.18858316402369
     52w_high: 67.36040489291355
     52w_low: 31.969999313354492
-    support20: 34.709999084472656
+    support20: 35.939998626708984
     resistance20: 41.099998474121094
-    rsi14: 53.8
+    rsi14: 51.4
   resolved_stop: 34.6
   resolved_target: 42.04
   seen_high: 40.16999816894531
-  seen_low: 38.439998626708984
+  seen_low: 38.220001220703125
 - id: NOK-forensic-2026-11-07
   source: forensic
   ticker: NOK
@@ -1565,20 +1565,20 @@ triggers:
     signals: 2
   earnings_date: '2027-01-28'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 8.634500122070312
-    sma50: 9.663600063323974
-    sma200: 10.358650012016296
-    ema20: 8.665684949517756
+    sma20: 8.589500141143798
+    sma50: 9.63500005722046
+    sma200: 10.366450011730194
+    ema20: 8.649905430516064
     52w_high: 17.450000762939453
     52w_low: 5.860000133514404
     support20: 7.360000133514404
-    resistance20: 9.770000457763672
-    rsi14: 42.9
+    resistance20: 9.59000015258789
+    rsi14: 45.9
   resolved_stop: 5.87
   resolved_target: 8.94
-  seen_high: 8.375
+  seen_high: 8.494999885559082
   seen_low: 7.908599853515625
 - id: RLX-forensic-2026-11-07
   source: forensic
@@ -1609,18 +1609,18 @@ triggers:
     signals: 0
   earnings_date: '2026-11-20'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   earnings_soon_noted: '2026-11-20'
   resolved:
-    sma20: 1.6400000035762787
-    sma50: 1.6966000080108643
-    sma200: 2.0039000046253204
-    ema20: 1.633851778494669
+    sma20: 1.6322499990463257
+    sma50: 1.691900007724762
+    sma200: 1.9999750047922134
+    ema20: 1.6263420803092634
     52w_high: 2.5999999046325684
     52w_low: 1.5299999713897705
     support20: 1.5299999713897705
     resistance20: 1.7489999532699585
-    rsi14: 29.9
+    rsi14: 35.3
   resolved_stop: 1.45
   resolved_target: 1.73
 - id: RPM-forensic-2026-11-07
@@ -1652,17 +1652,17 @@ triggers:
     signals: 2
   earnings_date: '2027-01-07'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 101.94369239807129
-    sma50: 100.35176147460938
-    sma200: 104.12062965393066
-    ema20: 102.86644488548613
+    sma20: 102.35425415039063
+    sma50: 100.43843307495118
+    sma200: 104.12077423095702
+    ema20: 103.12678332268779
     52w_high: 119.82899637626507
     52w_low: 91.43135809054705
-    support20: 96.15587049901526
+    support20: 97.26000213623047
     resistance20: 110.87000274658203
-    rsi14: 57.3
+    rsi14: 56.8
   resolved_stop: 88.66
   resolved_target: 107.59
   seen_high: 108.16999816894531
@@ -1701,21 +1701,21 @@ triggers:
     signals: 1
   earnings_date: '2027-01-15'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 2.0800000190734864
-    sma50: 1.8554000020027162
-    sma200: 2.0352085953950882
-    ema20: 2.0636667774682995
+    sma20: 2.095750021934509
+    sma50: 1.861100001335144
+    sma200: 2.032880147099495
+    ema20: 2.0685556567129133
     52w_high: 3.055299509120359
     52w_low: 1.590000033378601
-    support20: 1.7799999713897705
+    support20: 1.7899999618530273
     resistance20: 2.2200000286102295
-    rsi14: 68.4
+    rsi14: 60.1
   resolved_stop: 1.05
   resolved_target: 3.15
   seen_high: 2.1700000762939453
-  seen_low: 2.130000114440918
+  seen_low: 2.115000009536743
 - id: BB-forensic-2026-11-07
   source: forensic
   ticker: BB
@@ -1744,20 +1744,20 @@ triggers:
     signals: 3
   earnings_date: '2026-12-17'
   earnings_time: AMC
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 8.75649995803833
-    sma50: 8.50639998435974
-    sma200: 7.032049978971481
-    ema20: 8.773821751812221
+    sma20: 8.824749994277955
+    sma50: 8.541699991226196
+    sma200: 7.061024980545044
+    ema20: 8.852029229451896
     52w_high: 13.59000015258789
     52w_low: 3.119999885559082
     support20: 7.960000038146973
     resistance20: 9.640000343322754
-    rsi14: 54.2
+    rsi14: 58.3
   resolved_stop: 6.38
   resolved_target: 9.75
-  seen_high: 9.3100004196167
+  seen_high: 9.569999694824219
   seen_low: 8.729999542236328
 - id: IMXI-forensic-2026-11-07
   source: forensic
@@ -1793,25 +1793,25 @@ triggers:
     signals: 1
   earnings_date: '2027-03-01'
   earnings_time: AMC
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   earnings_soon_noted: '2026-11-09'
   resolved:
-    sma20: 8.933250021934509
-    sma50: 11.154000005722047
-    sma200: 13.964675018787384
-    ema20: 8.866309152416573
+    sma20: 8.729000043869018
+    sma50: 10.994700012207032
+    sma200: 13.919500021934509
+    ema20: 8.635708297106554
     52w_high: 15.949999809265137
-    52w_low: 6.460000038146973
-    support20: 6.460000038146973
+    52w_low: 6.409999847412109
+    support20: 6.409999847412109
     resistance20: 10.979999542236328
-    rsi14: 22.4
+    rsi14: 22.1
   resolved_stop: 2.99
   resolved_target: 16.13
   earnings_last: '2026-11-09'
   earnings_last_time: AMC
   earnings_reminded: '2026-11-09'
   seen_high: 7.869999885559082
-  seen_low: 6.460000038146973
+  seen_low: 6.445000171661377
   hold_alerted: '2026-11-09'
 - id: MU-forensic-2026-11-07
   source: forensic
@@ -1848,20 +1848,20 @@ triggers:
     signals: 1
   earnings_date: '2026-12-23'
   earnings_time: AMC
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 854.8080017089844
-    sma50: 952.8730456542969
-    sma200: 759.8783499145508
-    ema20: 843.7606095907271
+    sma20: 847.8438171386719
+    sma50: 949.7041101074219
+    sma200: 761.7028804016113
+    ema20: 837.1973432941396
     52w_high: 1254.6095437059498
     52w_low: 192.3715183189107
     support20: 650.0
     resistance20: 990.0
-    rsi14: 35.8
+    rsi14: 41.5
   resolved_stop: 338.82
   resolved_target: 1420.54
-  seen_high: 745.6400146484375
+  seen_high: 775.9949951171875
   seen_low: 697.5
 - id: NFG-forensic-2026-11-07
   source: forensic
@@ -1893,17 +1893,17 @@ triggers:
     signals: 1
   earnings_date: '2027-01-27'
   earnings_time: AMC
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 78.48399963378907
-    sma50: 79.10330139160156
-    sma200: 82.21931655883789
-    ema20: 77.58190848015953
-    52w_high: 95.33606468292564
+    sma20: 78.26099967956543
+    sma50: 78.93356399536133
+    sma200: 82.18538333892822
+    ema20: 77.31125032617501
+    52w_high: 95.3360723703471
     52w_low: 73.01000213623047
     support20: 73.01000213623047
     resistance20: 81.98999786376953
-    rsi14: 36.6
+    rsi14: 37.0
   resolved_stop: 66.3
   resolved_target: 78.99
   seen_high: 75.5199966430664
@@ -1937,17 +1937,17 @@ triggers:
     signals: 3
   earnings_date: '2027-02-17'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 48.98599967956543
-    sma50: 46.939759750366214
-    sma200: 46.68951259613037
-    ema20: 49.1342479446804
+    sma20: 49.15549983978271
+    sma50: 47.04666275024414
+    sma200: 46.7305320930481
+    ema20: 49.3024149524109
     52w_high: 51.599998474121094
-    52w_low: 40.59343732909513
+    52w_low: 40.593441100381945
     support20: 46.439998626708984
     resistance20: 51.599998474121094
-    rsi14: 69.9
+    rsi14: 69.4
   resolved_stop: 45.92
   resolved_target: 54.71
   seen_high: 51.040000915527344
@@ -1986,7 +1986,7 @@ triggers:
     signals: 1
   earnings_date: '2027-02-02'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
     sma20: 6.068000054359436
     sma50: 6.072200012207031
@@ -2032,17 +2032,17 @@ triggers:
     signals: 3
   earnings_date: '2027-01-26'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 195.01299972534179
-    sma50: 192.9961993408203
-    sma200: 194.4873480987549
-    ema20: 195.1671777838506
+    sma20: 195.6414993286133
+    sma50: 192.8737991333008
+    sma200: 194.4869486236572
+    ema20: 195.5360173555016
     52w_high: 226.41000366210938
     52w_low: 164.95067760811705
-    support20: 183.6699981689453
+    support20: 185.30999755859375
     resistance20: 205.6199951171875
-    rsi14: 56.7
+    rsi14: 55.1
   resolved_stop: 169.12
   resolved_target: 201.51
   seen_high: 201.25
@@ -2075,17 +2075,17 @@ triggers:
     signals: 3
   earnings_date: '2027-02-25'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 40.26600017547607
-    sma50: 38.768599853515624
-    sma200: 38.393533573150634
-    ema20: 41.47892196951093
+    sma20: 40.65400009155273
+    sma50: 38.89459983825684
+    sma200: 38.41906105041504
+    ema20: 41.719976860178924
     52w_high: 47.27000045776367
     52w_low: 33.688773312486
-    support20: 36.060001373291016
+    support20: 36.439998626708984
     resistance20: 47.27000045776367
-    rsi14: 69.8
+    rsi14: 66.0
   resolved_stop: 36.62
   resolved_target: 55.1
   seen_high: 45.494998931884766
@@ -2119,17 +2119,17 @@ triggers:
     signals: 3
   earnings_date: '2027-02-10'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
   resolved:
-    sma20: 204.8944999694824
-    sma50: 187.43140045166015
-    sma200: 145.93480030059814
-    ema20: 207.66146866741303
+    sma20: 206.92424926757812
+    sma50: 188.47130035400392
+    sma200: 146.45617527008056
+    ema20: 209.4951376787197
     52w_high: 232.75999450683594
     52w_low: 83.20999908447266
-    support20: 183.60000610351562
+    support20: 185.11000061035156
     resistance20: 232.75999450683594
-    rsi14: 73.3
+    rsi14: 73.6
   resolved_stop: 186.3
   resolved_target: 233.52
   seen_high: 232.75999450683594
@@ -2163,4 +2163,18 @@ triggers:
     signals: 3
   earnings_date: '2027-01-26'
   earnings_time: BMO
-  earnings_checked: '2026-11-10'
+  earnings_checked: '2026-11-11'
+  resolved:
+    sma20: 13.409560012817384
+    sma50: 13.499138565063477
+    sma200: 12.619437408447265
+    ema20: 13.3443567805571
+    52w_high: 14.433718232810106
+    52w_low: 9.386838707056283
+    support20: 12.801391743646521
+    resistance20: 14.12703855267512
+    rsi14: 49.0
+  resolved_stop: 12.1
+  resolved_target: 14.41
+  seen_high: 13.329999923706055
+  seen_low: 13.329999923706055
