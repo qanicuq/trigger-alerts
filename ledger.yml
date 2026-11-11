@@ -1,5 +1,5 @@
-cash: 2862.57072754036
-peak_equity: 10185.296891203749
+cash: 2659.613726839207
+peak_equity: 10224.856205198108
 day_start_equity: 10185.296891203749
 positions:
 - id: MNST-forensic-2026-11-06
@@ -54,9 +54,22 @@ positions:
   reserved: 0
   opened: '2026-11-10T09:30:51.228818-05:00'
   source: forensic
+- id: WIT-forensic-2026-11-07
+  ticker: WIT
+  action: BUY
+  entry_price: 2.1161
+  quantity: 95.9128
+  stop: 1.05
+  target: 3.15
+  max_hold_days: 1080
+  review_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-11-11T10:00:40.837274-05:00'
+  source: forensic
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-11T09:30:37.787964-05:00'
+last_checked: '2026-11-11T10:00:35.753335-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
