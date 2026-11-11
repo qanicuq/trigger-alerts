@@ -1,7 +1,7 @@
 import os
 import sys
 import math
-from datetime import datetime, date, time as dtime
+from datetime import datetime, date, time as dtime, timedelta
 from zoneinfo import ZoneInfo
 
 import common
@@ -144,6 +144,39 @@ def main():
         common.save_yaml("triggers.yml", {"triggers": triggers})
         common.save_yaml("ledger.yml", ledger)
         print("Filled")
+    elif tr.get("status") == "active":  # delayed two weeks by _delay_if_weaker: keep that
+        common.save_yaml("triggers.yml", {"triggers": triggers})
+
+
+def _delay_if_weaker(tr, ledger, fill, target):
+    """Stock buy with no cash left: if its upside (target / price - 1) is below the weakest
+    held stock's, put the trigger back to waiting and try again in RETRY_DAYS. Returns True if delayed."""
+    if tr.get("action", "BUY") != "BUY" or not target:
+        return False
+    if float(ledger.get("cash") or 0) / fill >= 0.0001:  # cash can still buy something
+        return False
+    held = []
+    for p in ledger.get("positions") or []:
+        if p.get("target") and p.get("action", "BUY") == "BUY":
+            px = common.last_price(p.get("ticker")) or float(p.get("entry_price") or 0)
+            if px > 0:
+                held.append((float(p["target"]) / px - 1, p.get("ticker")))
+    if not held:
+        return False
+    weakest, weakest_ticker = min(held)
+    upside = target / fill - 1
+    if upside >= weakest:
+        return False
+    retry = common.now_ny().date() + timedelta(days=common.RETRY_DAYS)
+    tr["status"] = "active"
+    tr["retry_after"] = retry.isoformat()
+    common.ntfy(
+        f"{tr['ticker']}: no cash, trying again {retry.isoformat()}",
+        f"Upside {upside:.0%} is below the weakest holding ({weakest_ticker} {weakest:.0%}), "
+        f"so nothing is sold to make room.\nThe bot waits {common.RETRY_DAYS} days, then buys if the conditions are met "
+        f"and there is cash.",
+    )
+    return True
 
 
 def place(tr, ledger, force=False):
@@ -270,6 +303,8 @@ def place(tr, ledger, force=False):
     else:
         qty, risk_frac, p, b, refuse = _kelly_size(tr, ledger, fill, stop, target, max_profit, max_loss)
         if refuse:
+            if _delay_if_weaker(tr, ledger, fill, target):
+                return False
             common.ntfy(f"Skipped {ticker}: {refuse}", f"p={p:.2f} b={b:.2f}")
             return False
 

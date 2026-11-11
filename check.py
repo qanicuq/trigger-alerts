@@ -1044,6 +1044,9 @@ def main():
         rsi = common.wilder_rsi(closes) if closes else None
         vol_ratio = common.volume_ratio(hist) if hist is not None else None
         met = _evaluate_conditions(tr, hist, high, low, refs, rsi, vol_ratio)
+        retry_after = common._to_date(tr.get("retry_after"))
+        if retry_after and now.date() < retry_after:
+            met = False  # no cash last time and weaker than every holding: waiting out the two weeks
         if met and _needs_refresh(tr):
             # Earnings came out after this trigger's report: don't buy on old numbers.
             # The trigger stays active; a fresh report replaces it and buying resumes.

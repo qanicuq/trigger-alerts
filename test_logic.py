@@ -1542,5 +1542,82 @@ class TestForensicTargetRecheck(unittest.TestCase):
             shutil.rmtree(d)
 
 
+class TestNoCashDelay(unittest.TestCase):
+    """No cash + stock buy weaker than every holding -> wait two weeks, then try again (user, 2026-11-11)."""
+
+    def _ledger(self, cash=0.0):
+        # held stock: price 10 (mocked), target 12 -> upside 20%
+        return {"cash": cash, "positions": [{"id": "H", "ticker": "HELD", "action": "BUY",
+                                              "entry_price": 9.0, "quantity": 10, "target": 12.0}]}
+
+    def _call(self, tr, ledger, fill, target):
+        sent = []
+        with patch("common.last_price", return_value=10.0), \
+             patch("common.ntfy", side_effect=lambda t, b, **k: sent.append(t)):
+            out = confirm._delay_if_weaker(tr, ledger, fill, target)
+        return out, sent
+
+    def test_weaker_with_no_cash_is_delayed_14_days(self):
+        tr = {"id": "N", "ticker": "NEW", "action": "BUY", "status": "awaiting_confirm"}
+        out, sent = self._call(tr, self._ledger(), 20.0, 22.0)  # upside 10% < 20%
+        retry = (common.now_ny().date() + timedelta(days=14)).isoformat()
+        self.assertTrue(out)
+        self.assertEqual(tr["status"], "active")
+        self.assertEqual(tr["retry_after"], retry)
+        self.assertEqual(sent, [f"NEW: no cash, trying again {retry}"])
+
+    def test_stronger_with_no_cash_is_not_delayed(self):
+        tr = {"id": "N", "ticker": "NEW", "action": "BUY", "status": "awaiting_confirm"}
+        out, sent = self._call(tr, self._ledger(), 20.0, 30.0)  # upside 50% > 20%
+        self.assertFalse(out)
+        self.assertEqual(tr, {"id": "N", "ticker": "NEW", "action": "BUY", "status": "awaiting_confirm"})
+        self.assertEqual(sent, [])
+
+    def test_equal_upside_is_not_delayed(self):
+        tr = {"id": "N", "ticker": "NEW", "action": "BUY", "status": "awaiting_confirm"}
+        out, _ = self._call(tr, self._ledger(), 20.0, 24.0)  # upside 20% = 20%: not weaker
+        self.assertFalse(out)
+
+    def test_with_cash_is_not_delayed(self):
+        tr = {"id": "N", "ticker": "NEW", "action": "BUY", "status": "awaiting_confirm"}
+        out, sent = self._call(tr, self._ledger(cash=500.0), 20.0, 22.0)
+        self.assertFalse(out)
+        self.assertNotIn("retry_after", tr)
+
+    def test_no_stock_holdings_is_not_delayed(self):
+        tr = {"id": "N", "ticker": "NEW", "action": "BUY", "status": "awaiting_confirm"}
+        out, _ = self._call(tr, {"cash": 0.0, "positions": []}, 20.0, 22.0)
+        self.assertFalse(out)
+
+    def test_place_delays_instead_of_skipping(self):
+        tr = {"id": "N", "ticker": "NEW", "action": "BUY", "status": "awaiting_confirm", "source": "forensic",
+              "exit_plan": {"stop": 18.0, "target": 22.0}}
+        ledger = self._ledger()
+        sent = []
+        with patch("common.last_price", side_effect=lambda t: 20.0 if t == "NEW" else 10.0), \
+             patch("common.get_daily_bars", return_value=None), \
+             patch("common.compute_refs", return_value={}), \
+             patch("common.resolve_level", side_effect=lambda spec, refs, entry=None: spec), \
+             patch("common.ntfy", side_effect=lambda t, b, **k: sent.append(t)):
+            ok = confirm.place(tr, ledger, force=True)
+        self.assertFalse(ok)
+        self.assertEqual(tr["status"], "active")
+        self.assertEqual(len(sent), 1)
+        self.assertTrue(sent[0].startswith("NEW: no cash, trying again "))
+        self.assertEqual(ledger["cash"], 0.0)
+
+    def test_check_waits_until_retry_date_then_tries(self):
+        today = common.now_ny().date()
+        base = dict(id="N", ticker="NEW", action="BUY", status="active", source="forensic",
+                    report_date=today, expires=(today + timedelta(days=30)).isoformat())
+        waiting = dict(base, retry_after=(today + timedelta(days=1)).isoformat())
+        _, place = TestEarnings._run_main(self, waiting)
+        place.assert_not_called()
+        self.assertEqual(waiting["status"], "active")
+        due = dict(base, retry_after=today.isoformat())
+        _, place = TestEarnings._run_main(self, due)
+        place.assert_called_once()
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
