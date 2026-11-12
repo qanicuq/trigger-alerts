@@ -484,7 +484,9 @@ def _position_earnings_body(tr, ed, timing):
             f"A fresh Forensic Analysis runs automatically once Webull has the new quarter. ")
     if _bullish(tr):
         body += ("If the verdict is AVOID, the bot sells it at the next check. "
-                 "Otherwise it keeps holding with the same exits; a price drop alone doesn't sell it.")
+                 "Otherwise it moves the target and stop to the fresh report (the stop is never lowered), "
+                 "or sells (trims 10% of the profit for a franchise) if value is no longer above the price; "
+                 "a price drop alone doesn't sell it.")
     else:
         body += "This bets on the stock falling, so an AVOID verdict doesn't sell it; its normal exits still apply."
     return body, common.FORENSIC_PAGE
@@ -639,19 +641,27 @@ def _thesis_broken(tr, triggers, ledger):
     common.ntfy(f"Thesis broken: {ticker}", body, priority="high")
 
 
-def _recheck(tr, ledger):
+def _recheck(tr, ledger, triggers=()):
+    """A fresh Forensic Analysis for a held forensic stock. At its target: the Nov 7 target re-check.
+    Otherwise (user, 2026-11-11): adjust the target and stop to the fresh report, or trim/sell (see main)."""
     matched = False
     for pos in (ledger or {}).get("positions") or []:
         if (pos.get("ticker") == tr.get("ticker") and pos.get("source") == "forensic"
-                and not pos.get("is_option") and pos.get("action") not in ("SPREAD", "POSITION")
-                and "target_reached" in pos):
+                and not pos.get("is_option") and pos.get("action") not in ("SPREAD", "POSITION")):
             pos["recheck"] = {
                 "target": tr.get("target"),
                 "target_is_value": bool(tr.get("target_is_value")),
                 "franchise": bool(tr.get("franchise")),
                 "stop_pct": tr.get("stop_pct"),
+                "stop": tr.get("stop"),
             }
             pos["recheck_received"] = common.now_ny().date().isoformat()
+            # the held position's trigger now rests on this report, so the earnings re-run list drops it
+            for t in triggers:
+                if t.get("id") == pos.get("id"):
+                    for k in ("report_date", "data_through"):
+                        if tr.get(k):
+                            t[k] = tr[k]
             matched = True
     if not matched:
         common.ntfy(f"{tr.get('ticker')}: fresh analysis received",
@@ -690,7 +700,7 @@ def _ingest_inbox(triggers, ledger=None):
                 changed = True
                 continue
             if tr.get("action") == "RECHECK":
-                _recheck(tr, ledger)
+                _recheck(tr, ledger, triggers)
                 os.remove(path)
                 changed = True
                 continue
@@ -1368,6 +1378,45 @@ def main():
             if exit_reason is None and pos.get("thesis_broken"):
                 exit_reason = "thesis broken"
                 exit_price = common.last_price(ticker) or entry
+            if exit_reason is None and pos.get("recheck") and "target_reached" not in pos:
+                # fresh analysis on a held stock not at its target (user, 2026-11-11)
+                rc = pos["recheck"]
+                cur = common.last_price(ticker)
+                if cur is not None:
+                    if rc.get("target") is None:
+                        pos.pop("recheck", None)
+                        common.ntfy(f"{ticker}: fresh analysis, no change",
+                                    "The fresh Forensic Analysis has no target, so the target and stop stay as they were.")
+                    elif float(rc["target"]) > cur:
+                        old_t = pos.get("target")
+                        pos["target"] = float(rc["target"])
+                        old_s = float(pos["stop"]) if pos.get("stop") is not None else None
+                        new_s = float(rc["stop"]) if rc.get("stop") is not None else None
+                        if new_s is not None and new_s < cur and (old_s is None or new_s > old_s):
+                            pos["stop"] = new_s
+                            stop_note = f"Stop raised to ${new_s:.2f}" + (f" (was ${old_s:.2f})." if old_s is not None else ".")
+                        else:
+                            stop_note = f"The stop stays at ${old_s:.2f}." if old_s is not None else ""
+                        was = f" (was ${float(old_t):.2f})" if old_t is not None else ""
+                        pos.pop("recheck", None)
+                        common.ntfy(f"{ticker}: adjusted to the fresh analysis",
+                                    f"Value is still above the price (${cur:.2f}). Target: ${float(rc['target']):.2f}{was}. {stop_note}".strip())
+                    elif rc.get("franchise"):
+                        entry_px = float(pos.get("entry_price") or 0)
+                        qty = float(pos.get("quantity") or 0)
+                        profit = (cur - entry_px) * qty
+                        sell_qty = math.floor(0.10 * profit / cur * 10000) / 10000 if profit > 0 else 0
+                        pos["target_reached"] = now.date().isoformat()  # quiet hold after the trim, as at a target
+                        if sell_qty > 0:
+                            _trim_position(ledger, pos, sell_qty, cur, now)
+                        else:
+                            common.ntfy(f"{ticker}: nothing to trim",
+                                        f"The fresh Forensic Analysis puts value at or below the price, but the stock is a franchise and there is no profit at ${cur:.2f}, so nothing was sold. Still holding.")
+                        pos.pop("recheck", None)
+                    else:
+                        exit_reason = "value reached (fresh analysis)"
+                        exit_price = cur
+                    changed = True
             if exit_reason is None and pos.get("recheck"):
                 rc = pos["recheck"]
                 cur = common.last_price(ticker)

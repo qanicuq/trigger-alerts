@@ -1506,6 +1506,61 @@ class TestForensicTargetRecheck(unittest.TestCase):
         ledger, _ = self._run([pos], high=41.0, low=40.0, price=45.0)
         self.assertEqual(ledger["positions"][0]["stop"], 33.75)
 
+    # fresh analysis on a held stock that is not at its target (user, 2026-11-11)
+    def test_fresh_higher_target_and_stop_adjust(self):
+        pos = self._stock(target=50.0, stop=30.0, recheck={"target": 55, "stop": 35, "target_is_value": True, "franchise": False})
+        ledger, ntfy = self._run([pos], high=46.0, low=44.0, price=45.0)
+        p = ledger["positions"][0]
+        self.assertEqual((p["target"], p["stop"]), (55.0, 35.0))
+        self.assertNotIn("recheck", p)
+        self.assertNotIn("target_reached", p)
+        self.assertEqual(ntfy.call_args_list[-1][0][0], "XYZ: adjusted to the fresh analysis")
+        self.assertIn("Target: $55.00 (was $50.00). Stop raised to $35.00 (was $30.00).", ntfy.call_args_list[-1][0][1])
+
+    def test_fresh_lower_target_used_but_stop_never_lowered(self):
+        pos = self._stock(target=50.0, stop=38.0, recheck={"target": 47, "stop": 36, "target_is_value": False, "franchise": False})
+        ledger, ntfy = self._run([pos], high=46.0, low=44.0, price=45.0)
+        p = ledger["positions"][0]
+        self.assertEqual((p["target"], p["stop"]), (47.0, 38.0))
+        self.assertIn("The stop stays at $38.00.", ntfy.call_args_list[-1][0][1])
+
+    def test_fresh_stop_above_price_is_ignored(self):
+        pos = self._stock(target=50.0, stop=30.0, recheck={"target": 55, "stop": 46, "target_is_value": True, "franchise": False})
+        ledger, _ = self._run([pos], high=46.0, low=44.0, price=45.0)
+        self.assertEqual(ledger["positions"][0]["stop"], 30.0)
+
+    def test_fresh_value_below_price_sells(self):
+        pos = self._stock(target=50.0, recheck={"target": 44, "stop": 35, "target_is_value": True, "franchise": False})
+        ledger, _ = self._run([pos], high=46.0, low=44.0, price=45.0)
+        self.assertEqual(ledger["positions"], [])
+        self.assertEqual(ledger["closed_trades"][0]["exit_reason"], "value reached (fresh analysis)")
+        self.assertEqual(ledger["closed_trades"][0]["exit_price"], 45.0)
+
+    def test_fresh_value_below_price_franchise_trims(self):
+        pos = self._stock(quantity=100, entry_price=40.0, target=50.0,
+                          recheck={"target": 42, "stop": 35, "target_is_value": True, "franchise": True})
+        ledger, _ = self._run([pos], high=44.0, low=42.0, price=43.0)
+        p = ledger["positions"][0]
+        self.assertEqual(p["quantity"], 99.3024)
+        self.assertEqual(ledger["closed_trades"], [])
+        self.assertIn("target_reached", p)
+        self.assertNotIn("recheck", p)
+
+    def test_recheck_reaches_held_position_and_clears_earnings_due(self):
+        pos = self._stock(id="XYZ-forensic-2026-11-06")
+        trig = {"id": "XYZ-forensic-2026-11-06", "ticker": "XYZ", "source": "forensic", "action": "BUY", "status": "filled",
+                "report_date": "2026-11-06", "data_through": "2026-06-30", "earnings_last": "2026-11-09", "earnings_last_time": "AMC"}
+        today = date(2026, 11, 12)
+        self.assertEqual(len(check._earnings_due([trig], {pos["id"]}, today)), 1)
+        with patch("common.ntfy") as ntfy:
+            check._recheck({"ticker": "XYZ", "action": "RECHECK", "target": 55, "stop": 35, "target_is_value": True,
+                            "franchise": False, "stop_pct": 0.3, "report_date": "2026-11-12", "data_through": "2026-09-30"},
+                           {"positions": [pos]}, [trig])
+        self.assertEqual(pos["recheck"]["stop"], 35)
+        self.assertEqual((trig["report_date"], trig["data_through"]), ("2026-11-12", "2026-09-30"))
+        self.assertEqual(check._earnings_due([trig], {pos["id"]}, today), [])
+        ntfy.assert_not_called()
+
     def test_recheck_message_saves_stop_pct(self):
         pos = self._stock(target_reached="2026-11-01")
         ledger = {"positions": [pos]}
