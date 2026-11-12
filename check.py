@@ -535,6 +535,19 @@ def _earnings_due(triggers, open_ids, today):
     The daily cloud task reads this list (earnings_due.json) and re-runs the analyses."""
     due = []
     for tr in triggers:
+        if tr.get("status") == "active" and tr.get("fa_requested"):
+            # no cash and weaker than every holding: the fresh analysis comes first (confirm._delay_if_weaker)
+            due.append({
+                "ticker": tr.get("ticker"),
+                "source": tr.get("source", "forensic"),
+                "kind": "no_cash",
+                "bullish": True,
+                "earnings_date": None,
+                "earnings_time": None,
+                "requested_at": tr.get("fa_requested"),
+                "trigger_id": tr.get("id"),
+            })
+            continue
         last = common._to_date(tr.get("earnings_last"))
         if not last or (today - last).days > 10:
             continue
@@ -702,6 +715,8 @@ def _ingest_inbox(triggers, ledger=None):
             triggers[:] = [t for t in triggers if t not in replaced]
             # keep the last earnings date, so a new report still on old numbers is re-run (see _needs_refresh)
             for old in replaced:
+                if old.get("fa_requested"):
+                    tr["fresh_fa"] = True  # the fresh report asked for after a no-cash buy (confirm._delay_if_weaker)
                 if old.get("earnings_last") and not tr.get("earnings_last"):
                     for k in ("earnings_last", "earnings_last_time", "earnings_reminded"):
                         if old.get(k) is not None:
@@ -1044,6 +1059,9 @@ def main():
         rsi = common.wilder_rsi(closes) if closes else None
         vol_ratio = common.volume_ratio(hist) if hist is not None else None
         met = _evaluate_conditions(tr, hist, high, low, refs, rsi, vol_ratio)
+        retry_after = common._to_date(tr.get("retry_after"))
+        if (retry_after and now.date() < retry_after) or tr.get("fa_requested"):
+            met = False  # no cash and weaker than every holding: waiting for the fresh analysis or out the two weeks
         if met and _needs_refresh(tr):
             # Earnings came out after this trigger's report: don't buy on old numbers.
             # The trigger stays active; a fresh report replaces it and buying resumes.

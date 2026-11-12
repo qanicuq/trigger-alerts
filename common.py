@@ -25,6 +25,7 @@ MAX_POSITION_OPTION = 0.10
 MAX_POSITION_COMBO = 0.25  # POSITION trades (short puts, covered calls, etc.); user chose 25% on 2026-10-31
 MAX_OPEN_POSITIONS = None  # None = unlimited (user, 2026-10-30). Original setting was 4.
 DAILY_LOSS_LIMIT = 0.03
+RETRY_DAYS = 14  # no cash and still weaker than every holding after a fresh Forensic Analysis: wait this long, then try again (user, 2026-11-11)
 LOSING_STREAK_HALVE = 3  # after this many losing trades in a row, new trades are half size until a winner (skill §7)
 SKILL_MIN_TRADES = 30  # below this many closed trades the report says the record is too short to judge skill
 MAX_DRAWDOWN = 0.10

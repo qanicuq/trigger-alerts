@@ -244,6 +244,10 @@ def write_triggers_page():
             what = _what(tr)
             if tr.get("status") == "awaiting_confirm":
                 what += " — waiting for your OK"
+            if tr.get("retry_after") and str(tr["retry_after"]) > date.today().isoformat():
+                what += f" — no cash, on hold until {_day(tr['retry_after'])}"
+            if tr.get("fa_requested"):
+                what += " — no cash, waiting for a fresh Forensic Analysis"
             L.append("| " + " | ".join(_cell(x) for x in [
                 f"**{tr.get('ticker')}**", what, conds, target, stop,
                 _earn(tr), _day(tr.get("expires")),

@@ -1,7 +1,7 @@
 import os
 import sys
 import math
-from datetime import datetime, date, time as dtime
+from datetime import datetime, date, time as dtime, timedelta
 from zoneinfo import ZoneInfo
 
 import common
@@ -144,6 +144,49 @@ def main():
         common.save_yaml("triggers.yml", {"triggers": triggers})
         common.save_yaml("ledger.yml", ledger)
         print("Filled")
+    elif tr.get("status") == "active":  # put on hold by _delay_if_weaker: keep that
+        common.save_yaml("triggers.yml", {"triggers": triggers})
+
+
+def _delay_if_weaker(tr, ledger, fill, target):
+    """Forensic stock buy with no cash left and upside (target / price - 1) below the weakest held stock's.
+    First time: hold the buy and ask for a fresh Forensic Analysis (the daily earnings re-run task queues it).
+    On the fresh report's trigger (fresh_fa): still weaker -> shelve RETRY_DAYS, then try again.
+    Returns True if it handled the trigger."""
+    if tr.get("action", "BUY") != "BUY" or tr.get("source", "forensic") != "forensic" or not target:
+        return False
+    if float(ledger.get("cash") or 0) / fill >= 0.0001:  # cash can still buy something
+        return False
+    held = []
+    for p in ledger.get("positions") or []:
+        if p.get("target") and p.get("action", "BUY") == "BUY":
+            px = common.last_price(p.get("ticker")) or float(p.get("entry_price") or 0)
+            if px > 0:
+                held.append((float(p["target"]) / px - 1, p.get("ticker")))
+    if not held:
+        return False
+    weakest, weakest_ticker = min(held)
+    upside = target / fill - 1
+    if upside >= weakest:
+        return False
+    tr["status"] = "active"
+    why = f"Upside {upside:.0%} is below the weakest holding ({weakest_ticker} {weakest:.0%}), so nothing is sold to make room."
+    if not tr.pop("fresh_fa", None):
+        tr["fa_requested"] = common.now_ny().isoformat()
+        common.ntfy(
+            f"{tr['ticker']}: no cash, fresh analysis first",
+            f"{why}\nA fresh Forensic Analysis runs at the next daily re-run (weekdays about 12:47 PM). "
+            f"No buy until it is back. If it still comes out weaker, the trigger is shelved {common.RETRY_DAYS} days.",
+        )
+        return True
+    retry = common.now_ny().date() + timedelta(days=common.RETRY_DAYS)
+    tr["retry_after"] = retry.isoformat()
+    common.ntfy(
+        f"{tr['ticker']}: still weaker, trying again {retry.isoformat()}",
+        f"The fresh Forensic Analysis confirms it. {why}\nThe bot waits {common.RETRY_DAYS} days, then buys if the "
+        f"conditions are met and there is cash (or asks for another fresh analysis if it is still weaker).",
+    )
+    return True
 
 
 def place(tr, ledger, force=False):
@@ -270,6 +313,8 @@ def place(tr, ledger, force=False):
     else:
         qty, risk_frac, p, b, refuse = _kelly_size(tr, ledger, fill, stop, target, max_profit, max_loss)
         if refuse:
+            if _delay_if_weaker(tr, ledger, fill, target):
+                return False
             common.ntfy(f"Skipped {ticker}: {refuse}", f"p={p:.2f} b={b:.2f}")
             return False
 

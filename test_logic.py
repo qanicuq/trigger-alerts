@@ -1542,5 +1542,132 @@ class TestForensicTargetRecheck(unittest.TestCase):
             shutil.rmtree(d)
 
 
+class TestNoCashDelay(unittest.TestCase):
+    """No cash + forensic stock buy weaker than every holding -> fresh Forensic Analysis first;
+    still weaker on the fresh report -> shelve two weeks, then try again (user, 2026-11-11)."""
+
+    def _ledger(self, cash=0.0):
+        # held stock: price 10 (mocked), target 12 -> upside 20%
+        return {"cash": cash, "positions": [{"id": "H", "ticker": "HELD", "action": "BUY",
+                                              "entry_price": 9.0, "quantity": 10, "target": 12.0}]}
+
+    def _tr(self, **kw):
+        tr = {"id": "N", "ticker": "NEW", "action": "BUY", "source": "forensic", "status": "awaiting_confirm"}
+        tr.update(kw)
+        return tr
+
+    def _call(self, tr, ledger, fill, target):
+        sent = []
+        with patch("common.last_price", return_value=10.0), \
+             patch("common.ntfy", side_effect=lambda t, b, **k: sent.append(t)):
+            out = confirm._delay_if_weaker(tr, ledger, fill, target)
+        return out, sent
+
+    def test_first_time_asks_for_fresh_analysis(self):
+        tr = self._tr()
+        out, sent = self._call(tr, self._ledger(), 20.0, 22.0)  # upside 10% < 20%
+        self.assertTrue(out)
+        self.assertEqual(tr["status"], "active")
+        self.assertTrue(tr["fa_requested"])
+        self.assertNotIn("retry_after", tr)
+        self.assertEqual(sent, ["NEW: no cash, fresh analysis first"])
+
+    def test_fresh_report_still_weaker_is_shelved_14_days(self):
+        tr = self._tr(fresh_fa=True)
+        out, sent = self._call(tr, self._ledger(), 20.0, 22.0)
+        retry = (common.now_ny().date() + timedelta(days=14)).isoformat()
+        self.assertTrue(out)
+        self.assertEqual(tr["status"], "active")
+        self.assertEqual(tr["retry_after"], retry)
+        self.assertNotIn("fresh_fa", tr)  # after the two weeks, a fresh analysis comes first again
+        self.assertNotIn("fa_requested", tr)
+        self.assertEqual(sent, [f"NEW: still weaker, trying again {retry}"])
+
+    def test_stronger_with_no_cash_is_not_delayed(self):
+        tr = self._tr()
+        out, sent = self._call(tr, self._ledger(), 20.0, 30.0)  # upside 50% > 20%
+        self.assertFalse(out)
+        self.assertEqual(tr, self._tr())
+        self.assertEqual(sent, [])
+
+    def test_equal_upside_is_not_delayed(self):
+        out, _ = self._call(self._tr(), self._ledger(), 20.0, 24.0)  # 20% = 20%: not weaker
+        self.assertFalse(out)
+
+    def test_with_cash_is_not_delayed(self):
+        tr = self._tr()
+        out, _ = self._call(tr, self._ledger(cash=500.0), 20.0, 22.0)
+        self.assertFalse(out)
+        self.assertNotIn("fa_requested", tr)
+
+    def test_no_stock_holdings_is_not_delayed(self):
+        out, _ = self._call(self._tr(), {"cash": 0.0, "positions": []}, 20.0, 22.0)
+        self.assertFalse(out)
+
+    def test_non_forensic_trigger_is_not_delayed(self):
+        out, _ = self._call(self._tr(source="macro"), self._ledger(), 20.0, 22.0)
+        self.assertFalse(out)
+
+    def test_place_asks_for_analysis_instead_of_skipping(self):
+        tr = self._tr(exit_plan={"stop": 18.0, "target": 22.0})
+        ledger = self._ledger()
+        sent = []
+        with patch("common.last_price", side_effect=lambda t: 20.0 if t == "NEW" else 10.0), \
+             patch("common.get_daily_bars", return_value=None), \
+             patch("common.compute_refs", return_value={}), \
+             patch("common.resolve_level", side_effect=lambda spec, refs, entry=None: spec), \
+             patch("common.ntfy", side_effect=lambda t, b, **k: sent.append(t)):
+            ok = confirm.place(tr, ledger, force=True)
+        self.assertFalse(ok)
+        self.assertEqual(tr["status"], "active")
+        self.assertTrue(tr["fa_requested"])
+        self.assertEqual(sent, ["NEW: no cash, fresh analysis first"])
+        self.assertEqual(ledger["cash"], 0.0)
+
+    def test_due_list_includes_requested_analysis(self):
+        today = common.now_ny().date()
+        tr = self._tr(status="active", fa_requested="2026-11-11T14:00:00-05:00")
+        due = check._earnings_due([tr], set(), today)
+        self.assertEqual(due, [{"ticker": "NEW", "source": "forensic", "kind": "no_cash", "bullish": True,
+                                "earnings_date": None, "earnings_time": None,
+                                "requested_at": "2026-11-11T14:00:00-05:00", "trigger_id": "N"}])
+
+    def test_fresh_report_replaces_and_carries_flag(self):
+        old = self._tr(status="active", fa_requested="2026-11-11T14:00:00-05:00")
+        triggers = [old]
+        os.makedirs("inbox", exist_ok=True)
+        path = "inbox/NEW-forensic-test.yml"
+        new = {"id": "NEW-forensic-2", "ticker": "NEW", "source": "forensic", "action": "BUY",
+               "conditions": [{"type": "price", "op": "<=", "value": 21}],
+               "exit_plan": {"stop": 18.0, "target": 25.0}, "report_date": common.now_ny().date().isoformat()}
+        with open(path, "w") as f:
+            yaml.dump(new, f)
+        try:
+            with patch("check._backtest_trigger", return_value={"wins": 0, "losses": 0, "signals": 0}), \
+                 patch("common.next_earnings_info", return_value=(None, None)), \
+                 patch("common.ntfy"):
+                check._ingest_inbox(triggers, {"positions": []})
+        finally:
+            if os.path.exists(path):
+                os.remove(path)
+        self.assertEqual(len(triggers), 1)
+        self.assertEqual(triggers[0]["id"], "NEW-forensic-2")
+        self.assertTrue(triggers[0]["fresh_fa"])
+        self.assertNotIn("fa_requested", triggers[0])
+
+    def test_check_holds_while_waiting(self):
+        today = common.now_ny().date()
+        base = dict(id="N", ticker="NEW", action="BUY", status="active", source="forensic",
+                    report_date=today, expires=(today + timedelta(days=30)).isoformat())
+        asked = dict(base, fa_requested=common.now_ny().isoformat())
+        _, place = TestEarnings._run_main(self, asked)
+        place.assert_not_called()
+        shelved = dict(base, retry_after=(today + timedelta(days=1)).isoformat())
+        _, place = TestEarnings._run_main(self, shelved)
+        place.assert_not_called()
+        due = dict(base, retry_after=today.isoformat())
+        _, place = TestEarnings._run_main(self, due)
+        place.assert_called_once()
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
