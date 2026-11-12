@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 11, 2026 at 4:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 11, 2026 at 7:58 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**15 watching** · **5 bought (open)** · **30 ended**
+**16 watching** · **5 bought (open)** · **30 ended**
 
 ## Watching now
 
@@ -25,6 +25,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SMP** | Buy shares | Price at or below $39.67 | $55.10 | $36.62 | Feb 25, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 | **SN** | Buy shares | Price at or below $202.04 | $233.52 | $186.30 | Feb 10, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 | **HOPE** | Buy shares | Price at or below $12.87 | $14.41 | $12.10 | Jan 26, 2027 (before open) | Feb 8, 2027 | Forensic Analysis, Nov 10, 2026 |
+| **MNST** | Buy shares | Price at or below $43.56 | $48.79 | $40.95 | Feb 25, 2027 (after close) | Feb 9, 2027 | Forensic Analysis, Nov 11, 2026 |
 
 **Notes from each report**
 
@@ -43,6 +44,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **SMP:** WATCH, confidence 60: buy at or below $39.67 (pullback to the 20-day average ($39.47)), sell at $55.10 (sell or trim at estimated value), stop $36.62; chart-based entry, not a value bargain: keep it small; check the CFO handover (interim CFO since Oct 30), earnings, filings and news before confirming.
 - **SN:** WATCH, confidence 65: buy at or below $202.04 (pullback to the 20-day average ($201.03)), sell at $233.52 (twice the risk taken (no value target above the entry)), stop $186.30; chart-based entry, not a value bargain: keep it small; check whether margins hold up once the one-off tariff refunds stop, earnings, filings and news before confirming.
 - **HOPE:** WATCH, confidence 55: buy at or below $12.87 (pullback to the 60-day low (support) ($12.80)), sell at $14.41 (twice the risk taken (no value target above the entry)), stop $12.10; chart-based entry, not a value bargain: keep it small; check how the MANUBANK acquisition is being integrated, earnings, filings and news before confirming.
+- **MNST:** WATCH, confidence 70: buy at or below $43.56 (pullback to the 200-day average ($43.34)), sell at $48.79 (twice the risk taken (no value target above the entry)), stop $40.95; chart-based entry, not a value bargain: keep it small; check whether gross margin keeps slipping on aluminum and freight costs, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

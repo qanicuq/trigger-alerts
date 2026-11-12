@@ -2180,3 +2180,33 @@ triggers:
   resolved_target: 14.41
   seen_high: 13.329999923706055
   seen_low: 13.085000038146973
+- id: MNST-forensic-2026-11-11
+  source: forensic
+  ticker: MNST
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 43.56
+  exit_plan:
+    stop:
+      price: 40.95
+    target:
+      price: 48.79
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 70: buy at or below $43.56 (pullback to the 200-day
+    average ($43.34)), sell at $48.79 (twice the risk taken (no value target above
+    the entry)), stop $40.95; chart-based entry, not a value bargain: keep it small;
+    check whether gross margin keeps slipping on aluminum and freight costs, earnings,
+    filings and news before confirming.'
+  report_date: 2026-11-11
+  expires: 2027-02-09
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2027-02-25'
+  earnings_time: AMC
+  earnings_checked: '2026-11-11'
