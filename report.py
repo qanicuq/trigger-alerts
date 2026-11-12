@@ -325,6 +325,10 @@ def write_triggers_page():
     print("TRIGGERS.md written")
 
 
+def _money(x):
+    return f"{'-' if x < 0 else ''}${abs(x):,.0f}"
+
+
 def _scorecard(ledger, closed):
     exp, n = common.expectancy(closed)
     exp_txt = f"${exp:,.2f} per trade ({n} closed)" if n else "n/a (no closed trades yet)"
@@ -376,21 +380,17 @@ def write_pages():
     positions = ledger.get("positions") or []
     closed = ledger.get("closed_trades") or []
 
-    realized = float(ledger.get("realized_pl") or 0)
     today_str = now.date().isoformat()
-    today_pl = sum(
-        float(c.get("pl") or 0)
-        for c in closed
-        if str(c.get("closed", "")).startswith(today_str)
-    )
+    today_pl = equity - float(ledger.get("day_start_equity") or equity)
+    overall = equity - common.STARTING_CASH
     waiting = [t for t in triggers if t.get("status") == "awaiting_confirm"]
     report_lines = [
         f"# Report {now.strftime('%Y-%m-%d %H:%M')} NY",
         "",
         f"Equity: ${equity:,.0f}  Peak: ${peak:,.0f}  Drawdown: {dd:.1f}%  Paused: {paused}",
         f"Cash: ${cash:,.0f}",
-        f"P/L today: ${today_pl:,.0f}",
-        f"P/L overall: ${realized:,.0f}",
+        f"P/L today: {_money(today_pl)}",
+        f"P/L overall: {_money(overall)}",
         _scorecard(ledger, closed),
         "",
         "## Open trades",
@@ -479,14 +479,10 @@ def send_report(slot):
         else:
             px = common.last_price(p.get("ticker")) or entry
             equity += px * qty
-    realized = float(ledger.get("realized_pl") or 0)
     today_str = now.date().isoformat()
     closed = ledger.get("closed_trades") or []
-    today_pl = sum(
-        float(c.get("pl") or 0)
-        for c in closed
-        if str(c.get("closed", "")).startswith(today_str)
-    )
+    today_pl = equity - float(ledger.get("day_start_equity") or equity)
+    overall = equity - common.STARTING_CASH
     positions = ledger.get("positions") or []
     waiting = [t for t in triggers if t.get("status") == "awaiting_confirm"]
 
@@ -499,13 +495,13 @@ def send_report(slot):
     lines = [
         f"Equity: ${equity:,.0f}",
         f"Cash: ${cash:,.0f}",
-        f"Today P/L: ${today_pl:,.0f}",
-        f"Overall: ${realized:,.0f}",
+        f"Today P/L: {_money(today_pl)}",
+        f"Overall: {_money(overall)}",
         _scorecard(ledger, closed),
         f"Open: {len(positions)}",
         f"Paused: {'yes' if ledger.get('paused') else 'no'}",
     ]
-    for p in positions[:5]:
+    for p in positions:
         if p.get("action") == "POSITION":
             lines.append(f"{p.get('ticker')} {_position_desc(p)}")
         elif p.get("action") == "SPREAD":
@@ -514,6 +510,6 @@ def send_report(slot):
             lines.append(f"{p.get('ticker')} entry {p.get('entry_price')} stop {p.get('stop')}")
     if waiting:
         lines.append(f"Waiting: {', '.join(t.get('id','') for t in waiting)}")
-    body = "\n".join(lines[:12])
+    body = "\n".join(lines)
     common.ntfy(title, body)
     print(f"Report sent: {title}")
