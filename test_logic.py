@@ -1724,5 +1724,63 @@ class TestNoCashDelay(unittest.TestCase):
         _, place = TestEarnings._run_main(self, due)
         place.assert_called_once()
 
+
+class TestReportPL(unittest.TestCase):
+    def _save(self):
+        tickers = ["AAA", "BBB", "CCC", "DDD", "EEE", "FFF"]
+        positions = [
+            {"ticker": t, "quantity": 10, "entry_price": 150, "stop": 140}
+            for t in tickers
+        ]
+        ledger = {
+            "cash": 1000,
+            "day_start_equity": 10100,
+            "realized_pl": 0,
+            "closed_trades": [],
+            "positions": positions,
+        }
+        common.save_yaml("ledger.yml", ledger)
+        common.save_yaml("triggers.yml", {"triggers": []})
+        return tickers
+
+    def test_send_report_lists_all_positions_and_open_pl(self):
+        import tempfile
+        import report
+        old = os.getcwd()
+        with tempfile.TemporaryDirectory() as d:
+            os.chdir(d)
+            try:
+                tickers = self._save()
+                with patch("common.last_price", return_value=150), \
+                     patch("common.ntfy") as ntfy:
+                    report.send_report("end of day")
+                body = ntfy.call_args[0][1]
+            finally:
+                os.chdir(old)
+        for t in tickers:
+            self.assertIn(t, body)
+        self.assertIn("Today P/L: -$100", body)
+        self.assertIn("Overall: $0", body)
+
+    def test_write_pages_open_pl(self):
+        import tempfile
+        import report
+        old = os.getcwd()
+        with tempfile.TemporaryDirectory() as d:
+            os.chdir(d)
+            try:
+                tickers = self._save()
+                with patch("common.last_price", return_value=150):
+                    report.write_pages()
+                with open("REPORT.md") as f:
+                    text = f.read()
+            finally:
+                os.chdir(old)
+        self.assertIn("P/L today: -$100", text)
+        self.assertIn("P/L overall: $0", text)
+        for t in tickers:
+            self.assertIn(t, text)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
