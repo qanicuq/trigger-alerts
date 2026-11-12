@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 11, 2026 at 8:22 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 12, 2026 at 9:31 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**15 watching** · **5 bought (open)** · **31 ended**
+**14 watching** · **6 bought (open)** · **31 ended**
 
 ## Watching now
 
@@ -24,7 +24,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SMP** | Buy shares | Price at or below $39.67 | $55.10 | $36.62 | Feb 25, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 | **SN** | Buy shares | Price at or below $202.04 | $233.52 | $186.30 | Feb 10, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 | **HOPE** | Buy shares | Price at or below $12.87 | $14.41 | $12.10 | Jan 26, 2027 (before open) | Feb 8, 2027 | Forensic Analysis, Nov 10, 2026 |
-| **IMXI** | Buy shares | Price at or below $6.89<br>Price at least 2% above the 20-day low (support) | $16.05 | $2.46 | Mar 1, 2027 (after close) | Feb 9, 2027 | Forensic Analysis, Nov 11, 2026 |
 
 **Notes from each report**
 
@@ -42,7 +41,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **SMP:** WATCH, confidence 60: buy at or below $39.67 (pullback to the 20-day average ($39.47)), sell at $55.10 (sell or trim at estimated value), stop $36.62; chart-based entry, not a value bargain: keep it small; check the CFO handover (interim CFO since Oct 30), earnings, filings and news before confirming.
 - **SN:** WATCH, confidence 65: buy at or below $202.04 (pullback to the 20-day average ($201.03)), sell at $233.52 (twice the risk taken (no value target above the entry)), stop $186.30; chart-based entry, not a value bargain: keep it small; check whether margins hold up once the one-off tariff refunds stop, earnings, filings and news before confirming.
 - **HOPE:** WATCH, confidence 55: buy at or below $12.87 (pullback to the 60-day low (support) ($12.80)), sell at $14.41 (twice the risk taken (no value target above the entry)), stop $12.10; chart-based entry, not a value bargain: keep it small; check how the MANUBANK acquisition is being integrated, earnings, filings and news before confirming.
-- **IMXI:** WATCH, confidence 45: buy at or below $6.89 (price is already below the value buy-below line), sell at $16.05 (sell or trim when price reaches estimated value), stop $2.46; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 14% on 2026-11-10 on news: wait until about 2026-12-01 before confirming; check the Western Union deal termination dispute, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
@@ -53,6 +51,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RES** | Stock | $5.33 | 230.03 shares | $9.13 | $3.15 | Nov 9, 2026 | Feb 2, 2027 (before open) |  |
 | **NAT** | Stock | $6.18 | 405.39 shares | $7.68 | $5.46 | Nov 10, 2026 | Nov 27, 2026 (after close) |  |
 | **WIT** | Stock | $2.12 | 95.91 shares | $3.15 | $1.05 | Nov 11, 2026 | Jan 15, 2027 (before open) |  |
+| **IMXI** | Stock | $6.62 | 123.80 shares | $16.05 | $2.46 | Nov 12, 2026 | Mar 1, 2027 (after close) |  |
 
 ## Closed paper trades
 
