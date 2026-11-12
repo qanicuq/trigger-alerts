@@ -2202,7 +2202,8 @@ triggers:
   report_date: 2026-11-11
   expires: 2027-02-09
   data_through: 2026-09-30
-  status: active
+  status: cancelled
+  cancel_reason: MNST is already held; a fresh analysis on a held stock now adjusts the position instead (user, 2026-11-11)
   backtest:
     wins: 1
     losses: 2
