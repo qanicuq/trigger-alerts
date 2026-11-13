@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 13, 2026 at 10:39 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 13, 2026 at 10:40 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **21 watching** · **8 bought (open)** · **31 ended**
 
@@ -10,7 +10,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Buy when (all true) | Sell target | Stop | Next earnings | Watch ends | From |
 |---|---|---|---|---|---|---|---|
-| **DHT** | Buy shares | Price at or below $18 | $23 | $16 | Feb 3, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **LLY** | Buy shares | Price at or below $1,308 | $1,498 | $1,214 | Feb 3, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **NKE** | Buy shares | Price at or below $37 | $42 | $35 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **NOK** | Buy shares | Price at or below $7 | $9 | $6 | Jan 28, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
@@ -31,10 +30,10 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **FMAO** | Buy shares | Price at or below $36 | $40 | $34 | Feb 11, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **MPC** | Buy shares — waiting for your OK | Price at or below $404<br>Price at least 2% above the 20-day low (support) (≈$375) | $603 | $290 | Feb 2, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **AMAT** | Buy shares | Price at or below $319 | $414 | $271 | Feb 11, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
+| **DHT** | Buy shares | Price at or below $18 | $23 | $16 | Feb 3, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 
 **Notes from each report**
 
-- **DHT:** WATCH, confidence 40: buy at or below $18.12 (pullback to the 60-day low (support) ($18.03)), sell at $22.58 (twice the risk taken (no value target above the entry)), stop $15.89; chart-based entry, not a value bargain: keep it small; check the Nov 9 Q3 results and whether tanker rates are holding, earnings, filings and news before confirming.
 - **LLY:** WATCH, confidence 65: buy at or below $1,308.46 (pullback to the 20-day average ($1,301.95)), sell at $1,497.86 (twice the risk taken (no value target above the entry)), stop $1,213.76; chart-based entry, not a value bargain: keep it small; check whether Q3's ~$900M of one-off revenue benefits flatter the growth, earnings, filings and news before confirming.
 - **NKE:** WATCH, confidence 65: buy at or below $37.08 (pullback to the 50-day average ($36.89)), sell at $42.04 (twice the risk taken (no value target above the entry)), stop $34.60; chart-based entry, not a value bargain: keep it small; check what Nike says at its November Investor Day, earnings, filings and news before confirming.
 - **NOK:** WATCH, confidence 60: buy at or below $6.89 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $8.94 (twice the risk taken (no value target above the entry)), stop $5.87; chart-based entry, not a value bargain: keep it small; check the gap between Nokia's adjusted and reported profit, earnings, filings and news before confirming.
@@ -55,6 +54,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **FMAO:** WATCH, confidence 65: buy at or below $35.71 (pullback to the 50-day average ($35.54)), sell at $40.03 (twice the risk taken (no value target above the entry)), stop $33.55; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **MPC:** WATCH, confidence 70: buy at or below $404.16 (value buy-below line (within reach of the price)), sell at $603.23 (sell or trim when price reaches estimated value), stop $290.45; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 8% on 2026-11-04 on news: wait until about 2026-11-25 before confirming; check whether tighter federal fuel rules are actually coming after the Senate election, earnings, filings and news before confirming.
 - **AMAT:** WATCH, confidence 75: buy at or below $318.53 (pullback to the 60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value target above the entry)), stop $270.75; chart-based entry, not a value bargain: keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check earnings, filings and news before confirming.
+- **DHT:** WATCH, confidence 40: buy at or below $18.34 (pullback to the 60-day low (support) ($18.25)), sell at $22.90 (twice the risk taken (no value target above the entry)), stop $16.06; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

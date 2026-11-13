@@ -1354,54 +1354,6 @@ triggers:
   cancel_reason: 'Paused Nov 6: this report ran on an out-of-date copy of the checks
     (the helper missed the 6 PM SEC "can not verify" rules). A fresh report sets a
     new trigger.'
-- id: DHT-forensic-2026-11-07
-  source: forensic
-  ticker: DHT
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 18.12
-  exit_plan:
-    stop:
-      price: 15.89
-    target:
-      price: 22.58
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 40: buy at or below $18.12 (pullback to the 60-day
-    low (support) ($18.03)), sell at $22.58 (twice the risk taken (no value target
-    above the entry)), stop $15.89; chart-based entry, not a value bargain: keep it
-    small; check the Nov 9 Q3 results and whether tanker rates are holding, earnings,
-    filings and news before confirming.'
-  report_date: 2026-11-07
-  expires: 2027-02-05
-  data_through: 2026-06-30
-  status: active
-  backtest:
-    wins: 0
-    losses: 3
-    signals: 3
-  earnings_date: '2027-02-03'
-  earnings_time: AMC
-  earnings_checked: '2026-11-13'
-  earnings_soon_noted: '2026-11-09'
-  resolved:
-    sma20: 23.050500011444093
-    sma50: 22.97740005493164
-    sma200: 18.148679232597352
-    ema20: 22.614580271295846
-    52w_high: 26.90999984741211
-    52w_low: 10.272414207458496
-    support20: 19.25
-    resistance20: 25.3799991607666
-    rsi14: 46.7
-  resolved_stop: 15.89
-  resolved_target: 22.58
-  earnings_last: '2026-11-09'
-  earnings_last_time: AMC
-  earnings_reminded: '2026-11-09'
-  seen_high: 22.649999618530273
-  seen_low: 19.250099182128906
 - id: LLY-forensic-2026-11-07
   source: forensic
   ticker: LLY
@@ -2618,3 +2570,34 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-13'
   added_at: 2026-11-13 10:39
+- id: DHT-forensic-2026-11-13
+  source: forensic
+  ticker: DHT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 18.34
+  exit_plan:
+    stop:
+      price: 16.06
+    target:
+      price: 22.9
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 40: buy at or below $18.34 (pullback to the 60-day
+    low (support) ($18.25)), sell at $22.90 (twice the risk taken (no value target
+    above the entry)), stop $16.06; chart-based entry, not a value bargain: keep it
+    small; check earnings, filings and news before confirming.'
+  report_date: 2026-11-13
+  expires: 2027-02-11
+  data_through: 2026-06-30
+  earnings_last: '2026-11-09'
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-03'
+  earnings_time: AMC
+  earnings_checked: '2026-11-13'
+  added_at: 2026-11-13 10:40
