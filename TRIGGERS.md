@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 13, 2026 at 10:40 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 13, 2026 at 10:42 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **21 watching** · **8 bought (open)** · **31 ended**
 
@@ -17,7 +17,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RPM** | Buy shares | Price at or below $95 | $108 | $89 | Jan 7, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **BB** | Buy shares | Price at or below $8 | $10 | $6 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **MU** | Buy shares | Price at or below $690<br>Price at least 2% above the 20-day low (support) (≈$663) | $1,421 | $339 | Dec 23, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **NFG** | Buy shares | Price at or below $71 | $79 | $66 | Jan 27, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **OGE** | Buy shares | Price at or below $49 | $55 | $46 | Feb 17, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **RTX** | Buy shares | Price at or below $180 | $202 | $169 | Jan 26, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **SMP** | Buy shares | Price at or below $40 | $55 | $37 | Feb 25, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
@@ -31,6 +30,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **MPC** | Buy shares — waiting for your OK | Price at or below $404<br>Price at least 2% above the 20-day low (support) (≈$375) | $603 | $290 | Feb 2, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **AMAT** | Buy shares | Price at or below $319 | $414 | $271 | Feb 11, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **DHT** | Buy shares | Price at or below $18 | $23 | $16 | Feb 3, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
+| **NFG** | Buy shares | Price at or below $73 | $82 | $69 | Jan 27, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 
 **Notes from each report**
 
@@ -41,7 +41,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **RPM:** WATCH, confidence 60: buy at or below $94.97 (pullback to the 60-day low (support) ($94.50)), sell at $107.59 (twice the risk taken (no value target above the entry)), stop $88.66; chart-based entry, not a value bargain: keep it small; check who succeeds the retiring CEO and what the November 9 Investor Day says about growth, earnings, filings and news before confirming.
 - **BB:** WATCH, confidence 40: buy at or below $7.50 (pullback to the 60-day low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **MU:** WATCH, confidence 70: buy at or below $690.00 (price is already below the value buy-below line), sell at $1,420.54 (sell or trim when price reaches estimated value), stop $338.82; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 17% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check the Taiwan plant labor dispute and the Dec 15 earnings, earnings, filings and news before confirming.
-- **NFG:** WATCH, confidence 35: buy at or below $70.53 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $78.99 (twice the risk taken (no value target above the entry)), stop $66.30; chart-based entry, not a value bargain: keep it small; check the lower fiscal 2027 guidance ($6.00-6.40 vs $7.55), earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 35: buy at or below $48.85 (pullback to the 20-day average ($48.61)), sell at $54.71 (twice the risk taken (no value target above the entry)), stop $45.92; chart-based entry, not a value bargain: keep it small; check the officer change in the 2026-10-08 8-K, earnings, filings and news before confirming.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check the U.S. defense budget outlook after the midterms, earnings, filings and news before confirming.
 - **SMP:** WATCH, confidence 60: buy at or below $39.67 (pullback to the 20-day average ($39.47)), sell at $55.10 (sell or trim at estimated value), stop $36.62; chart-based entry, not a value bargain: keep it small; check the CFO handover (interim CFO since Oct 30), earnings, filings and news before confirming.
@@ -55,6 +54,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **MPC:** WATCH, confidence 70: buy at or below $404.16 (value buy-below line (within reach of the price)), sell at $603.23 (sell or trim when price reaches estimated value), stop $290.45; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 8% on 2026-11-04 on news: wait until about 2026-11-25 before confirming; check whether tighter federal fuel rules are actually coming after the Senate election, earnings, filings and news before confirming.
 - **AMAT:** WATCH, confidence 75: buy at or below $318.53 (pullback to the 60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value target above the entry)), stop $270.75; chart-based entry, not a value bargain: keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check earnings, filings and news before confirming.
 - **DHT:** WATCH, confidence 40: buy at or below $18.34 (pullback to the 60-day low (support) ($18.25)), sell at $22.90 (twice the risk taken (no value target above the entry)), stop $16.06; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
+- **NFG:** WATCH, confidence 35: buy at or below $73.37 (pullback to the 60-day low (support) ($73.01)), sell at $82.17 (twice the risk taken (no value target above the entry)), stop $68.97; chart-based entry, not a value bargain: keep it small; check the Ohio utility deal and 2027 spinoff, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
