@@ -28,6 +28,13 @@ positions:
   reserved: 0
   opened: '2026-11-06T09:30:37.308604-05:00'
   source: forensic
+  recheck:
+    target: 28.27
+    target_is_value: true
+    franchise: false
+    stop_pct: 0.558
+    stop: 6.28
+  recheck_received: '2026-11-12'
 - id: RES-forensic-2026-11-07
   ticker: RES
   action: BUY

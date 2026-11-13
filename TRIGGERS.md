@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 12, 2026 at 4:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 12, 2026 at 7:51 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **14 watching** · **6 bought (open)** · **31 ended**
 
@@ -10,20 +10,20 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Buy when (all true) | Sell target | Stop | Next earnings | Watch ends | From |
 |---|---|---|---|---|---|---|---|
-| **DHT** | Buy shares | Price at or below $18.12 | $22.58 | $15.89 | Feb 3, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **LLY** | Buy shares | Price at or below $1,308.46 | $1,497.86 | $1,213.76 | Feb 3, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **NKE** | Buy shares | Price at or below $37.08 | $42.04 | $34.60 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **NOK** | Buy shares | Price at or below $6.89 | $8.94 | $5.87 | Jan 28, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **RLX** | Buy shares | Price at or below $1.54 | $1.73 | $1.45 | Nov 20, 2026 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **RPM** | Buy shares | Price at or below $94.97 | $107.59 | $88.66 | Jan 7, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **MU** | Buy shares | Price at or below $690.00<br>Price at least 2% above the 20-day low (support) (≈$663.00) | $1,420.54 | $338.82 | Dec 23, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **NFG** | Buy shares | Price at or below $70.53 | $78.99 | $66.30 | Jan 27, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **OGE** | Buy shares | Price at or below $48.85 | $54.71 | $45.92 | Feb 17, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **SMP** | Buy shares | Price at or below $39.67 | $55.10 | $36.62 | Feb 25, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
-| **SN** | Buy shares | Price at or below $202.04 | $233.52 | $186.30 | Feb 10, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
-| **HOPE** | Buy shares | Price at or below $12.87 | $14.41 | $12.10 | Jan 26, 2027 (before open) | Feb 8, 2027 | Forensic Analysis, Nov 10, 2026 |
+| **DHT** | Buy shares | Price at or below $18 | $23 | $16 | Feb 3, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **LLY** | Buy shares | Price at or below $1,308 | $1,498 | $1,214 | Feb 3, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **NKE** | Buy shares | Price at or below $37 | $42 | $35 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **NOK** | Buy shares | Price at or below $7 | $9 | $6 | Jan 28, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **RLX** | Buy shares | Price at or below $2 | $2 | $1 | Nov 20, 2026 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **RPM** | Buy shares | Price at or below $95 | $108 | $89 | Jan 7, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **BB** | Buy shares | Price at or below $8 | $10 | $6 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **MU** | Buy shares | Price at or below $690<br>Price at least 2% above the 20-day low (support) (≈$663) | $1,421 | $339 | Dec 23, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **NFG** | Buy shares | Price at or below $71 | $79 | $66 | Jan 27, 2027 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **OGE** | Buy shares | Price at or below $49 | $55 | $46 | Feb 17, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **RTX** | Buy shares | Price at or below $180 | $202 | $169 | Jan 26, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **SMP** | Buy shares | Price at or below $40 | $55 | $37 | Feb 25, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
+| **SN** | Buy shares | Price at or below $202 | $234 | $186 | Feb 10, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
+| **HOPE** | Buy shares | Price at or below $13 | $14 | $12 | Jan 26, 2027 (before open) | Feb 8, 2027 | Forensic Analysis, Nov 10, 2026 |
 
 **Notes from each report**
 
@@ -46,12 +46,12 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Bought at | Amount | Sell target | Stop | Bought on | Next earnings | Note |
 |---|---|---|---|---|---|---|---|---|
-| **MNST** | Stock | $44.75 | 55.86 shares | $51.95 | $43.60 | Nov 6, 2026 | Feb 25, 2027 (after close) |  |
-| **SHOE** | Stock | $15.01 | 60.25 shares | $27.95 | $6.71 | Nov 6, 2026 | Nov 24, 2026 (before open) |  |
-| **RES** | Stock | $5.33 | 230.03 shares | $9.13 | $3.15 | Nov 9, 2026 | Feb 2, 2027 (before open) |  |
-| **NAT** | Stock | $6.18 | 405.39 shares | $7.68 | $5.46 | Nov 10, 2026 | Nov 27, 2026 (after close) |  |
-| **WIT** | Stock | $2.12 | 95.91 shares | $3.15 | $1.05 | Nov 11, 2026 | Jan 15, 2027 (before open) |  |
-| **IMXI** | Stock | $6.62 | 123.80 shares | $16.05 | $2.46 | Nov 12, 2026 | Mar 1, 2027 (after close) |  |
+| **MNST** | Stock | $45 | 55.86 shares | $52 | $44 | Nov 6, 2026 | Feb 25, 2027 (after close) |  |
+| **SHOE** | Stock | $15 | 60.25 shares | $28 | $7 | Nov 6, 2026 | Nov 24, 2026 (before open) |  |
+| **RES** | Stock | $5 | 230.03 shares | $9 | $3 | Nov 9, 2026 | Feb 2, 2027 (before open) |  |
+| **NAT** | Stock | $6 | 405.39 shares | $8 | $5 | Nov 10, 2026 | Nov 27, 2026 (after close) |  |
+| **WIT** | Stock | $2 | 95.91 shares | $3 | $1 | Nov 11, 2026 | Jan 15, 2027 (before open) |  |
+| **IMXI** | Stock | $7 | 123.80 shares | $16 | $2 | Nov 12, 2026 | Mar 1, 2027 (after close) |  |
 
 ## Closed paper trades
 
