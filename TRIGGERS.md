@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 12, 2026 at 9:06 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 12, 2026 at 9:15 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**20 watching** · **6 bought (open)** · **31 ended**
+**21 watching** · **6 bought (open)** · **31 ended**
 
 ## Watching now
 
@@ -30,6 +30,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **HRMY** | Buy shares | Price at or below $31 | $38 | $28 | Feb 23, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **LPG** | Buy shares | Price at or below $48<br>Price at least 2% above the 20-day low (support) | $117 | $32 | Feb 4, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **BHE** | Buy shares | Price at or below $59 | $73 | $51 | Feb 2, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
+| **AMAT** | Buy shares | Price at or below $319 | $414 | $271 | Nov 12, 2026 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 
 **Notes from each report**
 
@@ -53,6 +54,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **HRMY:** WATCH, confidence 40: buy at or below $31.36 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $37.87 (twice the risk taken (no value target above the entry)), stop $28.10; chart-based entry, not a value bargain: keep it small; check the WAKIX patent ruling due around Feb 14, 2027, earnings, filings and news before confirming.
 - **LPG:** WATCH, confidence 55: buy at or below $47.80 (price is already below the value buy-below line), sell at $116.66 (sell or trim when price reaches estimated value), stop $32.45; the stop is disaster insurance only, set beyond the stock's worst past fall; check whether VLGC freight rates hold after the Strait of Hormuz reopens, earnings, filings and news before confirming.
 - **BHE:** WATCH, confidence 65: buy at or below $58.60 (pullback to the 60-day low (support) ($58.31)), sell at $72.96 (twice the risk taken (no value target above the entry)), stop $51.42; chart-based entry, not a value bargain: keep it small; check whether the 22% one-month drop has a company-specific cause, earnings, filings and news before confirming.
+- **AMAT:** WATCH, confidence 65: buy at or below $318.53 (pullback to the 60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value target above the entry)), stop $270.75; chart-based entry, not a value bargain: keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

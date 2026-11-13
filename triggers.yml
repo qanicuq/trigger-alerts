@@ -2403,3 +2403,35 @@ triggers:
   earnings_date: '2027-02-02'
   earnings_time: AMC
   earnings_checked: '2026-11-12'
+- id: AMAT-forensic-2026-11-12
+  source: forensic
+  ticker: AMAT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 318.53
+  exit_plan:
+    stop:
+      price: 270.75
+    target:
+      price: 414.09
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $318.53 (pullback to the
+    60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value
+    target above the entry)), stop $270.75; chart-based entry, not a value bargain:
+    keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before
+    confirming; check earnings, filings and news before confirming.'
+  report_date: 2026-11-12
+  expires: 2027-02-10
+  data_through: 2026-07-26
+  earnings_last: '2026-11-12'
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-12'
+  earnings_time: AMC
+  earnings_checked: '2026-11-12'
+  earnings_soon_noted: '2026-11-12'
