@@ -2491,54 +2491,6 @@ triggers:
   resolved_target: 72.96
   seen_high: 65.05000305175781
   seen_low: 61.72999954223633
-- id: AMAT-forensic-2026-11-12
-  source: forensic
-  ticker: AMAT
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 318.53
-  exit_plan:
-    stop:
-      price: 270.75
-    target:
-      price: 414.09
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 65: buy at or below $318.53 (pullback to the
-    60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value
-    target above the entry)), stop $270.75; chart-based entry, not a value bargain:
-    keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before
-    confirming; check earnings, filings and news before confirming.'
-  report_date: 2026-11-12
-  expires: 2027-02-10
-  data_through: 2026-07-26
-  earnings_last: '2026-11-12'
-  status: active
-  backtest:
-    wins: 0
-    losses: 3
-    signals: 3
-  earnings_date: '2027-02-11'
-  earnings_time: AMC
-  earnings_checked: '2026-11-13'
-  earnings_soon_noted: '2026-11-12'
-  resolved:
-    sma20: 382.4324981689453
-    sma50: 437.7110009765625
-    sma200: 445.95298904418945
-    ema20: 389.46545136144704
-    52w_high: 738.8798989117877
-    52w_low: 202.2811682863524
-    support20: 316.95001220703125
-    resistance20: 427.6600036621094
-    rsi14: 40.8
-  resolved_stop: 270.75
-  resolved_target: 414.09
-  earnings_last_time: AMC
-  earnings_reminded: '2026-11-12'
-  seen_high: 381.2200012207031
-  seen_low: 354.92999267578125
 - id: FMAO-forensic-2026-11-12
   source: forensic
   ticker: FMAO
@@ -2634,3 +2586,35 @@ triggers:
   seen_high: 415.82000732421875
   seen_low: 401.3399963378906
   alerted_at: '2026-11-13T10:00:36.286756-05:00'
+- id: AMAT-forensic-2026-11-13
+  source: forensic
+  ticker: AMAT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 318.53
+  exit_plan:
+    stop:
+      price: 270.75
+    target:
+      price: 414.09
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $318.53 (pullback to the
+    60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value
+    target above the entry)), stop $270.75; chart-based entry, not a value bargain:
+    keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before
+    confirming; check earnings, filings and news before confirming.'
+  report_date: 2026-11-13
+  expires: 2027-02-11
+  data_through: 2026-07-26
+  earnings_last: '2026-11-12'
+  status: active
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2027-02-11'
+  earnings_time: AMC
+  earnings_checked: '2026-11-13'
+  added_at: 2026-11-13 10:39
