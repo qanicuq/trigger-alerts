@@ -111,6 +111,14 @@ def build_lists(triggers, ledger, now):
             if ed is None:
                 continue
             reason = f"earnings came out {ed.isoformat()}; the report is on old numbers"
+            rd = common._to_date(tr.get("report_date"))
+            last = common._to_date(tr.get("earnings_last"))
+            timing = tr.get("earnings_last_time") if last == ed else tr.get("earnings_time")
+            if rd and not check._stale(rd, ed, timing):  # FA was written after the results came out
+                dt = common._to_date(tr.get("data_through"))
+                newest = f" (newest quarter ends {dt.isoformat()})" if dt else ""
+                reason = (f"FA already run {rd.isoformat()}, but Webull doesn't have the new quarter yet"
+                          f"{newest}; run FA again once it does")
             since = ed.isoformat()
         red.append({"ticker": ticker, "reason": reason, "since": since})
         seen.add(ticker)
@@ -149,7 +157,7 @@ def build_lists(triggers, ledger, now):
                     "reason": f"earnings on {ed.isoformat()}",
                     "since": _yellow_since(tr, ed),
                 }
-        if status == "active" and ticker not in green and _within_24h(tr.get("added_at"), now):
+        if status == "active" and ticker not in green and ticker not in red_tickers and _within_24h(tr.get("added_at"), now):
             green[ticker] = {
                 "ticker": ticker,
                 "reason": "trigger sent to the bot",

@@ -96,6 +96,15 @@ class TestFaNeeded(unittest.TestCase):
         red, _, _ = fa_needed.build_lists([self.DHT], {"positions": []}, ny(2026, 11, 12, 8, 30))
         self.assertEqual(red, [])
 
+    def test_fa_run_after_earnings_on_old_quarter_says_waiting_and_not_green(self):
+        tr = {"id": "AMAT-forensic-2026-11-13", "ticker": "AMAT", "status": "active",
+              "report_date": "2026-11-13", "data_through": "2026-07-26",
+              "earnings_last": "2026-11-12", "added_at": "2026-11-13 10:39"}
+        red, _, green = fa_needed.build_lists([tr], {"positions": []}, ny(2026, 11, 13, 11, 0))
+        self.assertEqual([r["ticker"] for r in red], ["AMAT"])
+        self.assertIn("Webull doesn't have the new quarter yet", red[0]["reason"])
+        self.assertEqual(green, [])
+
     def test_active_earnings_in_10_days_is_yellow(self):
         now = ny(2026, 11, 12, 9, 0)
         tr = {"id": "AAA-1", "ticker": "AAA", "status": "active", "earnings_date": "2026-11-22"}
