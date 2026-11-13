@@ -2464,3 +2464,40 @@ triggers:
   earnings_date: '2027-02-11'
   earnings_time: AMC
   earnings_checked: '2026-11-12'
+- id: MPC-forensic-2026-11-12
+  source: forensic
+  ticker: MPC
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 404.16
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 290.45
+    target:
+      price: 603.23
+    max_hold_days: 1260
+    review_days: 540
+  recommendation: 'WATCH, confidence 70: buy at or below $404.16 (value buy-below
+    line (within reach of the price)), sell at $603.23 (sell or trim when price reaches
+    estimated value), stop $290.45; the stop is disaster insurance only, set beyond
+    the stock''s worst past fall; fell 8% on 2026-11-04 on news: wait until about
+    2026-11-25 before confirming; check whether tighter federal fuel rules are actually
+    coming after the Senate election, earnings, filings and news before confirming.'
+  report_date: 2026-11-12
+  expires: 2027-02-10
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2027-02-02'
+  earnings_time: BMO
+  earnings_checked: '2026-11-12'
+  added_at: 2026-11-12 22:02

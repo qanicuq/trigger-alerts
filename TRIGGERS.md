@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 12, 2026 at 9:22 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 12, 2026 at 10:02 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**22 watching** · **6 bought (open)** · **31 ended**
+**23 watching** · **6 bought (open)** · **31 ended**
 
 ## Watching now
 
@@ -32,6 +32,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **BHE** | Buy shares | Price at or below $59 | $73 | $51 | Feb 2, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **AMAT** | Buy shares | Price at or below $319 | $414 | $271 | Nov 12, 2026 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **FMAO** | Buy shares | Price at or below $36 | $40 | $34 | Feb 11, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
+| **MPC** | Buy shares | Price at or below $404<br>Price at least 2% above the 20-day low (support) | $603 | $290 | Feb 2, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 
 **Notes from each report**
 
@@ -57,6 +58,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **BHE:** WATCH, confidence 65: buy at or below $58.60 (pullback to the 60-day low (support) ($58.31)), sell at $72.96 (twice the risk taken (no value target above the entry)), stop $51.42; chart-based entry, not a value bargain: keep it small; check whether the 22% one-month drop has a company-specific cause, earnings, filings and news before confirming.
 - **AMAT:** WATCH, confidence 65: buy at or below $318.53 (pullback to the 60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value target above the entry)), stop $270.75; chart-based entry, not a value bargain: keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check earnings, filings and news before confirming.
 - **FMAO:** WATCH, confidence 65: buy at or below $35.71 (pullback to the 50-day average ($35.54)), sell at $40.03 (twice the risk taken (no value target above the entry)), stop $33.55; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
+- **MPC:** WATCH, confidence 70: buy at or below $404.16 (value buy-below line (within reach of the price)), sell at $603.23 (sell or trim when price reaches estimated value), stop $290.45; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 8% on 2026-11-04 on news: wait until about 2026-11-25 before confirming; check whether tighter federal fuel rules are actually coming after the Senate election, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
