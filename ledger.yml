@@ -1,6 +1,6 @@
 cash: 1840.2712576733088
 peak_equity: 10332.807541803166
-day_start_equity: 10320.201965512799
+day_start_equity: 10294.654935117018
 positions:
 - id: MNST-forensic-2026-11-06
   ticker: MNST
@@ -21,19 +21,13 @@ positions:
   entry_price: 15.0075
   quantity: 60.2515
   stop: 6.71
-  target: 27.95
+  target: 28.27
   max_hold_days: 1080
   review_days: 540
   is_option: false
   reserved: 0
   opened: '2026-11-06T09:30:37.308604-05:00'
   source: forensic
-  recheck:
-    target: 28.27
-    target_is_value: true
-    franchise: false
-    stop_pct: 0.558
-    stop: 6.28
   recheck_received: '2026-11-12'
 - id: RES-forensic-2026-11-07
   ticker: RES
@@ -89,7 +83,7 @@ positions:
   source: forensic
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-12T16:30:31.868913-05:00'
+last_checked: '2026-11-13T09:30:31.097264-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -106,9 +100,10 @@ sent_slots:
   2026-11-12:morning: true
   2026-11-12:midday: true
   2026-11-12:end of day: true
+  2026-11-13:morning: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
 stats: {}
-day_start_date: '2026-11-12'
+day_start_date: '2026-11-13'
 max_drawdown_pct: 0.8

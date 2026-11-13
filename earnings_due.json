@@ -1,6 +1,15 @@
 {
  "due": [
   {
+   "ticker": "AMAT",
+   "source": "forensic",
+   "kind": "waiting",
+   "bullish": true,
+   "earnings_date": "2026-11-12",
+   "earnings_time": "AMC",
+   "trigger_id": "AMAT-forensic-2026-11-12"
+  },
+  {
    "ticker": "DHT",
    "source": "forensic",
    "kind": "waiting",

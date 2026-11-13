@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 12, 2026 at 10:02 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 13, 2026 at 9:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **23 watching** · **6 bought (open)** · **31 ended**
 
@@ -26,13 +26,13 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **HOPE** | Buy shares | Price at or below $13 | $14 | $12 | Jan 26, 2027 (before open) | Feb 8, 2027 | Forensic Analysis, Nov 10, 2026 |
 | **TNC** | Buy shares | Price at or below $69 | $80 | $64 | Feb 22, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **TSLA** | Buy shares | Price at or below $376 | $443 | $343 | Jan 27, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
-| **KMT** | Buy shares | Price at or below $24<br>Price at least 2% above the 20-day low (support) | $61 | $12 | Feb 3, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
+| **KMT** | Buy shares | Price at or below $24<br>Price at least 2% above the 20-day low (support) (≈$23) | $61 | $12 | Feb 3, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **HRMY** | Buy shares | Price at or below $31 | $38 | $28 | Feb 23, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
-| **LPG** | Buy shares | Price at or below $48<br>Price at least 2% above the 20-day low (support) | $117 | $32 | Feb 4, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
+| **LPG** | Buy shares | Price at or below $48<br>Price at least 2% above the 20-day low (support) (≈$44) | $117 | $32 | Feb 4, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **BHE** | Buy shares | Price at or below $59 | $73 | $51 | Feb 2, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
-| **AMAT** | Buy shares | Price at or below $319 | $414 | $271 | Nov 12, 2026 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
+| **AMAT** | Buy shares | Price at or below $319 | $414 | $271 | Feb 11, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **FMAO** | Buy shares | Price at or below $36 | $40 | $34 | Feb 11, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
-| **MPC** | Buy shares | Price at or below $404<br>Price at least 2% above the 20-day low (support) | $603 | $290 | Feb 2, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
+| **MPC** | Buy shares | Price at or below $404<br>Price at least 2% above the 20-day low (support) (≈$375) | $603 | $290 | Feb 2, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 
 **Notes from each report**
 
