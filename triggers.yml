@@ -2589,3 +2589,34 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-13'
   added_at: 2026-11-13 16:41
+- id: AXP-forensic-2026-11-13
+  source: forensic
+  ticker: AXP
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 297.77
+  exit_plan:
+    stop:
+      price: 279.9
+    target:
+      price: 333.5
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $297.77 (pullback to the
+    60-day low (support) ($296.28)), sell at $333.50 (twice the risk taken (no value
+    target above the entry)), stop $279.90; chart-based entry, not a value bargain:
+    keep it small; check the AML consent orders and any credit-card rate-cap news,
+    earnings, filings and news before confirming.'
+  report_date: 2026-11-13
+  expires: 2027-02-11
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 1
+    signals: 2
+  earnings_date: '2027-01-29'
+  earnings_time: BMO
+  earnings_checked: '2026-11-13'
+  added_at: 2026-11-13 18:56

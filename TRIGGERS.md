@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 13, 2026 at 4:41 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 13, 2026 at 6:56 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**20 watching** · **8 bought (open)** · **32 ended**
+**21 watching** · **8 bought (open)** · **32 ended**
 
 ## Watching now
 
@@ -30,6 +30,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **AMAT** | Buy shares | Price at or below $319 | $414 | $271 | Feb 11, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **DHT** | Buy shares | Price at or below $18 | $23 | $16 | Feb 3, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **NFG** | Buy shares | Price at or below $73 | $82 | $69 | Jan 27, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
+| **AXP** | Buy shares | Price at or below $298 | $334 | $280 | Jan 29, 2027 (before open) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 
 **Notes from each report**
 
@@ -53,6 +54,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **AMAT:** WATCH, confidence 60: buy at or below $318.53 (pullback to the 60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value target above the entry)), stop $270.75; chart-based entry, not a value bargain: keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check earnings, filings and news before confirming.
 - **DHT:** WATCH, confidence 65: buy at or below $18.34 (pullback to the 60-day low (support) ($18.25)), sell at $22.78 (twice the risk taken (no value target above the entry)), stop $16.12; chart-based entry, not a value bargain: keep it small; check that VLCC spot rates are holding up, earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 35: buy at or below $73.37 (pullback to the 60-day low (support) ($73.01)), sell at $82.17 (twice the risk taken (no value target above the entry)), stop $68.97; chart-based entry, not a value bargain: keep it small; check the Ohio utility deal and spinoff plan, earnings, filings and news before confirming.
+- **AXP:** WATCH, confidence 75: buy at or below $297.77 (pullback to the 60-day low (support) ($296.28)), sell at $333.50 (twice the risk taken (no value target above the entry)), stop $279.90; chart-based entry, not a value bargain: keep it small; check the AML consent orders and any credit-card rate-cap news, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
