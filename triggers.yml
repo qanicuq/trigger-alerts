@@ -2373,3 +2373,33 @@ triggers:
   earnings_date: '2027-02-04'
   earnings_time: BMO
   earnings_checked: '2026-11-12'
+- id: BHE-forensic-2026-11-12
+  source: forensic
+  ticker: BHE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 58.6
+  exit_plan:
+    stop:
+      price: 51.42
+    target:
+      price: 72.96
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $58.60 (pullback to the 60-day
+    low (support) ($58.31)), sell at $72.96 (twice the risk taken (no value target
+    above the entry)), stop $51.42; chart-based entry, not a value bargain: keep it
+    small; check whether the 22% one-month drop has a company-specific cause, earnings,
+    filings and news before confirming.'
+  report_date: 2026-11-12
+  expires: 2027-02-10
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-02'
+  earnings_time: AMC
+  earnings_checked: '2026-11-12'
