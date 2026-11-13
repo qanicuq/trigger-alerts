@@ -135,8 +135,10 @@ def save_yaml(path, data):
         yaml.dump(data, f, default_flow_style=False, sort_keys=False, allow_unicode=True)
 
 
-def ntfy(title, body, priority="default", click_url=None, action_label=None, action_url=None):
+def ntfy(title, body, priority="default", click_url=None, action_label=None, action_url=None, tags=None):
     headers = {"Title": title, "Priority": priority}
+    if tags:
+        headers["Tags"] = tags
     if click_url:
         headers["Click"] = click_url
     if action_label and action_url:

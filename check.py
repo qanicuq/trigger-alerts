@@ -656,6 +656,7 @@ def _recheck(tr, ledger, triggers=()):
                 "stop": tr.get("stop"),
             }
             pos["recheck_received"] = common.now_ny().date().isoformat()
+            pos.pop("fa_needed_since", None)
             # the held position's trigger now rests on this report, so the earnings re-run list drops it
             for t in triggers:
                 if t.get("id") == pos.get("id"):
@@ -774,6 +775,7 @@ def _ingest_inbox(triggers, ledger=None):
                 day = "that morning" if nt == "BMO" else "the next weekday morning"
                 lines.append(f"Earnings {ed.isoformat()} ({_when(nt)}): you'll get a reminder {day}, "
                              f"and the analysis re-runs automatically once the new numbers are in.")
+            tr["added_at"] = common.now_ny().strftime("%Y-%m-%d %H:%M")
             common.ntfy(f"New trigger: {ticker}", "\n".join(lines) or "conditions loaded")
             changed = True
         except Exception as e:
@@ -1367,6 +1369,7 @@ def main():
             elif target is not None and high is not None and high >= float(target) and pos.get("source") == "forensic":
                 if not pos.get("target_reached"):
                     pos["target_reached"] = now.date().isoformat()
+                    pos["fa_needed_since"] = now.date().isoformat()
                     changed = True
                     common.ntfy(
                         f"{ticker} hit its target: run a fresh Forensic Analysis",
@@ -1494,6 +1497,8 @@ def main():
 
     ledger["last_checked"] = now.isoformat()
     _write_due(_earnings_due(triggers, {p.get("id") for p in ledger.get("positions") or []}, now.date()))
+    import fa_needed
+    fa_needed.write_page(triggers, ledger, now)
     common.save_yaml("triggers.yml", {"triggers": triggers})
     common.save_yaml("ledger.yml", ledger)
     _refresh_triggers_page()
