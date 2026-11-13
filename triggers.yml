@@ -2493,51 +2493,6 @@ triggers:
   seen_high: 415.82000732421875
   seen_low: 401.3399963378906
   alerted_at: '2026-11-13T10:00:36.286756-05:00'
-- id: DHT-forensic-2026-11-13
-  source: forensic
-  ticker: DHT
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 18.34
-  exit_plan:
-    stop:
-      price: 16.06
-    target:
-      price: 22.9
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 40: buy at or below $18.34 (pullback to the 60-day
-    low (support) ($18.25)), sell at $22.90 (twice the risk taken (no value target
-    above the entry)), stop $16.06; chart-based entry, not a value bargain: keep it
-    small; check earnings, filings and news before confirming.'
-  report_date: 2026-11-13
-  expires: 2027-02-11
-  data_through: 2026-06-30
-  earnings_last: '2026-11-09'
-  status: active
-  backtest:
-    wins: 0
-    losses: 3
-    signals: 3
-  earnings_date: '2027-02-03'
-  earnings_time: AMC
-  earnings_checked: '2026-11-13'
-  added_at: 2026-11-13 10:40
-  resolved:
-    sma20: 23.050500011444093
-    sma50: 22.97740005493164
-    sma200: 18.14867926120758
-    ema20: 22.614580271295583
-    52w_high: 26.90999984741211
-    52w_low: 10.272415161132812
-    support20: 19.25
-    resistance20: 25.3799991607666
-    rsi14: 46.7
-  resolved_stop: 16.06
-  resolved_target: 22.9
-  seen_high: 22.395000457763672
-  seen_low: 21.979999542236328
 - id: NFG-forensic-2026-11-13
   source: forensic
   ticker: NFG
@@ -2616,3 +2571,35 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-13'
   added_at: 2026-11-13 16:37
+- id: DHT-forensic-2026-11-13
+  source: forensic
+  ticker: DHT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 18.34
+  exit_plan:
+    stop:
+      price: 16.12
+    target:
+      price: 22.78
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $18.34 (pullback to the 60-day
+    low (support) ($18.25)), sell at $22.78 (twice the risk taken (no value target
+    above the entry)), stop $16.12; chart-based entry, not a value bargain: keep it
+    small; check that VLCC spot rates are holding up, earnings, filings and news before
+    confirming.'
+  report_date: 2026-11-13
+  expires: 2027-02-11
+  data_through: 2026-09-30
+  status: active
+  earnings_last: '2026-11-09'
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-03'
+  earnings_time: AMC
+  earnings_checked: '2026-11-13'
+  added_at: 2026-11-13 16:39
