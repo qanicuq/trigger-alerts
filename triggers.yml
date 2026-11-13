@@ -2338,3 +2338,38 @@ triggers:
   earnings_date: '2027-02-23'
   earnings_time: BMO
   earnings_checked: '2026-11-12'
+- id: LPG-forensic-2026-11-12
+  source: forensic
+  ticker: LPG
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 47.8
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 32.45
+    target:
+      price: 116.66
+    max_hold_days: 1260
+    review_days: 540
+  recommendation: 'WATCH, confidence 55: buy at or below $47.80 (price is already
+    below the value buy-below line), sell at $116.66 (sell or trim when price reaches
+    estimated value), stop $32.45; the stop is disaster insurance only, set beyond
+    the stock''s worst past fall; check whether VLGC freight rates hold after the
+    Strait of Hormuz reopens, earnings, filings and news before confirming.'
+  report_date: 2026-11-12
+  expires: 2027-02-10
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2027-02-04'
+  earnings_time: BMO
+  earnings_checked: '2026-11-12'
