@@ -2493,52 +2493,6 @@ triggers:
   seen_high: 415.82000732421875
   seen_low: 401.3399963378906
   alerted_at: '2026-11-13T10:00:36.286756-05:00'
-- id: AMAT-forensic-2026-11-13
-  source: forensic
-  ticker: AMAT
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 318.53
-  exit_plan:
-    stop:
-      price: 270.75
-    target:
-      price: 414.09
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 75: buy at or below $318.53 (pullback to the
-    60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value
-    target above the entry)), stop $270.75; chart-based entry, not a value bargain:
-    keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before
-    confirming; check earnings, filings and news before confirming.'
-  report_date: 2026-11-13
-  expires: 2027-02-11
-  data_through: 2026-07-26
-  earnings_last: '2026-11-12'
-  status: active
-  backtest:
-    wins: 1
-    losses: 2
-    signals: 3
-  earnings_date: '2027-02-11'
-  earnings_time: AMC
-  earnings_checked: '2026-11-13'
-  added_at: 2026-11-13 10:39
-  resolved:
-    sma20: 382.92749786376953
-    sma50: 437.9090008544922
-    sma200: 446.002488861084
-    ema20: 390.4083079230686
-    52w_high: 738.8798989117877
-    52w_low: 202.2811682863524
-    support20: 316.95001220703125
-    resistance20: 427.6600036621094
-    rsi14: 42.6
-  resolved_stop: 270.75
-  resolved_target: 414.09
-  seen_high: 371.7449951171875
-  seen_low: 352.2300109863281
 - id: DHT-forensic-2026-11-13
   source: forensic
   ticker: DHT
@@ -2630,3 +2584,35 @@ triggers:
   resolved_target: 82.17
   seen_high: 76.9800033569336
   seen_low: 76.62000274658203
+- id: AMAT-forensic-2026-11-13
+  source: forensic
+  ticker: AMAT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 318.53
+  exit_plan:
+    stop:
+      price: 270.75
+    target:
+      price: 414.09
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $318.53 (pullback to the
+    60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value
+    target above the entry)), stop $270.75; chart-based entry, not a value bargain:
+    keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before
+    confirming; check earnings, filings and news before confirming.'
+  report_date: 2026-11-13
+  expires: 2027-02-11
+  data_through: 2026-10-25
+  status: active
+  earnings_last: '2026-11-12'
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2027-02-11'
+  earnings_time: AMC
+  earnings_checked: '2026-11-13'
+  added_at: 2026-11-13 16:37
