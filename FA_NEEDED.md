@@ -1,5 +1,5 @@
 # FA Needed
-Updated 2026-11-13 09:30 New York time
+Updated 2026-11-13 10:00 New York time
 
 ## 🔴 Needs a fresh FA now
 
@@ -19,6 +19,4 @@ Updated 2026-11-13 09:30 New York time
 
 ## 🟢 Trigger sent (last 24 hours)
 
-| Ticker | Why | Since |
-| --- | --- | --- |
-| MPC | trigger sent to the bot | 2026-11-12 22:02 |
+Nothing here right now.

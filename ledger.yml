@@ -1,4 +1,4 @@
-cash: 1840.2712576733088
+cash: 0.00105076819943406
 peak_equity: 10332.807541803166
 day_start_equity: 10294.654935117018
 positions:
@@ -81,9 +81,35 @@ positions:
   reserved: 0
   opened: '2026-11-12T09:30:58.722802-05:00'
   source: forensic
+- id: KMT-forensic-2026-11-12
+  ticker: KMT
+  action: BUY
+  entry_price: 23.952
+  quantity: 42.2701
+  stop: 11.83
+  target: 61.02
+  max_hold_days: 1260
+  review_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-11-13T10:00:46.114603-05:00'
+  source: forensic
+- id: LPG-forensic-2026-11-12
+  ticker: LPG
+  action: BUY
+  entry_price: 47.7539
+  quantity: 17.3351
+  stop: 32.45
+  target: 116.66
+  max_hold_days: 1260
+  review_days: 540
+  is_option: false
+  reserved: 0
+  opened: '2026-11-13T10:00:47.208323-05:00'
+  source: forensic
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-13T09:30:31.097264-05:00'
+last_checked: '2026-11-13T10:00:36.286756-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -106,4 +132,4 @@ usage_alerted_month: null
 paused: false
 stats: {}
 day_start_date: '2026-11-13'
-max_drawdown_pct: 0.8
+max_drawdown_pct: 0.82
