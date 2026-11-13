@@ -2308,3 +2308,33 @@ triggers:
   earnings_date: '2027-02-03'
   earnings_time: BMO
   earnings_checked: '2026-11-12'
+- id: HRMY-forensic-2026-11-12
+  source: forensic
+  ticker: HRMY
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 31.36
+  exit_plan:
+    stop:
+      price: 28.1
+    target:
+      price: 37.87
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 40: buy at or below $31.36 (pullback of 1.5×
+    a normal day''s move (no chart support within 20%)), sell at $37.87 (twice the
+    risk taken (no value target above the entry)), stop $28.10; chart-based entry,
+    not a value bargain: keep it small; check the WAKIX patent ruling due around Feb
+    14, 2027, earnings, filings and news before confirming.'
+  report_date: 2026-11-12
+  expires: 2027-02-10
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2027-02-23'
+  earnings_time: BMO
+  earnings_checked: '2026-11-12'

@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 12, 2026 at 8:28 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 12, 2026 at 8:45 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**17 watching** · **6 bought (open)** · **31 ended**
+**18 watching** · **6 bought (open)** · **31 ended**
 
 ## Watching now
 
@@ -27,6 +27,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **TNC** | Buy shares | Price at or below $69 | $80 | $64 | Feb 22, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **TSLA** | Buy shares | Price at or below $376 | $443 | $343 | Jan 27, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **KMT** | Buy shares | Price at or below $24<br>Price at least 2% above the 20-day low (support) | $61 | $12 | Feb 3, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
+| **HRMY** | Buy shares | Price at or below $31 | $38 | $28 | Feb 23, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 
 **Notes from each report**
 
@@ -47,6 +48,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **TNC:** WATCH, confidence 60: buy at or below $69.44 (pullback to the 20-day average ($69.09)), sell at $80.42 (twice the risk taken (no value target above the entry)), stop $63.95; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **TSLA:** WATCH, confidence 40: buy at or below $376.34 (pullback to the 50-day average ($374.46)), sell at $442.60 (twice the risk taken (no value target above the entry)), stop $343.21; chart-based entry, not a value bargain: keep it small; fell 11% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check the terms of any SpaceX merger, earnings, filings and news before confirming.
 - **KMT:** WATCH, confidence 55: buy at or below $24.26 (price is already below the value buy-below line), sell at $61.02 (sell or trim when price reaches estimated value), stop $11.83; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 14% on 2026-11-04 on news: wait until about 2026-11-25 before confirming; check the value re-check on 16-19% steady-state margins after the tungsten windfall, earnings, filings and news before confirming.
+- **HRMY:** WATCH, confidence 40: buy at or below $31.36 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $37.87 (twice the risk taken (no value target above the entry)), stop $28.10; chart-based entry, not a value bargain: keep it small; check the WAKIX patent ruling due around Feb 14, 2027, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
