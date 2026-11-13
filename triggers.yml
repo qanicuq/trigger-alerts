@@ -2435,3 +2435,32 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-12'
   earnings_soon_noted: '2026-11-12'
+- id: FMAO-forensic-2026-11-12
+  source: forensic
+  ticker: FMAO
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 35.71
+  exit_plan:
+    stop:
+      price: 33.55
+    target:
+      price: 40.03
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $35.71 (pullback to the 50-day
+    average ($35.54)), sell at $40.03 (twice the risk taken (no value target above
+    the entry)), stop $33.55; chart-based entry, not a value bargain: keep it small;
+    check earnings, filings and news before confirming.'
+  report_date: 2026-11-12
+  expires: 2027-02-10
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-11'
+  earnings_time: AMC
+  earnings_checked: '2026-11-12'
