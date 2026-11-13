@@ -2272,3 +2272,39 @@ triggers:
   earnings_date: '2027-01-27'
   earnings_time: AMC
   earnings_checked: '2026-11-12'
+- id: KMT-forensic-2026-11-12
+  source: forensic
+  ticker: KMT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 24.26
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 11.83
+    target:
+      price: 61.02
+    max_hold_days: 1260
+    review_days: 540
+  recommendation: 'WATCH, confidence 55: buy at or below $24.26 (price is already
+    below the value buy-below line), sell at $61.02 (sell or trim when price reaches
+    estimated value), stop $11.83; the stop is disaster insurance only, set beyond
+    the stock''s worst past fall; fell 14% on 2026-11-04 on news: wait until about
+    2026-11-25 before confirming; check the value re-check on 16-19% steady-state
+    margins after the tungsten windfall, earnings, filings and news before confirming.'
+  report_date: 2026-11-12
+  expires: 2027-02-10
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2027-02-03'
+  earnings_time: BMO
+  earnings_checked: '2026-11-12'
