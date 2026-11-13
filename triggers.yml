@@ -2242,3 +2242,33 @@ triggers:
   earnings_date: '2027-02-22'
   earnings_time: AMC
   earnings_checked: '2026-11-12'
+- id: TSLA-forensic-2026-11-12
+  source: forensic
+  ticker: TSLA
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 376.34
+  exit_plan:
+    stop:
+      price: 343.21
+    target:
+      price: 442.6
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 40: buy at or below $376.34 (pullback to the
+    50-day average ($374.46)), sell at $442.60 (twice the risk taken (no value target
+    above the entry)), stop $343.21; chart-based entry, not a value bargain: keep
+    it small; fell 11% on 2026-11-05 on news: wait until about 2026-11-26 before confirming;
+    check the terms of any SpaceX merger, earnings, filings and news before confirming.'
+  report_date: 2026-11-12
+  expires: 2027-02-10
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2027-01-27'
+  earnings_time: AMC
+  earnings_checked: '2026-11-12'
