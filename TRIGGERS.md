@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 13, 2026 at 6:56 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 14, 2026 at 9:48 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**21 watching** · **8 bought (open)** · **32 ended**
+**22 watching** · **8 bought (open)** · **32 ended**
 
 ## Watching now
 
@@ -31,6 +31,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **DHT** | Buy shares | Price at or below $18 | $23 | $16 | Feb 3, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **NFG** | Buy shares | Price at or below $73 | $82 | $69 | Jan 27, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **AXP** | Buy shares | Price at or below $298 | $334 | $280 | Jan 29, 2027 (before open) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
+| **FRO** | Buy shares | Price at or below $39 | $48 | $34 | Nov 20, 2026 (before open) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
 
 **Notes from each report**
 
@@ -55,6 +56,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **DHT:** WATCH, confidence 65: buy at or below $18.34 (pullback to the 60-day low (support) ($18.25)), sell at $22.78 (twice the risk taken (no value target above the entry)), stop $16.12; chart-based entry, not a value bargain: keep it small; check that VLCC spot rates are holding up, earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 35: buy at or below $73.37 (pullback to the 60-day low (support) ($73.01)), sell at $82.17 (twice the risk taken (no value target above the entry)), stop $68.97; chart-based entry, not a value bargain: keep it small; check the Ohio utility deal and spinoff plan, earnings, filings and news before confirming.
 - **AXP:** WATCH, confidence 75: buy at or below $297.77 (pullback to the 60-day low (support) ($296.28)), sell at $333.50 (twice the risk taken (no value target above the entry)), stop $279.90; chart-based entry, not a value bargain: keep it small; check the AML consent orders and any credit-card rate-cap news, earnings, filings and news before confirming.
+- **FRO:** WATCH, confidence 70: buy at or below $38.78 (pullback to the 60-day low (support) ($38.59)), sell at $48.41 (twice the risk taken (no value target above the entry)), stop $33.97; chart-based entry, not a value bargain: keep it small; check Q3 results on Nov 20 and where VLCC spot rates stand, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

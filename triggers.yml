@@ -2620,3 +2620,34 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-13'
   added_at: 2026-11-13 18:56
+- id: FRO-forensic-2026-11-14
+  source: forensic
+  ticker: FRO
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 38.78
+  exit_plan:
+    stop:
+      price: 33.97
+    target:
+      price: 48.41
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 70: buy at or below $38.78 (pullback to the 60-day
+    low (support) ($38.59)), sell at $48.41 (twice the risk taken (no value target
+    above the entry)), stop $33.97; chart-based entry, not a value bargain: keep it
+    small; check Q3 results on Nov 20 and where VLCC spot rates stand, earnings, filings
+    and news before confirming.'
+  report_date: 2026-11-14
+  expires: 2027-02-12
+  data_through: 2026-06-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2026-11-20'
+  earnings_time: BMO
+  earnings_checked: '2026-11-14'
+  earnings_soon_noted: '2026-11-20'
