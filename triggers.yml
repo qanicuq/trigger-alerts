@@ -2651,3 +2651,40 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-14'
   earnings_soon_noted: '2026-11-20'
+- id: NVDA-forensic-2026-11-14
+  source: forensic
+  ticker: NVDA
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 156.76
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 98.87
+    target:
+      price: 190.18
+    max_hold_days: 1260
+    review_days: 540
+  recommendation: 'WATCH, confidence 75: buy at or below $156.76 (value buy-below
+    line (within reach of the price)), sell at $190.18 (no longer cheap: P/E and P/B
+    back at the S&P 500''s, below estimated value), stop $98.87; the stop is disaster
+    insurance only, set beyond the stock''s worst past fall; fell 9% on 2026-11-05
+    on news: wait until about 2026-11-26 before confirming; check the 2026-11-17 earnings
+    and the CEO succession, earnings, filings and news before confirming.'
+  report_date: 2026-11-14
+  expires: 2027-02-12
+  data_through: 2026-07-26
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2026-11-17'
+  earnings_time: AMC
+  earnings_checked: '2026-11-14'
+  earnings_soon_noted: '2026-11-17'

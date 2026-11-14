@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 14, 2026 at 9:48 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 14, 2026 at 3:39 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**22 watching** · **8 bought (open)** · **32 ended**
+**23 watching** · **8 bought (open)** · **32 ended**
 
 ## Watching now
 
@@ -32,6 +32,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **NFG** | Buy shares | Price at or below $73 | $82 | $69 | Jan 27, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **AXP** | Buy shares | Price at or below $298 | $334 | $280 | Jan 29, 2027 (before open) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **FRO** | Buy shares | Price at or below $39 | $48 | $34 | Nov 20, 2026 (before open) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
+| **NVDA** | Buy shares | Price at or below $157<br>Price at least 2% above the 20-day low (support) | $190 | $99 | Nov 17, 2026 (after close) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
 
 **Notes from each report**
 
@@ -57,6 +58,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **NFG:** WATCH, confidence 35: buy at or below $73.37 (pullback to the 60-day low (support) ($73.01)), sell at $82.17 (twice the risk taken (no value target above the entry)), stop $68.97; chart-based entry, not a value bargain: keep it small; check the Ohio utility deal and spinoff plan, earnings, filings and news before confirming.
 - **AXP:** WATCH, confidence 75: buy at or below $297.77 (pullback to the 60-day low (support) ($296.28)), sell at $333.50 (twice the risk taken (no value target above the entry)), stop $279.90; chart-based entry, not a value bargain: keep it small; check the AML consent orders and any credit-card rate-cap news, earnings, filings and news before confirming.
 - **FRO:** WATCH, confidence 70: buy at or below $38.78 (pullback to the 60-day low (support) ($38.59)), sell at $48.41 (twice the risk taken (no value target above the entry)), stop $33.97; chart-based entry, not a value bargain: keep it small; check Q3 results on Nov 20 and where VLCC spot rates stand, earnings, filings and news before confirming.
+- **NVDA:** WATCH, confidence 75: buy at or below $156.76 (value buy-below line (within reach of the price)), sell at $190.18 (no longer cheap: P/E and P/B back at the S&P 500's, below estimated value), stop $98.87; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 9% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check the 2026-11-17 earnings and the CEO succession, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
