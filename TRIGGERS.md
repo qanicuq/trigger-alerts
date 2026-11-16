@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 16, 2026 at 10:00 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 16, 2026 at 10:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**23 watching** · **8 bought (open)** · **32 ended**
+**25 watching** · **8 bought (open)** · **32 ended**
 
 ## Watching now
 
@@ -23,7 +23,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SN** | Buy shares | Price at or below $202 | $234 | $186 | Feb 10, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 | **HOPE** | Buy shares | Price at or below $13 | $14 | $12 | Jan 26, 2027 (before open) | Feb 8, 2027 | Forensic Analysis, Nov 10, 2026 |
 | **TNC** | Buy shares | Price at or below $69 | $80 | $64 | Feb 22, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
-| **TSLA** | Buy shares | Price at or below $376 | $443 | $343 | Jan 27, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
+| **TSLA** | Buy shares — waiting for your OK | Price at or below $376 | $443 | $343 | Jan 27, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **HRMY** | Buy shares | Price at or below $31 | $38 | $28 | Feb 23, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **BHE** | Buy shares | Price at or below $59 | $73 | $51 | Feb 2, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **FMAO** | Buy shares | Price at or below $36 | $40 | $34 | Feb 11, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
@@ -33,6 +33,8 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **AXP** | Buy shares | Price at or below $298 | $334 | $280 | Jan 29, 2027 (before open) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **FRO** | Buy shares | Price at or below $39 | $48 | $34 | Nov 20, 2026 (before open) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
 | **NVDA** | Buy shares | Price at or below $157<br>Price at least 2% above the 20-day low (support) (≈$152) | $190 | $99 | Nov 17, 2026 (after close) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
+| **CRWV** | buy 55 put, sell 40 put, exp Jan 15, 2027 — +50% of max profit / −50% of max loss / 7 days before expiry — waiting for your OK | Price at or above $49<br>Price at or below $63 | premium $11, stock $41 | premium $4, stock $63, by Dec 23, 2026 | Feb 25, 2027 (after close) | Dec 16, 2026 | Option Calc, Nov 16, 2026 |
+| **NBIS** | buy 115 put, sell 95 put, exp Dec 18, 2026 — +50% of max profit / −50% of max loss / 7 days before expiry — waiting for your OK | Price at or above $106<br>Price at or below $145 | premium $15, stock $95 | premium $5, stock $145, by Nov 27, 2026 | Feb 11, 2027 (before open) | Nov 20, 2026 | Option Calc, Nov 16, 2026 |
 
 **Notes from each report**
 
@@ -59,6 +61,8 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **AXP:** WATCH, confidence 75: buy at or below $297.77 (pullback to the 60-day low (support) ($296.28)), sell at $333.50 (twice the risk taken (no value target above the entry)), stop $279.90; chart-based entry, not a value bargain: keep it small; check the AML consent orders and any credit-card rate-cap news, earnings, filings and news before confirming.
 - **FRO:** WATCH, confidence 70: buy at or below $38.78 (pullback to the 60-day low (support) ($38.59)), sell at $48.41 (twice the risk taken (no value target above the entry)), stop $33.97; chart-based entry, not a value bargain: keep it small; check Q3 results on Nov 20 and where VLCC spot rates stand, earnings, filings and news before confirming.
 - **NVDA:** WATCH, confidence 75: buy at or below $156.76 (value buy-below line (within reach of the price)), sell at $190.18 (no longer cheap: P/E and P/B back at the S&P 500's, below estimated value), stop $98.87; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 9% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check the 2026-11-17 earnings and the CEO succession, earnings, filings and news before confirming.
+- **CRWV:** Option Calc 2026-11-16: bear put spread, buy Jan 15 2027 $55 put / sell $40 put, about $7.10 debit (max loss $713, max gain $787)
+- **NBIS:** Option Calc 2026-11-16: bear put spread, buy Dec 18 $115 put / sell $95 put, about $9.70 debit (max loss $970, max gain $1,030)
 
 ## Bought (open paper trades)
 
