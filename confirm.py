@@ -20,9 +20,12 @@ def _bucket(tr):
     return f"{source}-{'option' if is_opt else 'stock'}"
 
 
-def _compute_equity(ledger):
-    equity = float(ledger.get("cash") or 0)
+def _compute_equity(ledger, account=None):
+    """Whole paper account, or only "cash" (stocks) / "option_cash" (options) and its positions."""
+    equity = common.total_cash(ledger) if account is None else float(ledger.get(account) or 0)
     for p in ledger.get("positions") or []:
+        if account is not None and common.cash_key(p.get("action")) != account:
+            continue
         qty = float(p.get("quantity") or 0)
         entry = float(p.get("entry_price") or 0)
         if p.get("action") == "POSITION":
@@ -77,17 +80,14 @@ def _kelly_size(tr, ledger, entry, stop, target, max_profit=None, max_loss=None)
     elif k <= 0:
         return None, risk_fraction, p, b, f"odds not good enough (p={p:.2f}, b={b:.2f})"
     risk_fraction *= common.streak_factor(ledger)
-    equity = _compute_equity(ledger)
+    equity = _compute_equity(ledger, common.cash_key(action))
     dollars_at_risk = risk_fraction * equity
-    cash = float(ledger.get("cash") or 0)
+    cash = float(ledger.get(common.cash_key(action)) or 0)
     if is_spread:
-        contracts = math.floor(dollars_at_risk / (common.SPREAD_STOP * max_loss * 100))
-        max_by_pos = math.floor(common.MAX_POSITION_OPTION * equity / (max_loss * 100))
-        max_by_cash = math.floor(cash / (max_loss * 100))
-        contracts = min(contracts, max_by_pos, max_by_cash)
-        if contracts < 1:
-            return None, risk_fraction, p, b, f"one spread risks ${max_loss*100:.0f}, too big for the account"
-        return contracts, risk_fraction, p, b, None
+        # Options account: always 1 spread when option cash covers it, as Option Calc assumes (user, 2026-11-16)
+        if cash < max_loss * 100:
+            return None, risk_fraction, p, b, f"one spread risks ${max_loss*100:.0f}, more than the ${cash:.0f} option cash"
+        return 1, risk_fraction, p, b, None
     if is_option:
         # need premium
         c = tr.get("contract") or {}
@@ -97,13 +97,10 @@ def _kelly_size(tr, ledger, entry, stop, target, max_profit=None, max_loss=None)
         premium = q.get("ask") or q.get("last") or 0
         if premium <= 0:
             return None, risk_fraction, p, b, "bad premium"
-        contracts = math.floor(dollars_at_risk / (premium * 100 * 0.20))
-        max_by_pos = math.floor((common.MAX_POSITION_OPTION * equity) / (premium * 100))
-        max_by_cash = math.floor(cash / (premium * 100))
-        contracts = min(contracts, max_by_pos, max_by_cash)
-        if contracts < 1:
-            return None, risk_fraction, p, b, f"one contract costs ${premium*100:.0f}, too big for the account"
-        return contracts, risk_fraction, p, b, None
+        # Options account: always 1 contract when option cash covers it, as Option Calc assumes (user, 2026-11-16)
+        if cash < premium * 100:
+            return None, risk_fraction, p, b, f"one contract costs ${premium*100:.0f}, more than the ${cash:.0f} option cash"
+        return 1, risk_fraction, p, b, None
     else:
         if entry <= stop:
             return None, risk_fraction, p, b, "stop not below entry"
@@ -124,6 +121,7 @@ def main():
     ledger = common.load_yaml("ledger.yml")
     if not ledger:
         ledger = {"cash": common.STARTING_CASH, "positions": [], "closed_trades": [], "realized_pl": 0.0, "stats": {}, "paused": False}
+    common.ensure_option_cash(ledger)
 
     pending = [t for t in triggers if t.get("status") == "awaiting_confirm"]
     if not pending:
@@ -328,11 +326,12 @@ def place(tr, ledger, force=False):
     else:
         cost = fill * qty * (100 if is_single else 1)
         reserved = 0
-    if float(ledger.get("cash") or 0) < cost:
-        common.ntfy("Confirm refused", f"Not enough cash (need ${cost:.0f})")
+    key = common.cash_key(action)
+    if float(ledger.get(key) or 0) < cost:
+        common.ntfy("Confirm refused", f"Not enough {'option ' if key == 'option_cash' else ''}cash (need ${cost:.0f})")
         return False
 
-    ledger["cash"] = float(ledger.get("cash") or 0) - cost
+    ledger[key] = float(ledger.get(key) or 0) - cost
 
     pos = {
         "id": tr.get("id"),

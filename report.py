@@ -349,7 +349,8 @@ def write_pages():
     ledger = common.load_yaml("ledger.yml") or {}
 
     cash = float(ledger.get("cash") or 0)
-    equity = cash
+    option_cash = float(ledger.get("option_cash") or 0)
+    equity = cash + option_cash
     for p in ledger.get("positions") or []:
         qty = float(p.get("quantity") or 0)
         entry = float(p.get("entry_price") or 0)
@@ -382,13 +383,13 @@ def write_pages():
 
     today_str = now.date().isoformat()
     today_pl = equity - float(ledger.get("day_start_equity") or equity)
-    overall = equity - common.STARTING_CASH
+    overall = equity - common.STARTING_CASH - (common.OPTION_STARTING_CASH if "option_cash" in ledger else 0)
     waiting = [t for t in triggers if t.get("status") == "awaiting_confirm"]
     report_lines = [
         f"# Report {now.strftime('%Y-%m-%d %H:%M')} NY",
         "",
         f"Equity: ${equity:,.0f}  Peak: ${peak:,.0f}  Drawdown: {dd:.1f}%  Paused: {paused}",
-        f"Cash: ${cash:,.0f}",
+        f"Cash: ${cash:,.0f}  Option cash: ${option_cash:,.0f}",
         f"P/L today: {_money(today_pl)}",
         f"P/L overall: {_money(overall)}",
         _scorecard(ledger, closed),
@@ -455,7 +456,8 @@ def send_report(slot):
     triggers_data = common.load_yaml("triggers.yml")
     triggers = triggers_data.get("triggers") or []
     cash = float(ledger.get("cash") or 0)
-    equity = cash
+    option_cash = float(ledger.get("option_cash") or 0)
+    equity = cash + option_cash
     for p in ledger.get("positions") or []:
         qty = float(p.get("quantity") or 0)
         entry = float(p.get("entry_price") or 0)
@@ -482,7 +484,7 @@ def send_report(slot):
     today_str = now.date().isoformat()
     closed = ledger.get("closed_trades") or []
     today_pl = equity - float(ledger.get("day_start_equity") or equity)
-    overall = equity - common.STARTING_CASH
+    overall = equity - common.STARTING_CASH - (common.OPTION_STARTING_CASH if "option_cash" in ledger else 0)
     positions = ledger.get("positions") or []
     waiting = [t for t in triggers if t.get("status") == "awaiting_confirm"]
 
@@ -494,7 +496,7 @@ def send_report(slot):
     title = title_map.get(slot, f"Trades: {slot}")
     lines = [
         f"Equity: ${equity:,.0f}",
-        f"Cash: ${cash:,.0f}",
+        f"Cash: ${cash:,.0f}  Option cash: ${option_cash:,.0f}",
         f"Today P/L: {_money(today_pl)}",
         f"Overall: {_money(overall)}",
         _scorecard(ledger, closed),

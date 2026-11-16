@@ -807,7 +807,7 @@ def _close_position(ledger, pos, exit_price, reason, now):
         qty = float(pos.get("quantity") or 1)
         reserved = float(pos.get("reserved") or 0)
         pl = (float(exit_price) - entry) * qty
-        ledger["cash"] = float(ledger.get("cash") or 0) + (float(exit_price) + reserved) * qty
+        ledger["option_cash"] = float(ledger.get("option_cash") or 0) + (float(exit_price) + reserved) * qty
         ledger["realized_pl"] = float(ledger.get("realized_pl") or 0) + pl
         closed = dict(pos)
         closed["exit_price"] = exit_price
@@ -833,7 +833,8 @@ def _close_position(ledger, pos, exit_price, reason, now):
     is_option = bool(pos.get("is_option"))
     mult = 100 if is_option else 1
     pl = (exit_price - entry) * qty * mult
-    ledger["cash"] = float(ledger.get("cash") or 0) + exit_price * qty * mult + float(pos.get("reserved") or 0)
+    key = common.cash_key(pos.get("action"))
+    ledger[key] = float(ledger.get(key) or 0) + exit_price * qty * mult + float(pos.get("reserved") or 0)
     ledger["realized_pl"] = float(ledger.get("realized_pl") or 0) + pl
     closed = dict(pos)
     closed["exit_price"] = exit_price
@@ -906,8 +907,9 @@ def main():
     if not ledger or "cash" not in ledger:
         ledger = {
             "cash": common.STARTING_CASH,
-            "peak_equity": common.STARTING_CASH,
-            "day_start_equity": common.STARTING_CASH,
+            "option_cash": common.OPTION_STARTING_CASH,
+            "peak_equity": common.STARTING_CASH + common.OPTION_STARTING_CASH,
+            "day_start_equity": common.STARTING_CASH + common.OPTION_STARTING_CASH,
             "positions": [],
             "closed_trades": [],
             "realized_pl": 0.0,
@@ -920,7 +922,7 @@ def main():
         }
 
     now = common.now_ny()
-    changed = False
+    changed = common.ensure_option_cash(ledger)
 
     # Inbox ingest always
     if _ingest_inbox(triggers, ledger):
@@ -939,7 +941,7 @@ def main():
     today = now.date().isoformat()
     if ledger.get("day_start_date") != today:
         # compute current equity roughly
-        equity = float(ledger.get("cash") or 0)
+        equity = common.total_cash(ledger)
         for p in ledger.get("positions") or []:
             qty = float(p.get("quantity") or 0)
             entry = float(p.get("entry_price") or 0)
@@ -968,7 +970,7 @@ def main():
         changed = True
 
     # Peak tracking
-    equity = float(ledger.get("cash") or 0)
+    equity = common.total_cash(ledger)
     for p in ledger.get("positions") or []:
         qty = float(p.get("quantity") or 0)
         entry = float(p.get("entry_price") or 0)

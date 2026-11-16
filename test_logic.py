@@ -182,7 +182,13 @@ class TestKelly(unittest.TestCase):
             with patch("common.option_quote", return_value={"ask": 50, "bid": 49, "last": 50}):
                 qty, rf, p, b, refuse = confirm._kelly_size(tr_opt, ledger, 50, None, None)
                 self.assertIsNotNone(refuse)
-                self.assertIn("too big", refuse)
+                self.assertIn("more than the $0 option cash", refuse)
+            # options account: always 1 contract when option cash covers it (user, 2026-11-16)
+            ledger["option_cash"] = 6000
+            with patch("common.option_quote", return_value={"ask": 50, "bid": 49, "last": 50}):
+                qty, rf, p, b, refuse = confirm._kelly_size(tr_opt, ledger, 50, None, None)
+                self.assertIsNone(refuse)
+                self.assertEqual(qty, 1)
 
 
 class TestExits(unittest.TestCase):
@@ -749,7 +755,7 @@ class TestSpreads(unittest.TestCase):
             "contract": {"expiry": "2026-12-18", "legs": legs},
         }
         ledger = {
-            "cash": cash, "positions": [], "realized_pl": 0.0, "paused": False,
+            "cash": 0.0, "option_cash": cash, "positions": [], "realized_pl": 0.0, "paused": False,
             "stats": {}, "day_start_equity": cash, "peak_equity": cash,
         }
 
@@ -779,7 +785,7 @@ class TestSpreads(unittest.TestCase):
         with patch("common.ntfy"):
             check._close_position(ledger, pos, 2.50, "target", common.now_ny())
         pl = ledger["closed_trades"][0]["pl"]
-        self.assertAlmostEqual(ledger["cash"] - start, pl)
+        self.assertAlmostEqual(ledger["option_cash"] - start, pl)
 
     def test_credit_cash_round_trip(self):
         legs = [
@@ -796,7 +802,7 @@ class TestSpreads(unittest.TestCase):
         with patch("common.ntfy"):
             check._close_position(ledger, pos, -0.50, "target", common.now_ny())
         pl = ledger["closed_trades"][0]["pl"]
-        self.assertAlmostEqual(ledger["cash"] - start, pl)
+        self.assertAlmostEqual(ledger["option_cash"] - start, pl)
 
     def test_credit_equity_unchanged_at_open(self):
         legs = [
@@ -1074,7 +1080,7 @@ class TestOptionExitsAndPositions(unittest.TestCase):
         tr = self._base(contract={"expiry": "2026-12-18", "legs": [{"side": "sell", "right": "put", "strike": 40}]})
         start = 10000.0
         ledger = {
-            "cash": start, "positions": [], "realized_pl": 0.0, "paused": False,
+            "cash": 0.0, "option_cash": start, "positions": [], "realized_pl": 0.0, "paused": False,
             "stats": {}, "day_start_equity": start, "peak_equity": start,
         }
 
@@ -1091,7 +1097,7 @@ class TestOptionExitsAndPositions(unittest.TestCase):
         self.assertEqual(pos["quantity"], 3)
         self.assertAlmostEqual(pos["entry_value"], -200.0)
         self.assertAlmostEqual(pos["reserved"], 600.0)
-        self.assertAlmostEqual(ledger["cash"], start - (-200.0 + 600.0) * 3)
+        self.assertAlmostEqual(ledger["option_cash"], start - (-200.0 + 600.0) * 3)
         pos["last_value"] = pos["entry_value"]
         self.assertAlmostEqual(confirm._compute_equity(ledger), start)
         with patch("common.option_quote", return_value={"bid": 0.9, "ask": 1.0, "last": 0.95}), \
@@ -1102,7 +1108,7 @@ class TestOptionExitsAndPositions(unittest.TestCase):
         with patch("common.ntfy"):
             check._close_position(ledger, pos, value, "target", common.now_ny())
         self.assertAlmostEqual(ledger["closed_trades"][0]["pl"], 300.0)
-        self.assertAlmostEqual(ledger["cash"], start + 300.0)
+        self.assertAlmostEqual(ledger["option_cash"], start + 300.0)
         self.assertEqual(ledger["positions"], [])
 
     def test_position_without_stop_rejected(self):
@@ -1784,3 +1790,41 @@ class TestReportPL(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class TestOptionAccount(unittest.TestCase):
+    """Separate $5,000 paper account for option trades (user, 2026-11-16)."""
+
+    def test_migration_adds_cash_without_fake_profit(self):
+        ledger = {"cash": 0.0, "day_start_equity": 10276.5, "peak_equity": 10344.0}
+        self.assertTrue(common.ensure_option_cash(ledger))
+        self.assertEqual(ledger["option_cash"], 5000.0)
+        self.assertAlmostEqual(ledger["day_start_equity"], 15276.5)
+        self.assertAlmostEqual(ledger["peak_equity"], 15344.0)
+        self.assertFalse(common.ensure_option_cash(ledger))  # only once
+        self.assertEqual(ledger["option_cash"], 5000.0)
+
+    def test_spread_buys_one_from_option_cash_with_no_stock_cash(self):
+        # today's CRWV case: stock cash $0, bear put spread $55/$40 for about $7.13
+        tr = {"id": "CRWV-spread", "ticker": "CRWV", "action": "SPREAD", "source": "option",
+              "conditions": [{"type": "price", "op": ">=", "value": 49}],
+              "contract": {"expiry": "2027-01-15", "legs": [
+                  {"side": "buy", "right": "put", "strike": 55},
+                  {"side": "sell", "right": "put", "strike": 40}]}}
+        ledger = {"cash": 0.0, "option_cash": 5000.0, "positions": [], "realized_pl": 0.0,
+                  "paused": False, "stats": {}, "day_start_equity": 5000.0, "peak_equity": 5000.0}
+        quotes = {55.0: {"bid": 9.65, "ask": 9.95, "last": 9.8}, 40.0: {"bid": 2.92, "ask": 3.05, "last": 3.0}}
+        with patch("common.option_quote", side_effect=lambda t, e, k, r: quotes[float(k)]), \
+             patch("common.last_price", return_value=50.17), \
+             patch("common.get_daily_bars", return_value=None), \
+             patch("common.ntfy"):
+            self.assertTrue(confirm.place(tr, ledger, force=True))
+        self.assertEqual(ledger["positions"][0]["quantity"], 1)
+        self.assertAlmostEqual(ledger["option_cash"], 5000.0 - (9.95 - 2.92) * 100)
+        self.assertEqual(ledger["cash"], 0.0)  # stock cash untouched
+
+    def test_stock_sizing_ignores_option_account(self):
+        ledger = {"cash": 1000.0, "option_cash": 5000.0, "positions": [], "stats": {}}
+        self.assertAlmostEqual(confirm._compute_equity(ledger, "cash"), 1000.0)
+        self.assertAlmostEqual(confirm._compute_equity(ledger, "option_cash"), 5000.0)
+        self.assertAlmostEqual(confirm._compute_equity(ledger), 6000.0)

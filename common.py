@@ -13,6 +13,7 @@ NY = ZoneInfo("America/New_York")
 
 # Account and risk constants
 STARTING_CASH = 10000.0
+OPTION_STARTING_CASH = 5000.0  # separate paper money for option trades so they never compete with stocks (user, 2026-11-16)
 KELLY_FRACTION = 0.25
 PRIOR_ALPHA = 5
 PRIOR_BETA = 5
@@ -147,6 +148,27 @@ def ntfy(title, body, priority="default", click_url=None, action_label=None, act
         requests.post(NTFY_URL, data=body.encode(), headers=headers, timeout=10)
     except Exception as e:
         print(f"ntfy failed: {e}")
+
+
+def cash_key(action):
+    """Stock buys use "cash"; every option trade (single, spread, POSITION) uses "option_cash"."""
+    return "cash" if (action or "BUY") == "BUY" else "option_cash"
+
+
+def total_cash(ledger):
+    return float(ledger.get("cash") or 0) + float(ledger.get("option_cash") or 0)
+
+
+def ensure_option_cash(ledger):
+    """One time: add the options account. Day-start and peak equity move up with it,
+    so the new money doesn't show as profit. Returns True if it changed the ledger."""
+    if "option_cash" in ledger:
+        return False
+    ledger["option_cash"] = OPTION_STARTING_CASH
+    for k in ("day_start_equity", "peak_equity"):
+        if ledger.get(k) is not None:
+            ledger[k] = float(ledger[k]) + OPTION_STARTING_CASH
+    return True
 
 
 def now_ny():
