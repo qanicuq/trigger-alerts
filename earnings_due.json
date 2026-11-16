@@ -1,31 +1,3 @@
 {
- "due": [
-  {
-   "ticker": "AMAT",
-   "source": "forensic",
-   "kind": "waiting",
-   "bullish": true,
-   "earnings_date": "2026-11-12",
-   "earnings_time": null,
-   "trigger_id": "AMAT-forensic-2026-11-13"
-  },
-  {
-   "ticker": "DHT",
-   "source": "forensic",
-   "kind": "waiting",
-   "bullish": true,
-   "earnings_date": "2026-11-09",
-   "earnings_time": null,
-   "trigger_id": "DHT-forensic-2026-11-13"
-  },
-  {
-   "ticker": "NFG",
-   "source": "forensic",
-   "kind": "waiting",
-   "bullish": true,
-   "earnings_date": "2026-11-05",
-   "earnings_time": null,
-   "trigger_id": "NFG-forensic-2026-11-13"
-  }
- ]
+ "due": []
 }

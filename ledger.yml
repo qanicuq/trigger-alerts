@@ -1,6 +1,6 @@
 cash: 0.00105076819943406
 peak_equity: 10343.97013363363
-day_start_equity: 10294.654935117018
+day_start_equity: 10276.539337424083
 positions:
 - id: MNST-forensic-2026-11-06
   ticker: MNST
@@ -109,7 +109,7 @@ positions:
   source: forensic
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-13T16:30:29.413323-05:00'
+last_checked: '2026-11-16T09:30:40.882529-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -129,9 +129,10 @@ sent_slots:
   2026-11-13:morning: true
   2026-11-13:midday: true
   2026-11-13:end of day: true
+  2026-11-16:morning: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
 stats: {}
-day_start_date: '2026-11-13'
+day_start_date: '2026-11-16'
 max_drawdown_pct: 1.15
