@@ -2854,7 +2854,7 @@ triggers:
     sell $95 put, about $9.70 debit (max loss $970, max gain $1,030)'
   report_date: 2026-11-16
   expires: 2026-11-20
-  status: awaiting_confirm
+  status: filled
   backtest:
     wins: 0
     losses: 0
@@ -2878,3 +2878,4 @@ triggers:
   alerted_at: '2026-11-16T10:30:34.482006-05:00'
   seen_high: 107.47000122070312
   seen_low: 105.4800033569336
+  frozen: true

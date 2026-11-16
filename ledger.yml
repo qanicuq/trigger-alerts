@@ -136,6 +136,35 @@ positions:
     target_price: 40.58
     stop_price: 63.15
     exit_by: 2026-12-23
+- id: NBIS-spread-2026-11-16
+  ticker: NBIS
+  action: SPREAD
+  entry_price: 10.85
+  quantity: 1
+  stop: null
+  target: null
+  max_hold_days: 30
+  review_days: null
+  is_option: true
+  reserved: 0.0
+  opened: '2026-11-16T10:37:23.376513-05:00'
+  source: option
+  expiry: 2026-12-18
+  legs:
+  - side: buy
+    right: put
+    strike: 115
+  - side: sell
+    right: put
+    strike: 95
+  max_profit: 9.15
+  max_loss: 10.85
+  option_exits:
+    target_premium: 14.85
+    stop_premium: 4.85
+    target_price: 95
+    stop_price: 144.77
+    exit_by: 2026-11-27
 closed_trades: []
 realized_pl: 0.0
 last_checked: '2026-11-16T10:30:34.482006-05:00'
@@ -165,4 +194,4 @@ paused: false
 stats: {}
 day_start_date: '2026-11-16'
 max_drawdown_pct: 2.49
-option_cash: 4240.0
+option_cash: 3155.0
