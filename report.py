@@ -122,6 +122,12 @@ def _ox_levels(ox):
     return (", ".join(targets) or "—"), (", ".join(stops) or "7 days before expiry")
 
 
+def _spread_exits(item):
+    """Exit text for a spread: its own option_exits levels when set, else the default rules."""
+    lv = _ox_levels(item.get("option_exits"))
+    return f"target {lv[0]}; stop {lv[1]}" if lv else SPREAD_EXITS
+
+
 def _what(tr):
     action = tr.get("action", "")
     if action == "POSITION":
@@ -132,7 +138,7 @@ def _what(tr):
         c = tr.get("contract") or {}
         legs = c.get("legs") or tr.get("legs")
         expiry = c.get("expiry") or tr.get("expiry")
-        return f"{_spread_desc(legs, expiry)} — {SPREAD_EXITS}"
+        return f"{_spread_desc(legs, expiry)} — {_spread_exits(tr)}"
     c = tr.get("contract") or {}
     kind = "call" if action == "BUY_CALL" else "put" if action == "BUY_PUT" else action
     if c:
@@ -280,7 +286,7 @@ def write_triggers_page():
                 if bought is None:
                     bought = p.get("entry_price")
             elif p.get("action") == "SPREAD":
-                what = f"{_spread_desc(p.get('legs'), p.get('expiry'))} — {SPREAD_EXITS}"
+                what = f"{_spread_desc(p.get('legs'), p.get('expiry'))} — {_spread_exits(p)}"
                 shown = _ox_levels(p.get("option_exits"))
                 target, stop = shown if shown else ("+50% of max profit", "−50% of max loss / 7 days before expiry")
                 bought = p.get("entry_price")
@@ -325,7 +331,9 @@ def write_triggers_page():
     print("TRIGGERS.md written")
 
 
-def _money(x):
+def _money0(x):
+    """Whole dollars with a leading minus, for account P/L lines. (Was a second _money that
+    overrode the cents version above for the whole page; renamed 2026-11-16.)"""
     return f"{'-' if x < 0 else ''}${abs(x):,.0f}"
 
 
@@ -390,8 +398,8 @@ def write_pages():
         "",
         f"Equity: ${equity:,.0f}  Peak: ${peak:,.0f}  Drawdown: {dd:.1f}%  Paused: {paused}",
         f"Cash: ${cash:,.0f}  Option cash: ${option_cash:,.0f}",
-        f"P/L today: {_money(today_pl)}",
-        f"P/L overall: {_money(overall)}",
+        f"P/L today: {_money0(today_pl)}",
+        f"P/L overall: {_money0(overall)}",
         _scorecard(ledger, closed),
         "",
         "## Open trades",
@@ -416,7 +424,7 @@ def write_pages():
             entry = float(p.get("entry_price") or 0)
             report_lines.append(
                 f"- {p.get('ticker')} {_spread_desc(p.get('legs'), p.get('expiry'))} "
-                f"entry {entry:.2f} exits {SPREAD_EXITS}"
+                f"entry {entry:.2f} exits {_spread_exits(p)}"
             )
             continue
         entry = float(p.get("entry_price") or 0)
@@ -497,8 +505,8 @@ def send_report(slot):
     lines = [
         f"Equity: ${equity:,.0f}",
         f"Cash: ${cash:,.0f}  Option cash: ${option_cash:,.0f}",
-        f"Today P/L: {_money(today_pl)}",
-        f"Overall: {_money(overall)}",
+        f"Today P/L: {_money0(today_pl)}",
+        f"Overall: {_money0(overall)}",
         _scorecard(ledger, closed),
         f"Open: {len(positions)}",
         f"Paused: {'yes' if ledger.get('paused') else 'no'}",
@@ -507,7 +515,7 @@ def send_report(slot):
         if p.get("action") == "POSITION":
             lines.append(f"{p.get('ticker')} {_position_desc(p)}")
         elif p.get("action") == "SPREAD":
-            lines.append(f"{p.get('ticker')} {_spread_desc(p.get('legs'), p.get('expiry'))} exits {SPREAD_EXITS}")
+            lines.append(f"{p.get('ticker')} {_spread_desc(p.get('legs'), p.get('expiry'))} exits {_spread_exits(p)}")
         else:
             lines.append(f"{p.get('ticker')} entry {p.get('entry_price')} stop {p.get('stop')}")
     if waiting:
