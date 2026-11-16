@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 16, 2026 at 3:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 16, 2026 at 4:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**23 watching** · **10 bought (open)** · **32 ended**
+**22 watching** · **10 bought (open)** · **33 ended**
 
 ## Watching now
 
@@ -23,7 +23,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SN** | Buy shares | Price at or below $202.04 | $233.52 | $186.30 | Feb 10, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 | **HOPE** | Buy shares — no cash, waiting for a fresh Forensic Analysis | Price at or below $12.87 | $14.41 | $12.10 | Jan 26, 2027 (before open) | Feb 8, 2027 | Forensic Analysis, Nov 10, 2026 |
 | **TNC** | Buy shares | Price at or below $69.44 | $80.42 | $63.95 | Feb 22, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
-| **TSLA** | Buy shares — waiting for your OK | Price at or below $376.34 | $442.60 | $343.21 | Jan 27, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **HRMY** | Buy shares | Price at or below $31.36 | $37.87 | $28.10 | Feb 23, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **BHE** | Buy shares | Price at or below $58.60 | $72.96 | $51.42 | Feb 2, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **FMAO** | Buy shares | Price at or below $35.71 | $40.03 | $33.55 | Feb 11, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
@@ -49,7 +48,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **SN:** WATCH, confidence 65: buy at or below $202.04 (pullback to the 20-day average ($201.03)), sell at $233.52 (twice the risk taken (no value target above the entry)), stop $186.30; chart-based entry, not a value bargain: keep it small; check whether margins hold up once the one-off tariff refunds stop, earnings, filings and news before confirming.
 - **HOPE:** WATCH, confidence 55: buy at or below $12.87 (pullback to the 60-day low (support) ($12.80)), sell at $14.41 (twice the risk taken (no value target above the entry)), stop $12.10; chart-based entry, not a value bargain: keep it small; check how the MANUBANK acquisition is being integrated, earnings, filings and news before confirming.
 - **TNC:** WATCH, confidence 60: buy at or below $69.44 (pullback to the 20-day average ($69.09)), sell at $80.42 (twice the risk taken (no value target above the entry)), stop $63.95; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
-- **TSLA:** WATCH, confidence 40: buy at or below $376.34 (pullback to the 50-day average ($374.46)), sell at $442.60 (twice the risk taken (no value target above the entry)), stop $343.21; chart-based entry, not a value bargain: keep it small; fell 11% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check the terms of any SpaceX merger, earnings, filings and news before confirming.
 - **HRMY:** WATCH, confidence 40: buy at or below $31.36 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $37.87 (twice the risk taken (no value target above the entry)), stop $28.10; chart-based entry, not a value bargain: keep it small; check the WAKIX patent ruling due around Feb 14, 2027, earnings, filings and news before confirming.
 - **BHE:** WATCH, confidence 65: buy at or below $58.60 (pullback to the 60-day low (support) ($58.31)), sell at $72.96 (twice the risk taken (no value target above the entry)), stop $51.42; chart-based entry, not a value bargain: keep it small; check whether the 22% one-month drop has a company-specific cause, earnings, filings and news before confirming.
 - **FMAO:** WATCH, confidence 65: buy at or below $35.71 (pullback to the 50-day average ($35.54)), sell at $40.03 (twice the risk taken (no value target above the entry)), stop $33.55; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
@@ -83,6 +81,7 @@ None yet.
 
 | Ticker | What | Added | Status | Why it ended |
 |---|---|---|---|---|
+| **TSLA** | Buy shares | Nov 12, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **MPC** | Buy shares | Nov 12, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **MNST** | Buy shares | Nov 11, 2026 | Cancelled | MNST is already held; a fresh analysis on a held stock now adjusts the position instead (user, 2026-11-11) |
 | **SPCX** | Buy shares | Nov 6, 2026 | Paused | Paused Nov 6 for a re-run: this report was made before the new SEC checks (operating income, share count and foreign annual reports). A fresh report sets a new trigger. |
