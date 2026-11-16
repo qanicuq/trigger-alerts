@@ -2799,7 +2799,7 @@ triggers:
     / sell $40 put, about $7.10 debit (max loss $713, max gain $787)'
   report_date: 2026-11-16
   expires: 2026-12-16
-  status: awaiting_confirm
+  status: filled
   backtest:
     wins: 0
     losses: 0
@@ -2823,6 +2823,7 @@ triggers:
   alerted_at: '2026-11-16T10:30:34.482006-05:00'
   seen_high: 50.029998779296875
   seen_low: 49.36899948120117
+  frozen: true
 - id: NBIS-spread-2026-11-16
   source: option
   ticker: NBIS
