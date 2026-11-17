@@ -1,5 +1,5 @@
 # FA Needed
-Updated 2026-11-17 13:30 New York time
+Updated 2026-11-17 14:00 New York time
 
 ## 🔴 Needs a fresh FA now
 
@@ -7,6 +7,7 @@ Updated 2026-11-17 13:30 New York time
 | --- | --- | --- | --- |
 | FMAO | no cash, and weaker than your weakest holding | 2026-11-17 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
 | HOPE | no cash, and weaker than your weakest holding | 2026-11-16 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
+| NKE | no cash, and weaker than your weakest holding | 2026-11-17 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
 
 ## 🟡 FA needed soon
 
