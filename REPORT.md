@@ -1,21 +1,21 @@
-# Report 2026-11-17 10:00 NY
+# Report 2026-11-17 10:30 NY
 
-Equity: $14,742  Peak: $15,344  Drawdown: 3.9%  Paused: no
+Equity: $14,620  Peak: $15,344  Drawdown: 4.7%  Paused: no
 Cash: $0  Option cash: $3,155
-P/L today: -$65
-P/L overall: -$258
-Worst drawdown: 3.8%  Expectancy: n/a (no closed trades yet)
+P/L today: -$187
+P/L overall: -$380
+Worst drawdown: 3.9%  Expectancy: n/a (no closed trades yet)
 Track record: 0 closed trades. Too few to judge skill: a short record can't tell skill from luck.
 
 ## Open trades
-- MNST entry 44.75 now 45.224998474121094 P/L 1.1% stop 43.6 target 51.95
-- SHOE entry 15.01 now 13.899999618530273 P/L -7.4% stop 6.71 target 28.27
-- RES entry 5.33 now 5.429999828338623 P/L 1.8% stop 3.15 target 9.13
-- NAT entry 6.18 now 6.510000228881836 P/L 5.3% stop 5.46 target 7.68
-- WIT entry 2.12 now 2.075000047683716 P/L -1.9% stop 1.05 target 3.15
-- IMXI entry 6.62 now 5.639999866485596 P/L -14.8% stop 2.46 target 16.05
-- KMT entry 23.95 now 23.575000762939453 P/L -1.6% stop 11.83 target 61.02
-- LPG entry 47.75 now 45.90999984741211 P/L -3.9% stop 32.45 target 116.66
+- MNST entry 44.75 now 45.27000045776367 P/L 1.2% stop 43.6 target 51.95
+- SHOE entry 15.01 now 14.074999809265137 P/L -6.2% stop 6.71 target 28.27
+- RES entry 5.33 now 5.389999866485596 P/L 1.1% stop 3.15 target 9.13
+- NAT entry 6.18 now 6.45989990234375 P/L 4.5% stop 5.46 target 7.68
+- WIT entry 2.12 now 2.059999942779541 P/L -2.7% stop 1.05 target 3.15
+- IMXI entry 6.62 now 5.690000057220459 P/L -14.0% stop 2.46 target 16.05
+- KMT entry 23.95 now 23.264999389648438 P/L -2.9% stop 11.83 target 61.02
+- LPG entry 47.75 now 45.78499984741211 P/L -4.1% stop 32.45 target 116.66
 - CRWV buy 55 put, sell 40 put, exp Jan 15, 2027 entry 7.60 exits target premium $11.07, stock $40.58; stop premium $3.57, stock $63.15, by Dec 23, 2026
 - NBIS buy 115 put, sell 95 put, exp Dec 18, 2026 entry 10.85 exits target premium $14.85, stock $95.00; stop premium $4.85, stock $144.77, by Nov 27, 2026
 
