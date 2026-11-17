@@ -1,10 +1,11 @@
 # FA Needed
-Updated 2026-11-17 10:30 New York time
+Updated 2026-11-17 11:00 New York time
 
 ## 🔴 Needs a fresh FA now
 
 | Ticker | Why | Since | Run |
 | --- | --- | --- | --- |
+| FMAO | no cash, and weaker than your weakest holding | 2026-11-17 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
 | HOPE | no cash, and weaker than your weakest holding | 2026-11-16 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
 
 ## 🟡 FA needed soon

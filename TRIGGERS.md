@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 17, 2026 at 10:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 17, 2026 at 11:00 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **22 watching** · **10 bought (open)** · **33 ended**
 
@@ -16,7 +16,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RLX** | Buy shares | Price at or below $1.54 | $1.73 | $1.45 | Nov 20, 2026 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **RPM** | Buy shares | Price at or below $94.97 | $107.59 | $88.66 | Jan 7, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **MU** | Buy shares | Price at or below $690.00<br>Price at least 2% above the 20-day low (support) (≈$663.00) | $1,420.54 | $338.82 | Dec 23, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
+| **MU** | Buy shares — waiting for your OK | Price at or below $690.00<br>Price at least 2% above the 20-day low (support) (≈$663.00) | $1,420.54 | $338.82 | Dec 23, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **OGE** | Buy shares | Price at or below $48.85 | $54.71 | $45.92 | Feb 17, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **SMP** | Buy shares | Price at or below $39.67 | $55.10 | $36.62 | Feb 25, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
@@ -25,7 +25,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **TNC** | Buy shares | Price at or below $69.44 | $80.42 | $63.95 | Feb 22, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **HRMY** | Buy shares | Price at or below $31.36 | $37.87 | $28.10 | Feb 23, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **BHE** | Buy shares | Price at or below $58.60 | $72.96 | $51.42 | Feb 2, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
-| **FMAO** | Buy shares | Price at or below $35.71 | $40.03 | $33.55 | Feb 11, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
+| **FMAO** | Buy shares — no cash, waiting for a fresh Forensic Analysis | Price at or below $35.71 | $40.03 | $33.55 | Feb 11, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **AMAT** | Buy shares | Price at or below $318.53 | $414.09 | $270.75 | Feb 11, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **DHT** | Buy shares | Price at or below $18.34 | $22.78 | $16.12 | Feb 3, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **NFG** | Buy shares | Price at or below $73.37 | $82.17 | $68.97 | Jan 27, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
