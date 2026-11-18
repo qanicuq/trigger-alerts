@@ -29,6 +29,15 @@
    "earnings_time": null,
    "requested_at": "2026-11-17T14:00:48.490817-05:00",
    "trigger_id": "NKE-forensic-2026-11-07"
+  },
+  {
+   "ticker": "NVDA",
+   "source": "forensic",
+   "kind": "waiting",
+   "bullish": true,
+   "earnings_date": "2026-11-17",
+   "earnings_time": "AMC",
+   "trigger_id": "NVDA-forensic-2026-11-14"
   }
  ]
 }

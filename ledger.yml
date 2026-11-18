@@ -1,6 +1,6 @@
 cash: 0.00105076819943406
 peak_equity: 15343.97013363363
-day_start_equity: 14806.18918540403
+day_start_equity: 14636.936901420757
 positions:
 - id: MNST-forensic-2026-11-06
   ticker: MNST
@@ -136,7 +136,7 @@ positions:
     target_price: 40.58
     stop_price: 63.15
     exit_by: 2026-12-23
-  no_quote_count: 0
+  no_quote_count: 1
   last_value: 6.950000000000001
 - id: NBIS-spread-2026-11-16
   ticker: NBIS
@@ -167,11 +167,11 @@ positions:
     target_price: 95
     stop_price: 144.77
     exit_by: 2026-11-27
-  no_quote_count: 0
+  no_quote_count: 1
   last_value: 9.950000000000001
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-17T16:30:40.012119-05:00'
+last_checked: '2026-11-18T09:30:33.127042-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -197,11 +197,12 @@ sent_slots:
   2026-11-17:morning: true
   2026-11-17:midday: true
   2026-11-17:end of day: true
+  2026-11-18:morning: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
 stats: {}
-day_start_date: '2026-11-17'
+day_start_date: '2026-11-18'
 max_drawdown_pct: 4.79
 option_cash: 3155.0
 daily_loss_alerted: '2026-11-16'
