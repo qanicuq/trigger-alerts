@@ -137,7 +137,7 @@ positions:
     stop_price: 63.15
     exit_by: 2026-12-23
   no_quote_count: 0
-  last_value: 7.199999999999999
+  last_value: 8.25
 - id: NBIS-spread-2026-11-16
   ticker: NBIS
   action: SPREAD
@@ -168,10 +168,10 @@ positions:
     stop_price: 144.77
     exit_by: 2026-11-27
   no_quote_count: 0
-  last_value: 10.2
+  last_value: 11.349999999999998
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-19T12:00:49.728308-05:00'
+last_checked: '2026-11-19T12:30:40.155784-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -201,6 +201,7 @@ sent_slots:
   2026-11-18:midday: true
   2026-11-18:end of day: true
   2026-11-19:morning: true
+  2026-11-19:midday: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
