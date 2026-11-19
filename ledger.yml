@@ -168,10 +168,10 @@ positions:
     stop_price: 144.77
     exit_by: 2026-11-27
   no_quote_count: 0
-  last_value: 9.899999999999999
+  last_value: 10.2
 closed_trades: []
 realized_pl: 0.0
-last_checked: '2026-11-19T11:30:47.615789-05:00'
+last_checked: '2026-11-19T12:00:49.728308-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
