@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 19, 2026 at 3:30 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 19, 2026 at 4:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **21 watching** · **10 bought (open)** · **34 ended**
 
@@ -30,7 +30,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **NFG** | Buy shares | Price at or below $73.37 | $82.17 | $68.97 | Jan 27, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **AXP** | Buy shares | Price at or below $297.77 | $333.50 | $279.90 | Jan 29, 2027 (before open) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **FRO** | Buy shares | Price at or below $38.78 | $48.41 | $33.97 | Nov 20, 2026 (before open) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
-| **NVDA** | Buy shares | Price at or below $156.76<br>Price at least 2% above the 20-day low (support) (≈$149.61) | $190.18 | $98.87 | Feb 24, 2027 (after close) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
+| **NVDA** | Buy shares | Price at or below $156.76<br>Price at least 2% above the 20-day low (support) (≈$148.62) | $190.18 | $98.87 | Feb 24, 2027 (after close) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
 
 **Notes from each report**
 
