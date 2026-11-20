@@ -1020,6 +1020,43 @@ class TestOptionExitsAndPositions(unittest.TestCase):
         self.assertEqual(len(ledger["positions"]), 1)
         self.assertEqual(ledger["closed_trades"], [])
 
+    def test_open_skip_covers_position_trades(self):
+        # real POSITION trades are saved with is_option False (confirm.py)
+        pos = {"id": "P2", "ticker": "ABCD", "action": "POSITION", "is_option": False,
+               "entry_price": 100.0, "entry_value": 100.0, "quantity": 1, "reserved": 0,
+               "source": "option", "expiry": self._far(),
+               "legs": [{"side": "sell", "right": "put", "strike": 40}]}
+        at_935 = datetime(2026, 11, 20, 9, 35, tzinfo=ZoneInfo("America/New_York"))
+        with patch("common.is_forced", return_value=False), \
+             patch("common.market_open", return_value=True), \
+             patch("common.now_ny", return_value=at_935), \
+             patch("common.position_value", return_value=None) as pv:
+            ledger = self._run_exit_unforced(pos)
+        pv.assert_not_called()
+        self.assertEqual(len(ledger["positions"]), 1)
+
+    def _run_exit_unforced(self, pos):
+        today = "2026-11-20"
+        ledger = {
+            "cash": 1000.0, "positions": [pos], "closed_trades": [], "realized_pl": 0.0,
+            "peak_equity": 5000.0, "day_start_equity": 5000.0, "day_start_date": today,
+            "paused": False, "stats": {}, "sent_slots": {},
+        }
+        files = {"triggers.yml": {"triggers": []}, "ledger.yml": ledger}
+        with patch("common.load_yaml", side_effect=lambda p: files.get(p, {})), \
+             patch("common.save_yaml"), \
+             patch("common.option_quote", return_value=None), \
+             patch("common.spread_value", return_value=None), \
+             patch("common.last_price", return_value=50.0), \
+             patch("common.ntfy"), \
+             patch("check._ingest_inbox", return_value=False), \
+             patch("check._refresh_triggers_page"), \
+             patch("check._write_due"), \
+             patch("report.send_report"), \
+             patch("report.write_pages"):
+            check.main()
+        return ledger
+
     def test_leaps_ignores_25pct_drop_but_stops_on_stop_premium(self):
         exp = self._far()
         pos = {

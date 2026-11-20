@@ -1186,7 +1186,8 @@ def main():
         if not ticker or pos.get("id") in filled_now:  # bought this run: price range so far predates the buy
             continue
         is_option = bool(pos.get("is_option"))
-        if is_option and not _option_quotes_ready(now, force):
+        # POSITION trades are stored with is_option False but are priced from option quotes too
+        if (is_option or pos.get("action") == "POSITION") and not _option_quotes_ready(now, force):
             continue
         entry = float(pos.get("entry_price") or 0)
         exit_reason = None
