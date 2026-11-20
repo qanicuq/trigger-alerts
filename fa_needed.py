@@ -101,9 +101,14 @@ def build_lists(triggers, ledger, now):
         if status not in ("active", "awaiting_confirm") and not held:
             continue  # paused (the old Nov 6 triggers), cancelled, expired, or closed
         ticker = tr.get("ticker")
+        if status == "active" and tr.get("swap_requested"):
+            ticker = tr.get("swap_holding_ticker")  # the holding is the one waiting on a fresh FA
         if not ticker or ticker in seen or ticker in inbox:
             continue
-        if status == "active" and tr.get("fa_requested"):
+        if status == "active" and tr.get("swap_requested"):
+            reason = f"no cash; checking whether to sell it to make room for {tr.get('ticker')}"
+            since = str(tr.get("swap_requested"))[:10]
+        elif status == "active" and tr.get("fa_requested"):
             reason = "no cash, and weaker than your weakest holding"
             since = str(tr.get("fa_requested"))[:10]
         else:

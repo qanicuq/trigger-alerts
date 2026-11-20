@@ -194,7 +194,7 @@ def _delay_if_weaker(tr, ledger, fill, target, stop=None, no_cash=False):
             f"{tr['ticker']}: no cash, checking {w_ticker} first",
             f"{tr['ticker']} {upside:.0%} upside, {new_ratio:.2f} upside per $1 of downside. "
             f"{w_ticker} {w_upside:.0%} upside, {w_ratio:.2f} upside per $1 of downside.\n"
-            f"A fresh Forensic Analysis of {w_ticker} runs at the next daily re-run (weekdays about 12:47 PM). "
+            f"A fresh Forensic Analysis of {w_ticker} runs at the next daily re-run (every day at about 12:47 PM). "
             f"{w_ticker} is sold only if that report says sell. If it is kept, {tr['ticker']} is shelved {common.RETRY_DAYS} days.",
         )
         return True
@@ -217,7 +217,7 @@ def _delay_if_weaker(tr, ledger, fill, target, stop=None, no_cash=False):
         tr["fa_requested"] = common.now_ny().isoformat()
         common.ntfy(
             f"{tr['ticker']}: no cash, fresh analysis first",
-            f"{why}\nA fresh Forensic Analysis runs at the next daily re-run (weekdays about 12:47 PM). "
+            f"{why}\nA fresh Forensic Analysis runs at the next daily re-run (every day at about 12:47 PM). "
             f"No buy until it is back. If it still comes out weaker, the trigger is shelved {common.RETRY_DAYS} days.",
         )
         return True
