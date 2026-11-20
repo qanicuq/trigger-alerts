@@ -15,6 +15,10 @@ concurrency:
   cancel-in-progress: false
 env:
   NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+  # Live option quotes from tastytrade, read-only (user, 2026-11-20). Without them the bot uses Yahoo (15 min delayed).
+  TT_CLIENT_ID: ${{ secrets.TT_CLIENT_ID }}
+  TT_CLIENT_SECRET: ${{ secrets.TT_CLIENT_SECRET }}
+  TT_REFRESH_TOKEN: ${{ secrets.TT_REFRESH_TOKEN }}
 
 jobs:
   check:
