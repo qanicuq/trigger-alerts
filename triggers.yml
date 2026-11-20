@@ -1992,52 +1992,6 @@ triggers:
   resolved_target: 233.52
   seen_high: 232.75999450683594
   seen_low: 215.6425018310547
-- id: HOPE-forensic-2026-11-10
-  source: forensic
-  ticker: HOPE
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 12.87
-  exit_plan:
-    stop:
-      price: 12.1
-    target:
-      price: 14.41
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 55: buy at or below $12.87 (pullback to the 60-day
-    low (support) ($12.80)), sell at $14.41 (twice the risk taken (no value target
-    above the entry)), stop $12.10; chart-based entry, not a value bargain: keep it
-    small; check how the MANUBANK acquisition is being integrated, earnings, filings
-    and news before confirming.'
-  report_date: 2026-11-10
-  expires: 2027-02-08
-  data_through: 2026-09-30
-  status: active
-  backtest:
-    wins: 1
-    losses: 2
-    signals: 3
-  earnings_date: '2027-01-26'
-  earnings_time: BMO
-  earnings_checked: '2026-11-19'
-  resolved:
-    sma20: 13.167709589004517
-    sma50: 13.356099739074708
-    sma200: 12.649015011787414
-    ema20: 13.000843633283202
-    52w_high: 14.433718232810106
-    52w_low: 9.501779908615024
-    support20: 12.039999961853027
-    resistance20: 14.12703855267512
-    rsi14: 29.1
-  resolved_stop: 12.1
-  resolved_target: 14.41
-  seen_high: 13.329999923706055
-  seen_low: 12.039999961853027
-  alerted_at: '2026-11-16T12:00:44.790656-05:00'
-  fa_requested: '2026-11-16T12:00:54.498955-05:00'
 - id: MNST-forensic-2026-11-11
   source: forensic
   ticker: MNST
@@ -2892,3 +2846,35 @@ triggers:
   seen_high: 107.47000122070312
   seen_low: 105.4800033569336
   frozen: true
+- id: HOPE-forensic-2026-11-19
+  source: forensic
+  ticker: HOPE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 11.61
+  exit_plan:
+    stop:
+      price: 10.91
+    target:
+      price: 13.01
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $11.61 (pullback of 1.5×
+    a normal day''s move (no chart support within 20%)), sell at $13.01 (twice the
+    risk taken (no value target above the entry)), stop $10.91; chart-based entry,
+    not a value bargain: keep it small; check the August 2026 executive-change 8-K,
+    earnings, filings and news before confirming.'
+  report_date: 2026-11-19
+  expires: 2027-02-17
+  data_through: 2026-09-30
+  status: active
+  fresh_fa: true
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2027-01-26'
+  earnings_time: BMO
+  earnings_checked: '2026-11-19'
+  added_at: 2026-11-19 19:06
