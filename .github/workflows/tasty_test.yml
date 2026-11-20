@@ -21,4 +21,4 @@ jobs:
           TT_CLIENT_ID: ${{ secrets.TT_CLIENT_ID }}
           TT_CLIENT_SECRET: ${{ secrets.TT_CLIENT_SECRET }}
           TT_REFRESH_TOKEN: ${{ secrets.TT_REFRESH_TOKEN }}
-        run: python -c "import common; print('result:', common._tasty_option_quote('CRWV', '2027-01-15', 55, 'put'))"
+        run: python tasty_check.py
