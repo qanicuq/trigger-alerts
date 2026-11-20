@@ -2358,51 +2358,6 @@ triggers:
   resolved_target: 72.96
   seen_high: 65.05000305175781
   seen_low: 60.6150016784668
-- id: FMAO-forensic-2026-11-12
-  source: forensic
-  ticker: FMAO
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 35.71
-  exit_plan:
-    stop:
-      price: 33.55
-    target:
-      price: 40.03
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 65: buy at or below $35.71 (pullback to the 50-day
-    average ($35.54)), sell at $40.03 (twice the risk taken (no value target above
-    the entry)), stop $33.55; chart-based entry, not a value bargain: keep it small;
-    check earnings, filings and news before confirming.'
-  report_date: 2026-11-12
-  expires: 2027-02-10
-  data_through: 2026-09-30
-  status: active
-  backtest:
-    wins: 0
-    losses: 3
-    signals: 3
-  earnings_date: '2027-02-11'
-  earnings_time: AMC
-  earnings_checked: '2026-11-19'
-  resolved:
-    sma20: 36.55650024414062
-    sma50: 35.65316444396973
-    sma200: 30.410524349212647
-    ema20: 36.21530818253608
-    52w_high: 38.33000183105469
-    52w_low: 22.17574196863573
-    support20: 34.68000030517578
-    resistance20: 38.33000183105469
-    rsi14: 40.5
-  resolved_stop: 33.55
-  resolved_target: 40.03
-  seen_high: 37.040000915527344
-  seen_low: 34.68000030517578
-  alerted_at: '2026-11-17T11:00:38.456282-05:00'
-  fa_requested: '2026-11-17T11:00:47.384552-05:00'
 - id: MPC-forensic-2026-11-12
   source: forensic
   ticker: MPC
@@ -2878,3 +2833,35 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-19'
   added_at: 2026-11-19 19:06
+- id: FMAO-forensic-2026-11-19
+  source: forensic
+  ticker: FMAO
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 32.96
+  exit_plan:
+    stop:
+      price: 30.9
+    target:
+      price: 37.08
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 55: buy at or below $32.96 (pullback to the 60-day
+    low (support) ($32.80)), sell at $37.08 (twice the risk taken (no value target
+    above the entry)), stop $30.90; chart-based entry, not a value bargain: keep it
+    small; check the July 2026 executive-change 8-K, earnings, filings and news before
+    confirming.'
+  report_date: 2026-11-19
+  expires: 2027-02-17
+  data_through: 2026-09-30
+  status: active
+  fresh_fa: true
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-11'
+  earnings_time: AMC
+  earnings_checked: '2026-11-19'
+  added_at: 2026-11-19 19:09
