@@ -1,0 +1,24 @@
+name: Test tastytrade quote
+
+# Manual only: asks tastytrade for one option quote and prints the answer (never the keys).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - env:
+          TT_CLIENT_ID: ${{ secrets.TT_CLIENT_ID }}
+          TT_CLIENT_SECRET: ${{ secrets.TT_CLIENT_SECRET }}
+          TT_REFRESH_TOKEN: ${{ secrets.TT_REFRESH_TOKEN }}
+        run: python -c "import common; print('result:', common._tasty_option_quote('CRWV', '2027-01-15', 55, 'put'))"

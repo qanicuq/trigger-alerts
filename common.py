@@ -412,7 +412,12 @@ def _tasty_option_quote(ticker, expiry, strike, right):
                          headers={**head, "Authorization": f"Bearer {_tt_token}"}, timeout=10)
         items = r.json().get("data", {}).get("items", []) if r.status_code == 200 else []
         if not items:
-            print(f"tastytrade quote {symbol.replace(' ', '')}: HTTP {r.status_code}, no quote, using Yahoo")
+            try:
+                err = r.json().get("error", {})
+                why = f" ({err.get('code')}: {err.get('message')})" if err else ""
+            except Exception:
+                why = ""
+            print(f"tastytrade quote {symbol.replace(' ', '')}: HTTP {r.status_code}{why}, no quote, using Yahoo")
             return None
         row = items[0]
         print(f"option quote {symbol.replace(' ', '')}: tastytrade (live) bid {row.get('bid')} ask {row.get('ask')}")

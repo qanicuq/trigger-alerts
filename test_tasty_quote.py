@@ -73,3 +73,11 @@ def test_option_quote_falls_back_to_yahoo(monkeypatch):
          mock.patch.object(common, "_yf_call", return_value=None) as yf:
         assert common.option_quote("NBIS", "2026-12-18", 115, "put") is None
     yf.assert_called()
+
+
+def test_refusal_reason_is_printed(monkeypatch, capsys):
+    _keys(monkeypatch)
+    with mock.patch.object(common.requests, "post", return_value=TOKEN), \
+         mock.patch.object(common.requests, "get", return_value=R(403, {"error": {"code": "not_permitted", "message": "No data"}})):
+        assert common._tasty_option_quote("NBIS", date(2026, 12, 18), 115, "put") is None
+    assert "not_permitted: No data" in capsys.readouterr().out
