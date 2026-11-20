@@ -15,6 +15,9 @@ concurrency:
   cancel-in-progress: false
 env:
   NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+  # Live option quotes from Webull (user, 2026-11-20). Without them the bot uses Yahoo (15 min delayed).
+  WEBULL_APP_KEY: ${{ secrets.WEBULL_APP_KEY }}
+  WEBULL_APP_SECRET: ${{ secrets.WEBULL_APP_SECRET }}
 
 jobs:
   check:

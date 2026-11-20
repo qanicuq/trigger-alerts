@@ -382,7 +382,39 @@ def volume_ratio(hist):
     return today_vol / avg_prev
 
 
+def _webull_option_quote(ticker, expiry, strike, right):
+    """Live quote from Webull (no delay). None if the keys are missing or the call fails."""
+    key, secret = os.environ.get("WEBULL_APP_KEY"), os.environ.get("WEBULL_APP_SECRET")
+    if not key or not secret:
+        return None
+    try:
+        from webull.core.client import ApiClient
+        from webull.data.quotes.option_market_data import OptionMarketData
+        import logging
+        logging.getLogger("webull").disabled = True  # its error logs print the app key
+        exp = expiry if hasattr(expiry, "strftime") else date.fromisoformat(str(expiry))
+        cp = "P" if str(right).lower() == "put" else "C"
+        symbol = f"{ticker.upper()}{exp:%y%m%d}{cp}{round(float(strike) * 1000):08d}"
+        # OptionMarketData alone, not DataClient: DataClient may wait for an approval in the Webull app.
+        res = OptionMarketData(ApiClient(key, secret, "us", timeout=10)).get_option_snapshot(symbol, "US_OPTION")
+        if res.status_code != 200 or not res.json():
+            print(f"Webull option quote {symbol}: HTTP {res.status_code}, using Yahoo")
+            return None
+        row = res.json()[0]
+        return {
+            "bid": float(row.get("bid") or 0),
+            "ask": float(row.get("ask") or 0),
+            "last": float(row.get("price") or 0),
+        }
+    except Exception as e:
+        print(f"Webull option quote failed ({e}), using Yahoo")
+        return None
+
+
 def option_quote(ticker, expiry, strike, right):
+    q = _webull_option_quote(ticker, expiry, strike, right)
+    if q is not None:
+        return q
     t = _yf_call(yf.Ticker, ticker)
     if t is None:
         return None
