@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 20, 2026 at 12:45 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 20, 2026 at 12:50 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**20 watching** · **8 bought (open)** · **35 ended**
+**19 watching** · **9 bought (open)** · **35 ended**
 
 ## Watching now
 
@@ -11,7 +11,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | Ticker | What | Buy when (all true) | Sell target | Stop | Next earnings | Watch ends | From |
 |---|---|---|---|---|---|---|---|
 | **LLY** | Buy shares | Price at or below $1,308.46 | $1,497.86 | $1,213.76 | Feb 3, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **NOK** | Buy shares | Price at or below $6.89 | $8.94 | $5.87 | Jan 28, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **RLX** | Buy shares | Price at or below $1.54 | $1.73 | $1.45 | Nov 20, 2026 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **RPM** | Buy shares | Price at or below $94.97 | $107.59 | $88.66 | Jan 7, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
@@ -34,7 +33,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 **Notes from each report**
 
 - **LLY:** WATCH, confidence 65: buy at or below $1,308.46 (pullback to the 20-day average ($1,301.95)), sell at $1,497.86 (twice the risk taken (no value target above the entry)), stop $1,213.76; chart-based entry, not a value bargain: keep it small; check whether Q3's ~$900M of one-off revenue benefits flatter the growth, earnings, filings and news before confirming.
-- **NOK:** WATCH, confidence 60: buy at or below $6.89 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $8.94 (twice the risk taken (no value target above the entry)), stop $5.87; chart-based entry, not a value bargain: keep it small; check the gap between Nokia's adjusted and reported profit, earnings, filings and news before confirming.
 - **RLX:** WATCH, confidence 50: buy at or below $1.54 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $1.73 (twice the risk taken (no value target above the entry)), stop $1.45; chart-based entry, not a value bargain: keep it small; check Q3 results due around Nov 12-16 (cash flow recovery), earnings, filings and news before confirming.
 - **RPM:** WATCH, confidence 60: buy at or below $94.97 (pullback to the 60-day low (support) ($94.50)), sell at $107.59 (twice the risk taken (no value target above the entry)), stop $88.66; chart-based entry, not a value bargain: keep it small; check who succeeds the retiring CEO and what the November 9 Investor Day says about growth, earnings, filings and news before confirming.
 - **BB:** WATCH, confidence 40: buy at or below $7.50 (pullback to the 60-day low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
@@ -66,6 +64,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **IMXI** | Stock | $6.62 | 123.80 shares | $16.05 | $2.46 | Nov 12, 2026 | Mar 1, 2027 (after close) |  |
 | **KMT** | Stock | $23.95 | 42.27 shares | $61.02 | $11.83 | Nov 13, 2026 | Feb 3, 2027 (before open) |  |
 | **LPG** | Stock | $47.75 | 17.34 shares | $116.66 | $32.45 | Nov 13, 2026 | Feb 4, 2027 (before open) |  |
+| **NOK** | Stock | $6.87 | 0.00 shares | $8.94 | $5.87 | Nov 20, 2026 | Jan 28, 2027 (before open) |  |
 
 ## Closed paper trades
 
