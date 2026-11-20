@@ -537,6 +537,18 @@ def _earnings_due(triggers, open_ids, today):
     The daily cloud task reads this list (earnings_due.json) and re-runs the analyses."""
     due = []
     for tr in triggers:
+        if tr.get("status") == "active" and tr.get("swap_requested"):
+            due.append({
+                "ticker": tr.get("swap_holding_ticker"),
+                "source": "forensic",
+                "kind": "swap_check",
+                "bullish": True,
+                "earnings_date": None,
+                "earnings_time": None,
+                "requested_at": tr.get("swap_requested"),
+                "trigger_id": tr.get("id"),
+            })
+            continue
         if tr.get("status") == "active" and tr.get("fa_requested"):
             # no cash and weaker than every holding: the fresh analysis comes first (confirm._delay_if_weaker)
             due.append({
@@ -1073,6 +1085,22 @@ def main():
     if _earnings_pass(triggers, now, open_ids):
         changed = True
 
+    # Release a swap check once the holding is sold, or its fresh analysis is in and applied
+    for tr in triggers:
+        if tr.get("status") != "active" or not tr.get("swap_requested"):
+            continue
+        pos = next((p for p in (ledger.get("positions") or []) if p.get("id") == tr.get("swap_holding_id")), None)
+        requested_day = str(tr.get("swap_requested"))[:10]
+        finished = pos is None or (
+            str(pos.get("recheck_received") or "") >= requested_day and "recheck" not in pos
+        )
+        if finished:
+            tr.pop("swap_requested", None)
+            tr.pop("swap_holding_id", None)
+            tr.pop("swap_holding_ticker", None)
+            tr["swap_done"] = True
+            changed = True
+
     # Check conditions for active triggers
     filled_now = set()
     for tr in triggers:
@@ -1105,8 +1133,8 @@ def main():
         vol_ratio = common.volume_ratio(hist) if hist is not None else None
         met = _evaluate_conditions(tr, hist, high, low, refs, rsi, vol_ratio)
         retry_after = common._to_date(tr.get("retry_after"))
-        if (retry_after and now.date() < retry_after) or tr.get("fa_requested"):
-            met = False  # no cash and weaker than every holding: waiting for the fresh analysis or out the two weeks
+        if (retry_after and now.date() < retry_after) or tr.get("fa_requested") or tr.get("swap_requested"):
+            met = False  # no cash: waiting on a fresh analysis, a swap check, or out the two weeks
         if met and _needs_refresh(tr):
             # Earnings came out after this trigger's report: don't buy on old numbers.
             # The trigger stays active; a fresh report replaces it and buying resumes.
@@ -1120,6 +1148,18 @@ def main():
                     f"once Webull has the new quarter: if it still says buy, the bot buys when its conditions are met.",
                     priority="high", click_url=page, action_label="Open the report", action_url=page)
                 tr["hold_alerted"] = last
+                changed = True
+        elif met and common.is_chart_based(tr):
+            if tr.get("chart_alerted") != today:
+                price = common.last_price(ticker) or 0
+                common.ntfy(
+                    f"{ticker}: trigger met, not bought (chart-based)",
+                    f"Price: {price:.2f}\n"
+                    f"{tr.get('recommendation') or ''}\n"
+                    "Its report says chart-based entry, not a value bargain, so there is no margin of safety (SKILL.md section 6). "
+                    "The bot does not buy these automatically. Run a fresh Forensic Analysis if you want a new look.",
+                )
+                tr["chart_alerted"] = today
                 changed = True
         elif met:
             tr["status"] = "awaiting_confirm"

@@ -562,3 +562,14 @@ def resolve_level(level_spec, refs, entry=None):
         pct = float(level_spec.get("pct", 0))
         return ref_val * (1 + pct / 100.0)
     return None
+
+
+def is_chart_based(tr):
+    """True only for a forensic BUY whose recommendation says "chart-based entry"."""
+    if tr.get("source", "forensic") != "forensic":
+        return False
+    if tr.get("action", "BUY") != "BUY":
+        return False
+    if "chart-based entry" not in (tr.get("recommendation") or ""):
+        return False
+    return True
