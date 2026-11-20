@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 20, 2026 at 10:10 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 20, 2026 at 10:15 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **20 watching** · **9 bought (open)** · **35 ended**
 
@@ -22,7 +22,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **TNC** | Buy shares | Price at or below $69.44 | $80.42 | $63.95 | Feb 22, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **HRMY** | Buy shares | Price at or below $31.36 | $37.87 | $28.10 | Feb 23, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **BHE** | Buy shares — waiting for your OK | Price at or below $58.60 | $72.96 | $51.42 | Feb 2, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
-| **AMAT** | Buy shares | Price at or below $318.53 | $414.09 | $270.75 | Feb 11, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
+| **AMAT** | Buy shares — waiting for your OK | Price at or below $318.53 | $414.09 | $270.75 | Feb 11, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **DHT** | Buy shares | Price at or below $18.34 | $22.78 | $16.12 | Feb 3, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **NFG** | Buy shares | Price at or below $73.37 | $82.17 | $68.97 | Jan 27, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **AXP** | Buy shares | Price at or below $297.77 | $333.50 | $279.90 | Jan 29, 2027 (before open) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
