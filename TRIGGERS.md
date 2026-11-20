@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 20, 2026 at 3:55 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 20, 2026 at 4:00 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**20 watching** · **7 bought (open)** · **35 ended**
+**18 watching** · **7 bought (open)** · **37 ended**
 
 ## Watching now
 
@@ -21,8 +21,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SN** | Buy shares | Price at or below $202.04 | $233.52 | $186.30 | Feb 10, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 | **TNC** | Buy shares | Price at or below $69.44 | $80.42 | $63.95 | Feb 22, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **HRMY** | Buy shares | Price at or below $31.36 | $37.87 | $28.10 | Feb 23, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
-| **BHE** | Buy shares — waiting for your OK | Price at or below $58.60 | $72.96 | $51.42 | Feb 2, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
-| **AMAT** | Buy shares — waiting for your OK | Price at or below $318.53 | $414.09 | $270.75 | Feb 11, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **DHT** | Buy shares | Price at or below $18.34 | $22.78 | $16.12 | Feb 3, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **NFG** | Buy shares | Price at or below $73.37 | $82.17 | $68.97 | Jan 27, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **AXP** | Buy shares | Price at or below $297.77 | $333.50 | $279.90 | Jan 29, 2027 (before open) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
@@ -44,8 +42,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **SN:** WATCH, confidence 65: buy at or below $202.04 (pullback to the 20-day average ($201.03)), sell at $233.52 (twice the risk taken (no value target above the entry)), stop $186.30; chart-based entry, not a value bargain: keep it small; check whether margins hold up once the one-off tariff refunds stop, earnings, filings and news before confirming.
 - **TNC:** WATCH, confidence 60: buy at or below $69.44 (pullback to the 20-day average ($69.09)), sell at $80.42 (twice the risk taken (no value target above the entry)), stop $63.95; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **HRMY:** WATCH, confidence 40: buy at or below $31.36 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $37.87 (twice the risk taken (no value target above the entry)), stop $28.10; chart-based entry, not a value bargain: keep it small; check the WAKIX patent ruling due around Feb 14, 2027, earnings, filings and news before confirming.
-- **BHE:** WATCH, confidence 65: buy at or below $58.60 (pullback to the 60-day low (support) ($58.31)), sell at $72.96 (twice the risk taken (no value target above the entry)), stop $51.42; chart-based entry, not a value bargain: keep it small; check whether the 22% one-month drop has a company-specific cause, earnings, filings and news before confirming.
-- **AMAT:** WATCH, confidence 60: buy at or below $318.53 (pullback to the 60-day low (support) ($316.95)), sell at $414.09 (twice the risk taken (no value target above the entry)), stop $270.75; chart-based entry, not a value bargain: keep it small; fell 14% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check earnings, filings and news before confirming.
 - **DHT:** WATCH, confidence 65: buy at or below $18.34 (pullback to the 60-day low (support) ($18.25)), sell at $22.78 (twice the risk taken (no value target above the entry)), stop $16.12; chart-based entry, not a value bargain: keep it small; check that VLCC spot rates are holding up, earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 35: buy at or below $73.37 (pullback to the 60-day low (support) ($73.01)), sell at $82.17 (twice the risk taken (no value target above the entry)), stop $68.97; chart-based entry, not a value bargain: keep it small; check the Ohio utility deal and spinoff plan, earnings, filings and news before confirming.
 - **AXP:** WATCH, confidence 75: buy at or below $297.77 (pullback to the 60-day low (support) ($296.28)), sell at $333.50 (twice the risk taken (no value target above the entry)), stop $279.90; chart-based entry, not a value bargain: keep it small; check the AML consent orders and any credit-card rate-cap news, earnings, filings and news before confirming.
@@ -79,7 +75,9 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | Ticker | What | Added | Status | Why it ended |
 |---|---|---|---|---|
 | **NVDA** | Buy shares | Nov 14, 2026 | Cancelled | Thesis broken: SEC investigation into disclosures: verdict AVOID |
+| **AMAT** | Buy shares | Nov 13, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **TSLA** | Buy shares | Nov 12, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
+| **BHE** | Buy shares | Nov 12, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **MPC** | Buy shares | Nov 12, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **MNST** | Buy shares | Nov 11, 2026 | Cancelled | MNST is already held; a fresh analysis on a held stock now adjusts the position instead (user, 2026-11-11) |
 | **MU** | Buy shares | Nov 7, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
