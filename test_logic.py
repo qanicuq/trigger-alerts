@@ -12,6 +12,17 @@ import common
 import check
 import confirm
 
+# Tests must never rewrite the real FA_NEEDED.md page.
+_fa_page_patch = patch("fa_needed.write_page", return_value=([], [], []))
+
+
+def setUpModule():
+    _fa_page_patch.start()
+
+
+def tearDownModule():
+    _fa_page_patch.stop()
+
 NY = ZoneInfo("America/New_York")
 
 
