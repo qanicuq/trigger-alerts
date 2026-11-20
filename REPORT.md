@@ -1,22 +1,22 @@
-# Report 2026-11-20 13:00 NY
+# Report 2026-11-20 13:05 NY
 
-Equity: $14,947  Peak: $15,344  Drawdown: 2.6%  Paused: no
+Equity: $14,937  Peak: $15,344  Drawdown: 2.7%  Paused: no
 Cash: $0  Option cash: $5,410
-P/L today: $197
-P/L overall: -$53
+P/L today: $186
+P/L overall: -$63
 Worst drawdown: 7.4%  Expectancy: $205.00 per trade (2 closed)
 Track record: 2 closed trades. Too few to judge skill: a short record can't tell skill from luck.
 
 ## Open trades
-- MNST entry 44.75 now 44.13869857788086 P/L -1.4% stop 43.6 target 51.95
-- SHOE entry 15.01 now 14.350000381469727 P/L -4.4% stop 6.71 target 28.27
-- RES entry 5.33 now 4.864999771118164 P/L -8.8% stop 3.15 target 9.13
-- NAT entry 6.18 now 6.244999885559082 P/L 1.0% stop 5.46 target 7.68
-- WIT entry 2.12 now 2.065000057220459 P/L -2.4% stop 1.05 target 3.15
-- IMXI entry 6.62 now 5.510000228881836 P/L -16.7% stop 2.46 target 16.05
-- KMT entry 23.95 now 21.485000610351562 P/L -10.3% stop 11.83 target 61.02
-- LPG entry 47.75 now 44.29999923706055 P/L -7.2% stop 32.45 target 116.66
-- NOK entry 6.87 now 6.878499984741211 P/L 0.1% stop 5.87 target 8.94
+- MNST entry 44.75 now 44.130001068115234 P/L -1.4% stop 43.6 target 51.95
+- SHOE entry 15.01 now 14.329999923706055 P/L -4.5% stop 6.71 target 28.27
+- RES entry 5.33 now 4.860099792480469 P/L -8.9% stop 3.15 target 9.13
+- NAT entry 6.18 now 6.235000133514404 P/L 0.8% stop 5.46 target 7.68
+- WIT entry 2.12 now 2.075000047683716 P/L -1.9% stop 1.05 target 3.15
+- IMXI entry 6.62 now 5.489999771118164 P/L -17.0% stop 2.46 target 16.05
+- KMT entry 23.95 now 21.479999542236328 P/L -10.3% stop 11.83 target 61.02
+- LPG entry 47.75 now 44.185001373291016 P/L -7.5% stop 32.45 target 116.66
+- NOK entry 6.87 now 6.875 P/L 0.0% stop 5.87 target 8.94
 
 ## Exits today
 - NBIS target P/L $190.0
