@@ -107,7 +107,6 @@ positions:
   reserved: 0
   opened: '2026-11-13T10:00:47.208323-05:00'
   source: forensic
-closed_trades:
 - id: CRWV-spread-2026-11-16
   ticker: CRWV
   action: SPREAD
@@ -137,12 +136,8 @@ closed_trades:
     target_price: 40.58
     stop_price: 63.15
     exit_by: 2026-12-23
-  no_quote_count: 2
+  no_quote_count: 0
   last_value: 8.5
-  exit_price: 8.5
-  exit_reason: no quote
-  pl: 90.0
-  closed: '2026-11-20T09:35:23.992580-05:00'
 - id: NBIS-spread-2026-11-16
   ticker: NBIS
   action: SPREAD
@@ -172,13 +167,10 @@ closed_trades:
     target_price: 95
     stop_price: 144.77
     exit_by: 2026-11-27
-  no_quote_count: 2
+  no_quote_count: 0
   last_value: 12.1
-  exit_price: 12.1
-  exit_reason: no quote
-  pl: 125.0
-  closed: '2026-11-20T09:35:23.992580-05:00'
-realized_pl: 215.00000000000003
+closed_trades: []
+realized_pl: 0.0
 last_checked: '2026-11-20T10:05:27.810570-05:00'
 sent_slots:
   2026-11-06:morning: true
@@ -217,9 +209,9 @@ usage_alerted_month: null
 paused: false
 stats:
   option-spread:
-    wins: 2
+    wins: 0
     losses: 0
 day_start_date: '2026-11-20'
 max_drawdown_pct: 7.37
-option_cash: 5215.0
+option_cash: 3155.0
 daily_loss_alerted: '2026-11-16'
