@@ -1,4 +1,4 @@
-cash: 0.00036356478027321716
+cash: 0.0010507647802732172
 peak_equity: 15343.97013363363
 day_start_equity: 14750.411538311731
 positions:
@@ -106,19 +106,6 @@ positions:
   is_option: false
   reserved: 0
   opened: '2026-11-13T10:00:47.208323-05:00'
-  source: forensic
-- id: NOK-forensic-2026-11-07
-  ticker: NOK
-  action: BUY
-  entry_price: 6.872
-  quantity: 0.0001
-  stop: 5.87
-  target: 8.94
-  max_hold_days: 180
-  review_days: null
-  is_option: false
-  reserved: 0
-  opened: '2026-11-20T12:50:42.555376-05:00'
   source: forensic
 closed_trades:
 - id: NBIS-spread-2026-11-16
