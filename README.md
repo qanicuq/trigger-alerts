@@ -9,3 +9,12 @@ You drop a trigger file into the inbox folder. The bot checks every half hour du
 ## Watchdog
 
 A separate GitHub schedule (not cron-job.org) checks that the half-hour checks really ran, on weekdays that are not NYSE holidays. It sends a phone alert if a check is late, once before the open (did yesterday's last check run?) and once after the close (a quiet "all good" if the day's last check ran). See `watchdog.py` and `.github/workflows/watchdog.yml`.
+
+## No cash, swaps and chart-based triggers (2026-11-20)
+
+A stock buy will not take leftover dust. The bot first figures a normal buy (the safety-formula size, capped by the position limit). If the cash on hand is less than a third of what that normal buy costs, it refuses with "no cash" and buys nothing. If cash covers at least a third but not the whole normal buy, it buys as many shares as the cash allows, rounded down to 4 decimals.
+
+When that refusal is a forensic stock buy, the bot compares the new stock with the weakest stock already held (the one with the lowest upside, target ÷ price − 1). It also compares upside per $1 of downside, (target − price) ÷ (price − stop), which is 0 when a stop is missing. If the new stock is higher on both, and this check has not already been done, nothing is sold yet. The bot asks for a fresh Forensic Analysis of that weakest holding. The daily re-run task picks it up (weekdays about 12:47 PM). The holding is sold only if that report says sell. While the check is open the new trigger stays active and is not bought. The wait ends when the holding is gone, or when the fresh analysis has come back and been applied. If the holding is kept, or the check is done and there is still no cash, the new buy is shelved for 14 days. If the new stock is not clearly better on both measures, the old path stays: a fresh analysis of the new stock first, then a 14-day shelf if it is still not clearly better.
+
+A forensic buy whose recommendation says "chart-based entry" is not paper-bought when its conditions are met. The bot sends one alert that day and leaves the trigger active. The report is not calling it a value bargain, so there is no margin of safety. A normal value trigger is still bought automatically.
+

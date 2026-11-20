@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import patch, MagicMock
 import sys
 import os
+import math
 import yaml
 from datetime import date, datetime, time as dtime, timedelta
 from zoneinfo import ZoneInfo
@@ -1670,11 +1671,13 @@ class TestForensicTargetRecheck(unittest.TestCase):
 
 
 class TestNoCashDelay(unittest.TestCase):
-    """No cash + forensic stock buy weaker than every holding -> fresh Forensic Analysis first;
-    still weaker on the fresh report -> shelve two weeks, then try again (user, 2026-11-11)."""
+    """No cash on a forensic stock buy.
+    Not clearly better than the weakest holding -> fresh Forensic Analysis first;
+    still not clearly better on the fresh report -> shelve two weeks.
+    Clearly better on upside and upside per $1 of downside -> swap check of that holding first."""
 
     def _ledger(self, cash=0.0):
-        # held stock: price 10 (mocked), target 12 -> upside 20%
+        # held stock: price 10 (mocked), target 12 -> upside 20%. No stop, so ratio 0.
         return {"cash": cash, "positions": [{"id": "H", "ticker": "HELD", "action": "BUY",
                                               "entry_price": 9.0, "quantity": 10, "target": 12.0}]}
 
@@ -1683,57 +1686,181 @@ class TestNoCashDelay(unittest.TestCase):
         tr.update(kw)
         return tr
 
-    def _call(self, tr, ledger, fill, target):
+    def _call(self, tr, ledger, fill, target, stop=None, no_cash=True):
         sent = []
         with patch("common.last_price", return_value=10.0), \
-             patch("common.ntfy", side_effect=lambda t, b, **k: sent.append(t)):
-            out = confirm._delay_if_weaker(tr, ledger, fill, target)
+             patch("common.ntfy", side_effect=lambda t, b, **k: sent.append((t, b))):
+            out = confirm._delay_if_weaker(tr, ledger, fill, target, stop, no_cash)
         return out, sent
 
     def test_first_time_asks_for_fresh_analysis(self):
         tr = self._tr()
-        out, sent = self._call(tr, self._ledger(), 20.0, 22.0)  # upside 10% < 20%
+        out, sent = self._call(tr, self._ledger(), 20.0, 22.0, no_cash=True)  # upside 10% < 20%
         self.assertTrue(out)
         self.assertEqual(tr["status"], "active")
         self.assertTrue(tr["fa_requested"])
         self.assertNotIn("retry_after", tr)
-        self.assertEqual(sent, ["NEW: no cash, fresh analysis first"])
+        self.assertEqual([t for t, _ in sent], ["NEW: no cash, fresh analysis first"])
 
     def test_fresh_report_still_weaker_is_shelved_14_days(self):
         tr = self._tr(fresh_fa=True)
-        out, sent = self._call(tr, self._ledger(), 20.0, 22.0)
+        out, sent = self._call(tr, self._ledger(), 20.0, 22.0, no_cash=True)
         retry = (common.now_ny().date() + timedelta(days=14)).isoformat()
         self.assertTrue(out)
         self.assertEqual(tr["status"], "active")
         self.assertEqual(tr["retry_after"], retry)
         self.assertNotIn("fresh_fa", tr)  # after the two weeks, a fresh analysis comes first again
         self.assertNotIn("fa_requested", tr)
-        self.assertEqual(sent, [f"NEW: still weaker, trying again {retry}"])
+        self.assertEqual([t for t, _ in sent], [f"NEW: still weaker, trying again {retry}"])
 
-    def test_stronger_with_no_cash_is_not_delayed(self):
+    def test_stronger_on_upside_only_gets_fresh_analysis(self):
+        # 50% upside beats the holding's 20%, but the holding has no stop so it is not clearly better
         tr = self._tr()
-        out, sent = self._call(tr, self._ledger(), 20.0, 30.0)  # upside 50% > 20%
-        self.assertFalse(out)
-        self.assertEqual(tr, self._tr())
-        self.assertEqual(sent, [])
+        out, sent = self._call(tr, self._ledger(), 20.0, 30.0, no_cash=True)
+        self.assertTrue(out)
+        self.assertEqual(tr["status"], "active")
+        self.assertTrue(tr["fa_requested"])
+        self.assertNotIn("retry_after", tr)
+        self.assertNotIn("swap_requested", tr)
+        self.assertEqual([t for t, _ in sent], ["NEW: no cash, fresh analysis first"])
 
-    def test_equal_upside_is_not_delayed(self):
-        out, _ = self._call(self._tr(), self._ledger(), 20.0, 24.0)  # 20% = 20%: not weaker
-        self.assertFalse(out)
+    def test_equal_upside_gets_fresh_analysis(self):
+        tr = self._tr()
+        out, sent = self._call(tr, self._ledger(), 20.0, 24.0, no_cash=True)  # 20% = 20%
+        self.assertTrue(out)
+        self.assertEqual(tr["status"], "active")
+        self.assertTrue(tr["fa_requested"])
+        self.assertEqual([t for t, _ in sent], ["NEW: no cash, fresh analysis first"])
 
     def test_with_cash_is_not_delayed(self):
         tr = self._tr()
-        out, _ = self._call(tr, self._ledger(cash=500.0), 20.0, 22.0)
+        out, _ = self._call(tr, self._ledger(cash=500.0), 20.0, 22.0, no_cash=False)
         self.assertFalse(out)
         self.assertNotIn("fa_requested", tr)
 
     def test_no_stock_holdings_is_not_delayed(self):
-        out, _ = self._call(self._tr(), {"cash": 0.0, "positions": []}, 20.0, 22.0)
+        out, _ = self._call(self._tr(), {"cash": 0.0, "positions": []}, 20.0, 22.0, no_cash=True)
         self.assertFalse(out)
 
     def test_non_forensic_trigger_is_not_delayed(self):
-        out, _ = self._call(self._tr(source="macro"), self._ledger(), 20.0, 22.0)
+        out, _ = self._call(self._tr(source="macro"), self._ledger(), 20.0, 22.0, no_cash=True)
         self.assertFalse(out)
+
+    def test_nok_dust_is_no_cash(self):
+        tr = {"action": "BUY", "source": "forensic"}
+        ledger = {"cash": 0.00105076819943406, "positions": [], "stats": {}}
+        with patch("confirm._compute_equity", return_value=10000.0):
+            qty, rf, p, b, refuse = confirm._kelly_size(tr, ledger, 6.872, 5.87, 8.94)
+        self.assertIsNone(qty)
+        self.assertTrue(refuse.startswith("no cash"), refuse)
+
+    def test_third_of_normal_buys_what_cash_allows(self):
+        tr = {"action": "BUY", "source": "forensic"}
+        cash = 1000.0
+        entry = 100.0
+        ledger = {"cash": cash, "positions": [], "stats": {}}
+        with patch("confirm._compute_equity", return_value=10000.0):
+            qty, rf, p, b, refuse = confirm._kelly_size(tr, ledger, entry, 90.0, 130.0)
+        self.assertIsNone(refuse)
+        self.assertEqual(qty, math.floor(cash / entry * 10000) / 10000)
+        self.assertLess(qty * entry, cash + 1e-9)
+
+    def test_clearly_better_requests_swap_check(self):
+        ledger = {"cash": 0.0, "positions": [{"id": "H", "ticker": "HELD", "action": "BUY",
+                                              "entry_price": 9.0, "quantity": 10, "target": 12.0, "stop": 8.0}]}
+        tr = self._tr()
+        out, sent = self._call(tr, ledger, 20.0, 30.0, stop=15.0, no_cash=True)
+        self.assertTrue(out)
+        self.assertEqual(tr["status"], "active")
+        self.assertTrue(tr.get("swap_requested"))
+        self.assertEqual(tr["swap_holding_id"], "H")
+        self.assertEqual(tr["swap_holding_ticker"], "HELD")
+        self.assertEqual([t for t, _ in sent], ["NEW: no cash, checking HELD first"])
+        body = sent[0][1]
+        self.assertIn("50%", body)
+        self.assertIn("20%", body)
+        self.assertIn("A fresh Forensic Analysis of HELD runs at the next daily re-run (weekdays about 12:47 PM). "
+                      "HELD is sold only if that report says sell. If it is kept, NEW is shelved 14 days.", body)
+
+    def test_swap_done_still_no_cash_shelves_14_days(self):
+        ledger = {"cash": 0.0, "positions": [{"id": "H", "ticker": "HELD", "action": "BUY",
+                                              "entry_price": 9.0, "quantity": 10, "target": 12.0, "stop": 8.0}]}
+        tr = self._tr(swap_done=True)
+        out, sent = self._call(tr, ledger, 20.0, 30.0, stop=15.0, no_cash=True)
+        retry = (common.now_ny().date() + timedelta(days=14)).isoformat()
+        self.assertTrue(out)
+        self.assertEqual(tr["status"], "active")
+        self.assertEqual(tr["retry_after"], retry)
+        self.assertNotIn("swap_done", tr)
+        self.assertNotIn("swap_requested", tr)
+        self.assertEqual([t for t, _ in sent], [f"NEW: still no cash after the HELD check, trying again {retry}"])
+
+    def test_swap_released_when_holding_sold(self):
+        today = common.now_ny().date().isoformat()
+        tr = {"id": "N", "ticker": "NEW", "action": "BUY", "source": "forensic", "status": "active",
+              "report_date": today, "expires": "2099-01-01",
+              "swap_requested": common.now_ny().isoformat(),
+              "swap_holding_id": "H", "swap_holding_ticker": "HELD"}
+        ledger = {"cash": 0.0, "positions": [], "closed_trades": [], "realized_pl": 0.0,
+                  "peak_equity": 1000.0, "day_start_equity": 1000.0, "day_start_date": today,
+                  "paused": False, "stats": {}, "sent_slots": {}}
+        files = {"triggers.yml": {"triggers": [tr]}, "ledger.yml": ledger}
+        with patch("common.is_forced", return_value=True), \
+             patch("common.load_yaml", side_effect=lambda p: files.get(p, {})), \
+             patch("common.save_yaml"), \
+             patch("common.get_daily_bars", return_value=None), \
+             patch("common.compute_refs", return_value={}), \
+             patch("common.high_low_since", return_value=(None, None)), \
+             patch("common.last_price", return_value=5.0), \
+             patch("common.ntfy"), \
+             patch("check._evaluate_conditions", return_value=False), \
+             patch("confirm.place") as place, \
+             patch("check._ingest_inbox", return_value=False), \
+             patch("check._refresh_triggers_page"), \
+             patch("check._write_due"), \
+             patch("report.send_report"), \
+             patch("report.write_pages"):
+            check.main()
+        self.assertNotIn("swap_requested", tr)
+        self.assertNotIn("swap_holding_id", tr)
+        self.assertNotIn("swap_holding_ticker", tr)
+        self.assertTrue(tr["swap_done"])
+        place.assert_not_called()
+
+    def test_swap_check_listed_for_rerun(self):
+        today = common.now_ny().date()
+        tr = self._tr(status="active", swap_requested="2026-11-20T12:47:00-05:00",
+                      swap_holding_id="H", swap_holding_ticker="HELD")
+        due = check._earnings_due([tr], set(), today)
+        self.assertEqual(due, [{
+            "ticker": "HELD", "source": "forensic", "kind": "swap_check", "bullish": True,
+            "earnings_date": None, "earnings_time": None,
+            "requested_at": "2026-11-20T12:47:00-05:00", "trigger_id": "N",
+        }])
+
+    def test_chart_based_trigger_is_not_bought(self):
+        tr = TestEarnings._tr(self, recommendation="Wait for a chart-based entry near support",
+                              expires="2099-01-01", earnings_date="2099-02-18")
+        ntfy, place = TestEarnings._run_main(self, tr)
+        place.assert_not_called()
+        self.assertEqual(tr["status"], "active")
+        titles = [c[0][0] for c in ntfy.call_args_list]
+        self.assertEqual(titles.count("RIG: trigger met, not bought (chart-based)"), 1)
+        body = next(c[0][1] for c in ntfy.call_args_list if c[0][0].endswith("(chart-based)"))
+        self.assertIn("5.00", body)
+        self.assertIn("Wait for a chart-based entry near support", body)
+        self.assertIn("SKILL.md section 6", body)
+        self.assertEqual(tr["chart_alerted"], common.now_ny().date().isoformat())
+        ntfy2, place2 = TestEarnings._run_main(self, tr)
+        place2.assert_not_called()
+        self.assertEqual(tr["status"], "active")
+        self.assertNotIn("RIG: trigger met, not bought (chart-based)", [c[0][0] for c in ntfy2.call_args_list])
+
+    def test_value_based_trigger_still_buys(self):
+        tr = TestEarnings._tr(self, recommendation="Value is above the price; buy under 20",
+                              expires="2099-01-01", earnings_date="2099-02-18")
+        ntfy, place = TestEarnings._run_main(self, tr)
+        place.assert_called_once()
 
     def test_place_asks_for_analysis_instead_of_skipping(self):
         tr = self._tr(exit_plan={"stop": 18.0, "target": 22.0})

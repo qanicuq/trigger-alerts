@@ -107,7 +107,11 @@ def _kelly_size(tr, ledger, entry, stop, target, max_profit=None, max_loss=None)
         shares = dollars_at_risk / (entry - stop)
         max_by_pos = (common.MAX_POSITION_STOCK * equity) / entry
         max_by_cash = cash / entry
-        shares = min(shares, max_by_pos, max_by_cash)
+        full = min(shares, max_by_pos)
+        min_dollars = full * entry / 3
+        if cash < min_dollars:
+            return None, risk_fraction, p, b, f"no cash: ${cash:.2f} is less than a third of a normal buy (${min_dollars:.0f})"
+        shares = min(full, max_by_cash)
         shares = math.floor(shares * 10000) / 10000  # round down to 4 decimals
         if shares <= 0:
             return None, risk_fraction, p, b, "zero shares"
@@ -146,29 +150,69 @@ def main():
         common.save_yaml("triggers.yml", {"triggers": triggers})
 
 
-def _delay_if_weaker(tr, ledger, fill, target):
-    """Forensic stock buy with no cash left and upside (target / price - 1) below the weakest held stock's.
-    First time: hold the buy and ask for a fresh Forensic Analysis (the daily earnings re-run task queues it).
-    On the fresh report's trigger (fresh_fa): still weaker -> shelve RETRY_DAYS, then try again.
+def _delay_if_weaker(tr, ledger, fill, target, stop=None, no_cash=False):
+    """Forensic stock buy that was refused because there is no cash.
+    Compare it with the weakest stock already held (lowest upside, target / price - 1).
+    Upside per $1 of downside is (target - price) / (price - stop), or 0 if there is no stop.
+    Clearly better means higher upside and higher upside per $1 of downside.
+    If it is clearly better, and a swap check is not already done, hold the buy and ask for a
+    fresh Forensic Analysis of that weakest holding (the daily re-run task queues it). That
+    holding is sold only if the report says sell. If it is kept, or the swap check is already
+    done and there is still no cash, shelve this buy for RETRY_DAYS.
+    If it is not clearly better: hold the buy and ask for a fresh Forensic Analysis of this
+    stock first. On that fresh report (fresh_fa), still not clearly better -> shelve RETRY_DAYS.
     Returns True if it handled the trigger."""
     if tr.get("action", "BUY") != "BUY" or tr.get("source", "forensic") != "forensic" or not target:
         return False
-    if float(ledger.get("cash") or 0) / fill >= 0.0001:  # cash can still buy something
+    if not no_cash:
         return False
     held = []
     for p in ledger.get("positions") or []:
         if p.get("target") and p.get("action", "BUY") == "BUY":
             px = common.last_price(p.get("ticker")) or float(p.get("entry_price") or 0)
             if px > 0:
-                held.append((float(p["target"]) / px - 1, p.get("ticker")))
+                pos_stop = p.get("stop")
+                if pos_stop is None or px <= float(pos_stop):
+                    ratio = 0.0
+                else:
+                    ratio = (float(p["target"]) - px) / (px - float(pos_stop))
+                held.append((float(p["target"]) / px - 1, ratio, p.get("ticker"), p.get("id")))
     if not held:
         return False
-    weakest, weakest_ticker = min(held)
+    w_upside, w_ratio, w_ticker, w_id = min(held)
     upside = target / fill - 1
-    if upside >= weakest:
-        return False
+    if stop is None or fill <= stop:
+        new_ratio = 0.0
+    else:
+        new_ratio = (target - fill) / (fill - stop)
+    if upside > w_upside and new_ratio > w_ratio and not tr.get("swap_done"):
+        tr["status"] = "active"
+        tr["swap_requested"] = common.now_ny().isoformat()
+        tr["swap_holding_id"] = w_id
+        tr["swap_holding_ticker"] = w_ticker
+        common.ntfy(
+            f"{tr['ticker']}: no cash, checking {w_ticker} first",
+            f"{tr['ticker']} {upside:.0%} upside, {new_ratio:.2f} upside per $1 of downside. "
+            f"{w_ticker} {w_upside:.0%} upside, {w_ratio:.2f} upside per $1 of downside.\n"
+            f"A fresh Forensic Analysis of {w_ticker} runs at the next daily re-run (weekdays about 12:47 PM). "
+            f"{w_ticker} is sold only if that report says sell. If it is kept, {tr['ticker']} is shelved {common.RETRY_DAYS} days.",
+        )
+        return True
+    if tr.pop("swap_done", None):
+        tr["status"] = "active"
+        retry = common.now_ny().date() + timedelta(days=common.RETRY_DAYS)
+        tr["retry_after"] = retry.isoformat()
+        common.ntfy(
+            f"{tr['ticker']}: still no cash after the {w_ticker} check, trying again {retry.isoformat()}",
+            f"The {w_ticker} check is done and there is still no cash for {tr['ticker']}. "
+            f"The bot waits {common.RETRY_DAYS} days, then tries again.",
+        )
+        return True
     tr["status"] = "active"
-    why = f"Upside {upside:.0%} is below the weakest holding ({weakest_ticker} {weakest:.0%}), so nothing is sold to make room."
+    why = (
+        f"Not clearly better than the weakest holding ({w_ticker}): needs higher upside AND higher upside per $1 of downside. "
+        f"New {upside:.0%} / {new_ratio:.2f}, {w_ticker} {w_upside:.0%} / {w_ratio:.2f}. Nothing is sold to make room."
+    )
     if not tr.pop("fresh_fa", None):
         tr["fa_requested"] = common.now_ny().isoformat()
         common.ntfy(
@@ -311,7 +355,7 @@ def place(tr, ledger, force=False):
     else:
         qty, risk_frac, p, b, refuse = _kelly_size(tr, ledger, fill, stop, target, max_profit, max_loss)
         if refuse:
-            if _delay_if_weaker(tr, ledger, fill, target):
+            if _delay_if_weaker(tr, ledger, fill, target, stop, refuse.startswith("no cash")):
                 return False
             common.ntfy(f"Skipped {ticker}: {refuse}", f"p={p:.2f} b={b:.2f}")
             return False
