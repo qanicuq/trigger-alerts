@@ -1098,7 +1098,8 @@ def main():
             tr.pop("swap_requested", None)
             tr.pop("swap_holding_id", None)
             tr.pop("swap_holding_ticker", None)
-            tr["swap_done"] = True
+            if pos is not None:
+                tr["swap_done"] = True  # holding kept: a still-no-cash buy is shelved 14 days
             changed = True
 
     # Check conditions for active triggers

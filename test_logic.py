@@ -1779,7 +1779,7 @@ class TestNoCashDelay(unittest.TestCase):
         body = sent[0][1]
         self.assertIn("50%", body)
         self.assertIn("20%", body)
-        self.assertIn("A fresh Forensic Analysis of HELD runs at the next daily re-run (weekdays about 12:47 PM). "
+        self.assertIn("A fresh Forensic Analysis of HELD runs at the next daily re-run (every day at about 12:47 PM). "
                       "HELD is sold only if that report says sell. If it is kept, NEW is shelved 14 days.", body)
 
     def test_swap_done_still_no_cash_shelves_14_days(self):
@@ -1802,6 +1802,41 @@ class TestNoCashDelay(unittest.TestCase):
               "swap_requested": common.now_ny().isoformat(),
               "swap_holding_id": "H", "swap_holding_ticker": "HELD"}
         ledger = {"cash": 0.0, "positions": [], "closed_trades": [], "realized_pl": 0.0,
+                  "peak_equity": 1000.0, "day_start_equity": 1000.0, "day_start_date": today,
+                  "paused": False, "stats": {}, "sent_slots": {}}
+        files = {"triggers.yml": {"triggers": [tr]}, "ledger.yml": ledger}
+        with patch("common.is_forced", return_value=True), \
+             patch("common.load_yaml", side_effect=lambda p: files.get(p, {})), \
+             patch("common.save_yaml"), \
+             patch("common.get_daily_bars", return_value=None), \
+             patch("common.compute_refs", return_value={}), \
+             patch("common.high_low_since", return_value=(None, None)), \
+             patch("common.last_price", return_value=5.0), \
+             patch("common.ntfy"), \
+             patch("check._evaluate_conditions", return_value=False), \
+             patch("confirm.place") as place, \
+             patch("check._ingest_inbox", return_value=False), \
+             patch("check._refresh_triggers_page"), \
+             patch("check._write_due"), \
+             patch("report.send_report"), \
+             patch("report.write_pages"):
+            check.main()
+        self.assertNotIn("swap_requested", tr)
+        self.assertNotIn("swap_holding_id", tr)
+        self.assertNotIn("swap_holding_ticker", tr)
+        self.assertNotIn("swap_done", tr)
+        place.assert_not_called()
+
+    def test_swap_released_when_holding_kept(self):
+        today = common.now_ny().date().isoformat()
+        tr = {"id": "N", "ticker": "NEW", "action": "BUY", "source": "forensic", "status": "active",
+              "report_date": today, "expires": "2099-01-01",
+              "swap_requested": common.now_ny().isoformat(),
+              "swap_holding_id": "H", "swap_holding_ticker": "HELD"}
+        held = {"id": "H", "ticker": "HELD", "action": "BUY", "source": "forensic", "entry_price": 4.5,
+                "quantity": 10, "target": 12.0, "stop": 4.0, "max_hold_days": 180, "is_option": False,
+                "reserved": 0, "opened": common.now_ny().isoformat(), "recheck_received": today}
+        ledger = {"cash": 0.0, "positions": [held], "closed_trades": [], "realized_pl": 0.0,
                   "peak_equity": 1000.0, "day_start_equity": 1000.0, "day_start_date": today,
                   "paused": False, "stats": {}, "sent_slots": {}}
         files = {"triggers.yml": {"triggers": [tr]}, "ledger.yml": ledger}

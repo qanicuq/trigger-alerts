@@ -81,6 +81,14 @@ class TestFaNeeded(unittest.TestCase):
         self.assertEqual(red, [{"ticker": "X", "reason": "no cash, and weaker than your weakest holding",
                                 "since": "2026-11-11"}])
 
+    def test_swap_check_holding_is_red(self):
+        tr = {"id": "N-1", "ticker": "NEW", "status": "active", "swap_requested": "2026-11-20T12:50:00-05:00",
+              "swap_holding_id": "H", "swap_holding_ticker": "HELD"}
+        red, _, _ = fa_needed.build_lists([tr], {"positions": []}, ny(2026, 11, 23, 8, 30))
+        self.assertEqual(red, [{"ticker": "HELD",
+                                "reason": "no cash; checking whether to sell it to make room for NEW",
+                                "since": "2026-11-20"}])
+
     def test_paused_nov6_trigger_on_old_numbers_is_not_red(self):
         tr = dict(self.DHT, id="DHT-forensic-2026-11-06-paused", status="paused")
         self.assertEqual(fa_needed.build_lists([tr], {"positions": []}, ny(2026, 11, 12, 8, 30)), ([], [], []))
