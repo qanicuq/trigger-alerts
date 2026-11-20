@@ -798,6 +798,37 @@ def _review_due(pos, today):
     return int(rd) <= held < int(pos.get("max_hold_days") or 30)
 
 
+def _option_quotes_ready(now, forced):
+    """Yahoo option prices are 15 min delayed, so 9:30-9:44 New York still shows pre-open prices (often $0)."""
+    if forced:
+        return True
+    return not (dtime(9, 30) <= now.time() < common.OPTION_QUOTE_START)
+
+
+def _handle_no_quote(pos, now):
+    """A missing option price never closes a trade. Count it, and send one alert after NO_QUOTE_ALERT_HOURS."""
+    pos["no_quote_count"] = pos.get("no_quote_count", 0) + 1
+    if not pos.get("no_quote_since"):
+        pos["no_quote_since"] = now.isoformat()
+    try:
+        since = datetime.fromisoformat(str(pos["no_quote_since"]))
+    except Exception:
+        since = now
+    hours = (now - since).total_seconds() / 3600
+    if hours >= common.NO_QUOTE_ALERT_HOURS and not pos.get("no_quote_alerted"):
+        common.ntfy(f"{pos.get('ticker')}: no option price for {int(hours)} hours",
+                    "The paper trade is still open. The bot keeps trying every check.",
+                    priority="high")
+        pos["no_quote_alerted"] = True
+
+
+def _quote_ok(pos):
+    """Clear the missing-price markers once a price comes back."""
+    pos["no_quote_count"] = 0
+    pos.pop("no_quote_since", None)
+    pos.pop("no_quote_alerted", None)
+
+
 def _close_position(ledger, pos, exit_price, reason, now):
     if pos.get("action") == "POSITION":
         entry = pos.get("entry_value")
@@ -1155,23 +1186,19 @@ def main():
         if not ticker or pos.get("id") in filled_now:  # bought this run: price range so far predates the buy
             continue
         is_option = bool(pos.get("is_option"))
+        # POSITION trades are stored with is_option False but are priced from option quotes too
+        if (is_option or pos.get("action") == "POSITION") and not _option_quotes_ready(now, force):
+            continue
         entry = float(pos.get("entry_price") or 0)
         exit_reason = None
         exit_price = None
         if pos.get("action") == "POSITION":
             value = common.position_value(ticker, pos.get("expiry"), pos.get("legs"), opening=False)
             if value is None:
-                pos["no_quote_count"] = pos.get("no_quote_count", 0) + 1
-                if pos["no_quote_count"] >= 2:
-                    exit_reason = "no quote"
-                    exit_price = pos.get("last_value")
-                    if exit_price is None:
-                        exit_price = pos.get("entry_value")
-                        if exit_price is None:
-                            exit_price = entry
+                _handle_no_quote(pos, now)
                 changed = True
             else:
-                pos["no_quote_count"] = 0
+                _quote_ok(pos)
                 pos["last_value"] = value
                 ev = pos.get("entry_value")
                 if ev is None:
@@ -1219,15 +1246,10 @@ def main():
         elif pos.get("action") == "SPREAD":
             value = common.spread_value(ticker, pos.get("expiry"), pos.get("legs"), opening=False)
             if value is None:
-                pos["no_quote_count"] = pos.get("no_quote_count", 0) + 1
-                if pos["no_quote_count"] >= 2:
-                    exit_reason = "no quote"
-                    exit_price = pos.get("last_value")
-                    if exit_price is None:
-                        exit_price = entry
+                _handle_no_quote(pos, now)
                 changed = True
             else:
-                pos["no_quote_count"] = 0
+                _quote_ok(pos)
                 pos["last_value"] = value
                 ox = pos.get("option_exits")
                 if ox:
@@ -1294,13 +1316,10 @@ def main():
             bid = q.get("bid") if q else None
             # no quote 2 runs
             if bid is None:
-                pos["no_quote_count"] = pos.get("no_quote_count", 0) + 1
-                if pos["no_quote_count"] >= 2:
-                    exit_reason = "no quote"
-                    exit_price = pos.get("last_bid") or entry * 0.5
+                _handle_no_quote(pos, now)
                 changed = True
             else:
-                pos["no_quote_count"] = 0
+                _quote_ok(pos)
                 pos["last_bid"] = bid
                 ox = pos.get("option_exits")
                 if ox:

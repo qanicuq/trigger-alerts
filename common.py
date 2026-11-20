@@ -35,6 +35,8 @@ OPTION_STOP = 0.20
 OPTION_TIME_EXIT_DAYS = 7
 SPREAD_TARGET = 0.50
 SPREAD_STOP = 0.50
+OPTION_QUOTE_START = dtime(9, 45)  # Yahoo option prices are 15 min delayed
+NO_QUOTE_ALERT_HOURS = 24
 
 # Full-day NYSE holidays 2026-2027 (no early closes)
 HOLIDAYS = {
