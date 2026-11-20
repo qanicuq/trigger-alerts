@@ -1,43 +1,22 @@
 {
  "due": [
   {
-   "ticker": "FMAO",
-   "source": "forensic",
-   "kind": "no_cash",
-   "bullish": true,
-   "earnings_date": null,
-   "earnings_time": null,
-   "requested_at": "2026-11-17T11:00:47.384552-05:00",
-   "trigger_id": "FMAO-forensic-2026-11-12"
-  },
-  {
-   "ticker": "HOPE",
-   "source": "forensic",
-   "kind": "no_cash",
-   "bullish": true,
-   "earnings_date": null,
-   "earnings_time": null,
-   "requested_at": "2026-11-16T12:00:54.498955-05:00",
-   "trigger_id": "HOPE-forensic-2026-11-10"
-  },
-  {
-   "ticker": "NKE",
-   "source": "forensic",
-   "kind": "no_cash",
-   "bullish": true,
-   "earnings_date": null,
-   "earnings_time": null,
-   "requested_at": "2026-11-17T14:00:48.490817-05:00",
-   "trigger_id": "NKE-forensic-2026-11-07"
-  },
-  {
-   "ticker": "NVDA",
+   "ticker": "FRO",
    "source": "forensic",
    "kind": "waiting",
    "bullish": true,
-   "earnings_date": "2026-11-17",
-   "earnings_time": "AMC",
-   "trigger_id": "NVDA-forensic-2026-11-14"
+   "earnings_date": "2026-11-20",
+   "earnings_time": "BMO",
+   "trigger_id": "FRO-forensic-2026-11-14"
+  },
+  {
+   "ticker": "RLX",
+   "source": "forensic",
+   "kind": "waiting",
+   "bullish": true,
+   "earnings_date": "2026-11-20",
+   "earnings_time": "BMO",
+   "trigger_id": "RLX-forensic-2026-11-07"
   }
  ]
 }
