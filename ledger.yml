@@ -1,20 +1,7 @@
-cash: 0.0010507647802732172
+cash: 2434.226960884791
 peak_equity: 15343.97013363363
 day_start_equity: 14750.411538311731
 positions:
-- id: MNST-forensic-2026-11-06
-  ticker: MNST
-  action: BUY
-  entry_price: 44.7524
-  quantity: 55.8629
-  stop: 43.6
-  target: 51.95
-  max_hold_days: 180
-  review_days: null
-  is_option: false
-  reserved: 0
-  opened: '2026-11-06T09:30:36.318042-05:00'
-  source: forensic
 - id: SHOE-forensic-2026-11-06
   ticker: SHOE
   action: BUY
@@ -178,8 +165,25 @@ closed_trades:
   exit_reason: target
   pl: 220.0
   closed: '2026-11-20T10:45:28.903027-05:00'
-realized_pl: 410.0000000000001
-last_checked: '2026-11-20T15:50:27.866866-05:00'
+- id: MNST-forensic-2026-11-06
+  ticker: MNST
+  action: BUY
+  entry_price: 44.7524
+  quantity: 55.8629
+  stop: 43.6
+  target: 51.95
+  max_hold_days: 180
+  review_days: null
+  is_option: false
+  reserved: 0
+  opened: '2026-11-06T09:30:36.318042-05:00'
+  source: forensic
+  exit_price: 43.57500076293945
+  exit_reason: stop
+  pl: -65.77
+  closed: '2026-11-20T15:55:23.963224-05:00'
+realized_pl: 344.2270641600104
+last_checked: '2026-11-20T15:55:23.963224-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -213,6 +217,7 @@ sent_slots:
   2026-11-19:end of day: true
   2026-11-20:morning: true
   2026-11-20:midday: true
+  2026-11-20:end of day: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
@@ -220,6 +225,9 @@ stats:
   option-spread:
     wins: 2
     losses: 0
+  forensic-stock:
+    wins: 0
+    losses: 1
 day_start_date: '2026-11-20'
 max_drawdown_pct: 7.37
 option_cash: 5410.0

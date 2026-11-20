@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 20, 2026 at 3:50 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 20, 2026 at 3:55 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**20 watching** · **8 bought (open)** · **35 ended**
+**20 watching** · **7 bought (open)** · **35 ended**
 
 ## Watching now
 
@@ -58,7 +58,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Bought at | Amount | Sell target | Stop | Bought on | Next earnings | Note |
 |---|---|---|---|---|---|---|---|---|
-| **MNST** | Stock | $44.75 | 55.86 shares | $51.95 | $43.60 | Nov 6, 2026 | Feb 25, 2027 (after close) |  |
 | **SHOE** | Stock | $15.01 | 60.25 shares | $28.27 | $6.71 | Nov 6, 2026 | Nov 24, 2026 (before open) |  |
 | **RES** | Stock | $5.33 | 230.03 shares | $9.13 | $3.15 | Nov 9, 2026 | Feb 2, 2027 (before open) |  |
 | **NAT** | Stock | $6.18 | 405.39 shares | $7.68 | $5.46 | Nov 10, 2026 | Nov 27, 2026 (after close) |  |
@@ -71,6 +70,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | Closed on | Why | Profit/loss |
 |---|---|---|---|
+| **MNST** | Nov 20, 2026 | stop | $-65.77 |
 | **CRWV** | Nov 20, 2026 | target | $220.00 |
 | **NBIS** | Nov 20, 2026 | target | $190.00 |
 
