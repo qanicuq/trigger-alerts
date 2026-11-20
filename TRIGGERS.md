@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 20, 2026 at 10:05 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 20, 2026 at 10:10 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**20 watching** · **8 bought (open)** · **35 ended**
+**20 watching** · **9 bought (open)** · **35 ended**
 
 ## Watching now
 
@@ -66,13 +66,13 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **IMXI** | Stock | $6.62 | 123.80 shares | $16.05 | $2.46 | Nov 12, 2026 | Mar 1, 2027 (after close) |  |
 | **KMT** | Stock | $23.95 | 42.27 shares | $61.02 | $11.83 | Nov 13, 2026 | Feb 3, 2027 (before open) |  |
 | **LPG** | Stock | $47.75 | 17.34 shares | $116.66 | $32.45 | Nov 13, 2026 | Feb 4, 2027 (before open) |  |
+| **CRWV** | buy 55 put, sell 40 put, exp Jan 15, 2027 — target premium $11.07, stock $40.58; stop premium $3.57, stock $63.15, by Dec 23, 2026 | $7.60 | 1 contract(s) | premium $11.07, stock $40.58 | premium $3.57, stock $63.15, by Dec 23, 2026 | Nov 16, 2026 | Feb 25, 2027 (after close) |  |
 
 ## Closed paper trades
 
 | Ticker | Closed on | Why | Profit/loss |
 |---|---|---|---|
-| **NBIS** | Nov 20, 2026 | no quote | $125.00 |
-| **CRWV** | Nov 20, 2026 | no quote | $90.00 |
+| **NBIS** | Nov 20, 2026 | target | $190.00 |
 
 ## Ended (no longer watched)
 
