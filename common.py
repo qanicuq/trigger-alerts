@@ -382,51 +382,7 @@ def volume_ratio(hist):
     return today_vol / avg_prev
 
 
-_TT_API = "https://api.tastyworks.com"
-_tt_token = None  # access token, good for 15 minutes; one per run is enough
-
-
-def _tasty_option_quote(ticker, expiry, strike, right):
-    """Live quote from the user's tastytrade account (real-time; Yahoo is 15 min delayed).
-    None if the secrets are missing or any call fails, so the caller uses Yahoo."""
-    global _tt_token
-    cid, sec, ref = (os.environ.get(k) for k in ("TT_CLIENT_ID", "TT_CLIENT_SECRET", "TT_REFRESH_TOKEN"))
-    if not (cid and sec and ref):
-        return None
-    head = {"User-Agent": "trigger-alerts/1.0"}
-    try:
-        if _tt_token is None:
-            r = requests.post(f"{_TT_API}/oauth/token", headers=head, timeout=10, json={
-                "grant_type": "refresh_token", "refresh_token": ref,
-                "client_id": cid, "client_secret": sec, "scope": "read"})  # read only: can never trade
-            if r.status_code != 200:
-                print(f"tastytrade sign-in: HTTP {r.status_code}, using Yahoo")
-                return None
-            _tt_token = r.json()["access_token"]
-        exp = expiry if hasattr(expiry, "strftime") else date.fromisoformat(str(expiry))
-        cp = "P" if str(right).lower() == "put" else "C"
-        symbol = f"{ticker.upper():<6}{exp:%y%m%d}{cp}{round(float(strike) * 1000):08d}"  # OCC format
-        r = requests.get(f"{_TT_API}/market-data/by-type", params={"equity-option": symbol},
-                         headers={**head, "Authorization": f"Bearer {_tt_token}"}, timeout=10)
-        items = r.json().get("data", {}).get("items", []) if r.status_code == 200 else []
-        if not items:
-            print(f"tastytrade quote {symbol.replace(' ', '')}: HTTP {r.status_code}, no quote, using Yahoo")
-            return None
-        row = items[0]
-        return {
-            "bid": float(row.get("bid") or 0),
-            "ask": float(row.get("ask") or 0),
-            "last": float(row.get("last") or 0),
-        }
-    except Exception as e:
-        print(f"tastytrade quote failed ({type(e).__name__}), using Yahoo")
-        return None
-
-
 def option_quote(ticker, expiry, strike, right):
-    q = _tasty_option_quote(ticker, expiry, strike, right)
-    if q is not None:
-        return q
     t = _yf_call(yf.Ticker, ticker)
     if t is None:
         return None
