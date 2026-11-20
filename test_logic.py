@@ -991,6 +991,35 @@ class TestOptionExitsAndPositions(unittest.TestCase):
             check.main()
         return ledger
 
+    def test_spread_missing_quote_stays_open(self):
+        pos = {"id": "S1", "ticker": "ABCD", "action": "SPREAD", "is_option": True,
+               "entry_price": 5.0, "quantity": 1, "reserved": 0, "source": "option",
+               "expiry": self._far(), "no_quote_count": 5,
+               "legs": [{"side": "buy", "right": "put", "strike": 55},
+                        {"side": "sell", "right": "put", "strike": 40}],
+               "max_profit": 10.0, "max_loss": 5.0}
+        ledger = self._run_exit(pos, spread_value=None)
+        self.assertEqual(len(ledger["positions"]), 1)
+        self.assertEqual(ledger["closed_trades"], [])
+        self.assertEqual(ledger["positions"][0]["no_quote_count"], 6)
+
+    def test_single_option_missing_quote_stays_open(self):
+        pos = {"id": "O1", "ticker": "ABCD", "action": "BUY_CALL", "is_option": True,
+               "entry_price": 2.0, "quantity": 1, "strike": 40, "right": "call",
+               "expiry": self._far(), "reserved": 0, "source": "option", "no_quote_count": 5}
+        ledger = self._run_exit(pos, bid=None)
+        self.assertEqual(len(ledger["positions"]), 1)
+        self.assertEqual(ledger["closed_trades"], [])
+
+    def test_position_missing_quote_stays_open(self):
+        pos = {"id": "P1", "ticker": "ABCD", "action": "POSITION", "is_option": True,
+               "entry_price": 100.0, "entry_value": 100.0, "quantity": 1, "reserved": 0,
+               "source": "option", "expiry": self._far(), "no_quote_count": 5,
+               "legs": [{"side": "sell", "right": "put", "strike": 40}]}
+        ledger = self._run_exit(pos, position_value=None)
+        self.assertEqual(len(ledger["positions"]), 1)
+        self.assertEqual(ledger["closed_trades"], [])
+
     def test_leaps_ignores_25pct_drop_but_stops_on_stop_premium(self):
         exp = self._far()
         pos = {
@@ -1828,3 +1857,40 @@ class TestOptionAccount(unittest.TestCase):
         self.assertAlmostEqual(confirm._compute_equity(ledger, "cash"), 1000.0)
         self.assertAlmostEqual(confirm._compute_equity(ledger, "option_cash"), 5000.0)
         self.assertAlmostEqual(confirm._compute_equity(ledger), 6000.0)
+
+
+class TestNoQuoteHold(unittest.TestCase):
+    def _now(self, h, m):
+        return datetime(2026, 11, 20, h, m, tzinfo=ZoneInfo("America/New_York"))
+
+    def test_quotes_not_ready_930_to_944(self):
+        self.assertFalse(check._option_quotes_ready(self._now(9, 30), False))
+        self.assertFalse(check._option_quotes_ready(self._now(9, 44), False))
+
+    def test_quotes_ready_from_945(self):
+        self.assertTrue(check._option_quotes_ready(self._now(9, 45), False))
+        self.assertTrue(check._option_quotes_ready(self._now(15, 0), False))
+
+    def test_forced_run_always_ready(self):
+        self.assertTrue(check._option_quotes_ready(self._now(9, 31), True))
+
+    def test_missing_quote_counts_but_no_alert_first_day(self):
+        pos = {"ticker": "ABCD"}
+        with patch("common.ntfy") as n:
+            check._handle_no_quote(pos, self._now(10, 0))
+            check._handle_no_quote(pos, self._now(10, 5))
+        self.assertEqual(pos["no_quote_count"], 2)
+        n.assert_not_called()
+
+    def test_alert_once_after_24_hours(self):
+        pos = {"ticker": "ABCD", "no_quote_since": "2026-11-19T09:00:00-05:00"}
+        with patch("common.ntfy") as n:
+            check._handle_no_quote(pos, self._now(10, 0))
+            check._handle_no_quote(pos, self._now(10, 5))
+        self.assertEqual(n.call_count, 1)
+        self.assertTrue(pos["no_quote_alerted"])
+
+    def test_quote_ok_clears_markers(self):
+        pos = {"no_quote_count": 7, "no_quote_since": "x", "no_quote_alerted": True}
+        check._quote_ok(pos)
+        self.assertEqual(pos, {"no_quote_count": 0})
