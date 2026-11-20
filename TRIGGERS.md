@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 19, 2026 at 7:13 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 19, 2026 at 7:18 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**21 watching** · **10 bought (open)** · **34 ended**
+**20 watching** · **10 bought (open)** · **35 ended**
 
 ## Watching now
 
@@ -27,7 +27,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **NFG** | Buy shares | Price at or below $73.37 | $82.17 | $68.97 | Jan 27, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **AXP** | Buy shares | Price at or below $297.77 | $333.50 | $279.90 | Jan 29, 2027 (before open) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **FRO** | Buy shares | Price at or below $38.78 | $48.41 | $33.97 | Nov 20, 2026 (before open) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
-| **NVDA** | Buy shares | Price at or below $156.76<br>Price at least 2% above the 20-day low (support) (≈$148.62) | $190.18 | $98.87 | Feb 24, 2027 (after close) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
 | **HOPE** | Buy shares | Price at or below $11.61 | $13.01 | $10.91 | Jan 26, 2027 (before open) | Feb 17, 2027 | Forensic Analysis, Nov 19, 2026 |
 | **FMAO** | Buy shares | Price at or below $32.96 | $37.08 | $30.90 | Feb 11, 2027 (after close) | Feb 17, 2027 | Forensic Analysis, Nov 19, 2026 |
 | **NKE** | Buy shares | Price at or below $32.13 | $38.35 | $29.02 | Dec 17, 2026 (after close) | Feb 17, 2027 | Forensic Analysis, Nov 19, 2026 |
@@ -51,7 +50,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **NFG:** WATCH, confidence 35: buy at or below $73.37 (pullback to the 60-day low (support) ($73.01)), sell at $82.17 (twice the risk taken (no value target above the entry)), stop $68.97; chart-based entry, not a value bargain: keep it small; check the Ohio utility deal and spinoff plan, earnings, filings and news before confirming.
 - **AXP:** WATCH, confidence 75: buy at or below $297.77 (pullback to the 60-day low (support) ($296.28)), sell at $333.50 (twice the risk taken (no value target above the entry)), stop $279.90; chart-based entry, not a value bargain: keep it small; check the AML consent orders and any credit-card rate-cap news, earnings, filings and news before confirming.
 - **FRO:** WATCH, confidence 70: buy at or below $38.78 (pullback to the 60-day low (support) ($38.59)), sell at $48.41 (twice the risk taken (no value target above the entry)), stop $33.97; chart-based entry, not a value bargain: keep it small; check Q3 results on Nov 20 and where VLCC spot rates stand, earnings, filings and news before confirming.
-- **NVDA:** WATCH, confidence 75: buy at or below $156.76 (value buy-below line (within reach of the price)), sell at $190.18 (no longer cheap: P/E and P/B back at the S&P 500's, below estimated value), stop $98.87; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 9% on 2026-11-05 on news: wait until about 2026-11-26 before confirming; check the 2026-11-17 earnings and the CEO succession, earnings, filings and news before confirming.
 - **HOPE:** WATCH, confidence 65: buy at or below $11.61 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $13.01 (twice the risk taken (no value target above the entry)), stop $10.91; chart-based entry, not a value bargain: keep it small; check the August 2026 executive-change 8-K, earnings, filings and news before confirming.
 - **FMAO:** WATCH, confidence 55: buy at or below $32.96 (pullback to the 60-day low (support) ($32.80)), sell at $37.08 (twice the risk taken (no value target above the entry)), stop $30.90; chart-based entry, not a value bargain: keep it small; check the July 2026 executive-change 8-K, earnings, filings and news before confirming.
 - **NKE:** WATCH, confidence 60: buy at or below $32.13 (pullback to the 60-day low (support) ($31.97)), sell at $38.35 (twice the risk taken (no value target above the entry)), stop $29.02; chart-based entry, not a value bargain: keep it small; check the CFO and controller turnover in 2026 8-Ks, earnings, filings and news before confirming.
@@ -79,6 +77,7 @@ None yet.
 
 | Ticker | What | Added | Status | Why it ended |
 |---|---|---|---|---|
+| **NVDA** | Buy shares | Nov 14, 2026 | Cancelled | Thesis broken: SEC investigation into disclosures: verdict AVOID |
 | **TSLA** | Buy shares | Nov 12, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **MPC** | Buy shares | Nov 12, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **MNST** | Buy shares | Nov 11, 2026 | Cancelled | MNST is already held; a fresh analysis on a held stock now adjusts the position instead (user, 2026-11-11) |
