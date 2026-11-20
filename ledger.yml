@@ -107,37 +107,6 @@ positions:
   reserved: 0
   opened: '2026-11-13T10:00:47.208323-05:00'
   source: forensic
-- id: CRWV-spread-2026-11-16
-  ticker: CRWV
-  action: SPREAD
-  entry_price: 7.6
-  quantity: 1
-  stop: null
-  target: null
-  max_hold_days: 30
-  review_days: null
-  is_option: true
-  reserved: 0.0
-  opened: '2026-11-16T10:36:48.981941-05:00'
-  source: option
-  expiry: 2027-01-15
-  legs:
-  - side: buy
-    right: put
-    strike: 55
-  - side: sell
-    right: put
-    strike: 40
-  max_profit: 7.3999999999999995
-  max_loss: 7.6000000000000005
-  option_exits:
-    target_premium: 11.07
-    stop_premium: 3.57
-    target_price: 40.58
-    stop_price: 63.15
-    exit_by: 2026-12-23
-  no_quote_count: 0
-  last_value: 9.7
 closed_trades:
 - id: NBIS-spread-2026-11-16
   ticker: NBIS
@@ -174,8 +143,43 @@ closed_trades:
   exit_reason: target
   pl: 190.0
   closed: '2026-11-20T10:10:30.739113-05:00'
-realized_pl: 190.00000000000003
-last_checked: '2026-11-20T10:40:39.561832-05:00'
+- id: CRWV-spread-2026-11-16
+  ticker: CRWV
+  action: SPREAD
+  entry_price: 7.6
+  quantity: 1
+  stop: null
+  target: null
+  max_hold_days: 30
+  review_days: null
+  is_option: true
+  reserved: 0.0
+  opened: '2026-11-16T10:36:48.981941-05:00'
+  source: option
+  expiry: 2027-01-15
+  legs:
+  - side: buy
+    right: put
+    strike: 55
+  - side: sell
+    right: put
+    strike: 40
+  max_profit: 7.3999999999999995
+  max_loss: 7.6000000000000005
+  option_exits:
+    target_premium: 11.07
+    stop_premium: 3.57
+    target_price: 40.58
+    stop_price: 63.15
+    exit_by: 2026-12-23
+  no_quote_count: 0
+  last_value: 9.8
+  exit_price: 9.8
+  exit_reason: target
+  pl: 220.0
+  closed: '2026-11-20T10:45:28.903027-05:00'
+realized_pl: 410.0000000000001
+last_checked: '2026-11-20T10:45:28.903027-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -213,9 +217,9 @@ usage_alerted_month: null
 paused: false
 stats:
   option-spread:
-    wins: 1
+    wins: 2
     losses: 0
 day_start_date: '2026-11-20'
 max_drawdown_pct: 7.37
-option_cash: 4430.0
+option_cash: 5410.0
 daily_loss_alerted: '2026-11-16'
