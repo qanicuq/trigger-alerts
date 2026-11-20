@@ -1444,52 +1444,6 @@ triggers:
   seen_low: 6.179999828338623
   alerted_at: '2026-11-10T09:30:31.247125-05:00'
   frozen: true
-- id: NKE-forensic-2026-11-07
-  source: forensic
-  ticker: NKE
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 37.08
-  exit_plan:
-    stop:
-      price: 34.6
-    target:
-      price: 42.04
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 65: buy at or below $37.08 (pullback to the 50-day
-    average ($36.89)), sell at $42.04 (twice the risk taken (no value target above
-    the entry)), stop $34.60; chart-based entry, not a value bargain: keep it small;
-    check what Nike says at its November Investor Day, earnings, filings and news
-    before confirming.'
-  report_date: 2026-11-07
-  expires: 2027-02-05
-  data_through: 2026-08-31
-  status: active
-  backtest:
-    wins: 0
-    losses: 1
-    signals: 1
-  earnings_date: '2026-12-17'
-  earnings_time: AMC
-  earnings_checked: '2026-11-19'
-  resolved:
-    sma20: 38.030999946594235
-    sma50: 36.770999908447266
-    sma200: 43.70076713562012
-    ema20: 37.45053179721466
-    52w_high: 67.36040489291355
-    52w_low: 31.969999313354492
-    support20: 34.060001373291016
-    resistance20: 41.099998474121094
-    rsi14: 35.7
-  resolved_stop: 34.6
-  resolved_target: 42.04
-  seen_high: 40.68000030517578
-  seen_low: 34.060001373291016
-  alerted_at: '2026-11-17T14:00:41.436540-05:00'
-  fa_requested: '2026-11-17T14:00:48.490817-05:00'
 - id: NOK-forensic-2026-11-07
   source: forensic
   ticker: NOK
@@ -2865,3 +2819,35 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-19'
   added_at: 2026-11-19 19:09
+- id: NKE-forensic-2026-11-19
+  source: forensic
+  ticker: NKE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 32.13
+  exit_plan:
+    stop:
+      price: 29.02
+    target:
+      price: 38.35
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 60: buy at or below $32.13 (pullback to the 60-day
+    low (support) ($31.97)), sell at $38.35 (twice the risk taken (no value target
+    above the entry)), stop $29.02; chart-based entry, not a value bargain: keep it
+    small; check the CFO and controller turnover in 2026 8-Ks, earnings, filings and
+    news before confirming.'
+  report_date: 2026-11-19
+  expires: 2027-02-17
+  data_through: 2026-08-31
+  status: active
+  fresh_fa: true
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2026-12-17'
+  earnings_time: AMC
+  earnings_checked: '2026-11-19'
+  added_at: 2026-11-19 19:13
