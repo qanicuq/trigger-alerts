@@ -2834,16 +2834,15 @@ triggers:
     target:
       price: 38.35
     max_hold_days: 180
-  recommendation: 'WATCH, confidence 60: buy at or below $32.13 (pullback to the 60-day
+  recommendation: 'WATCH, confidence 65: buy at or below $32.13 (pullback to the 60-day
     low (support) ($31.97)), sell at $38.35 (twice the risk taken (no value target
     above the entry)), stop $29.02; chart-based entry, not a value bargain: keep it
-    small; check the CFO and controller turnover in 2026 8-Ks, earnings, filings and
-    news before confirming.'
+    small; check Nike''s Investor Day guidance that sales keep falling through fiscal
+    2028, earnings, filings and news before confirming.'
   report_date: 2026-11-19
   expires: 2027-02-17
   data_through: 2026-08-31
   status: active
-  fresh_fa: true
   backtest:
     wins: 1
     losses: 0
@@ -2851,4 +2850,4 @@ triggers:
   earnings_date: '2026-12-17'
   earnings_time: AMC
   earnings_checked: '2026-11-19'
-  added_at: 2026-11-19 19:13
+  added_at: 2026-11-19 21:46

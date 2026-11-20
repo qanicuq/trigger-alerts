@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 19, 2026 at 7:18 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 19, 2026 at 9:46 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **20 watching** · **10 bought (open)** · **35 ended**
 
@@ -52,7 +52,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **FRO:** WATCH, confidence 70: buy at or below $38.78 (pullback to the 60-day low (support) ($38.59)), sell at $48.41 (twice the risk taken (no value target above the entry)), stop $33.97; chart-based entry, not a value bargain: keep it small; check Q3 results on Nov 20 and where VLCC spot rates stand, earnings, filings and news before confirming.
 - **HOPE:** WATCH, confidence 65: buy at or below $11.61 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $13.01 (twice the risk taken (no value target above the entry)), stop $10.91; chart-based entry, not a value bargain: keep it small; check the August 2026 executive-change 8-K, earnings, filings and news before confirming.
 - **FMAO:** WATCH, confidence 55: buy at or below $32.96 (pullback to the 60-day low (support) ($32.80)), sell at $37.08 (twice the risk taken (no value target above the entry)), stop $30.90; chart-based entry, not a value bargain: keep it small; check the July 2026 executive-change 8-K, earnings, filings and news before confirming.
-- **NKE:** WATCH, confidence 60: buy at or below $32.13 (pullback to the 60-day low (support) ($31.97)), sell at $38.35 (twice the risk taken (no value target above the entry)), stop $29.02; chart-based entry, not a value bargain: keep it small; check the CFO and controller turnover in 2026 8-Ks, earnings, filings and news before confirming.
+- **NKE:** WATCH, confidence 65: buy at or below $32.13 (pullback to the 60-day low (support) ($31.97)), sell at $38.35 (twice the risk taken (no value target above the entry)), stop $29.02; chart-based entry, not a value bargain: keep it small; check Nike's Investor Day guidance that sales keep falling through fiscal 2028, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
