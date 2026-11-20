@@ -2756,38 +2756,6 @@ triggers:
   seen_high: 107.47000122070312
   seen_low: 105.4800033569336
   frozen: true
-- id: HOPE-forensic-2026-11-19
-  source: forensic
-  ticker: HOPE
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 11.61
-  exit_plan:
-    stop:
-      price: 10.91
-    target:
-      price: 13.01
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 65: buy at or below $11.61 (pullback of 1.5×
-    a normal day''s move (no chart support within 20%)), sell at $13.01 (twice the
-    risk taken (no value target above the entry)), stop $10.91; chart-based entry,
-    not a value bargain: keep it small; check the August 2026 executive-change 8-K,
-    earnings, filings and news before confirming.'
-  report_date: 2026-11-19
-  expires: 2027-02-17
-  data_through: 2026-09-30
-  status: active
-  fresh_fa: true
-  backtest:
-    wins: 0
-    losses: 2
-    signals: 2
-  earnings_date: '2027-01-26'
-  earnings_time: BMO
-  earnings_checked: '2026-11-19'
-  added_at: 2026-11-19 19:06
 - id: FMAO-forensic-2026-11-19
   source: forensic
   ticker: FMAO
@@ -2851,3 +2819,34 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-19'
   added_at: 2026-11-19 21:46
+- id: HOPE-forensic-2026-11-19
+  source: forensic
+  ticker: HOPE
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 11.61
+  exit_plan:
+    stop:
+      price: 10.91
+    target:
+      price: 13.01
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $11.61 (pullback of 1.5×
+    a normal day''s move (no chart support between one normal day''s move and 20%
+    under the price)), sell at $13.01 (twice the risk taken (no value target above
+    the entry)), stop $10.91; chart-based entry, not a value bargain: keep it small;
+    check earnings, filings and news before confirming.'
+  report_date: 2026-11-19
+  expires: 2027-02-17
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2027-01-26'
+  earnings_time: BMO
+  earnings_checked: '2026-11-19'
+  added_at: 2026-11-19 21:56
