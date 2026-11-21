@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 20, 2026 at 4:40 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 21, 2026 at 7:42 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **18 watching** · **7 bought (open)** · **37 ended**
 
@@ -24,10 +24,10 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **DHT** | Buy shares | Price at or below $18.34 | $22.78 | $16.12 | Feb 3, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **NFG** | Buy shares | Price at or below $73.37 | $82.17 | $68.97 | Jan 27, 2027 (after close) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
 | **AXP** | Buy shares | Price at or below $297.77 | $333.50 | $279.90 | Jan 29, 2027 (before open) | Feb 11, 2027 | Forensic Analysis, Nov 13, 2026 |
-| **FRO** | Buy shares | Price at or below $38.78 | $48.41 | $33.97 | Nov 20, 2026 (before open) | Feb 12, 2027 | Forensic Analysis, Nov 14, 2026 |
 | **FMAO** | Buy shares | Price at or below $32.96 | $37.08 | $30.90 | Feb 11, 2027 (after close) | Feb 17, 2027 | Forensic Analysis, Nov 19, 2026 |
 | **NKE** | Buy shares | Price at or below $32.13 | $38.35 | $29.02 | Dec 17, 2026 (after close) | Feb 17, 2027 | Forensic Analysis, Nov 19, 2026 |
 | **HOPE** | Buy shares | Price at or below $11.61 | $13.01 | $10.91 | Jan 26, 2027 (before open) | Feb 17, 2027 | Forensic Analysis, Nov 19, 2026 |
+| **FRO** | Buy shares | Price at or below $45.21<br>Price at least 2% above the 20-day low (support) | $144.15 | $31.25 | Feb 26, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 
 **Notes from each report**
 
@@ -45,10 +45,10 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **DHT:** WATCH, confidence 65: buy at or below $18.34 (pullback to the 60-day low (support) ($18.25)), sell at $22.78 (twice the risk taken (no value target above the entry)), stop $16.12; chart-based entry, not a value bargain: keep it small; check that VLCC spot rates are holding up, earnings, filings and news before confirming.
 - **NFG:** WATCH, confidence 35: buy at or below $73.37 (pullback to the 60-day low (support) ($73.01)), sell at $82.17 (twice the risk taken (no value target above the entry)), stop $68.97; chart-based entry, not a value bargain: keep it small; check the Ohio utility deal and spinoff plan, earnings, filings and news before confirming.
 - **AXP:** WATCH, confidence 75: buy at or below $297.77 (pullback to the 60-day low (support) ($296.28)), sell at $333.50 (twice the risk taken (no value target above the entry)), stop $279.90; chart-based entry, not a value bargain: keep it small; check the AML consent orders and any credit-card rate-cap news, earnings, filings and news before confirming.
-- **FRO:** WATCH, confidence 70: buy at or below $38.78 (pullback to the 60-day low (support) ($38.59)), sell at $48.41 (twice the risk taken (no value target above the entry)), stop $33.97; chart-based entry, not a value bargain: keep it small; check Q3 results on Nov 20 and where VLCC spot rates stand, earnings, filings and news before confirming.
 - **FMAO:** WATCH, confidence 55: buy at or below $32.96 (pullback to the 60-day low (support) ($32.80)), sell at $37.08 (twice the risk taken (no value target above the entry)), stop $30.90; chart-based entry, not a value bargain: keep it small; check the July 2026 executive-change 8-K, earnings, filings and news before confirming.
 - **NKE:** WATCH, confidence 65: buy at or below $32.13 (pullback to the 60-day low (support) ($31.97)), sell at $38.35 (twice the risk taken (no value target above the entry)), stop $29.02; chart-based entry, not a value bargain: keep it small; check Nike's Investor Day guidance that sales keep falling through fiscal 2028, earnings, filings and news before confirming.
 - **HOPE:** WATCH, confidence 65: buy at or below $11.61 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $13.01 (twice the risk taken (no value target above the entry)), stop $10.91; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
+- **FRO:** WATCH, confidence 70: buy at or below $45.21 (price is already below the value buy-below line), sell at $144.15 (sell or trim when price reaches estimated value), stop $31.25; the stop is disaster insurance only, set beyond the stock's worst past fall; check the value rests on peak tanker rates (mid-cycle earnings power is about $27), earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
