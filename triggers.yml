@@ -1817,49 +1817,6 @@ triggers:
   resolved_target: 201.51
   seen_high: 203.66000366210938
   seen_low: 190.82000732421875
-- id: SMP-forensic-2026-11-08
-  source: forensic
-  ticker: SMP
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 39.67
-  exit_plan:
-    stop:
-      price: 36.62
-    target:
-      price: 55.1
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 60: buy at or below $39.67 (pullback to the 20-day
-    average ($39.47)), sell at $55.10 (sell or trim at estimated value), stop $36.62;
-    chart-based entry, not a value bargain: keep it small; check the CFO handover
-    (interim CFO since Oct 30), earnings, filings and news before confirming.'
-  report_date: 2026-11-08
-  expires: 2027-02-06
-  data_through: 2026-09-30
-  status: active
-  backtest:
-    wins: 0
-    losses: 3
-    signals: 3
-  earnings_date: '2027-02-25'
-  earnings_time: BMO
-  earnings_checked: '2026-11-20'
-  resolved:
-    sma20: 42.83461780548096
-    sma50: 39.30720565795898
-    sma200: 38.25592403411865
-    ema20: 42.695194805354596
-    52w_high: 46.91571949923246
-    52w_low: 33.436280437485124
-    support20: 36.55396482979274
-    resistance20: 46.91571949923246
-    rsi14: 58.6
-  resolved_stop: 36.62
-  resolved_target: 55.1
-  seen_high: 45.494998931884766
-  seen_low: 43.439998626708984
 - id: SN-forensic-2026-11-08
   source: forensic
   ticker: SN
@@ -2881,3 +2838,33 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-21'
   added_at: 2026-11-21 07:45
+- id: SMP-forensic-2026-11-21
+  source: forensic
+  ticker: SMP
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 39.5
+  exit_plan:
+    stop:
+      price: 36.6
+    target:
+      price: 53.15
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 70: buy at or below $39.50 (pullback to the 50-day
+    average ($39.31)), sell at $53.15 (sell or trim at estimated value), stop $36.60;
+    chart-based entry, not a value bargain: keep it small; check whether the October
+    CFO exit was orderly, earnings, filings and news before confirming.'
+  report_date: 2026-11-21
+  expires: 2027-02-19
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-02-25'
+  earnings_time: BMO
+  earnings_checked: '2026-11-21'
+  added_at: 2026-11-21 07:48

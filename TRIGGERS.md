@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 21, 2026 at 7:45 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 21, 2026 at 7:48 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **18 watching** · **7 bought (open)** · **37 ended**
 
@@ -16,7 +16,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **BB** | Buy shares | Price at or below $7.50 | $9.75 | $6.38 | Dec 17, 2026 (after close) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **OGE** | Buy shares | Price at or below $48.85 | $54.71 | $45.92 | Feb 17, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
 | **RTX** | Buy shares | Price at or below $179.92 | $201.51 | $169.12 | Jan 26, 2027 (before open) | Feb 5, 2027 | Forensic Analysis, Nov 7, 2026 |
-| **SMP** | Buy shares | Price at or below $39.67 | $55.10 | $36.62 | Feb 25, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 | **SN** | Buy shares | Price at or below $202.04 | $233.52 | $186.30 | Feb 10, 2027 (before open) | Feb 6, 2027 | Forensic Analysis, Nov 8, 2026 |
 | **TNC** | Buy shares | Price at or below $69.44 | $80.42 | $63.95 | Feb 22, 2027 (after close) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
 | **HRMY** | Buy shares | Price at or below $31.36 | $37.87 | $28.10 | Feb 23, 2027 (before open) | Feb 10, 2027 | Forensic Analysis, Nov 12, 2026 |
@@ -28,6 +27,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **HOPE** | Buy shares | Price at or below $11.61 | $13.01 | $10.91 | Jan 26, 2027 (before open) | Feb 17, 2027 | Forensic Analysis, Nov 19, 2026 |
 | **FRO** | Buy shares | Price at or below $45.21<br>Price at least 2% above the 20-day low (support) | $144.15 | $31.25 | Feb 26, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 | **RLX** | Buy shares | Price at or below $1.32 | $1.56 | $1.20 | Mar 12, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
+| **SMP** | Buy shares | Price at or below $39.50 | $53.15 | $36.60 | Feb 25, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 
 **Notes from each report**
 
@@ -37,7 +37,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **BB:** WATCH, confidence 40: buy at or below $7.50 (pullback to the 60-day low (support) ($7.46)), sell at $9.75 (twice the risk taken (no value target above the entry)), stop $6.38; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **OGE:** WATCH, confidence 35: buy at or below $48.85 (pullback to the 20-day average ($48.61)), sell at $54.71 (twice the risk taken (no value target above the entry)), stop $45.92; chart-based entry, not a value bargain: keep it small; check the officer change in the 2026-10-08 8-K, earnings, filings and news before confirming.
 - **RTX:** WATCH, confidence 70: buy at or below $179.92 (pullback to the 60-day low (support) ($179.02)), sell at $201.51 (twice the risk taken (no value target above the entry)), stop $169.12; chart-based entry, not a value bargain: keep it small; check the U.S. defense budget outlook after the midterms, earnings, filings and news before confirming.
-- **SMP:** WATCH, confidence 60: buy at or below $39.67 (pullback to the 20-day average ($39.47)), sell at $55.10 (sell or trim at estimated value), stop $36.62; chart-based entry, not a value bargain: keep it small; check the CFO handover (interim CFO since Oct 30), earnings, filings and news before confirming.
 - **SN:** WATCH, confidence 65: buy at or below $202.04 (pullback to the 20-day average ($201.03)), sell at $233.52 (twice the risk taken (no value target above the entry)), stop $186.30; chart-based entry, not a value bargain: keep it small; check whether margins hold up once the one-off tariff refunds stop, earnings, filings and news before confirming.
 - **TNC:** WATCH, confidence 60: buy at or below $69.44 (pullback to the 20-day average ($69.09)), sell at $80.42 (twice the risk taken (no value target above the entry)), stop $63.95; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **HRMY:** WATCH, confidence 40: buy at or below $31.36 (pullback of 1.5× a normal day's move (no chart support within 20%)), sell at $37.87 (twice the risk taken (no value target above the entry)), stop $28.10; chart-based entry, not a value bargain: keep it small; check the WAKIX patent ruling due around Feb 14, 2027, earnings, filings and news before confirming.
@@ -49,6 +48,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **HOPE:** WATCH, confidence 65: buy at or below $11.61 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $13.01 (twice the risk taken (no value target above the entry)), stop $10.91; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **FRO:** WATCH, confidence 70: buy at or below $45.21 (price is already below the value buy-below line), sell at $144.15 (sell or trim when price reaches estimated value), stop $31.25; the stop is disaster insurance only, set beyond the stock's worst past fall; check the value rests on peak tanker rates (mid-cycle earnings power is about $27), earnings, filings and news before confirming.
 - **RLX:** WATCH, confidence 55: buy at or below $1.32 (pullback to the 60-day low (support) ($1.31)), sell at $1.56 (twice the risk taken (no value target above the entry)), stop $1.20; chart-based entry, not a value bargain: keep it small; check the page still uses numbers through June 2026; Q3 operating profit fell to RMB39.5M, earnings, filings and news before confirming.
+- **SMP:** WATCH, confidence 70: buy at or below $39.50 (pullback to the 50-day average ($39.31)), sell at $53.15 (sell or trim at estimated value), stop $36.60; chart-based entry, not a value bargain: keep it small; check whether the October CFO exit was orderly, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
