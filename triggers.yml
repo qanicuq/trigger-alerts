@@ -2868,3 +2868,35 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-21'
   added_at: 2026-11-21 07:48
+- id: VRT-forensic-2026-11-22
+  source: forensic
+  ticker: VRT
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 141.08
+  exit_plan:
+    stop:
+      price: 119.92
+    target:
+      price: 183.4
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 35: buy at or below $141.08 (pullback of 1.5×
+    a normal day''s move (no chart support between one normal day''s move and 20%
+    under the price)), sell at $183.40 (twice the risk taken (no value target above
+    the entry)), stop $119.92; chart-based entry, not a value bargain: keep it small;
+    check whether the AI data-center spending worries behind November''s sector selloff
+    have eased, earnings, filings and news before confirming.'
+  report_date: 2026-11-22
+  expires: 2027-02-20
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2027-02-10'
+  earnings_time: BMO
+  earnings_checked: '2026-11-22'
+  added_at: 2026-11-22 11:58

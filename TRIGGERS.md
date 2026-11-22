@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 21, 2026 at 7:48 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 22, 2026 at 11:58 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**18 watching** · **7 bought (open)** · **37 ended**
+**19 watching** · **7 bought (open)** · **37 ended**
 
 ## Watching now
 
@@ -28,6 +28,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **FRO** | Buy shares | Price at or below $45.21<br>Price at least 2% above the 20-day low (support) | $144.15 | $31.25 | Feb 26, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 | **RLX** | Buy shares | Price at or below $1.32 | $1.56 | $1.20 | Mar 12, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 | **SMP** | Buy shares | Price at or below $39.50 | $53.15 | $36.60 | Feb 25, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
+| **VRT** | Buy shares | Price at or below $141.08 | $183.40 | $119.92 | Feb 10, 2027 (before open) | Feb 20, 2027 | Forensic Analysis, Nov 22, 2026 |
 
 **Notes from each report**
 
@@ -49,6 +50,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **FRO:** WATCH, confidence 70: buy at or below $45.21 (price is already below the value buy-below line), sell at $144.15 (sell or trim when price reaches estimated value), stop $31.25; the stop is disaster insurance only, set beyond the stock's worst past fall; check the value rests on peak tanker rates (mid-cycle earnings power is about $27), earnings, filings and news before confirming.
 - **RLX:** WATCH, confidence 55: buy at or below $1.32 (pullback to the 60-day low (support) ($1.31)), sell at $1.56 (twice the risk taken (no value target above the entry)), stop $1.20; chart-based entry, not a value bargain: keep it small; check the page still uses numbers through June 2026; Q3 operating profit fell to RMB39.5M, earnings, filings and news before confirming.
 - **SMP:** WATCH, confidence 70: buy at or below $39.50 (pullback to the 50-day average ($39.31)), sell at $53.15 (sell or trim at estimated value), stop $36.60; chart-based entry, not a value bargain: keep it small; check whether the October CFO exit was orderly, earnings, filings and news before confirming.
+- **VRT:** WATCH, confidence 35: buy at or below $141.08 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $183.40 (twice the risk taken (no value target above the entry)), stop $119.92; chart-based entry, not a value bargain: keep it small; check whether the AI data-center spending worries behind November's sector selloff have eased, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
