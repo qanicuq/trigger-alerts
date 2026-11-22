@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 22, 2026 at 11:58 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 22, 2026 at 12:05 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**19 watching** · **7 bought (open)** · **37 ended**
+**20 watching** · **7 bought (open)** · **37 ended**
 
 ## Watching now
 
@@ -29,6 +29,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **RLX** | Buy shares | Price at or below $1.32 | $1.56 | $1.20 | Mar 12, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 | **SMP** | Buy shares | Price at or below $39.50 | $53.15 | $36.60 | Feb 25, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 | **VRT** | Buy shares | Price at or below $141.08 | $183.40 | $119.92 | Feb 10, 2027 (before open) | Feb 20, 2027 | Forensic Analysis, Nov 22, 2026 |
+| **NBIS** | buy 95 put, sell 60 put, exp Jan 15, 2027 — target premium $26.01, stock $60.00; stop premium $8.51, stock $115.00, by Dec 24, 2026 | Price at or above $79.68<br>Price at or below $115.00 | premium $26.01, stock $60.00 | premium $8.51, stock $115.00, by Dec 24, 2026 | Feb 11, 2027 (before open) | Dec 21, 2026 | Option Calc, Nov 21, 2026 |
 
 **Notes from each report**
 
@@ -51,6 +52,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **RLX:** WATCH, confidence 55: buy at or below $1.32 (pullback to the 60-day low (support) ($1.31)), sell at $1.56 (twice the risk taken (no value target above the entry)), stop $1.20; chart-based entry, not a value bargain: keep it small; check the page still uses numbers through June 2026; Q3 operating profit fell to RMB39.5M, earnings, filings and news before confirming.
 - **SMP:** WATCH, confidence 70: buy at or below $39.50 (pullback to the 50-day average ($39.31)), sell at $53.15 (sell or trim at estimated value), stop $36.60; chart-based entry, not a value bargain: keep it small; check whether the October CFO exit was orderly, earnings, filings and news before confirming.
 - **VRT:** WATCH, confidence 35: buy at or below $141.08 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $183.40 (twice the risk taken (no value target above the entry)), stop $119.92; chart-based entry, not a value bargain: keep it small; check whether the AI data-center spending worries behind November's sector selloff have eased, earnings, filings and news before confirming.
+- **NBIS:** Option Calc 2026-11-21: bear put spread, buy Jan 15 2027 $95 put / sell $60 put, about $17.03 debit (max loss $1,703, max gain $1,798)
 
 ## Bought (open paper trades)
 

@@ -2900,3 +2900,42 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-22'
   added_at: 2026-11-22 11:58
+- id: NBIS-spread-2026-11-21
+  source: option
+  ticker: NBIS
+  action: SPREAD
+  conditions:
+  - type: price
+    op: '>='
+    value: 79.68
+  - type: price
+    op: <=
+    value: 115.0
+  contract:
+    expiry: 2027-01-15
+    legs:
+    - side: buy
+      right: put
+      strike: 95
+    - side: sell
+      right: put
+      strike: 60
+  option_exits:
+    target_premium: 26.01
+    stop_premium: 8.51
+    target_price: 60
+    stop_price: 115
+    exit_by: 2026-12-24
+  recommendation: 'Option Calc 2026-11-21: bear put spread, buy Jan 15 2027 $95 put
+    / sell $60 put, about $17.03 debit (max loss $1,703, max gain $1,798)'
+  report_date: 2026-11-21
+  expires: 2026-12-21
+  status: active
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2027-02-11'
+  earnings_time: BMO
+  earnings_checked: '2026-11-22'
+  added_at: 2026-11-22 12:05
