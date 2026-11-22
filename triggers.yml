@@ -2978,3 +2978,40 @@ triggers:
   earnings_time: AMC
   earnings_checked: '2026-11-22'
   added_at: 2026-11-22 12:06
+- id: TSM-forensic-2026-11-22
+  source: forensic
+  ticker: TSM
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 301.48
+  - type: price_vs
+    ref: support20
+    op: '>='
+    pct: 2
+  exit_plan:
+    stop:
+      price: 182.71
+    target:
+      price: 370.83
+    max_hold_days: 1260
+    review_days: 540
+  recommendation: 'WATCH, confidence 75: buy at or below $301.48 (value buy-below
+    line (within reach of the price)), sell at $370.83 (no longer cheap: P/E and P/B
+    back at the S&P 500''s, below estimated value), stop $182.71; the stop is disaster
+    insurance only, set beyond the stock''s worst past fall; fell 9% on 2026-11-20
+    on news: wait until about 2026-12-11 before confirming; check how much revenue
+    the new US export rule removes, earnings, filings and news before confirming.'
+  report_date: 2026-11-22
+  expires: 2027-02-20
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2027-01-14'
+  earnings_time: BMO
+  earnings_checked: '2026-11-22'
+  added_at: 2026-11-22 12:36
