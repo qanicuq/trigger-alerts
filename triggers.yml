@@ -2939,3 +2939,42 @@ triggers:
   earnings_time: BMO
   earnings_checked: '2026-11-22'
   added_at: 2026-11-22 12:05
+- id: CRWV-spread-2026-11-21
+  source: option
+  ticker: CRWV
+  action: SPREAD
+  conditions:
+  - type: price
+    op: '>='
+    value: 38.72
+  - type: price
+    op: <=
+    value: 52.31
+  contract:
+    expiry: 2027-01-15
+    legs:
+    - side: buy
+      right: put
+      strike: 42.5
+    - side: sell
+      right: put
+      strike: 35
+  option_exits:
+    target_premium: 5.61
+    stop_premium: 1.86
+    target_price: 35
+    stop_price: 52.31
+    exit_by: 2026-12-24
+  recommendation: 'Option Calc 2026-11-21: bear put spread, buy Jan 15 2027 $42.50
+    put / sell $35 put, about $3.73 debit (max loss $373, max gain $377)'
+  report_date: 2026-11-21
+  expires: 2026-12-21
+  status: active
+  backtest:
+    wins: 0
+    losses: 0
+    signals: 0
+  earnings_date: '2027-02-25'
+  earnings_time: AMC
+  earnings_checked: '2026-11-22'
+  added_at: 2026-11-22 12:06
