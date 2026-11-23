@@ -1,9 +1,9 @@
-# Report 2026-11-23 16:00 NY
+# Report 2026-11-23 16:05 NY
 
-Equity: $15,049  Peak: $15,344  Drawdown: 1.9%  Paused: no
+Equity: $15,042  Peak: $15,344  Drawdown: 2.0%  Paused: no
 Cash: $2,434  Option cash: $4,080
-P/L today: $9
-P/L overall: $49
+P/L today: $2
+P/L overall: $42
 Worst drawdown: 7.4%  Expectancy: $114.74 per trade (3 closed)
 Track record: 3 closed trades. Too few to judge skill: a short record can't tell skill from luck.
 
