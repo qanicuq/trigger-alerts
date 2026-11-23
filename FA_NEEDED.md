@@ -1,12 +1,11 @@
 # FA Needed
-Updated 2026-11-20 16:40 New York time
+Updated 2026-11-23 08:30 New York time
 
 ## 🔴 Needs a fresh FA now
 
 | Ticker | Why | Since | Run |
 | --- | --- | --- | --- |
-| FRO | earnings came out 2026-11-20; the report is on old numbers | 2026-11-20 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
-| RLX | earnings came out 2026-11-20; the report is on old numbers | 2026-11-20 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
+| RLX | FA already run 2026-11-21, but Webull doesn't have the new quarter yet (newest quarter ends 2026-06-30); run FA again once it does | 2026-11-20 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
 
 ## 🟡 FA needed soon
 
@@ -19,6 +18,7 @@ Updated 2026-11-20 16:40 New York time
 
 | Ticker | Why | Since |
 | --- | --- | --- |
-| FMAO | trigger sent to the bot | 2026-11-19 19:09 |
-| HOPE | trigger sent to the bot | 2026-11-19 21:56 |
-| NKE | trigger sent to the bot | 2026-11-19 21:46 |
+| CRWV | trigger sent to the bot | 2026-11-22 12:06 |
+| NBIS | trigger sent to the bot | 2026-11-22 12:05 |
+| TSM | trigger sent to the bot | 2026-11-22 12:36 |
+| VRT | trigger sent to the bot | 2026-11-22 11:58 |
