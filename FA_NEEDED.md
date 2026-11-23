@@ -1,5 +1,5 @@
 # FA Needed
-Updated 2026-11-23 08:30 New York time
+Updated 2026-11-23 09:30 New York time
 
 ## 🔴 Needs a fresh FA now
 
@@ -18,7 +18,5 @@ Updated 2026-11-23 08:30 New York time
 
 | Ticker | Why | Since |
 | --- | --- | --- |
-| CRWV | trigger sent to the bot | 2026-11-22 12:06 |
-| NBIS | trigger sent to the bot | 2026-11-22 12:05 |
 | TSM | trigger sent to the bot | 2026-11-22 12:36 |
 | VRT | trigger sent to the bot | 2026-11-22 11:58 |

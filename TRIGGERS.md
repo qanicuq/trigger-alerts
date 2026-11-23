@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 22, 2026 at 12:36 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 23, 2026 at 9:31 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**22 watching** · **7 bought (open)** · **37 ended**
+**20 watching** · **9 bought (open)** · **37 ended**
 
 ## Watching now
 
@@ -25,13 +25,11 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **FMAO** | Buy shares | Price at or below $32.96 | $37.08 | $30.90 | Feb 11, 2027 (after close) | Feb 17, 2027 | Forensic Analysis, Nov 19, 2026 |
 | **NKE** | Buy shares | Price at or below $32.13 | $38.35 | $29.02 | Dec 17, 2026 (after close) | Feb 17, 2027 | Forensic Analysis, Nov 19, 2026 |
 | **HOPE** | Buy shares | Price at or below $11.61 | $13.01 | $10.91 | Jan 26, 2027 (before open) | Feb 17, 2027 | Forensic Analysis, Nov 19, 2026 |
-| **FRO** | Buy shares | Price at or below $45.21<br>Price at least 2% above the 20-day low (support) | $144.15 | $31.25 | Feb 26, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
+| **FRO** | Buy shares | Price at or below $45.21<br>Price at least 2% above the 20-day low (support) (≈$43.03) | $144.15 | $31.25 | Feb 26, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 | **RLX** | Buy shares | Price at or below $1.32 | $1.56 | $1.20 | Mar 12, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 | **SMP** | Buy shares | Price at or below $39.50 | $53.15 | $36.60 | Feb 25, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 | **VRT** | Buy shares | Price at or below $141.08 | $183.40 | $119.92 | Feb 10, 2027 (before open) | Feb 20, 2027 | Forensic Analysis, Nov 22, 2026 |
-| **NBIS** | buy 95 put, sell 60 put, exp Jan 15, 2027 — target premium $26.01, stock $60.00; stop premium $8.51, stock $115.00, by Dec 24, 2026 | Price at or above $79.68<br>Price at or below $115.00 | premium $26.01, stock $60.00 | premium $8.51, stock $115.00, by Dec 24, 2026 | Feb 11, 2027 (before open) | Dec 21, 2026 | Option Calc, Nov 21, 2026 |
-| **CRWV** | buy 42.5 put, sell 35 put, exp Jan 15, 2027 — target premium $5.61, stock $35.00; stop premium $1.86, stock $52.31, by Dec 24, 2026 | Price at or above $38.72<br>Price at or below $52.31 | premium $5.61, stock $35.00 | premium $1.86, stock $52.31, by Dec 24, 2026 | Feb 25, 2027 (after close) | Dec 21, 2026 | Option Calc, Nov 21, 2026 |
-| **TSM** | Buy shares | Price at or below $301.48<br>Price at least 2% above the 20-day low (support) | $370.83 | $182.71 | Jan 14, 2027 (before open) | Feb 20, 2027 | Forensic Analysis, Nov 22, 2026 |
+| **TSM** | Buy shares | Price at or below $301.48<br>Price at least 2% above the 20-day low (support) (≈$324.85) | $370.83 | $182.71 | Jan 14, 2027 (before open) | Feb 20, 2027 | Forensic Analysis, Nov 22, 2026 |
 
 **Notes from each report**
 
@@ -54,8 +52,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **RLX:** WATCH, confidence 55: buy at or below $1.32 (pullback to the 60-day low (support) ($1.31)), sell at $1.56 (twice the risk taken (no value target above the entry)), stop $1.20; chart-based entry, not a value bargain: keep it small; check the page still uses numbers through June 2026; Q3 operating profit fell to RMB39.5M, earnings, filings and news before confirming.
 - **SMP:** WATCH, confidence 70: buy at or below $39.50 (pullback to the 50-day average ($39.31)), sell at $53.15 (sell or trim at estimated value), stop $36.60; chart-based entry, not a value bargain: keep it small; check whether the October CFO exit was orderly, earnings, filings and news before confirming.
 - **VRT:** WATCH, confidence 35: buy at or below $141.08 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $183.40 (twice the risk taken (no value target above the entry)), stop $119.92; chart-based entry, not a value bargain: keep it small; check whether the AI data-center spending worries behind November's sector selloff have eased, earnings, filings and news before confirming.
-- **NBIS:** Option Calc 2026-11-21: bear put spread, buy Jan 15 2027 $95 put / sell $60 put, about $17.03 debit (max loss $1,703, max gain $1,798)
-- **CRWV:** Option Calc 2026-11-21: bear put spread, buy Jan 15 2027 $42.50 put / sell $35 put, about $3.73 debit (max loss $373, max gain $377)
 - **TSM:** WATCH, confidence 75: buy at or below $301.48 (value buy-below line (within reach of the price)), sell at $370.83 (no longer cheap: P/E and P/B back at the S&P 500's, below estimated value), stop $182.71; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 9% on 2026-11-20 on news: wait until about 2026-12-11 before confirming; check how much revenue the new US export rule removes, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
@@ -69,6 +65,8 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **IMXI** | Stock | $6.62 | 123.80 shares | $16.05 | $2.46 | Nov 12, 2026 | Mar 1, 2027 (after close) |  |
 | **KMT** | Stock | $23.95 | 42.27 shares | $61.02 | $11.83 | Nov 13, 2026 | Feb 3, 2027 (before open) |  |
 | **LPG** | Stock | $47.75 | 17.34 shares | $116.66 | $32.45 | Nov 13, 2026 | Feb 4, 2027 (before open) |  |
+| **NBIS** | buy 95 put, sell 60 put, exp Jan 15, 2027 — target premium $26.01, stock $60.00; stop premium $8.51, stock $115.00, by Dec 24, 2026 | $10.95 | 1 contract(s) | premium $26.01, stock $60.00 | premium $8.51, stock $115.00, by Dec 24, 2026 | Nov 23, 2026 | Feb 11, 2027 (before open) |  |
+| **CRWV** | buy 42.5 put, sell 35 put, exp Jan 15, 2027 — target premium $5.61, stock $35.00; stop premium $1.86, stock $52.31, by Dec 24, 2026 | $2.35 | 1 contract(s) | premium $5.61, stock $35.00 | premium $1.86, stock $52.31, by Dec 24, 2026 | Nov 23, 2026 | Feb 25, 2027 (after close) |  |
 
 ## Closed paper trades
 

@@ -1,22 +1,13 @@
 {
  "due": [
   {
-   "ticker": "FRO",
-   "source": "forensic",
-   "kind": "waiting",
-   "bullish": true,
-   "earnings_date": "2026-11-20",
-   "earnings_time": "BMO",
-   "trigger_id": "FRO-forensic-2026-11-14"
-  },
-  {
    "ticker": "RLX",
    "source": "forensic",
    "kind": "waiting",
    "bullish": true,
    "earnings_date": "2026-11-20",
-   "earnings_time": "BMO",
-   "trigger_id": "RLX-forensic-2026-11-07"
+   "earnings_time": null,
+   "trigger_id": "RLX-forensic-2026-11-21"
   }
  ]
 }

@@ -1,6 +1,6 @@
 cash: 2434.226960884791
 peak_equity: 15343.97013363363
-day_start_equity: 14750.411538311731
+day_start_equity: 15039.49833515214
 positions:
 - id: SHOE-forensic-2026-11-06
   ticker: SHOE
@@ -94,6 +94,64 @@ positions:
   reserved: 0
   opened: '2026-11-13T10:00:47.208323-05:00'
   source: forensic
+- id: NBIS-spread-2026-11-21
+  ticker: NBIS
+  action: SPREAD
+  entry_price: 10.95
+  quantity: 1
+  stop: null
+  target: null
+  max_hold_days: 30
+  review_days: null
+  is_option: true
+  reserved: 0.0
+  opened: '2026-11-23T09:31:30.903605-05:00'
+  source: option
+  expiry: 2027-01-15
+  legs:
+  - side: buy
+    right: put
+    strike: 95
+  - side: sell
+    right: put
+    strike: 60
+  max_profit: 24.05
+  max_loss: 10.95
+  option_exits:
+    target_premium: 26.01
+    stop_premium: 8.51
+    target_price: 60
+    stop_price: 115
+    exit_by: 2026-12-24
+- id: CRWV-spread-2026-11-21
+  ticker: CRWV
+  action: SPREAD
+  entry_price: 2.35
+  quantity: 1
+  stop: null
+  target: null
+  max_hold_days: 30
+  review_days: null
+  is_option: true
+  reserved: 0.0
+  opened: '2026-11-23T09:31:31.897491-05:00'
+  source: option
+  expiry: 2027-01-15
+  legs:
+  - side: buy
+    right: put
+    strike: 42.5
+  - side: sell
+    right: put
+    strike: 35
+  max_profit: 5.15
+  max_loss: 2.35
+  option_exits:
+    target_premium: 5.61
+    stop_premium: 1.86
+    target_price: 35
+    stop_price: 52.31
+    exit_by: 2026-12-24
 closed_trades:
 - id: NBIS-spread-2026-11-16
   ticker: NBIS
@@ -183,7 +241,7 @@ closed_trades:
   pl: -65.77
   closed: '2026-11-20T15:55:23.963224-05:00'
 realized_pl: 344.2270641600104
-last_checked: '2026-11-20T16:40:31.738533-05:00'
+last_checked: '2026-11-23T09:30:35.346021-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -218,6 +276,7 @@ sent_slots:
   2026-11-20:morning: true
   2026-11-20:midday: true
   2026-11-20:end of day: true
+  2026-11-23:morning: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
@@ -228,7 +287,7 @@ stats:
   forensic-stock:
     wins: 0
     losses: 1
-day_start_date: '2026-11-20'
+day_start_date: '2026-11-23'
 max_drawdown_pct: 7.37
-option_cash: 5410.0
+option_cash: 4080.0
 daily_loss_alerted: '2026-11-16'
