@@ -124,7 +124,7 @@ positions:
     stop_price: 115
     exit_by: 2026-12-24
   no_quote_count: 0
-  last_value: 14.75
+  last_value: 14.7
 - id: CRWV-spread-2026-11-21
   ticker: CRWV
   action: SPREAD
@@ -155,7 +155,7 @@ positions:
     stop_price: 52.31
     exit_by: 2026-12-24
   no_quote_count: 0
-  last_value: 3.2
+  last_value: 3.1500000000000004
 closed_trades:
 - id: NBIS-spread-2026-11-16
   ticker: NBIS
@@ -245,7 +245,7 @@ closed_trades:
   pl: -65.77
   closed: '2026-11-20T15:55:23.963224-05:00'
 realized_pl: 344.2270641600104
-last_checked: '2026-11-24T14:30:38.438640-05:00'
+last_checked: '2026-11-24T14:35:26.702196-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
