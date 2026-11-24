@@ -8,6 +8,15 @@
    "earnings_date": "2026-11-20",
    "earnings_time": null,
    "trigger_id": "RLX-forensic-2026-11-21"
+  },
+  {
+   "ticker": "SHOE",
+   "source": "forensic",
+   "kind": "holding",
+   "bullish": true,
+   "earnings_date": "2026-11-24",
+   "earnings_time": "BMO",
+   "trigger_id": "SHOE-forensic-2026-11-06"
   }
  ]
 }
