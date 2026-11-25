@@ -3120,3 +3120,34 @@ triggers:
   resolved_target: 370.83
   seen_high: 384.1075134277344
   seen_low: 321.9200134277344
+- id: ETN-forensic-2026-11-25
+  source: forensic
+  ticker: ETN
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 285.53
+  exit_plan:
+    stop:
+      price: 247.84
+    target:
+      price: 360.9
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 65: buy at or below $285.53 (pullback of 1.5×
+    a normal day''s move (no chart support between one normal day''s move and 20%
+    under the price)), sell at $360.90 (twice the risk taken (no value target above
+    the entry)), stop $247.84; chart-based entry, not a value bargain: keep it small;
+    check earnings, filings and news before confirming.'
+  report_date: 2026-11-25
+  expires: 2027-02-23
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 1
+    signals: 1
+  earnings_date: '2027-02-02'
+  earnings_time: BMO
+  earnings_checked: '2026-11-25'
+  added_at: 2026-11-25 12:53

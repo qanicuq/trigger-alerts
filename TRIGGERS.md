@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 25, 2026 at 12:50 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 25, 2026 at 12:53 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**20 watching** · **9 bought (open)** · **37 ended**
+**21 watching** · **9 bought (open)** · **37 ended**
 
 ## Watching now
 
@@ -30,6 +30,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SMP** | Buy shares | Price at or below $39.50 | $53.15 | $36.60 | Feb 25, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 | **VRT** | Buy shares | Price at or below $141.08 | $183.40 | $119.92 | Feb 10, 2027 (before open) | Feb 20, 2027 | Forensic Analysis, Nov 22, 2026 |
 | **TSM** | Buy shares | Price at or below $301.48<br>Price at least 2% above the 20-day low (support) (≈$324.85) | $370.83 | $182.71 | Jan 14, 2027 (before open) | Feb 20, 2027 | Forensic Analysis, Nov 22, 2026 |
+| **ETN** | Buy shares | Price at or below $285.53 | $360.90 | $247.84 | Feb 2, 2027 (before open) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
 
 **Notes from each report**
 
@@ -53,6 +54,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **SMP:** WATCH, confidence 70: buy at or below $39.50 (pullback to the 50-day average ($39.31)), sell at $53.15 (sell or trim at estimated value), stop $36.60; chart-based entry, not a value bargain: keep it small; check whether the October CFO exit was orderly, earnings, filings and news before confirming.
 - **VRT:** WATCH, confidence 35: buy at or below $141.08 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $183.40 (twice the risk taken (no value target above the entry)), stop $119.92; chart-based entry, not a value bargain: keep it small; check whether the AI data-center spending worries behind November's sector selloff have eased, earnings, filings and news before confirming.
 - **TSM:** WATCH, confidence 75: buy at or below $301.48 (value buy-below line (within reach of the price)), sell at $370.83 (no longer cheap: P/E and P/B back at the S&P 500's, below estimated value), stop $182.71; the stop is disaster insurance only, set beyond the stock's worst past fall; fell 9% on 2026-11-20 on news: wait until about 2026-12-11 before confirming; check how much revenue the new US export rule removes, earnings, filings and news before confirming.
+- **ETN:** WATCH, confidence 65: buy at or below $285.53 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $360.90 (twice the risk taken (no value target above the entry)), stop $247.84; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
