@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 25, 2026 at 4:40 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 25, 2026 at 6:34 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**21 watching** · **9 bought (open)** · **37 ended**
+**22 watching** · **9 bought (open)** · **37 ended**
 
 ## Watching now
 
@@ -31,6 +31,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **ETN** | Buy shares | Price at or below $285.53 | $360.90 | $247.84 | Feb 2, 2027 (before open) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
 | **RLX** | Buy shares | Price at or below $1.32 | $1.61 | $1.18 | Mar 12, 2027 (before open) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
 | **TSM** | Buy shares | Price at or below $320.07 | $459.67 | $274.75 | Jan 14, 2027 (before open) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
+| **WM** | Buy shares | Price at or below $240.90 | $269.81 | $226.45 | Jan 27, 2027 (after close) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
 
 **Notes from each report**
 
@@ -55,6 +56,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **ETN:** WATCH, confidence 65: buy at or below $285.53 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $360.90 (twice the risk taken (no value target above the entry)), stop $247.84; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
 - **RLX:** WATCH, confidence 55: buy at or below $1.32 (pullback to the 60-day low (support) ($1.31)), sell at $1.61 (twice the risk taken (no value target above the entry)), stop $1.18; chart-based entry, not a value bargain: keep it small; check the high receivables flag and Q3's lower margins, earnings, filings and news before confirming.
 - **TSM:** WATCH, confidence 75: buy at or below $320.07 (pullback to the 60-day low (support) ($318.48)), sell at $459.67 (sell or trim at estimated value), stop $274.75; chart-based entry, not a value bargain: keep it small; check whether the new US export rules cut TSMC's China revenue, earnings, filings and news before confirming.
+- **WM:** WATCH, confidence 80: buy at or below $240.90 (pullback to the 20-day average ($239.70)), sell at $269.81 (twice the risk taken (no value target above the entry)), stop $226.45; chart-based entry, not a value bargain: keep it small; check the CEO succession after Jim Fish retires, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 

@@ -3159,3 +3159,34 @@ triggers:
   resolved_target: 459.67
   seen_high: 342.20001220703125
   seen_low: 338.8599853515625
+- id: WM-forensic-2026-11-25
+  source: forensic
+  ticker: WM
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 240.9
+  exit_plan:
+    stop:
+      price: 226.45
+    target:
+      price: 269.81
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 80: buy at or below $240.90 (pullback to the
+    20-day average ($239.70)), sell at $269.81 (twice the risk taken (no value target
+    above the entry)), stop $226.45; chart-based entry, not a value bargain: keep
+    it small; check the CEO succession after Jim Fish retires, earnings, filings and
+    news before confirming.'
+  report_date: 2026-11-25
+  expires: 2027-02-23
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 3
+    signals: 3
+  earnings_date: '2027-01-27'
+  earnings_time: AMC
+  earnings_checked: '2026-11-25'
+  added_at: 2026-11-25 18:34
