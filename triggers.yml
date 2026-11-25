@@ -3023,57 +3023,6 @@ triggers:
   frozen: true
   seen_high: 50.525001525878906
   seen_low: 50.525001525878906
-- id: TSM-forensic-2026-11-22
-  source: forensic
-  ticker: TSM
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 301.48
-  - type: price_vs
-    ref: support20
-    op: '>='
-    pct: 2
-  exit_plan:
-    stop:
-      price: 182.71
-    target:
-      price: 370.83
-    max_hold_days: 1260
-    review_days: 540
-  recommendation: 'WATCH, confidence 75: buy at or below $301.48 (value buy-below
-    line (within reach of the price)), sell at $370.83 (no longer cheap: P/E and P/B
-    back at the S&P 500''s, below estimated value), stop $182.71; the stop is disaster
-    insurance only, set beyond the stock''s worst past fall; fell 9% on 2026-11-20
-    on news: wait until about 2026-12-11 before confirming; check how much revenue
-    the new US export rule removes, earnings, filings and news before confirming.'
-  report_date: 2026-11-22
-  expires: 2027-02-20
-  data_through: 2026-09-30
-  status: active
-  backtest:
-    wins: 0
-    losses: 1
-    signals: 1
-  earnings_date: '2027-01-14'
-  earnings_time: BMO
-  earnings_checked: '2026-11-25'
-  added_at: 2026-11-22 12:36
-  resolved:
-    sma20: 379.45250091552737
-    sma50: 418.24340087890624
-    sma200: 402.22805221557616
-    ema20: 376.56789086978654
-    52w_high: 487.4700012207031
-    52w_low: 270.22005706155056
-    support20: 318.4800109863281
-    resistance20: 436.239990234375
-    rsi14: 38.7
-  resolved_stop: 182.71
-  resolved_target: 370.83
-  seen_high: 384.1075134277344
-  seen_low: 321.9200134277344
 - id: ETN-forensic-2026-11-25
   source: forensic
   ticker: ETN
@@ -3165,3 +3114,34 @@ triggers:
   resolved_target: 1.61
   seen_high: 1.5950000286102295
   seen_low: 1.5800000429153442
+- id: TSM-forensic-2026-11-25
+  source: forensic
+  ticker: TSM
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 320.07
+  exit_plan:
+    stop:
+      price: 274.75
+    target:
+      price: 459.67
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 75: buy at or below $320.07 (pullback to the
+    60-day low (support) ($318.48)), sell at $459.67 (sell or trim at estimated value),
+    stop $274.75; chart-based entry, not a value bargain: keep it small; check whether
+    the new US export rules cut TSMC''s China revenue, earnings, filings and news
+    before confirming.'
+  report_date: 2026-11-25
+  expires: 2027-02-23
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 1
+    losses: 2
+    signals: 3
+  earnings_date: '2027-01-14'
+  earnings_time: BMO
+  earnings_checked: '2026-11-25'
+  added_at: 2026-11-25 14:14
