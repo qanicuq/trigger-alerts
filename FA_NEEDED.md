@@ -1,5 +1,5 @@
 # FA Needed
-Updated 2026-11-25 14:10 New York time
+Updated 2026-11-25 14:15 New York time
 
 ## 🔴 Needs a fresh FA now
 
@@ -19,3 +19,4 @@ Updated 2026-11-25 14:10 New York time
 | Ticker | Why | Since |
 | --- | --- | --- |
 | ETN | trigger sent to the bot | 2026-11-25 12:53 |
+| TSM | trigger sent to the bot | 2026-11-25 14:14 |
