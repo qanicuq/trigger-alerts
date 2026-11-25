@@ -1,6 +1,6 @@
 # Triggers
 
-Updated Nov 24, 2026 at 4:40 PM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 25, 2026 at 9:31 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
 **20 watching** · **9 bought (open)** · **37 ended**
 
@@ -58,7 +58,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Bought at | Amount | Sell target | Stop | Bought on | Next earnings | Note |
 |---|---|---|---|---|---|---|---|---|
-| **SHOE** | Stock | $15.01 | 60.25 shares | $28.27 | $6.71 | Nov 6, 2026 | Nov 24, 2026 (before open) |  |
+| **SHOE** | Stock | $15.01 | 60.25 shares | $28.27 | $6.71 | Nov 6, 2026 | Apr 1, 2027 (before open) |  |
 | **RES** | Stock | $5.33 | 230.03 shares | $9.13 | $3.15 | Nov 9, 2026 | Feb 2, 2027 (before open) |  |
 | **NAT** | Stock | $6.18 | 405.39 shares | $7.68 | $5.46 | Nov 10, 2026 | Nov 27, 2026 (after close) |  |
 | **WIT** | Stock | $2.12 | 95.91 shares | $3.15 | $1.05 | Nov 11, 2026 | Jan 15, 2027 (before open) |  |

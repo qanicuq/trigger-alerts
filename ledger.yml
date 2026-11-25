@@ -1,6 +1,6 @@
 cash: 2434.226960884791
 peak_equity: 15428.66446679328
-day_start_equity: 14874.540313977985
+day_start_equity: 15254.719361899122
 positions:
 - id: SHOE-forensic-2026-11-06
   ticker: SHOE
@@ -245,7 +245,7 @@ closed_trades:
   pl: -65.77
   closed: '2026-11-20T15:55:23.963224-05:00'
 realized_pl: 344.2270641600104
-last_checked: '2026-11-24T16:40:32.722500-05:00'
+last_checked: '2026-11-25T09:30:35.781451-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -286,6 +286,7 @@ sent_slots:
   2026-11-24:morning: true
   2026-11-24:midday: true
   2026-11-24:end of day: true
+  2026-11-25:morning: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
@@ -296,7 +297,7 @@ stats:
   forensic-stock:
     wins: 0
     losses: 1
-day_start_date: '2026-11-24'
+day_start_date: '2026-11-25'
 max_drawdown_pct: 7.37
 option_cash: 4080.0
 daily_loss_alerted: '2026-11-16'
