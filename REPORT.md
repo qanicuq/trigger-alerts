@@ -1,20 +1,20 @@
-# Report 2026-11-25 13:25 NY
+# Report 2026-11-25 13:30 NY
 
-Equity: $15,597  Peak: $15,793  Drawdown: 1.2%  Paused: no
+Equity: $15,622  Peak: $15,793  Drawdown: 1.1%  Paused: no
 Cash: $2,434  Option cash: $4,080
-P/L today: $342
-P/L overall: $597
+P/L today: $368
+P/L overall: $622
 Worst drawdown: 7.4%  Expectancy: $114.74 per trade (3 closed)
 Track record: 3 closed trades. Too few to judge skill: a short record can't tell skill from luck.
 
 ## Open trades
-- SHOE entry 15.01 now 11.819999694824219 P/L -21.2% stop 6.71 target 28.27
-- RES entry 5.33 now 5.228700160980225 P/L -2.0% stop 3.15 target 9.13
-- NAT entry 6.18 now 6.474999904632568 P/L 4.7% stop 5.46 target 7.68
-- WIT entry 2.12 now 2.184999942779541 P/L 3.3% stop 1.05 target 3.15
-- IMXI entry 6.62 now 5.5 P/L -16.9% stop 2.46 target 16.05
-- KMT entry 23.95 now 22.579999923706055 P/L -5.7% stop 11.83 target 61.02
-- LPG entry 47.75 now 45.7400016784668 P/L -4.2% stop 32.45 target 116.66
+- SHOE entry 15.01 now 11.859999656677246 P/L -21.0% stop 6.71 target 28.27
+- RES entry 5.33 now 5.230000019073486 P/L -1.9% stop 3.15 target 9.13
+- NAT entry 6.18 now 6.480000019073486 P/L 4.8% stop 5.46 target 7.68
+- WIT entry 2.12 now 2.180000066757202 P/L 3.0% stop 1.05 target 3.15
+- IMXI entry 6.62 now 5.534999847412109 P/L -16.4% stop 2.46 target 16.05
+- KMT entry 23.95 now 22.59000015258789 P/L -5.7% stop 11.83 target 61.02
+- LPG entry 47.75 now 45.81999969482422 P/L -4.0% stop 32.45 target 116.66
 - NBIS buy 95 put, sell 60 put, exp Jan 15, 2027 entry 10.95 exits target premium $26.01, stock $60.00; stop premium $8.51, stock $115.00, by Dec 24, 2026
 - CRWV buy 42.5 put, sell 35 put, exp Jan 15, 2027 entry 2.35 exits target premium $5.61, stock $35.00; stop premium $1.86, stock $52.31, by Dec 24, 2026
 
