@@ -2823,52 +2823,6 @@ triggers:
   resolved_target: 144.15
   seen_high: 48.005001068115234
   seen_low: 46.03499984741211
-- id: RLX-forensic-2026-11-21
-  source: forensic
-  ticker: RLX
-  action: BUY
-  conditions:
-  - type: price
-    op: <=
-    value: 1.32
-  exit_plan:
-    stop:
-      price: 1.2
-    target:
-      price: 1.56
-    max_hold_days: 180
-  recommendation: 'WATCH, confidence 55: buy at or below $1.32 (pullback to the 60-day
-    low (support) ($1.31)), sell at $1.56 (twice the risk taken (no value target above
-    the entry)), stop $1.20; chart-based entry, not a value bargain: keep it small;
-    check the page still uses numbers through June 2026; Q3 operating profit fell
-    to RMB39.5M, earnings, filings and news before confirming.'
-  report_date: 2026-11-21
-  expires: 2027-02-19
-  data_through: 2026-06-30
-  earnings_last: '2026-11-20'
-  status: active
-  backtest:
-    wins: 0
-    losses: 0
-    signals: 0
-  earnings_date: '2027-03-12'
-  earnings_time: BMO
-  earnings_checked: '2026-11-25'
-  added_at: 2026-11-21 07:45
-  resolved:
-    sma20: 1.55974999666214
-    sma50: 1.640500009059906
-    sma200: 1.9583250057697297
-    ema20: 1.5578992202239037
-    52w_high: 2.549999952316284
-    52w_low: 1.309999942779541
-    support20: 1.309999942779541
-    resistance20: 1.6799999475479126
-    rsi14: 49.7
-  resolved_stop: 1.2
-  resolved_target: 1.56
-  seen_high: 1.6150000095367432
-  seen_low: 1.4105000495910645
 - id: SMP-forensic-2026-11-21
   source: forensic
   ticker: SMP
@@ -3165,3 +3119,35 @@ triggers:
   resolved_target: 360.9
   seen_high: 314.6050109863281
   seen_low: 314.6050109863281
+- id: RLX-forensic-2026-11-25
+  source: forensic
+  ticker: RLX
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 1.32
+  exit_plan:
+    stop:
+      price: 1.18
+    target:
+      price: 1.61
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 55: buy at or below $1.32 (pullback to the 60-day
+    low (support) ($1.31)), sell at $1.61 (twice the risk taken (no value target above
+    the entry)), stop $1.18; chart-based entry, not a value bargain: keep it small;
+    check the high receivables flag and Q3''s lower margins, earnings, filings and
+    news before confirming.'
+  report_date: 2026-11-25
+  expires: 2027-02-23
+  data_through: 2026-06-30
+  earnings_last: '2026-11-20'
+  status: active
+  backtest:
+    wins: 1
+    losses: 0
+    signals: 1
+  earnings_date: '2027-03-12'
+  earnings_time: BMO
+  earnings_checked: '2026-11-25'
+  added_at: 2026-11-25 12:57
