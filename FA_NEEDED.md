@@ -1,5 +1,5 @@
 # FA Needed
-Updated 2026-11-27 10:55 New York time
+Updated 2026-11-27 11:00 New York time
 
 ## 🔴 Needs a fresh FA now
 
@@ -19,3 +19,4 @@ Updated 2026-11-27 10:55 New York time
 | Ticker | Why | Since |
 | --- | --- | --- |
 | IBM | trigger sent to the bot | 2026-11-26 13:53 |
+| IRM | trigger sent to the bot | 2026-11-27 10:55 |
