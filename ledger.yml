@@ -124,7 +124,7 @@ positions:
     stop_price: 115
     exit_by: 2026-12-24
   no_quote_count: 0
-  last_value: 14.75
+  last_value: 14.899999999999999
 - id: CRWV-spread-2026-11-21
   ticker: CRWV
   action: SPREAD
@@ -155,7 +155,36 @@ positions:
     stop_price: 52.31
     exit_by: 2026-12-24
   no_quote_count: 0
-  last_value: 3.05
+  last_value: 3.1
+- id: IREN-spread-2026-11-27
+  ticker: IREN
+  action: SPREAD
+  entry_price: 2.46
+  quantity: 1
+  stop: null
+  target: null
+  max_hold_days: 30
+  review_days: null
+  is_option: true
+  reserved: 0.0
+  opened: '2026-11-27T10:30:49.169272-05:00'
+  source: option
+  expiry: 2027-01-15
+  legs:
+  - side: buy
+    right: put
+    strike: 15
+  - side: sell
+    right: put
+    strike: 10
+  max_profit: 2.54
+  max_loss: 2.46
+  option_exits:
+    target_premium: 3.72
+    stop_premium: 1.22
+    target_price: 10.1
+    stop_price: 18.07
+    exit_by: 2026-12-24
 closed_trades:
 - id: NBIS-spread-2026-11-16
   ticker: NBIS
@@ -245,7 +274,7 @@ closed_trades:
   pl: -65.77
   closed: '2026-11-20T15:55:23.963224-05:00'
 realized_pl: 344.2270641600104
-last_checked: '2026-11-27T10:25:26.703773-05:00'
+last_checked: '2026-11-27T10:30:36.284683-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -302,5 +331,5 @@ stats:
     losses: 1
 day_start_date: '2026-11-27'
 max_drawdown_pct: 7.37
-option_cash: 4080.0
+option_cash: 3834.0
 daily_loss_alerted: '2026-11-16'

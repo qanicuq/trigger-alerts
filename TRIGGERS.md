@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 27, 2026 at 10:25 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 27, 2026 at 10:30 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**23 watching** · **9 bought (open)** · **37 ended**
+**23 watching** · **10 bought (open)** · **37 ended**
 
 ## Watching now
 
@@ -73,6 +73,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **LPG** | Stock | $47.75 | 17.34 shares | $116.66 | $32.45 | Nov 13, 2026 | Feb 4, 2027 (before open) |  |
 | **NBIS** | buy 95 put, sell 60 put, exp Jan 15, 2027 — target premium $26.01, stock $60.00; stop premium $8.51, stock $115.00, by Dec 24, 2026 | $10.95 | 1 contract(s) | premium $26.01, stock $60.00 | premium $8.51, stock $115.00, by Dec 24, 2026 | Nov 23, 2026 | Feb 11, 2027 (before open) |  |
 | **CRWV** | buy 42.5 put, sell 35 put, exp Jan 15, 2027 — target premium $5.61, stock $35.00; stop premium $1.86, stock $52.31, by Dec 24, 2026 | $2.35 | 1 contract(s) | premium $5.61, stock $35.00 | premium $1.86, stock $52.31, by Dec 24, 2026 | Nov 23, 2026 | Feb 25, 2027 (after close) |  |
+| **IREN** | buy 15 put, sell 10 put, exp Jan 15, 2027 — target premium $3.72, stock $10.10; stop premium $1.22, stock $18.07, by Dec 24, 2026 | $2.46 | 1 contract(s) | premium $3.72, stock $10.10 | premium $1.22, stock $18.07, by Dec 24, 2026 | Nov 27, 2026 | Feb 4, 2027 (after close) |  |
 
 ## Closed paper trades
 
