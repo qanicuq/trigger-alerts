@@ -3303,3 +3303,35 @@ triggers:
   frozen: true
   seen_high: 13.149999618530273
   seen_low: 13.149999618530273
+- id: IRM-forensic-2026-11-27
+  source: forensic
+  ticker: IRM
+  action: BUY
+  conditions:
+  - type: price
+    op: <=
+    value: 96.94
+  exit_plan:
+    stop:
+      price: 87.94
+    target:
+      price: 114.94
+    max_hold_days: 180
+  recommendation: 'WATCH, confidence 40: buy at or below $96.94 (pullback of 1.5×
+    a normal day''s move (no chart support between one normal day''s move and 20%
+    under the price)), sell at $114.94 (twice the risk taken (no value target above
+    the entry)), stop $87.94; chart-based entry, not a value bargain: keep it small;
+    check whether AFFO, not GAAP profit, justifies the price, earnings, filings and
+    news before confirming.'
+  report_date: 2026-11-27
+  expires: 2027-02-25
+  data_through: 2026-09-30
+  status: active
+  backtest:
+    wins: 0
+    losses: 2
+    signals: 2
+  earnings_date: '2027-02-11'
+  earnings_time: BMO
+  earnings_checked: '2026-11-27'
+  added_at: 2026-11-27 10:55

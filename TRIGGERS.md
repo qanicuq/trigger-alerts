@@ -2,7 +2,7 @@
 
 Updated Nov 27, 2026 at 10:55 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**23 watching** · **10 bought (open)** · **37 ended**
+**24 watching** · **10 bought (open)** · **37 ended**
 
 ## Watching now
 
@@ -33,6 +33,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **TSM** | Buy shares | Price at or below $320.07 | $459.67 | $274.75 | Jan 14, 2027 (before open) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
 | **WM** | Buy shares | Price at or below $240.90 | $269.81 | $226.45 | Jan 27, 2027 (after close) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
 | **IBM** | Buy shares | Price at or below $236.83 | $267.21 | $221.64 | Jan 27, 2027 (after close) | Feb 24, 2027 | Forensic Analysis, Nov 26, 2026 |
+| **IRM** | Buy shares | Price at or below $96.94 | $114.94 | $87.94 | Feb 11, 2027 (before open) | Feb 25, 2027 | Forensic Analysis, Nov 27, 2026 |
 
 **Notes from each report**
 
@@ -59,6 +60,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **TSM:** WATCH, confidence 75: buy at or below $320.07 (pullback to the 60-day low (support) ($318.48)), sell at $459.67 (sell or trim at estimated value), stop $274.75; chart-based entry, not a value bargain: keep it small; check whether the new US export rules cut TSMC's China revenue, earnings, filings and news before confirming.
 - **WM:** WATCH, confidence 80: buy at or below $240.90 (pullback to the 20-day average ($239.70)), sell at $269.81 (twice the risk taken (no value target above the entry)), stop $226.45; chart-based entry, not a value bargain: keep it small; check the CEO succession after Jim Fish retires, earnings, filings and news before confirming.
 - **IBM:** WATCH, confidence 60: buy at or below $236.83 (pullback to the 50-day average ($235.65)), sell at $267.21 (twice the risk taken (no value target above the entry)), stop $221.64; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
+- **IRM:** WATCH, confidence 40: buy at or below $96.94 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $114.94 (twice the risk taken (no value target above the entry)), stop $87.94; chart-based entry, not a value bargain: keep it small; check whether AFFO, not GAAP profit, justifies the price, earnings, filings and news before confirming.
 
 ## Bought (open paper trades)
 
