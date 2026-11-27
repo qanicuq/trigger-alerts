@@ -1,5 +1,5 @@
 # FA Needed
-Updated 2026-11-27 08:30 New York time
+Updated 2026-11-27 09:30 New York time
 
 ## 🔴 Needs a fresh FA now
 
@@ -12,7 +12,7 @@ Updated 2026-11-27 08:30 New York time
 
 | Ticker | Why | Since | Run |
 | --- | --- | --- | --- |
-| NAT | earnings on 2026-11-27 | 2026-11-13 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
+| NAT | earnings on 2026-11-30 | 2026-11-16 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
 
 ## 🟢 Trigger sent (last 24 hours)
 
