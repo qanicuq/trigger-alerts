@@ -1,8 +1,8 @@
 # Triggers
 
-Updated Nov 27, 2026 at 11:40 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
+Updated Nov 27, 2026 at 11:42 AM New York. This page rewrites itself every time the bot runs, including each time a trigger is added. Paper money only.
 
-**24 watching** · **10 bought (open)** · **37 ended**
+**23 watching** · **10 bought (open)** · **38 ended**
 
 ## Watching now
 
@@ -29,7 +29,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 | **SMP** | Buy shares | Price at or below $39.50 | $53.15 | $36.60 | Feb 25, 2027 (before open) | Feb 19, 2027 | Forensic Analysis, Nov 21, 2026 |
 | **VRT** | Buy shares | Price at or below $141.08 | $183.40 | $119.92 | Feb 10, 2027 (before open) | Feb 20, 2027 | Forensic Analysis, Nov 22, 2026 |
 | **ETN** | Buy shares | Price at or below $285.53 | $360.90 | $247.84 | Feb 2, 2027 (before open) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
-| **RLX** | Buy shares | Price at or below $1.32 | $1.61 | $1.18 | Mar 12, 2027 (before open) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
 | **TSM** | Buy shares | Price at or below $320.07 | $459.67 | $274.75 | Jan 14, 2027 (before open) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
 | **WM** | Buy shares | Price at or below $240.90 | $269.81 | $226.45 | Jan 27, 2027 (after close) | Feb 23, 2027 | Forensic Analysis, Nov 25, 2026 |
 | **IBM** | Buy shares | Price at or below $236.83 | $267.21 | $221.64 | Jan 27, 2027 (after close) | Feb 24, 2027 | Forensic Analysis, Nov 26, 2026 |
@@ -56,7 +55,6 @@ The bot paper-buys automatically when **every** condition on a line is true.
 - **SMP:** WATCH, confidence 70: buy at or below $39.50 (pullback to the 50-day average ($39.31)), sell at $53.15 (sell or trim at estimated value), stop $36.60; chart-based entry, not a value bargain: keep it small; check whether the October CFO exit was orderly, earnings, filings and news before confirming.
 - **VRT:** WATCH, confidence 35: buy at or below $141.08 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $183.40 (twice the risk taken (no value target above the entry)), stop $119.92; chart-based entry, not a value bargain: keep it small; check whether the AI data-center spending worries behind November's sector selloff have eased, earnings, filings and news before confirming.
 - **ETN:** WATCH, confidence 65: buy at or below $285.53 (pullback of 1.5× a normal day's move (no chart support between one normal day's move and 20% under the price)), sell at $360.90 (twice the risk taken (no value target above the entry)), stop $247.84; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
-- **RLX:** WATCH, confidence 55: buy at or below $1.32 (pullback to the 60-day low (support) ($1.31)), sell at $1.61 (twice the risk taken (no value target above the entry)), stop $1.18; chart-based entry, not a value bargain: keep it small; check the high receivables flag and Q3's lower margins, earnings, filings and news before confirming.
 - **TSM:** WATCH, confidence 75: buy at or below $320.07 (pullback to the 60-day low (support) ($318.48)), sell at $459.67 (sell or trim at estimated value), stop $274.75; chart-based entry, not a value bargain: keep it small; check whether the new US export rules cut TSMC's China revenue, earnings, filings and news before confirming.
 - **WM:** WATCH, confidence 80: buy at or below $240.90 (pullback to the 20-day average ($239.70)), sell at $269.81 (twice the risk taken (no value target above the entry)), stop $226.45; chart-based entry, not a value bargain: keep it small; check the CEO succession after Jim Fish retires, earnings, filings and news before confirming.
 - **IBM:** WATCH, confidence 60: buy at or below $236.83 (pullback to the 50-day average ($235.65)), sell at $267.21 (twice the risk taken (no value target above the entry)), stop $221.64; chart-based entry, not a value bargain: keep it small; check earnings, filings and news before confirming.
@@ -89,6 +87,7 @@ The bot paper-buys automatically when **every** condition on a line is true.
 
 | Ticker | What | Added | Status | Why it ended |
 |---|---|---|---|---|
+| **RLX** | Buy shares | Nov 25, 2026 | Cancelled | Thesis broken: Verdict AVOID: 2 serious red flags |
 | **NVDA** | Buy shares | Nov 14, 2026 | Cancelled | Thesis broken: SEC investigation into disclosures: verdict AVOID |
 | **AMAT** | Buy shares | Nov 13, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |
 | **TSLA** | Buy shares | Nov 12, 2026 | Expired | Conditions were met, but it wasn't confirmed by 4 PM that day |

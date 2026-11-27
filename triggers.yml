@@ -3091,7 +3091,7 @@ triggers:
   expires: 2027-02-23
   data_through: 2026-06-30
   earnings_last: '2026-11-20'
-  status: active
+  status: cancelled
   backtest:
     wins: 1
     losses: 0
@@ -3114,6 +3114,7 @@ triggers:
   resolved_target: 1.61
   seen_high: 1.7000000476837158
   seen_low: 1.565000057220459
+  cancel_reason: 'Thesis broken: Verdict AVOID: 2 serious red flags'
 - id: TSM-forensic-2026-11-25
   source: forensic
   ticker: TSM
