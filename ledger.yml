@@ -124,7 +124,7 @@ positions:
     stop_price: 115
     exit_by: 2026-12-24
   no_quote_count: 0
-  last_value: 14.3
+  last_value: 14.4
 - id: CRWV-spread-2026-11-21
   ticker: CRWV
   action: SPREAD
@@ -276,7 +276,7 @@ closed_trades:
   pl: -65.77
   closed: '2026-11-20T15:55:23.963224-05:00'
 realized_pl: 344.2270641600104
-last_checked: '2026-11-27T12:20:30.588021-05:00'
+last_checked: '2026-11-27T12:25:28.079818-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
