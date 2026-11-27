@@ -276,7 +276,7 @@ closed_trades:
   pl: -65.77
   closed: '2026-11-20T15:55:23.963224-05:00'
 realized_pl: 344.2270641600104
-last_checked: '2026-11-27T15:50:30.830443-05:00'
+last_checked: '2026-11-27T15:55:27.880256-05:00'
 sent_slots:
   2026-11-06:morning: true
   2026-11-06:midday: true
@@ -322,6 +322,7 @@ sent_slots:
   2026-11-25:end of day: true
   2026-11-27:morning: true
   2026-11-27:midday: true
+  2026-11-27:end of day: true
 usage_checked_date: null
 usage_alerted_month: null
 paused: false
