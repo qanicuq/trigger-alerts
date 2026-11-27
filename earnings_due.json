@@ -1,15 +1,6 @@
 {
  "due": [
   {
-   "ticker": "RLX",
-   "source": "forensic",
-   "kind": "waiting",
-   "bullish": true,
-   "earnings_date": "2026-11-20",
-   "earnings_time": null,
-   "trigger_id": "RLX-forensic-2026-11-25"
-  },
-  {
    "ticker": "SHOE",
    "source": "forensic",
    "kind": "holding",

@@ -1,11 +1,10 @@
 # FA Needed
-Updated 2026-11-27 11:40 New York time
+Updated 2026-11-27 11:45 New York time
 
 ## 🔴 Needs a fresh FA now
 
 | Ticker | Why | Since | Run |
 | --- | --- | --- | --- |
-| RLX | FA already run 2026-11-25, but Webull doesn't have the new quarter yet (newest quarter ends 2026-06-30); run FA again once it does | 2026-11-20 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
 | SHOE | earnings came out 2026-11-24; the report is on old numbers | 2026-11-24 | [Run FA](https://claude.ai/artifact/5EbzJAVRmDf7fvZCbe7eDF) |
 
 ## 🟡 FA needed soon
